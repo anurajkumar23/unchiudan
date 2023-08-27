@@ -13,15 +13,14 @@ function Hero() {
             अन्य Competitive और&nbsp;Government Job Examinations के लिए ऊँची
             उड़ान वेबसाइट और फेसबुक पेज को Follow करें।
           </p>
-          <div className="">
-            <div className="mt-12 inline-flex ">
-              <button
-                type="button"
-                className="bg-blue-500 text-[18px] text-white rounded-lg px-4 py-1 hover:scale-110 duration-500 "
-              >
-                Start Learning & Fly High
-              </button>
-            </div>
+
+          <div className="mt-12 flex justify-center items-center">
+            <button
+              type="button"
+              className="bg-blue-500 mx-auto text-[18px] text-white rounded-lg px-4 py-1 hover:scale-110 duration-500 "
+            >
+              Start Learning & Fly High
+            </button>
           </div>
         </div>
         <div className="flex items-center gap-8 p-2 lg:p-24">
