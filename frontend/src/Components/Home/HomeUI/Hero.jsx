@@ -28,7 +28,7 @@ function Hero() {
           <img
             src="/images/landscape/3.jpg"
             class="w-1/2 rounded-lg"
-            alt="Tree"
+            alt="Meow"
           />
           <div>
             <img
