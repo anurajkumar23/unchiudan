@@ -20,7 +20,7 @@ function Footer() {
                 className="w-full rounded-full border-gray-200 bg-gray-100 p-4 pe-32 text-sm font-medium"
                 id="email"
                 type="email"
-                placeholder="john@doe.com"
+                placeholder="example@gmail.com"
               />
 
               <button className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700">
@@ -33,12 +33,13 @@ function Footer() {
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
           <div className="mx-auto max-w-sm lg:max-w-none">
             <p className="mt-4 text-center text-gray-500 lg:text-left lg:text-lg">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Praesentium natus quod eveniet aut perferendis distinctio iusto
-              repudiandae, provident velit earum?
+              Unchiudaan शिक्षा से संबंधित अनुभवी युवाओं की समर्पित टीम है जो
+              Website और Facebook page के माध्यम से प्रतियोगी परीक्षाओं की
+              तैयारी कर रहे विद्यार्थियों को समसामयिक विषयों पर आधारित
+              महत्वपूर्ण Study Material उपलब्ध कराता है।
             </p>
 
-            <div className="mt-6 flex justify-center gap-4 lg:justify-start">
+            <div className="mt-6 flex justify-center gap-6 lg:justify-start">
               <a
                 className="text-gray-700 transition hover:text-gray-700/75"
                 href=""
@@ -47,7 +48,7 @@ function Footer() {
               >
                 <span className="sr-only"> Facebook </span>
 
-                <FaFacebook />
+                <FaFacebook className=" w-7 h-7" />
               </a>
 
               <a
@@ -58,7 +59,7 @@ function Footer() {
               >
                 <span className="sr-only"> Twitter </span>
 
-                <FaTwitter />
+                <FaTwitter className=" w-7 h-7" />
               </a>
 
               <a
@@ -69,7 +70,7 @@ function Footer() {
               >
                 <span className="sr-only"> Instagram </span>
 
-                <FaInstagram />
+                <FaInstagram className=" w-7 h-7" />
               </a>
 
               <a
@@ -80,7 +81,7 @@ function Footer() {
               >
                 <span className="sr-only"> Linkedin </span>
 
-                <FaLinkedin />
+                <FaLinkedin className=" w-7 h-7" />
               </a>
             </div>
           </div>
@@ -95,7 +96,7 @@ function Footer() {
                     className="text-gray-700 transition hover:text-gray-700/75"
                     href="/"
                   >
-                    Marketing
+                    UPSC
                   </a>
                 </li>
 
@@ -104,7 +105,7 @@ function Footer() {
                     className="text-gray-700 transition hover:text-gray-700/75"
                     href="/"
                   >
-                    Graphic Design
+                    BPSC
                   </a>
                 </li>
 
@@ -113,7 +114,7 @@ function Footer() {
                     className="text-gray-700 transition hover:text-gray-700/75"
                     href="/"
                   >
-                    App Development
+                    SSC
                   </a>
                 </li>
 
@@ -122,7 +123,7 @@ function Footer() {
                     className="text-gray-700 transition hover:text-gray-700/75"
                     href="/"
                   >
-                    Web Development
+                    Jee Advance
                   </a>
                 </li>
               </ul>
@@ -146,7 +147,7 @@ function Footer() {
                     className="text-gray-700 transition hover:text-gray-700/75"
                     href="/"
                   >
-                    Careers
+                    Our Teachers
                   </a>
                 </li>
 
@@ -155,7 +156,7 @@ function Footer() {
                     className="text-gray-700 transition hover:text-gray-700/75"
                     href="/"
                   >
-                    History
+                    meow
                   </a>
                 </li>
 
@@ -164,7 +165,7 @@ function Footer() {
                     className="text-gray-700 transition hover:text-gray-700/75"
                     href="/"
                   >
-                    Our Team
+                    Our Tech Team
                   </a>
                 </li>
               </ul>
@@ -197,7 +198,7 @@ function Footer() {
                     className="text-gray-700 transition hover:text-gray-700/75"
                     href="/"
                   >
-                    Live Chat
+                    meow
                   </a>
                 </li>
               </ul>
@@ -205,17 +206,17 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-gray-100 pt-8">
-          <p className="text-center text-xs/relaxed text-gray-500">
+        <div className="mt-16 border-t border-gray-100 pt-8 text-center">
+          <p className=" text-xl text-black">
             © ऊँची उड़ान 2023. All rights reserved.
-            <br />
-            Designed & Developed by
+          </p>
+          <p>
+            Designed & Developed by {""}
             <a
               href="/DevTeam"
-              className="text-gray-700 underline transition hover:text-gray-700/75"
+              className="text-gray-700  transition hover:text-gray-700/75"
             >
-              {" "}
-              UIT Meow Coders{" "}
+              UIT Meow Coders
             </a>
             .
           </p>
