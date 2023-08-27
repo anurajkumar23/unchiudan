@@ -17,9 +17,9 @@ function Hero() {
             <div className="mt-12 inline-flex ">
               <button
                 type="button"
-                className="bg-blue-500 text-white rounded-lg px-4 py-1 hover:scale-110 duration-500 "
+                className="bg-blue-500 text-[20px] text-white rounded-lg px-4 py-1 hover:scale-110 duration-500 "
               >
-                Start Learn & Fly High
+                Start Learning & Fly High
               </button>
             </div>
           </div>
