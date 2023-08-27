@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Home/HomeUI/Navbar";
 import Footer from "./Home/HomeUI/Footer";
-function Global({ children }) {
+function GlobalProvider({ children }) {
   return (
     <div className="mx-auto">
       <Navbar />
@@ -11,4 +11,4 @@ function Global({ children }) {
   );
 }
 
-export default Global;
+export default GlobalProvider;
