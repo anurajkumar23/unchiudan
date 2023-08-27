@@ -5,15 +5,15 @@ function Hero() {
     <div>
       <div className="bg-white   overflow-hidden relative lg:flex lg:items-center">
         <div className="w-full py-12 ">
-          <h2 className="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
-            <span className="block">ऊँची उड़ान में आपका स्वागत है!</span>
+          <h2 className="text-3xl font-extrabold text-black">
+            ऊँची उड़ान में आपका स्वागत है!
           </h2>
-          <p className="text-md mt-4 text-gray-600">
+          <p className="text-md mt-4 text-gray-600 text-justify">
             Current Affairs for BPSC, UPPSC, MPPSC, JPSC, BSSC, RPSC, SSC, और
             अन्य Competitive और&nbsp;Government Job Examinations के लिए ऊँची
             उड़ान वेबसाइट और फेसबुक पेज को Follow करें।
           </p>
-          <div className="lg:mt-0 lg:flex-shrink-0">
+          <div className="">
             <div className="mt-12 inline-flex ">
               <button
                 type="button"
@@ -24,7 +24,7 @@ function Hero() {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-8 p-8 lg:p-24">
+        <div className="flex items-center gap-8 p-2 lg:p-24">
           <img
             src="/Images/bpsc.jpeg"
             className="w-1/2 rounded-lg"
