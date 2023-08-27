@@ -34,7 +34,7 @@ function Hero() {
             <img
               src="/images/landscape/2.jpg"
               class="mb-8 rounded-lg"
-              alt="Tree"
+              alt="Meow"
             />
             <img src="/images/landscape/4.jpg" class="rounded-lg" alt="Tree" />
           </div>
