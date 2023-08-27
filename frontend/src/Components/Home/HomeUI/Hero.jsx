@@ -3,7 +3,7 @@ import React from "react";
 function Hero() {
   return (
     <div>
-      <div className="bg-white   overflow-hidden relative lg:flex lg:items-center">
+      <div className=" overflow-hidden relative lg:flex lg:items-center">
         <div className="w-full py-12 ">
           <h2 className="text-3xl font-extrabold text-black">
             ऊँची उड़ान में आपका स्वागत है!
