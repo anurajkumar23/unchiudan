@@ -26,21 +26,17 @@ function Hero() {
         </div>
         <div className="flex items-center gap-8 p-8 lg:p-24">
           <img
-            src="/images/landscape/3.jpg"
+            src="/Images/bpsc.jpeg"
             className="w-1/2 rounded-lg"
             alt="Meow"
           />
           <div>
             <img
-              src="/images/landscape/2.jpg"
+              src="/Images/upsc.jpeg"
               className="mb-8 rounded-lg"
               alt="Meow"
             />
-            <img
-              src="/images/landscape/4.jpg"
-              className="rounded-lg"
-              alt="Meow"
-            />
+            <img src="/Images/ssc.jpeg" className="rounded-lg" alt="Meow" />
           </div>
         </div>
       </div>
