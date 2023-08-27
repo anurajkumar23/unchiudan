@@ -8,7 +8,7 @@ function Hero() {
           <h2 className="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
             <span className="block">ऊँची उड़ान में आपका स्वागत है!</span>
           </h2>
-          <p className="text-md mt-4 text-gray-400">
+          <p className="text-md mt-4 text-gray-600">
             Current Affairs for BPSC, UPPSC, MPPSC, JPSC, BSSC, RPSC, SSC, और
             अन्य Competitive और&nbsp;Government Job Examinations के लिए ऊँची
             उड़ान वेबसाइट और फेसबुक पेज को Follow करें।
