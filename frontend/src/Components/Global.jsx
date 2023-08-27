@@ -1,9 +1,12 @@
 import React from "react";
-
-function Global() {
+import Navbar from "./Home/HomeUI/Navbar";
+import Footer from "./Home/HomeUI/Footer";
+function Global({ children }) {
   return (
-    <div>
-      <h1>hi</h1>
+    <div className="mx-auto">
+      <Navbar />
+      {children}
+      <Footer />
     </div>
   );
 }
