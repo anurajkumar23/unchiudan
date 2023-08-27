@@ -17,7 +17,7 @@ function Hero() {
             <div className="mt-12 inline-flex ">
               <button
                 type="button"
-                className="py-2 px-4 shadow-xl bg-green-500 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                className="bg-blue-500 text-white rounded-lg px-4 py-1 "
               >
                 Start Learn & Fly High
               </button>
