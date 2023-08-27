@@ -1,9 +1,9 @@
 import React from "react";
-
+import Hero from "./HomeUI/Hero";
 function Home() {
   return (
-    <div>
-      <h1>hi</h1>
+    <div className="mx-6 ">
+      <Hero />
     </div>
   );
 }
