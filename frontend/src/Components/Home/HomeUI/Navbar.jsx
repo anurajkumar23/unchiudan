@@ -16,7 +16,6 @@ function Navbar() {
           className="flex items-center text-white text-lg font-semibold mr-6"
         >
           <img src="/logo.png" alt="Logo" className="h-8 w-8 mr-2" />
-          Your Logo
         </a>
       </div>
       {/* Links */}
