@@ -36,7 +36,7 @@ function Hero() {
               class="mb-8 rounded-lg"
               alt="Meow"
             />
-            <img src="/images/landscape/4.jpg" class="rounded-lg" alt="Tree" />
+            <img src="/images/landscape/4.jpg" class="rounded-lg" alt="Meow" />
           </div>
         </div>
       </div>
