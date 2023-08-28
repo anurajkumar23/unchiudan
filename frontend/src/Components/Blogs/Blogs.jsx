@@ -16,6 +16,13 @@ export default function Blogs() {
       likes: 36,
       imageSrc: "/uchiudan.png",
     },
+    {
+      date: "29 August",
+      title: "UPSC Training Meow Meow Meow",
+      views: 125,
+      likes: 36,
+      imageSrc: "/uchiudan.png",
+    },
     // dummy test blogs
   ];
 
