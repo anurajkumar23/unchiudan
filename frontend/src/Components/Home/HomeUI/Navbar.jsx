@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed z-40 w-full ">
-      <div className="backdrop-blur mx-auto px-6 md:px-12 lg:px-7">
+      <div className="backdrop-blur mx-auto px-3 md:px-12 lg:px-7">
         <div className="flex flex-wrap items-center justify-between  gap-6  md:gap-0 relative">
           <input
             type="checkbox"
