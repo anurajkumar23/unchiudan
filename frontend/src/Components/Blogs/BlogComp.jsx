@@ -42,7 +42,7 @@ export default function BlogList() {
       views: 125,
       likes: 36,
     },
-    // Add more blog objects here
+    //  dummy test blogs
   ];
 
   return (
