@@ -2,7 +2,7 @@ import React from "react";
 
 function Hero() {
   return (
-    <div className="md:mx-8 mx-6">
+    <div className="md:mx-8 mx-6 my-10">
       <div className=" overflow-hidden relative lg:flex lg:items-center">
         <div className="w-full py-12 ">
           <h2 className="text-3xl font-extrabold text-black">
