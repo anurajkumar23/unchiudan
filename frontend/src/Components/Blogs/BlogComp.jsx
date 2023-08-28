@@ -8,11 +8,7 @@ function BlogComp() {
           Beginner Friendly
         </h3>
         <div class="relative">
-          <img
-            class="w-full rounded-xl"
-            src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-            alt="Colors"
-          />
+          <img class="w-full rounded-xl" src="/uchiudan.png" alt="Colors" />
           <p class="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
             FREE
           </p>
