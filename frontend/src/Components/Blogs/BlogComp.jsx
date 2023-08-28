@@ -5,7 +5,7 @@ function BlogComp({ date, title, views, likes }) {
   return (
     <div className="bg-white p-6 w-[10rem] rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
       <div className="relative">
-        <img className="w-full rounded-xl" src="/uchiudan.png" alt="Colors" />
+        <img className="w-full rounded-xl" src={imageSrc} alt={title} />
         <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
           {date}
         </p>
