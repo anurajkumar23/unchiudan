@@ -43,10 +43,7 @@ function ServicesOverview() {
                 <div class="px-4 py-5 flex-auto">
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"></div>
                   <h6 class="text-xl mb-1 font-semibold">UPSC</h6>
-                  <p class="mb-4 text-blueGray-500">
-                    Notus JS comes with a huge number of Fully Coded CSS
-                    components.
-                  </p>
+                  <p class="mb-4 text-blueGray-500">meow</p>
                 </div>
               </div>
               <div class="relative flex flex-col min-w-0">
@@ -54,13 +51,8 @@ function ServicesOverview() {
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
                     <i class="fas fa-drafting-compass"></i>
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">
-                    JavaScript Components
-                  </h6>
-                  <p class="mb-4 text-blueGray-500">
-                    We also feature many dynamic components for React, NextJS,
-                    Vue and Angular.
-                  </p>
+                  <h6 class="text-xl mb-1 font-semibold">BPSC</h6>
+                  <p class="mb-4 text-blueGray-500">meow</p>
                 </div>
               </div>
             </div>
@@ -70,11 +62,8 @@ function ServicesOverview() {
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
                     <i class="fas fa-newspaper"></i>
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">Pages</h6>
-                  <p class="mb-4 text-blueGray-500">
-                    This extension also comes with 3 sample pages. They are
-                    fully coded so you can start working instantly.
-                  </p>
+                  <h6 class="text-xl mb-1 font-semibold">ssc</h6>
+                  <p class="mb-4 text-blueGray-500">meow</p>
                 </div>
               </div>
               <div class="relative flex flex-col min-w-0">
@@ -82,11 +71,8 @@ function ServicesOverview() {
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
                     <i class="fas fa-file-alt"></i>
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">Monthly PDFs</h6>
-                  <p class="mb-4 text-blueGray-500">
-                    Built by developers for developers. You will love how easy
-                    is to to work with Notus JS.
-                  </p>
+                  <h6 class="text-xl mb-1 font-semibold">free PDFs</h6>
+                  <p class="mb-4 text-blueGray-500">meow</p>
                 </div>
               </div>
             </div>
