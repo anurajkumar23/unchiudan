@@ -5,8 +5,7 @@ function GlobalProvider({ children }) {
   return (
     <div className="mx-auto">
       <Navbar />
-      <div className="my-10"> {children}</div>
-
+      {children}
       <Footer />
     </div>
   );
