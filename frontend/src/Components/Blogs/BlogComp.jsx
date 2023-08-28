@@ -47,7 +47,7 @@ export default function BlogList() {
   ];
 
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-6">
       {blogs.map((blog, index) => (
         <BlogComp
           key={index}
