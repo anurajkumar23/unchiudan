@@ -27,7 +27,7 @@ function BlogComp({ date, title, views, likes, imageSrc }) {
           <p>{likes}</p>
         </div>
       </div>
-      <button className="mt-4 text-lg w-full text-white bg-indigo-400 py-2 px-5 rounded-xl hover:shadow-xl">
+      <button className="mt-4 text-lg hover:bg-indigo-600 w-full text-white bg-indigo-400 py-2 px-5 rounded-xl hover:shadow-xl">
         Read More
       </button>
     </div>
