@@ -5,6 +5,7 @@ function Home() {
   return (
     <div className="mx-auto py-10 space-y-10">
       <Hero />
+      <ServicesOverview />
     </div>
   );
 }
