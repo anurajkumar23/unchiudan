@@ -3,7 +3,6 @@ import React from "react";
 function BlogComp() {
   return (
     <div>
-      {" "}
       <div class="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
         <h3 class="mb-3 text-xl font-bold text-indigo-600">
           Beginner Friendly
