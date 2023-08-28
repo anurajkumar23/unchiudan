@@ -6,7 +6,6 @@ function ServicesOverview() {
     <div className="mx-auto">
       <div class="flex flex-wrap items-center">
         <h1 className="text-center text-2.5rem md:text-[3rem]  ">
-          {" "}
           Our Services
         </h1>
         <div class="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-78">
