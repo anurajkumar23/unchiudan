@@ -1,11 +1,11 @@
 import React from "react";
 import { FaEye, FaThumbsUp } from "react-icons/fa";
 
-function BlogComp({ date, title, views, likes }) {
+function BlogComp({ date, title, views, likes, imageSrc }) {
   return (
     <div className="bg-white p-6 w-[10rem] rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
       <div className="relative">
-        <img className="w-full rounded-xl" src={imageSrc} alt={title} />
+        <img className="w-full rounded-xl" src={imageSrc} alt="Blog Cover" />
         <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
           {date}
         </p>
@@ -34,30 +34,4 @@ function BlogComp({ date, title, views, likes }) {
   );
 }
 
-export default function BlogList() {
-  const blogs = [
-    {
-      date: "29 August",
-      title: "UPSC Training Meow Meow Meow",
-      views: 125,
-      likes: 36,
-      imageSrc: "/uchiudan.png",
-    },
-    //  dummy test blogs
-  ];
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mx-6">
-      {blogs.map((blog, index) => (
-        <BlogComp
-          key={index}
-          date={blog.date}
-          title={blog.title}
-          views={blog.views}
-          likes={blog.likes}
-          imageSrc={blog.imageSrc}
-        />
-      ))}
-    </div>
-  );
-}
+export default BlogComp;
