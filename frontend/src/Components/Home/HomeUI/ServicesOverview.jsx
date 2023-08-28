@@ -1,5 +1,5 @@
 import React from "react";
-import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
+import { FaFileAlt } from "react-icons/fa";
 
 function ServicesOverview() {
   return (
@@ -41,7 +41,9 @@ function ServicesOverview() {
             <div class="w-full md:w-6/12 px-4">
               <div class="relative flex flex-col mt-4">
                 <div class="px-4 py-5 flex-auto">
-                  <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white"></div>
+                  <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+                    <FaFileAlt />
+                  </div>{" "}
                   <h6 class="text-xl mb-1 font-semibold">UPSC</h6>
                   <p class="mb-4 text-blueGray-500">meow</p>
                 </div>
@@ -49,7 +51,7 @@ function ServicesOverview() {
               <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                    <i class="fas fa-drafting-compass"></i>
+                    <FaFileAlt />
                   </div>
                   <h6 class="text-xl mb-1 font-semibold">BPSC</h6>
                   <p class="mb-4 text-blueGray-500">meow</p>
@@ -60,7 +62,7 @@ function ServicesOverview() {
               <div class="relative flex flex-col min-w-0 mt-4">
                 <div class="px-4 py-5 flex-auto">
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                    <i class="fas fa-newspaper"></i>
+                    <FaFileAlt />
                   </div>
                   <h6 class="text-xl mb-1 font-semibold">ssc</h6>
                   <p class="mb-4 text-blueGray-500">meow</p>
@@ -69,7 +71,7 @@ function ServicesOverview() {
               <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                    <i class="fas fa-file-alt"></i>
+                    <FaFileAlt />
                   </div>
                   <h6 class="text-xl mb-1 font-semibold">free PDFs</h6>
                   <p class="mb-4 text-blueGray-500">meow</p>
