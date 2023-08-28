@@ -30,10 +30,10 @@ const Navbar = () => {
                 htmlFor="toggle_nav"
                 aria-label="humburger"
                 id="hamburger"
-                className="relative z-40 px-2 py-3 sm:-mr-6"
+                className="relative z-40 px-2 py-3 "
               >
                 {isMenuOpen ? (
-                  <RiCloseFill className="text-black w-7 h-7" />
+                  <RiCloseFill className="text-black w-9 h-9" />
                 ) : (
                   <RiMenu3Fill className="text-black w-7 h-7" />
                 )}
