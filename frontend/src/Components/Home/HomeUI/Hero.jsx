@@ -5,7 +5,7 @@ function Hero() {
     <div className="md:mx-8 mx-6">
       <div className=" overflow-hidden relative lg:flex lg:items-center">
         <div className="w-full py-12 ">
-          <h2 className="text-3xl font-extrabold text-black">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-black">
             ऊँची उड़ान में आपका स्वागत है!
           </h2>
           <p className="text-md mt-4 text-gray-600 text-justify">
