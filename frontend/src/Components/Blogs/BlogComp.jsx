@@ -41,6 +41,7 @@ export default function BlogList() {
       title: "UPSC Training Meow Meow Meow",
       views: 125,
       likes: 36,
+      imageSrc: "/uchiudan.png",
     },
     //  dummy test blogs
   ];
@@ -54,6 +55,7 @@ export default function BlogList() {
           title={blog.title}
           views={blog.views}
           likes={blog.likes}
+          imageSrc={blog.imageSrc}
         />
       ))}
     </div>
