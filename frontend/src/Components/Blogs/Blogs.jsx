@@ -13,7 +13,7 @@ export default function Blogs() {
   ];
 
   return (
-    <div className="mx-6">
+    <div className="mx-6 md:mx-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {blogs.map((blog, index) => (
           <BlogComp
