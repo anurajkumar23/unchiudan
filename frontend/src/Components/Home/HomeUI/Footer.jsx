@@ -5,7 +5,7 @@ function Footer() {
     <div>
       <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-md">
-          <strong className="block text-center text-xl font-bold text-gray-900 sm:text-3xl">
+          <strong className="block text-center text-lg font-bold text-gray-900 sm:text-3xl">
             सारे Updates पाने के लिए Subscribe करें
           </strong>
 
@@ -207,15 +207,12 @@ function Footer() {
         </div>
 
         <div className="mt-16 border-t border-gray-100 pt-8 text-center">
-          <p className=" text-xl text-black">
+          <p className=" text-lg text-black">
             © ऊँची उड़ान 2023. All rights reserved.
           </p>
           <p>
             Designed & Developed by {""}
-            <a
-              href="/DevTeam"
-              className="text-gray-700  transition hover:text-gray-700/75"
-            >
+            <a href="/DevTeam" className="text-blue-500">
               UIT Meow Coders
             </a>
             .
