@@ -5,34 +5,17 @@ function ServicesOverview() {
   return (
     <div className="mx-auto">
       <div class="flex flex-wrap items-center">
+        <h1 className="text-center text-2.5rem md:text-[3rem]  ">
+          {" "}
+          Our Services
+        </h1>
         <div class="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-78">
-          <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-pink-500">
+          <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6  rounded-lg bg-pink-500">
             <img
               alt="meow"
               src="/uchiudan.png"
               class="w-full align-middle rounded-t-lg"
             />
-            <blockquote class="relative p-8 mb-4">
-              <svg
-                preserveAspectRatio="none"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 583 95"
-                class="absolute left-0 w-full block h-95-px -top-94-px"
-              >
-                <polygon
-                  points="-30,95 583,95 583,65"
-                  class="text-pink-500 fill-current"
-                ></polygon>
-              </svg>
-              <h4 class="text-xl font-bold text-white">
-                Great for your awesome project
-              </h4>
-              <p class="text-md font-light mt-2 text-white">
-                Putting together a page has never been easier than matching
-                together pre-made components. From landing pages presentation to
-                login areas, you can easily customise and built your pages.
-              </p>
-            </blockquote>
           </div>
         </div>
 
