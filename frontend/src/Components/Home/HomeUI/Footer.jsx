@@ -5,7 +5,7 @@ function Footer() {
     <div>
       <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-md">
-          <strong className="block text-center text-xl font-bold text-gray-900 sm:text-3xl">
+          <strong className="text-center text-lg font-bold text-gray-900 sm:text-3xl">
             सारे Updates पाने के लिए Subscribe करें
           </strong>
 
