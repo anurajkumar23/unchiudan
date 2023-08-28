@@ -5,8 +5,9 @@ function Hero() {
     <div className="md:mx-8 mx-6">
       <div className=" overflow-hidden relative lg:flex lg:items-center">
         <div className="w-full py-12 ">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-black">
-            ऊँची उड़ान में आपका स्वागत है!
+          <h2 className="text-[1.6rem] text-center md:text-[2.5rem] font-extrabold text-black">
+            <span className="text-[#0089AB] ">ऊँची</span>{" "}
+            <span className="text-[#FF1E33] "> उड़ान</span> में आपका स्वागत है!
           </h2>
           <p className="text-md mt-4 text-gray-600 text-justify">
             Current Affairs for BPSC, UPPSC, MPPSC, JPSC, BSSC, RPSC, SSC, और
