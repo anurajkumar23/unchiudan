@@ -10,7 +10,7 @@ function Hero() {
             <span className="text-[#FF1E33] "> उड़ान</span> में आपका स्वागत है!
           </h2>
           <p className="text-md mt-4 text-gray-600 text-justify">
-            Current Affairs for BPSC, UPPSC, MPPSC, JPSC, BSSC, RPSC, SSC, और
+            Current Affairs for UPSC, BPSC, All State PCS, बिहार दारोगा,SI, BSSC, Railway, JSSC,  SSC(CGL, CPO, GD) BANKING, Defence, Police,KVS,CTET और
             अन्य Competitive और&nbsp;Government Job Examinations के लिए ऊँची
             उड़ान वेबसाइट और फेसबुक पेज को Follow करें।
           </p>
