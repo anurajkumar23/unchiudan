@@ -28,7 +28,7 @@ export default function Blogs() {
 
   return (
     <div className="mx-10">
-      <h1 className="text-center text-1.8rem md:text-[2rem] mb-6 ">
+      <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-6 ">
         Latest Current Affairs
       </h1>
       <p className="text-justify text-md">
