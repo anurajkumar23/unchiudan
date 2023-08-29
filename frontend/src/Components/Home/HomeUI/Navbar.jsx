@@ -88,8 +88,8 @@ const Navbar = () => {
                 title="Login"
                 className="group w-full py-3 px-6 text-center transition dark:active:bg-yellow-800 dark:focus:bg-yellow-900 active:bg-yellow-200 focus:bg-yellow-100 sm:w-max"
               >
-                <span className="  text-gray-700   font-semibold group-focus:text-yellow-700 dark:group-focus:text-yellow-100">
-                  Login
+                <span className="text-gray-700   font-semibold group-focus:text-yellow-700 dark:group-focus:text-yellow-100">
+                  Admin
                 </span>
               </button>
               <button
