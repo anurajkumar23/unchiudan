@@ -3,47 +3,39 @@ const mongoose = require('mongoose');
 const pdfSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   category: {
     type: String,
-    required: true
+    required: true,
   },
   photo: String,
   price: Number,
   description: String,
-  Month: {
-    type: String,
-    required: true
-  },
-  year: {
-    type: String,
-    required: true
-  },
   Pdf: {
     type: String,
-    required: true
+    required: true,
   },
   comments: [
     {
       user: String,
       email: String,
-      data: String
-    }
+      data: String,
+    },
   ],
   status: {
     type: String,
     enum: ['FREE', 'PAID'],
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
     required: true,
-    default: Date.now
-  }
+    default: Date.now(),
+  },
+  updatedAt: Date,
 });
-
 
 const PDF = mongoose.model('Product', pdfSchema);
 
-module.exports = PDF ;
+module.exports = PDF;
