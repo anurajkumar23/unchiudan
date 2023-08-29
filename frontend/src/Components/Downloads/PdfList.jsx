@@ -16,8 +16,8 @@ export default function PdfList() {
       </h1>
       <p className="text-justify text-md mb-16 md:mx-[6rem]">
         Current Affairs for BPSC, UPPSC, MPPSC, JPSC, BSSC, RPSC, SSC, और अन्य
-        Competitive और&nbsp;Government Job Examinations के लिए ऊँची उड़ान वेबसाइट
-        और फेसबुक पेज को Follow करें।
+        Competitive और Government Job Examinations के लिए पूरे महीने में अपडेट
+        किये गए प्रश्नों के PDF आपको मासिक तौर पर प्राप्त होगा।
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
         {pdfs.map((pdf, index) => (
