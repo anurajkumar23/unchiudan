@@ -40,6 +40,13 @@ export default function PdfList() {
           <PdfComp key={index} title={pdf.title} date={pdf.date} />
         ))}
       </div>
+
+      <button
+        type="button"
+        className="bg-blue-500 mx-auto text-[18px] text-white rounded-lg px-4 py-1 hover:scale-110 duration-500 "
+      >
+        View More
+      </button>
     </div>
   );
 }
