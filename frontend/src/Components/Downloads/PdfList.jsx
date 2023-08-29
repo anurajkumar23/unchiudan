@@ -41,7 +41,7 @@ export default function PdfList() {
         ))}
       </div>
       <a href="/pdfs">
-        <div className="text-center text-xl mx-auto  font-semibold w-fit  px-5 py-2 bg-purple-300 text-white rounded-xl ">
+        <div className="text-center hover:bg-purple-500 mt-6 text-xl mx-auto  font-semibold w-fit  px-5 py-1 bg-purple-300 text-white rounded-xl hover:shadow-xl ">
           View More
         </div>
       </a>
