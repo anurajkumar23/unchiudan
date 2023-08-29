@@ -12,7 +12,7 @@ export default function PdfList() {
   return (
     <div className="mx-10">
       <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-4 ">
-        Latest Current Affairs
+        Download Monthly PDF
       </h1>
       <p className="text-justify text-md mb-16 md:mx-[6rem]">
         Current Affairs for BPSC, UPPSC, MPPSC, JPSC, BSSC, RPSC, SSC, और अन्य
