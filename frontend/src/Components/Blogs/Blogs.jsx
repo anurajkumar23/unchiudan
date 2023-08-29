@@ -29,7 +29,7 @@ export default function Blogs() {
   return (
     <div className="mx-10">
       <h1 className="text-center text-1.8rem md:text-[2rem] mb-6 ">
-        Current Affairs
+        Latest Current Affairs
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
         {blogs.map((blog, index) => (
