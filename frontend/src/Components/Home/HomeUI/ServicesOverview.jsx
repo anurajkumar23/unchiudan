@@ -4,7 +4,7 @@ import { FaFileAlt } from "react-icons/fa";
 function ServicesOverview() {
   return (
     <div className="mx-auto">
-      <h1 className="text-center text-1.8rem md:text-[2rem] mb-6 ">
+      <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-6 ">
         Our Services
       </h1>
       <div class="flex flex-wrap items-center">
