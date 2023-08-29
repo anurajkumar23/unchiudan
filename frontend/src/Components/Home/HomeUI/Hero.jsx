@@ -5,14 +5,19 @@ function Hero() {
     <div className="md:mx-8 mx-6">
       <div className=" overflow-hidden relative lg:flex lg:items-center">
         <div className="w-full py-12 ">
-          <h2 className="text-[1.6rem] text-center md:text-[2.5rem] font-extrabold text-black">
-            <span className="text-[#0089AB] ">ऊँची</span>{" "}
-            <span className="text-[#FF1E33] "> उड़ान</span> में आपका स्वागत है!
+          <h2 className="mt-14 text-[1.6rem] text-center md:text-[2.5rem] font-extrabold text-black">
+            <span className="text-[3.5rem] ">
+              {" "}
+              <span className="text-[#0089AB] ">ऊँची</span>{" "}
+              <span className="text-[#FF1E33] "> उड़ान</span>{" "}
+            </span>
+            <br /> में आपका स्वागत है!
           </h2>
           <p className="text-md mt-4 text-gray-600 text-justify">
-            Current Affairs for UPSC, BPSC, All State PCS, बिहार दारोगा,SI, BSSC, Railway, JSSC,  SSC(CGL, CPO, GD) BANKING, Defence, Police,KVS,CTET और
-            अन्य Competitive और&nbsp;Government Job Examinations के लिए ऊँची
-            उड़ान वेबसाइट और फेसबुक पेज को Follow करें।
+            Current Affairs for UPSC, BPSC, All State PCS, बिहार दारोगा,SI,
+            BSSC, Railway, JSSC, SSC(CGL, CPO, GD) BANKING, Defence,
+            Police,KVS,CTET और अन्य Competitive और&nbsp;Government Job
+            Examinations के लिए ऊँची उड़ान वेबसाइट और फेसबुक पेज को Follow करें।
           </p>
 
           <div className="mt-12 flex justify-center items-center">
