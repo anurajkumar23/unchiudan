@@ -1,7 +1,7 @@
 import React from "react";
 import { FaFileAlt } from "react-icons/fa";
 
-function PdfCard({ title, date }) {
+function PdfComp({ title, date }) {
   return (
     <div className="w-26 flex justify-between">
       <div>
@@ -15,4 +15,4 @@ function PdfCard({ title, date }) {
   );
 }
 
-export default PdfCard;
+export default PdfComp;
