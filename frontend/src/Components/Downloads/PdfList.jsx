@@ -6,7 +6,7 @@ export default function PdfList() {
       title: "UPSC Exam PDF Notes 1",
       date: "29 August",
     },
-    // Add more PDF objects here
+    // dummy test data
   ];
 
   return (
