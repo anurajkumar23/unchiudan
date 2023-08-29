@@ -1,6 +1,5 @@
 import React from "react";
-import PdfCard from "./PdfCard"; // Adjust the path to match the actual location of PdfCard
-
+import PdfComp from "./PdfComp";
 export default function PdfList() {
   const pdfs = [
     {
@@ -13,7 +12,7 @@ export default function PdfList() {
   return (
     <div>
       {pdfs.map((pdf, index) => (
-        <PdfCard key={index} title={pdf.title} date={pdf.date} />
+        <PdfComp key={index} title={pdf.title} date={pdf.date} />
       ))}
     </div>
   );
