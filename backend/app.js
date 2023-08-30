@@ -33,6 +33,8 @@ app.use(xss());
 // Routes
 app.use('/api/current-affairs', affairsRoute);
 app.use('/api/user', userRoutes);
+app.use('/api/news', newsRoutes);
+app.use('/api/pdf', pdfRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
