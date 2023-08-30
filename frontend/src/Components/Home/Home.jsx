@@ -8,7 +8,6 @@ function Home() {
   return (
     <div className="mx-auto py-10 space-y-[8rem]">
       <Hero />
-      <HeroContent/>
       <ServicesOverview />
       <Blogs />
       <PdfList />

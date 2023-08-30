@@ -8,7 +8,6 @@ function Hero() {
         <div className="w-full py-12 ">
           <h2 className="mt-14 text-[1.6rem] text-center md:text-[2.5rem] font-extrabold text-black">
             <span className="text-[3.5rem] ">
-              {" "}
               <span className="text-[#0089AB] ">ऊँची</span>{" "}
               <span className="text-[#FF1E33] "> उड़ान</span>{" "}
             </span>
