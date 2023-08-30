@@ -1,5 +1,11 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+  FaInstagram,
+  FaTelegramPlane,
+} from "react-icons/fa";
 function Footer() {
   return (
     <div>
@@ -8,26 +14,12 @@ function Footer() {
           <strong className="block text-center text-lg font-bold text-gray-900 sm:text-3xl">
             सारे Updates पाने के लिए Subscribe करें
           </strong>
-
-          <form className="mt-6">
-            <div className="relative max-w-lg">
-              <label className="sr-only" htmlFor="email">
-                {" "}
-                Email{" "}
-              </label>
-
-              <input
-                className="w-full rounded-full border-gray-200 bg-gray-100 p-4 pe-32 text-sm font-medium"
-                id="email"
-                type="email"
-                placeholder="example@gmail.com"
-              />
-
-              <button className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700">
-                Subscribe
-              </button>
+          <a href="#">
+            <div className="mt-6 flex w-fit hover:bg-blue-500 px-3 py-1 justify-between space-x-3 text-lg mx-auto rounded-full bg-blue-300 text-white">
+              <FaTelegramPlane className="w-7 h-7" />
+              <span>Subscribe</span>
             </div>
-          </form>
+          </a>
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
@@ -208,7 +200,8 @@ function Footer() {
 
         <div className="mt-16 border-t border-gray-100 pt-8 text-center">
           <p className=" text-lg text-black">
-            © ऊँची उड़ान 2023. All rights reserved.
+            © <span className="font-[500]">ऊँची उड़ान</span> 2023. All rights
+            reserved.
           </p>
           <p>
             Designed & Developed by {""}
