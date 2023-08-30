@@ -33,10 +33,8 @@ exports.getAllNews = catchAsync(async (req, res, next) => {
   const limit = req.query.limit * 1 || 10;
   const skip = (page - 1) * limit;
   // Create a query to retrieve news articles with pagination
-  const query = News.find()
-    .skip(skip)
-    .limit(limit);
-    const news = await query;
+  const query = News.find().skip(skip).limit(limit);
+  const news = await query;
   res.status(200).json({
     status: 'success',
     results: news.length,
@@ -45,8 +43,6 @@ exports.getAllNews = catchAsync(async (req, res, next) => {
     },
   });
 });
-
-
 
 exports.createOne = catchAsync(async (req, res, next) => {
   const news = await News.create(req.body);
