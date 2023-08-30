@@ -10,19 +10,21 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.1",
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.3",
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1",
     "prettier": "^3.0.2",
-    "razorpay": "^2.9.1"
+    "razorpay": "^2.9.1",
+    "xss-clean": "^0.1.4"
   },
   "engines": {
     "node": ">=14.20.1"
