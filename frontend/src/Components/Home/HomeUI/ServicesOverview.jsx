@@ -1,5 +1,10 @@
 import React from "react";
-import { FaFileAlt } from "react-icons/fa";
+import {
+  FaFileAlt,
+  FaUserGraduate,
+  FaLanguage,
+  FaUserTie,
+} from "react-icons/fa";
 
 function ServicesOverview() {
   return (
@@ -23,19 +28,21 @@ function ServicesOverview() {
             <div class="w-full md:w-6/12 px-4">
               <div class="relative flex flex-col mt-4">
                 <div class="px-4 py-5 flex-auto">
-                  <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                    <FaFileAlt />
-                  </div>{" "}
-                  <h6 class="text-xl mb-1 font-semibold">UPSC</h6>
+                  <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
+                    <FaUserTie className="w-10 h-10" />
+                  </div>
+                  <h6 class="text-xl mb-1 font-semibold">Daily Quiz</h6>
                   <p class="mb-4 text-blueGray-500">meow</p>
                 </div>
               </div>
               <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
-                  <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                    <FaFileAlt />
+                  <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
+                    <FaUserGraduate className=" w-10 h-10" />
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">BPSC</h6>
+                  <h6 class="text-xl mb-1 font-semibold">
+                    latest Current affair
+                  </h6>
                   <p class="mb-4 text-blueGray-500">meow</p>
                 </div>
               </div>
@@ -43,17 +50,17 @@ function ServicesOverview() {
             <div class="w-full md:w-6/12 px-4">
               <div class="relative flex flex-col min-w-0 mt-4">
                 <div class="px-4 py-5 flex-auto">
-                  <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                    <FaFileAlt />
+                  <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
+                    <FaLanguage className=" w-10 h-10" />
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">ssc</h6>
+                  <h6 class="text-xl mb-1 font-semibold">problem solving</h6>
                   <p class="mb-4 text-blueGray-500">meow</p>
                 </div>
               </div>
               <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
-                  <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                    <FaFileAlt />
+                  <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
+                    <FaFileAlt className=" w-10 h-10" />
                   </div>
                   <h6 class="text-xl mb-1 font-semibold">free PDFs</h6>
                   <p class="mb-4 text-blueGray-500">meow</p>
