@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -21,9 +21,10 @@ const Navbar = () => {
             onChange={toggleMenu}
           />
           <div className="w-full flex justify-between md:w-max md:px-0">
-            <a href="#" aria-label="logo">
+            <Link to="/">
               <img src="/uchiudan.png" className="w-12 md:w-20" alt="logo" />
-            </a>
+            </Link>
+
             <div className="flex items-center md:hidden max-h-10">
               <label
                 role="button"
@@ -56,51 +57,40 @@ const Navbar = () => {
             <div className="  w-full h-full md:h-auto text-black mt-16  md:mt-0">
               <ul className="space-y-8 tracking-wide font-medium md:flex md:space-y-0 md:space-x-6">
                 <li>
-                  <a href="#" className="  md:px-3">
+                  <Link to="/" className="  md:px-3">
                     <div className="relative text-yellow-800   before:absolute before:-inset-2 before:w-full before:h-0.5 before:origin-left   before:mx-auto before:mt-auto before:rounded-full before:bg-yellow-800">
                       <span>Home</span>
                     </div>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="  md:px-3 group">
-                    <div className="relative text-gray-600 before:absolute before:-inset-2 before:w-full before:h-0.5 before:origin-left   before:mx-auto before:mt-auto before:rounded-full before:bg-yellow-800 before:transition before:scale-x-0 group-hover:before:scale-x-100">
+                  <Link to="/" className="  md:px-3 group">
+                    <div className="relative text-black before:absolute before:-inset-2 before:w-full before:h-0.5 before:origin-left   before:mx-auto before:mt-auto before:rounded-full before:bg-yellow-800 before:transition before:scale-x-0 group-hover:before:scale-x-100">
                       <span className="transition group-hover:text-yellow-700    ">
                         Current affairs
                       </span>
                     </div>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="  md:px-3 group">
-                    <div className="relative text-gray-600  before:absolute before:-inset-2 before:w-full before:h-0.5 before:origin-left   before:mx-auto before:mt-auto before:rounded-full before:bg-yellow-800 before:transition before:scale-x-0 group-hover:before:scale-x-100">
+                  <Link to="/" className="  md:px-3 group">
+                    <div className="relative text-black before:absolute before:-inset-2 before:w-full before:h-0.5 before:origin-left   before:mx-auto before:mt-auto before:rounded-full before:bg-yellow-800 before:transition before:scale-x-0 group-hover:before:scale-x-100">
                       <span className="transition group-hover:text-yellow-700    ">
                         UPSC
                       </span>
                     </div>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
             <div className="w-full mt-[8rem] md:mt-0 gap-y-4 md:w-max md:gap-y-0 md:gap-x-4 flex md:flex-row flex-col">
-              <button
-                type="button"
-                title="Login"
-                className="group w-full py-3 px-6 text-center transition dark:active:bg-yellow-800 dark:focus:bg-yellow-900 active:bg-yellow-200 focus:bg-yellow-100 sm:w-max"
-              >
-                <span className="text-gray-700   font-semibold group-focus:text-yellow-700 dark:group-focus:text-yellow-100">
-                  Admin
-                </span>
-              </button>
-              <button
-                type="button"
-                title="Shop now"
-                className="w-full rounded-full py-1 px-5 text-center bg-blue-400 md:w-max"
-              >
-                <span className="  text-white font-semibold">
-                  Premium Course
-                </span>
-              </button>
+              <Link to="/downloadpdf">
+                <div className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500">
+                  <span className=" text-white text-center font-semibold ">
+                    Premium Course
+                  </span>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
