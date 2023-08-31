@@ -31,7 +31,7 @@ app.use(xss());
 
 
 // Routes
-app.use('/api/current-affairs', affairsRoute);
+app.use('/api/currentaffairs', affairsRoute);
 app.use('/api/user', userRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/pdf', pdfRoutes);
