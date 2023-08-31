@@ -1,25 +1,33 @@
 const mongoose = require('mongoose');
 
 const currentAffairsSchema = new mongoose.Schema({
-  setno: {
-    type: Number,
-    required: true,
-  },
   topic: {
     type: String,
+    set: (value) => value.toLowerCase(),
     required: true,
   },
   category: {
     type: String,
-    category: ['Bihar Daroga', 'BPSC', 'Railway', 'UPSC', 'SSC.Bass'],
+    enum: ['Bihar Daroga', 'BPSC', 'Railway', 'UPSC', 'SSC.Bass'],
     required: true,
   },
-  photo: String,
+  photo: {
+    type: String,
+    default: 'uchiudan.png'
+  },
   data: [
     {
       ques: String,
-      options: [String],
-      ans: String,
+      options: [
+        {
+          type: String,
+          trim: true,
+        },
+      ],
+      ans: {
+        type: String,
+        trim: true,
+      },
     },
   ],
   comments: [
@@ -31,7 +39,6 @@ const currentAffairsSchema = new mongoose.Schema({
   ],
   createdAt: {
     type: Date,
-    required: true,
     default: Date.now(),
   },
   updatedAt: Date,

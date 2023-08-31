@@ -15,18 +15,22 @@ const multerFilter = (req, file, cb) => {
 
 const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
-exports.uploadNewsPhoto = upload.single('photo');
+exports.uploadPhoto = upload.single('photo');
 
-exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
-  if (!req.file) return next();
-  req.file.filename = `news-${Date.now()}.jpeg`;
-  await sharp(req.file.buffer)
-    .resize(1200, 1600)
-    .toFormat('jpeg')
-    .jpeg({ quality: 90 })
-    .toFile(`public/img/news/${req.file.filename}`);
-  next();
-});
+exports.resizePhoto = (path) => {
+  return catchAsync(async (req, res, next) => {
+    if (!req.file) return next();
+    const folderName = path.split('/').pop();
+    req.file.filename = `${folderName}-${Date.now()}.jpeg`;
+    console.log(`${path}/${req.file.filename}`)
+    await sharp(req.file.buffer)
+      .resize(1200, 1600)
+      .toFormat('jpeg')
+      .jpeg({ quality: 90 })
+      .toFile(`${path}/${req.file.filename}`);
+    next();
+  });
+};
 
 exports.getAllNews = catchAsync(async (req, res, next) => {
   const page = req.query.page * 1 || 1;
@@ -100,5 +104,24 @@ exports.deleteNews = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     data: null,
+  });
+});
+
+exports.autoDelete = catchAsync(async (req, res, next) => {
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+  const ninetyDaysAgo = new Date();
+  ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+  ninetyDaysAgo.setHours(0, 0, 0, 0);
+
+  const articlesToDelete = await News.find({
+    createdAt: { $lt: ninetyDaysAgo },
+  });
+  for (const news of articlesToDelete) {
+    await News.deleteOne({ _id: news._id }); // Use deleteOne instead of remove
+  }
+  res.status(200).json({
+    status: 'success',
+    message: 'News articles created more than 90 days ago have been deleted.',
   });
 });
