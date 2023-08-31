@@ -14,7 +14,7 @@ router.route('/').get(newsController.getAllNews).post(
 
 router
   .route('/autodelete')
-  .delete(authController.protect, newsController.autoDelete);
+  .delete(authController.protect,authController.restrictTo('admin'), newsController.autoDelete);
 
 router
   .route('/:id')
