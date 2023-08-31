@@ -1,34 +1,33 @@
 const express = require('express');
 const newsController = require('./../controllers/newsController');
-const authController = require('../controllers/authController');
+const { protect, restrictTo } = require('../controllers/authController');
 
 const router = express.Router();
 
-router.route('/').get(newsController.getAllNews).post(
-  authController.protect,
-  authController.restrictTo('admin'),
-  newsController.uploadNewsPhoto,
-  newsController.resizeUserPhoto,
-  newsController.createOne,
-);
+router
+  .route('/')
+  .get(newsController.getAllNews)
+  .post(
+    protect,
+    // restrictTo('admin'),
+    newsController.uploadPhoto,
+    newsController.resizePhoto("public/img/news"),
+    newsController.createOne,
+  );
 
 router
   .route('/autodelete')
-  .delete(authController.protect,authController.restrictTo('admin'), newsController.autoDelete);
+  .delete(protect, restrictTo('admin'), newsController.autoDelete);
 
 router
   .route('/:id')
   .get(newsController.getNews)
-  .delete(
-    authController.protect,
-    authController.restrictTo('admin'),
-    newsController.deleteNews,
-  )
+  .delete(protect, restrictTo('admin'), newsController.deleteNews)
   .patch(
-    authController.protect,
-    authController.restrictTo('admin'),
-    newsController.uploadNewsPhoto,
-    newsController.resizeUserPhoto,
+    protect,
+    // restrictTo('admin'),
+    newsController.uploadPhoto,
+    newsController.resizePhoto("public/img/news"),
     newsController.updateOne,
   );
 

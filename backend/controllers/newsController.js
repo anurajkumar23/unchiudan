@@ -15,18 +15,22 @@ const multerFilter = (req, file, cb) => {
 
 const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
-exports.uploadNewsPhoto = upload.single('photo');
+exports.uploadPhoto = upload.single('photo');
 
-exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
-  if (!req.file) return next();
-  req.file.filename = `news-${Date.now()}.jpeg`;
-  await sharp(req.file.buffer)
-    .resize(1200, 1600)
-    .toFormat('jpeg')
-    .jpeg({ quality: 90 })
-    .toFile(`public/img/news/${req.file.filename}`);
-  next();
-});
+exports.resizePhoto = (path) => {
+  return catchAsync(async (req, res, next) => {
+    if (!req.file) return next();
+    const folderName = path.split('/').pop();
+    req.file.filename = `${folderName}-${Date.now()}.jpeg`;
+    console.log(`${path}/${req.file.filename}`)
+    await sharp(req.file.buffer)
+      .resize(1200, 1600)
+      .toFormat('jpeg')
+      .jpeg({ quality: 90 })
+      .toFile(`${path}/${req.file.filename}`);
+    next();
+  });
+};
 
 exports.getAllNews = catchAsync(async (req, res, next) => {
   const page = req.query.page * 1 || 1;
