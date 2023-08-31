@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.route('/').get(newsController.getAllNews).post(
   authController.protect,
-  // authController.restrictTo('admin'),
+  authController.restrictTo('admin'),
   newsController.uploadNewsPhoto,
   newsController.resizeUserPhoto,
   newsController.createOne,
