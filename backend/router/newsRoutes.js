@@ -4,16 +4,17 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
+router.route('/').get(newsController.getAllNews).post(
+  authController.protect,
+  // authController.restrictTo('admin'),
+  newsController.uploadNewsPhoto,
+  newsController.resizeUserPhoto,
+  newsController.createOne,
+);
+
 router
-  .route('/')
-  .get(newsController.getAllNews)
-  .post(
-    authController.protect,
-    authController.restrictTo('admin'),
-    newsController.uploadNewsPhoto,
-    newsController.resizeUserPhoto,
-    newsController.createOne,
-  );
+  .route('/autodelete')
+  .delete(authController.protect, newsController.autoDelete);
 
 router
   .route('/:id')

@@ -102,3 +102,22 @@ exports.deleteNews = catchAsync(async (req, res, next) => {
     data: null,
   });
 });
+
+exports.autoDelete = catchAsync(async (req, res, next) => {
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+  const ninetyDaysAgo = new Date();
+  ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+  ninetyDaysAgo.setHours(0, 0, 0, 0);
+
+  const articlesToDelete = await News.find({
+    createdAt: { $lt: ninetyDaysAgo },
+  });
+  for (const news of articlesToDelete) {
+    await News.deleteOne({ _id: news._id }); // Use deleteOne instead of remove
+  }
+  res.status(200).json({
+    status: 'success',
+    message: 'News articles created more than 90 days ago have been deleted.',
+  });
+});
