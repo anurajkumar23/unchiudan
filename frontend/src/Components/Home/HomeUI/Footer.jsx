@@ -24,7 +24,7 @@ function Footer() {
 
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
           <div className="mx-auto max-w-sm lg:max-w-none">
-            <p className="mt-4 text-center text-gray-500 lg:text-left lg:text-lg">
+            <p className="mt-4 text-justify text-gray-500 lg:text-left lg:text-lg">
               Unchiudaan शिक्षा से संबंधित अनुभवी युवाओं की समर्पित टीम है जो
               Website और Facebook page के माध्यम से प्रतियोगी परीक्षाओं की
               तैयारी कर रहे विद्यार्थियों को समसामयिक विषयों पर आधारित

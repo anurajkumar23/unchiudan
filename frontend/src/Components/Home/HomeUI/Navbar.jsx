@@ -64,7 +64,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/" className="  md:px-3 group">
+                  <Link to="/currentaffairs" className="  md:px-3 group">
                     <div className="relative text-black before:absolute before:-inset-2 before:w-full before:h-0.5 before:origin-left   before:mx-auto before:mt-auto before:rounded-full before:bg-yellow-800 before:transition before:scale-x-0 group-hover:before:scale-x-100">
                       <span className="transition group-hover:text-yellow-700    ">
                         Current affairs
