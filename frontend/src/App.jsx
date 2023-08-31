@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import DownloadPage from "./Components/Downloads/DownloadPage";
+import BlogsPage from "./Components/Blogs/BlogsPage";
 import GlobalProvider from "./Components/GlobalProvider";
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/downloadpdf" element={<DownloadPage />} />
+          <Route path="/currentaffairs" element={<BlogsPage />} />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
