@@ -32,48 +32,20 @@ function Footer() {
             </p>
 
             <div className="mt-6 flex justify-center gap-6 lg:justify-start">
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75"
-                href=""
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="sr-only"> Facebook </span>
-
-                <FaFacebook className=" w-7 h-7" />
+              <a className=" " href="" target="_blank" rel="noreferrer">
+                <FaFacebook className="text-blue-500 w-7 h-7" />
               </a>
 
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75"
-                href=""
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="sr-only"> Twitter </span>
-
-                <FaTwitter className=" w-7 h-7" />
+              <a className=" " href="" target="_blank" rel="noreferrer">
+                <FaTwitter className="text-blue-400 w-7 h-7" />
               </a>
 
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75"
-                href=""
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="sr-only"> Instagram </span>
-
-                <FaInstagram className=" w-7 h-7" />
+              <a className=" " href="" target="_blank" rel="noreferrer">
+                <FaInstagram className="text-pink-500 w-7 h-7" />
               </a>
 
-              <a
-                className="text-gray-700 transition hover:text-gray-700/75"
-                href=""
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="sr-only"> Linkedin </span>
-
-                <FaLinkedin className=" w-7 h-7" />
+              <a className=" " href="" target="_blank" rel="noreferrer">
+                <FaLinkedin className="text-blue-600 w-7 h-7" />
               </a>
             </div>
           </div>
