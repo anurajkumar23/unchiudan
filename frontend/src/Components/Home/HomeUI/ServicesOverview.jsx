@@ -31,8 +31,13 @@ function ServicesOverview() {
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
                     <FaUserTie className="w-10 h-10" />
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">Daily Quiz</h6>
-                  <p class="mb-4 text-blueGray-500">meow</p>
+                  <h6 class="text-xl mb-1 font-semibold">
+                    Daily Quiz / डेली प्रश्न
+                  </h6>
+                  <p class="mb-4 text-blueGray-500">
+                    ऊँची उड़ान फेसबुक पेज पर डेली 10 Questions अपडेट किये जाते
+                    हैं।
+                  </p>
                 </div>
               </div>
               <div class="relative flex flex-col min-w-0">
@@ -40,10 +45,10 @@ function ServicesOverview() {
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
                     <FaUserGraduate className=" w-10 h-10" />
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">
-                    latest Current affair
-                  </h6>
-                  <p class="mb-4 text-blueGray-500">meow</p>
+                  <h6 class="text-xl mb-1 font-semibold">Current Affair</h6>
+                  <p class="mb-4 text-blueGray-500">
+                    Get All Latest Current Affairs
+                  </p>
                 </div>
               </div>
             </div>
@@ -53,8 +58,10 @@ function ServicesOverview() {
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
                     <FaLanguage className=" w-10 h-10" />
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">problem solving</h6>
-                  <p class="mb-4 text-blueGray-500">meow</p>
+                  <h6 class="text-xl mb-1 font-semibold">कर्रेंट अफेयर्स</h6>
+                  <p class="mb-4 text-blueGray-500">
+                    कर्रेंट अफेयर्स के Updates से सम्बंधित सभी Questions भी।
+                  </p>
                 </div>
               </div>
               <div class="relative flex flex-col min-w-0">
@@ -62,8 +69,13 @@ function ServicesOverview() {
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
                     <FaFileAlt className=" w-10 h-10" />
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">free PDFs</h6>
-                  <p class="mb-4 text-blueGray-500">meow</p>
+                  <h6 class="text-xl mb-1 font-semibold">
+                    Monthly PDFs / मासिक PDF
+                  </h6>
+                  <p class="mb-4 text-blueGray-500">
+                    पूरे महीने में अपडेट किये गए प्रश्नों के PDF आपको मासिक तौर
+                    पर मिल जायेगा।
+                  </p>
                 </div>
               </div>
             </div>
