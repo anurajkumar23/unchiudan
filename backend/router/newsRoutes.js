@@ -9,7 +9,7 @@ router
   .get(newsController.getAllNews)
   .post(
     protect,
-    // restrictTo('admin'),
+    restrictTo('admin'),
     newsController.uploadPhoto,
     newsController.resizePhoto("public/img/news"),
     newsController.createOne,
@@ -25,7 +25,7 @@ router
   .delete(protect, restrictTo('admin'), newsController.deleteNews)
   .patch(
     protect,
-    // restrictTo('admin'),
+    restrictTo('admin'),
     newsController.uploadPhoto,
     newsController.resizePhoto("public/img/news"),
     newsController.updateOne,

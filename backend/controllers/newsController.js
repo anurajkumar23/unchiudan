@@ -68,10 +68,11 @@ exports.updateOne = catchAsync(async (req, res, next) => {
     new: true,
     runValidators: true,
   });
-
+  
   if (!news) {
     return next(new AppError('No doc found with that ID', 404));
   }
+  
   if (req.file) {
     news.photo = req.file.filename;
   }

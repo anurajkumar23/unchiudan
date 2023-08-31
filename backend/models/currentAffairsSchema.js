@@ -8,7 +8,7 @@ const currentAffairsSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ['Bihar Daroga', 'BPSC', 'Railway', 'UPSC', 'SSC.Bass'],
+    enum: ['BiharDaroga', 'BPSC', 'Railway', 'UPSC', 'SSC.Bass'],
     required: true,
   },
   photo: {
