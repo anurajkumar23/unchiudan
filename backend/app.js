@@ -34,7 +34,7 @@ app.use(xss());
 app.use('/api/currentaffairs', affairsRoute);
 app.use('/api/user', userRoutes);
 app.use('/api/news', newsRoutes);
-app.use('/api/pdf', pdfRoutes);
+app.use('/api/pdfs', pdfRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

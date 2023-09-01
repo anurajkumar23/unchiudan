@@ -7,12 +7,16 @@ const pdfSchema = new mongoose.Schema({
   },
   category: {
     type: String,
+    enum: ['BiharDaroga', 'BPSC', 'Railway', 'UPSC', 'SSC-Bass'],
     required: true,
   },
-  photo: String,
+  photo: {
+    type: String,
+    default: 'uchiudan.png'
+  },
   price: Number,
   description: String,
-  Pdf: {
+  pdf: {
     type: String,
     required: true,
   },
@@ -25,8 +29,9 @@ const pdfSchema = new mongoose.Schema({
   ],
   status: {
     type: String,
-    enum: ['FREE', 'PAID'],
+    enum: ['free', 'paid'],
     required: true,
+    default:"free"
   },
   createdAt: {
     type: Date,
@@ -35,6 +40,6 @@ const pdfSchema = new mongoose.Schema({
   updatedAt: Date,
 });
 
-const PDF = mongoose.model('Product', pdfSchema);
+const PDF = mongoose.model('Pdfs', pdfSchema);
 
 module.exports = PDF;
