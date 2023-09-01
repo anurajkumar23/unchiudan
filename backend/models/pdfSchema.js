@@ -12,13 +12,14 @@ const pdfSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: 'uchiudan.png'
+    default: 'uchiudan.png',
   },
   price: Number,
   description: String,
   pdf: {
     type: String,
     required: true,
+    select: false,
   },
   comments: [
     {
