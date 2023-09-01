@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const CurrentAffairs = require('../models/currentAffairsSchema');
 const AppError = require('./../utils/appError');
 const catchAsync = require('./../utils/catchAsync');
@@ -66,9 +68,20 @@ exports.getAffair = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteAffair = catchAsync(async (req, res, next) => {
-  const affairs = await CurrentAffairs.findByIdAndDelete(req.params.id);
+  const affairs = await CurrentAffairs.findByIdAndRemove(req.params.id);
   if (!affairs) {
-    return next(new AppError('No news found with that ID', 404));
+    return next(new AppError('No affairs found with that ID', 404));
+  }
+  const imagePath = affairs.photo;
+
+  const fullPath = path.join(__dirname, '../public/img/affairs', imagePath);
+  if (imagePath && imagePath !== 'uchiudan.png') {
+    if (fs.existsSync(fullPath)) {
+      // Delete the image file from the server's file system
+      fs.unlinkSync(fullPath);
+    } else {
+      return new AppError('Photo is not deleted from server', 500);
+    }
   }
   res.status(200).json({
     status: 'success',

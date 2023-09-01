@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const News = require('../models/newsModal');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
@@ -80,7 +82,6 @@ exports.updateOne = catchAsync(async (req, res, next) => {
     return next(new AppError('No doc found with that ID', 404));
   }
 
- 
   res.status(200).json({
     status: 'success',
     data: {
@@ -104,10 +105,23 @@ exports.getNews = catchAsync(async (req, res, next) => {
 
 exports.deleteNews = catchAsync(async (req, res, next) => {
   const news = await News.findByIdAndRemove(req.params.id);
-  console.log(news);
+
   if (!news) {
     return next(new AppError('No news found with that ID', 404));
   }
+
+  const imagePath = news.photo;
+  
+  const fullPath = path.join(__dirname, '../public/img/news', imagePath);
+  if (imagePath && imagePath !== 'uchiudan.png') {
+    if (fs.existsSync(fullPath)) {
+      // Delete the image file from the server's file system
+      fs.unlinkSync(fullPath);
+    } else {
+      return new AppError('Photo is not deleted from server', 500);
+    }
+  }
+
   res.status(200).json({
     status: 'success',
     data: null,
@@ -125,7 +139,7 @@ exports.autoDelete = catchAsync(async (req, res, next) => {
     createdAt: { $lt: ninetyDaysAgo },
   });
   for (const news of articlesToDelete) {
-    await News.deleteOne({ _id: news._id }); // Use deleteOne instead of remove
+    await News.deleteOne({ _id: news._id });
   }
   res.status(200).json({
     status: 'success',

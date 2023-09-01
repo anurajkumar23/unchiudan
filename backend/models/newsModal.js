@@ -19,7 +19,8 @@ const newsSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: 'uchiudan.png'
+    default: 'uchiudan.png',
+  
   }
 });
 

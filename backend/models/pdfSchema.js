@@ -13,7 +13,6 @@ const pdfSchema = new mongoose.Schema({
   photo: {
     type: String,
     default: 'uchiudan.png',
-    // select: false,
   },
   price: Number,
   description: String,

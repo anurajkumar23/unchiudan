@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const PDF = require('../models/pdfSchema');
 const AppError = require('./../utils/appError');
 const catchAsync = require('./../utils/catchAsync');
@@ -104,10 +106,33 @@ exports.getPdf = catchAsync(async (req, res, next) => {
 });
 
 exports.deletePdf = catchAsync(async (req, res, next) => {
-  const pdf = await PDF.findByIdAndDelete(req.params.id);
+  const pdf = await PDF.findByIdAndDelete(req.params.id).select('+pdf');
   if (!pdf) {
     return next(new AppError('No pdf found with that ID', 404));
   }
+
+  const imagePath = pdf.photo;
+  const pdfPath = pdf.pdf;
+  console.log(pdfPath);
+  console.log(imagePath);
+
+  const imageFullPath = path.join(__dirname, '../public/img/pdf', imagePath);
+  const pdfFullPath = path.join(__dirname, '../public/img/pdf', pdfPath);
+  if (imagePath && imagePath !== 'uchiudan.png') {
+    if (fs.existsSync(imageFullPath)) {
+      fs.unlinkSync(imageFullPath);
+    } else {
+      return next(new AppError('Image is not deleted from server', 500));
+    }
+  }
+
+  // Check if the PDF file exists and delete it
+  if (fs.existsSync(pdfFullPath)) {
+    fs.unlinkSync(pdfFullPath);
+  } else {
+    return next(new AppError('PDF is not deleted from server', 500));
+  }
+
   res.status(200).json({
     status: 'success',
     data: null,
