@@ -37,11 +37,12 @@ exports.getAllAffairs = catchAsync(async (req, res, next) => {
   
 
 exports.createAffairs = catchAsync(async (req, res, next) => {
-  const affairs = await CurrentAffairs.create(req.body);
-
+  let photo;
   if (req.file) {
-    affairs.photo = req.file.filename;
+    photo = req.file.filename;
   }
+  req.body = { ...req.body, photo };
+  const affairs = await CurrentAffairs.create(req.body);
 
   res.status(201).json({
     status: 'success',
@@ -76,6 +77,11 @@ exports.deleteAffair = catchAsync(async (req, res, next) => {
 });
 
 exports.updateOne = catchAsync(async (req, res, next) => {
+  let photo;
+  if (req.file) {
+    photo = req.file.filename;
+  }
+  req.body = { ...req.body, photo };
   const affairs = await CurrentAffairs.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -84,16 +90,12 @@ exports.updateOne = catchAsync(async (req, res, next) => {
       runValidators: true,
     },
   );
-  //   console.log(affairs);
-
   console.log(req.body);
   if (!affairs) {
     return next(new AppError('No doc found with that ID', 404));
   }
 
-  if (req.file) {
-    affairs.photo = req.file.filename;
-  }
+
   res.status(200).json({
     status: 'success',
     data: {

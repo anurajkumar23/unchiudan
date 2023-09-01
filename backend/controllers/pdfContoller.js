@@ -115,20 +115,32 @@ exports.deletePdf = catchAsync(async (req, res, next) => {
 });
 
 exports.updateOne = catchAsync(async (req, res, next) => {
-  const pdf = await PDF.findByIdAndUpdate(req.params.id, req.body, {
+  let photo;
+  let pdf;
+  if (req.files) {
+    if (req.files.photo) {
+      // 'photo' file was uploaded
+      photo = req.files.photo[0].filename;
+    }
+
+    if (req.files.pdf) {
+      // 'pdf' file was uploaded
+      pdf = req.files.pdf[0].filename;
+    }
+  }
+  req.body = { ...req.body, photo, pdf };
+  const pdfs = await PDF.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });
-  if (!pdf) {
+  if (!pdfs) {
     return next(new AppError('No pdf found with that ID', 404));
   }
   // Create the PDF record with the other fields
   res.status(200).json({
     status: 'success',
     data: {
-      pdf,
+      pdfs,
     },
   });
 });
-
-
