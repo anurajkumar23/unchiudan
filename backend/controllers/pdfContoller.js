@@ -169,3 +169,64 @@ exports.updateOne = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.download = catchAsync(async (req, res, next) => {
+  const pdfId = req.params.id;
+  const pdf = await PDF.findById(pdfId).select('+pdf');
+  if (!pdf) {
+    return next(new AppError('PDF data not found', 404));
+  }
+  const filename = pdf.pdf;
+  const filePath = path.join(__dirname, '../public/img/pdf/', filename);
+
+  const exists = await checkFileExists(filePath);
+
+  if (!exists) {
+    return next(new AppError('PDF file not found', 404));
+  }
+
+  if (pdf.status === 'free') {
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+
+    // Stream the file as the response
+    const fileStream = fs.createReadStream(filePath);
+    fileStream.pipe(res);
+  } else {
+    // Check if the user has paid for the PDF
+
+    const userPaidFor = req.user.pdfid;
+    const isPaid = userPaidFor.includes(pdfId);
+
+    if (isPaid) {
+      // If the user has paid, proceed with the download
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader(
+        'Content-Disposition',
+        `attachment; filename="${filename}"`,
+      );
+
+      const fileStream = fs.createReadStream(filePath);
+      fileStream.pipe(res);
+    } else {
+      // If the user has not paid, redirect to a payment page with a message
+
+      res.status(200).json({
+        status: 'success',
+        message: 'Redirect to payment gateway',
+      });
+
+      // return res.redirect('/payment-page?pdfId=' + pdfId);
+    }
+  }
+});
+
+// Helper function to check if a file exists
+const checkFileExists = async (filePath) => {
+  try {
+    const stats = await fs.promises.stat(filePath);
+    return stats.isFile();
+  } catch (err) {
+    return false;
+  }
+};

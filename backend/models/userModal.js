@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
+  pdfid: [
+    {
+      type: String,
+    },
+  ],
   passwordChangedAt: Date,
 });
 
@@ -46,19 +51,17 @@ userSchema.methods.correctPassword = async function (
   return true;
 };
 
-userSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
+userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   if (this.passwordChangedAt) {
     const changedTimestamp = parseInt(
       this.passwordChangedAt.getTime() / 1000,
-      10
+      10,
     );
     return JWTTimestamp < changedTimestamp;
   }
   // False means NOT changed
   return false;
 };
-
-
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

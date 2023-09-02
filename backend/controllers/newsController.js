@@ -111,7 +111,7 @@ exports.deleteNews = catchAsync(async (req, res, next) => {
   }
 
   const imagePath = news.photo;
-  
+
   const fullPath = path.join(__dirname, '../public/img/news', imagePath);
   if (imagePath && imagePath !== 'uchiudan.png') {
     if (fs.existsSync(fullPath)) {
@@ -139,6 +139,16 @@ exports.autoDelete = catchAsync(async (req, res, next) => {
     createdAt: { $lt: ninetyDaysAgo },
   });
   for (const news of articlesToDelete) {
+    const imagePath = news.photo;
+    const fullPath = path.join(__dirname, '../public/img/news', imagePath);
+    if (imagePath && imagePath !== 'uchiudan.png') {
+      if (fs.existsSync(fullPath)) {
+        // Delete the image file from the server's file system
+        fs.unlinkSync(fullPath);
+      } else {
+        return new AppError('Photo is not deleted from server', 500);
+      }
+    }
     await News.deleteOne({ _id: news._id });
   }
   res.status(200).json({
