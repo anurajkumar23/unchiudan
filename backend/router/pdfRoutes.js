@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.route('/').get(pdfController.getAllPdf).post(
   protect,
-  restrictTo("admin"),
+  // restrictTo("admin"),
   pdfController.uploadPhotoAndPdf,
   pdfController.createPdf,
 );
@@ -16,7 +16,7 @@ router
   .get(pdfController.getPdf)
   .delete(
     protect,
-    restrictTo('admin'),
+    // restrictTo('admin'),
     pdfController.deletePdf,
   )
   .patch(
@@ -25,5 +25,8 @@ router
     pdfController.uploadPhotoAndPdf,
     pdfController.updateOne,
   );
+
+
+  router.route("/download-pdf/:id").get(protect,pdfController.download)
 
 module.exports = router;
