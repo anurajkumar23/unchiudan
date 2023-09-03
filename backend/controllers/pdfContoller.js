@@ -211,12 +211,12 @@ exports.download = catchAsync(async (req, res, next) => {
     } else {
       // If the user has not paid, redirect to a payment page with a message
 
-      res.status(200).json({
-        status: 'success',
-        message: 'Redirect to payment gateway',
-      });
+      // res.status(200).json({
+      //   status: 'success',
+      //   message: 'Redirect to payment gateway',
+      // });
 
-      // return res.redirect('/payment-page?pdfId=' + pdfId);
+      return res.redirect('/payment-page?pdfId=' + pdfId);
     }
   }
 });

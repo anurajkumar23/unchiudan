@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { randomBytes, scrypt: _scrypt } = require('crypto');
+const { randomBytes, scrypt: _scrypt, createHash } = require('crypto');
 const { promisify } = require('util');
 const scrypt = promisify(_scrypt);
 
@@ -10,6 +10,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     lowercase: true,
+  },
+  phone:{
+    type:String,
+    required:true,
+    unique:true,
   },
   role: {
     type: String,
@@ -28,6 +33,8 @@ const userSchema = new mongoose.Schema({
     },
   ],
   passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
 });
 
 userSchema.pre('save', async function (next) {
@@ -36,6 +43,12 @@ userSchema.pre('save', async function (next) {
   const hash = await scrypt(this.password, salt, 32);
   const result = salt + '.' + hash.toString('hex');
   this.password = result;
+  next();
+});
+
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password') || this.isNew) return next();
+  this.passwordChangedAt = Date.now()-10000;
   next();
 });
 
@@ -61,6 +74,16 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   }
   // False means NOT changed
   return false;
+};
+
+userSchema.methods.createPasswordResetToken = function () {
+  const resetToken = randomBytes(32).toString('hex');
+  this.passwordResetToken = createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
 };
 
 const User = mongoose.model('User', userSchema);
