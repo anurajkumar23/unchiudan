@@ -10,6 +10,7 @@ const userRoutes = require('./router/userRoutes');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const cookieParser = require('cookie-parser');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 
@@ -28,6 +29,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(mongoSanitize());
 app.use(xss());
+const limiter = rateLimit({
+  max: 200,
+  windowMS: 60 * 20 * 1000,
+  message: 'Too many requests from this IP address, Please try again after 20 minutes!'
+});
+app.use('/api', limiter);
 
 
 // Routes
