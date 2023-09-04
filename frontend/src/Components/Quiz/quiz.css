@@ -1,0 +1,62 @@
+.faq-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #915eff;
+    box-shadow: 0 2px 4px hwb(0 0% 100% / 0.1);
+    padding: 20px;
+  
+    position: relative;
+    top: 100px;
+  }
+  .faqh{
+    color: #fff;
+  }
+  .qustionsInFaq{
+    color: #915eff;
+  }
+  .faq-question {
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    color: #915eff;
+  }
+  
+  .faq-answer {
+    display: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    margin-top: 10px;
+  }
+  
+  .faq-question.active {
+    background-color: #ffffffae;
+  }
+  
+  .faq-question.active + .faq-answer {
+    display: block;
+  }
+  
+  /* Add this to your CSS */
+/* .faq-question.active .faq-arrow {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+} */
+/* Add this to your CSS */
+/* Add this to your CSS */
+/* quiz.css */
+/* ... (existing styles) */
+
+.faq-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.faq-question.active .faq-arrow {
+  transform: rotate(180deg);
+}
+
+

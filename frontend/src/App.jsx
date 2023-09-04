@@ -4,6 +4,7 @@ import Home from "./Components/Home/Home";
 import DownloadPage from "./Components/Downloads/DownloadPage";
 import BlogsPage from "./Components/Blogs/BlogsPage";
 import GlobalProvider from "./Components/GlobalProvider";
+import Quiz from "./Components/Quiz/Quiz";
 function App() {
   return (
     <BrowserRouter>
@@ -12,6 +13,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/downloadpdf" element={<DownloadPage />} />
           <Route path="/currentaffairs" element={<BlogsPage />} />
+          <Route path="/quiz" element={<Quiz/>} />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>

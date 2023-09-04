@@ -4,6 +4,7 @@ import ServicesOverview from "./HomeUI/ServicesOverview";
 import Blogs from "../Blogs/Blogs";
 import PdfList from "../Downloads/PdfList";
 
+
 function Home() {
   return (
     <div className="mx-auto py-10 space-y-[8rem]">
@@ -11,6 +12,7 @@ function Home() {
       <ServicesOverview />
       <Blogs />
       <PdfList />
+
     </div>
   );
 }

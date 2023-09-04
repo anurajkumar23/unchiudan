@@ -5,6 +5,8 @@ import {
   FaLanguage,
   FaUserTie,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 
 function ServicesOverview() {
   return (
@@ -27,6 +29,7 @@ function ServicesOverview() {
           <div class="flex flex-wrap">
             <div class="w-full md:w-6/12 px-4">
               <div class="relative flex flex-col mt-4">
+              <Link to="/quiz">
                 <div class="px-4 py-5 flex-auto">
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
                     <FaUserTie className="w-10 h-10" />
@@ -35,11 +38,13 @@ function ServicesOverview() {
                     Daily Quiz / डेली प्रश्न
                   </h6>
                   <p class="mb-4 text-blueGray-500">
-                    ऊँची उड़ान फेसबुक पेज पर डेली 10 Questions अपडेट किये जाते
+                    ऊँची उड़ान Telegram पर डेली 10 Questions अपडेट किये जाते
                     हैं।
                   </p>
                 </div>
+                </Link>
               </div>
+
               <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
