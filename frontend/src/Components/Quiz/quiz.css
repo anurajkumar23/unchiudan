@@ -56,7 +56,7 @@
   color: #222;
   font-weight:500;
   width: 100%;
-  border: 1px solid #222;
+  border: 1px solid #222222;
   padding: 10px;
   margin: 10px 0;
   text-align: left;
@@ -66,8 +66,30 @@
 }
 
 .btn:hover{
-  background: #222;
-  color: #fff;
+  background:#dad7d7;
+  /* color: #fff; */
  
 }
+
+/* Style for correct answer buttons */
+.btn.correct {
+  background-color: green;
+  color: white;
+  pointer-events: none; /* Disable hover and click events */
+}
+
+/* Style for incorrect answer buttons */
+.btn.incorrect {
+  background-color: red;
+  color: white;
+  pointer-events: none; /* Disable hover and click events */
+}
+
+/* Style for the tick mark and cross mark */
+.tick-mark,
+.cross-mark {
+  display: none; /* Hide tick and cross marks by default */
+}
+
+/* Additional styles for your other elements can be added here */
 

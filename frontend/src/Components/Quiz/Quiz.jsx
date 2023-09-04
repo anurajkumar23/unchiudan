@@ -18,10 +18,26 @@ const Quiz = () => {
     },
   ]);
 
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+
   const toggleQuestion = (id) => {
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) => (q.id === id ? { ...q, isOpen: !q.isOpen } : q))
     );
+    // Reset selected answer when toggling questions
+    setSelectedAnswer(null);
+  };
+
+  const handleAnswerClick = (answerIndex, isCorrect) => {
+    // Set the selected answer index
+    setSelectedAnswer(answerIndex);
+
+    // You can handle the correct/incorrect logic here
+    if (isCorrect) {
+      // Handle correct answer
+    } else {
+      // Handle incorrect answer
+    }
   };
 
   return (
@@ -44,12 +60,37 @@ const Quiz = () => {
             >
               <div id="answer-buttons">
                 {q.answers.map((answer, answerIndex) => (
-                  <button className="btn" key={answerIndex}>
+                  <button
+                    className={`btn ${
+                      selectedAnswer === answerIndex
+                        ? answer.correct
+                          ? "correct"
+                          : "incorrect"
+                        : ""
+                    }`}
+                    key={answerIndex}
+                    onClick={() => handleAnswerClick(answerIndex, answer.correct)}
+                    onMouseEnter={() => {
+                      if (!answer.correct) {
+                        // Hide the tick and cross marks for incorrect answers on hover
+                        document.querySelector(".tick-mark").style.display = "none";
+                        document.querySelector(".cross-mark").style.display = "none";
+                      }
+                    }}
+                  >
                     {answer.text}
+                    {selectedAnswer === answerIndex && answer.correct && (
+                      <span className="tick-mark">&#10003;</span>
+                    )}
+                    {selectedAnswer === answerIndex && !answer.correct && (
+                      <span className="cross-mark">&#10007;</span>
+                    )}
                   </button>
                 ))}
               </div>
-              <p>Explanation: {q.answer}</p>
+              {selectedAnswer !== null && (
+                <p>Explanation: {q.answer}</p>
+              )}
             </div>
           </div>
         ))}
