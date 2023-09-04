@@ -39,15 +39,7 @@
     display: block;
   }
   
-  /* Add this to your CSS */
-/* .faq-question.active .faq-arrow {
-  transform: rotate(180deg);
-  transition: transform 0.3s ease;
-} */
-/* Add this to your CSS */
-/* Add this to your CSS */
-/* quiz.css */
-/* ... (existing styles) */
+
 
 .faq-arrow {
   display: inline-block;
@@ -70,6 +62,12 @@
   text-align: left;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.3s;
 }
 
+.btn:hover{
+  background: #222;
+  color: #fff;
+ 
+}
 

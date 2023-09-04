@@ -6,6 +6,12 @@ const Quiz = () => {
     {
       id: 1,
       question: "What is Meow Coders?",
+      answers: [
+        { text: "Shark", correct: false },
+        { text: "Blue whale", correct: false },
+        { text: "Mewooo", correct: true },
+        { text: "Giraffe", correct: false },
+      ],
       answer:
         "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
       isOpen: false,
@@ -26,9 +32,7 @@ const Quiz = () => {
             key={q.id}
             className={`faq-question ${q.isOpen ? "active" : ""}`}
           >
-            <h3
-              onClick={() => toggleQuestion(q.id)} 
-            >
+            <h3 onClick={() => toggleQuestion(q.id)}>
               सवाल {index + 1}: {q.question}{" "}
               <span className={`faq-arrow ${q.isOpen ? "open" : ""}`}>
                 &#9660;
@@ -39,10 +43,11 @@ const Quiz = () => {
               style={{ display: q.isOpen ? "block" : "none" }}
             >
               <div id="answer-buttons">
-                <button className="btn">Answer 1</button>
-                <button className="btn">Answer 2</button>
-                <button className="btn">Answer 3</button>
-                <button className="btn">Answer 4</button>
+                {q.answers.map((answer, answerIndex) => (
+                  <button className="btn" key={answerIndex}>
+                    {answer.text}
+                  </button>
+                ))}
               </div>
               <p>Explanation: {q.answer}</p>
             </div>
