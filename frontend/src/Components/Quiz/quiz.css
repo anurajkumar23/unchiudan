@@ -59,4 +59,17 @@
   transform: rotate(180deg);
 }
 
+.btn{
+  background: #fff;
+  color: #222;
+  font-weight:500;
+  width: 100%;
+  border: 1px solid #222;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: left;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 

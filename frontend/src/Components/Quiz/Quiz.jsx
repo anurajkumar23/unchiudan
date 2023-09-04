@@ -12,7 +12,7 @@ const Quiz = () => {
     },
   ]);
 
-  const toggleAnswer = (id) => {
+  const toggleQuestion = (id) => {
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) => (q.id === id ? { ...q, isOpen: !q.isOpen } : q))
     );
@@ -25,9 +25,10 @@ const Quiz = () => {
           <div
             key={q.id}
             className={`faq-question ${q.isOpen ? "active" : ""}`}
-            onClick={() => toggleAnswer(q.id)}
           >
-            <h3>
+            <h3
+              onClick={() => toggleQuestion(q.id)} 
+            >
               सवाल {index + 1}: {q.question}{" "}
               <span className={`faq-arrow ${q.isOpen ? "open" : ""}`}>
                 &#9660;
@@ -37,6 +38,12 @@ const Quiz = () => {
               className="faq-answer"
               style={{ display: q.isOpen ? "block" : "none" }}
             >
+              <div id="answer-buttons">
+                <button className="btn">Answer 1</button>
+                <button className="btn">Answer 2</button>
+                <button className="btn">Answer 3</button>
+                <button className="btn">Answer 4</button>
+              </div>
               <p>{q.answer}</p>
             </div>
           </div>
