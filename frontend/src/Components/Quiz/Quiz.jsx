@@ -44,7 +44,7 @@ const Quiz = () => {
                 <button className="btn">Answer 3</button>
                 <button className="btn">Answer 4</button>
               </div>
-              <p>{q.answer}</p>
+              <p>Explanation: {q.answer}</p>
             </div>
           </div>
         ))}
