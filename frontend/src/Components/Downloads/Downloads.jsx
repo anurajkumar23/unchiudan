@@ -30,7 +30,7 @@ function Downloads() {
     <div className="mx-auto py-[8rem] ">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
         <div className="mx-0 col-span-2 xl:mx-0 p-4 md:mx-0 overflow-y-auto lg:my-0">
-          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {blogs.map((blog, index) => (
               <BlogComp
                 key={index}
