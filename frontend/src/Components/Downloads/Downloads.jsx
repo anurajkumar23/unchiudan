@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  FaDownload,
-  FaFileAlt,
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
-  FaWhatsapp,
-  FaSearch,
-} from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import BlogComp from "../Blogs/BlogComp";
 function Downloads() {
   const blogs = [
