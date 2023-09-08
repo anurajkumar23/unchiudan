@@ -5,6 +5,7 @@ import DownloadPage from "./Components/Downloads/DownloadPage";
 import BlogsPage from "./Components/Blogs/BlogsPage";
 import GlobalProvider from "./Components/GlobalProvider";
 import Quiz from "./Components/Quiz/Quiz";
+import Downloads from "./Components/Downloads/Downloads";
 function App() {
   return (
     <BrowserRouter>
@@ -13,7 +14,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/downloadpdf" element={<DownloadPage />} />
           <Route path="/currentaffairs" element={<BlogsPage />} />
-          <Route path="/quiz" element={<Quiz/>} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/downloads" element={<Downloads />} />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
