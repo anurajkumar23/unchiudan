@@ -84,7 +84,7 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="w-full mt-[8rem] md:mt-0 gap-y-4 md:w-max md:gap-y-0 md:gap-x-4 flex md:flex-row flex-col">
-              <Link to="/downloadpdf">
+              <Link to="/downloads">
                 <div className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500">
                   <span className=" text-white text-center font-semibold ">
                     Premium Course
