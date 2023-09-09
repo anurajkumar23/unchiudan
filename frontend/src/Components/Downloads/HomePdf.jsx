@@ -1,6 +1,6 @@
 import React from "react";
 import PdfComp from "./PdfComp";
-export default function PdfList() {
+export default function HomePdf() {
   const pdfs = [
     {
       title: "UPSC Exam PDF Notes 1",
