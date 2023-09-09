@@ -26,6 +26,123 @@ const Quiz = () => {
         "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
       isOpen: false,
     },
+    {
+      id: 2,
+      question: "What is Meow Coders?",
+      answers: [
+        { text: "Shark", correct: false },
+        { text: "Blue whale", correct: false },
+        { text: "Mewooo", correct: true },
+        { text: "Giraffe", correct: false },
+      ],
+      answer:
+        "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
+      isOpen: false,
+    },
+    {
+      id: 3,
+      question: "What is Meow Coders?",
+      answers: [
+        { text: "Shark", correct: false },
+        { text: "Blue whale", correct: false },
+        { text: "Mewooo", correct: true },
+        { text: "Giraffe", correct: false },
+      ],
+      answer:
+        "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
+      isOpen: false,
+    },
+    {
+      id: 4,
+      question: "What is Meow Coders?",
+      answers: [
+        { text: "Shark", correct: false },
+        { text: "Blue whale", correct: false },
+        { text: "Mewooo", correct: true },
+        { text: "Giraffe", correct: false },
+      ],
+      answer:
+        "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
+      isOpen: false,
+    },
+    {
+      id: 5,
+      question: "What is Meow Coders?",
+      answers: [
+        { text: "Shark", correct: false },
+        { text: "Blue whale", correct: false },
+        { text: "Mewooo", correct: true },
+        { text: "Giraffe", correct: false },
+      ],
+      answer:
+        "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
+      isOpen: false,
+    },
+    {
+      id: 6,
+      question: "What is Meow Coders?",
+      answers: [
+        { text: "Shark", correct: false },
+        { text: "Blue whale", correct: false },
+        { text: "Mewooo", correct: true },
+        { text: "Giraffe", correct: false },
+      ],
+      answer:
+        "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
+      isOpen: false,
+    },
+    {
+      id: 7,
+      question: "What is Meow Coders?",
+      answers: [
+        { text: "Shark", correct: false },
+        { text: "Blue whale", correct: false },
+        { text: "Mewooo", correct: true },
+        { text: "Giraffe", correct: false },
+      ],
+      answer:
+        "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
+      isOpen: false,
+    },
+    {
+      id: 8,
+      question: "What is Meow Coders?",
+      answers: [
+        { text: "Shark", correct: false },
+        { text: "Blue whale", correct: false },
+        { text: "Mewooo", correct: true },
+        { text: "Giraffe", correct: false },
+      ],
+      answer:
+        "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
+      isOpen: false,
+    },
+    {
+      id: 9,
+      question: "What is Meow Coders?",
+      answers: [
+        { text: "Shark", correct: false },
+        { text: "Blue whale", correct: false },
+        { text: "Mewooo", correct: true },
+        { text: "Giraffe", correct: false },
+      ],
+      answer:
+        "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
+      isOpen: false,
+    },
+    {
+      id: 10,
+      question: "What is Meow Coders?",
+      answers: [
+        { text: "Shark", correct: false },
+        { text: "Blue whale", correct: false },
+        { text: "Mewooo", correct: true },
+        { text: "Giraffe", correct: false },
+      ],
+      answer:
+        "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
+      isOpen: false,
+    },
   ]);
 
   const [selectedAnswer, setSelectedAnswer] = useState(null);
