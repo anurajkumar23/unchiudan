@@ -91,6 +91,13 @@ const Navbar = () => {
                   </span>
                 </div>
               </Link>
+              <Link to="/blogs">
+                <div className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500">
+                  <span className=" text-white text-center font-semibold ">
+                    Blogs
+                  </span>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
