@@ -2,7 +2,7 @@ import React from "react";
 import Hero from "./HomeUI/Hero";
 import ServicesOverview from "./HomeUI/ServicesOverview";
 import HomeBlogs from "../Blogs/HomeBlogs";
-import PdfList from "../Downloads/PdfList";
+import HomePdf from "../Downloads/HomePdf";
 
 function Home() {
   return (
@@ -10,7 +10,7 @@ function Home() {
       <Hero />
       <ServicesOverview />
       <HomeBlogs />
-      <PdfList />
+      <HomePdf />
     </div>
   );
 }
