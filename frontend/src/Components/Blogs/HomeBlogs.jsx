@@ -1,6 +1,6 @@
 import React from "react";
 import BlogComp from "./BlogComp";
-export default function Blogs() {
+export default function HomeBlogs() {
   const blogs = [
     {
       date: "29 August",
