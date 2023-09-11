@@ -1,46 +1,61 @@
+/* Container */
 .faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #898885;
-    box-shadow: 0 2px 4px hwb(0 0% 100% / 0.1);
-    padding: 20px;
-  
-    position: relative;
-    top: 100px;
-  }
-  .faqh{
-    color: #fff;
-  }
-  .qustionsInFaq{
-    color: #915eff;
-  }
-  .faq-question {
-    cursor: pointer;
-    margin-bottom: 10px;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    color: #915eff;
-  }
-  
-  .faq-answer {
-    display: none;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f8f8f8;
-    margin-top: 10px;
-  }
-  
-  .faq-question.active {
-    background-color: #ffffffae;
-  }
-  
-  .faq-question.active + .faq-answer {
-    display: block;
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  position: relative;
+  top: 100px;
+}
 
+/* Headings */
+.faqh {
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
 
+.qustionsInFaq {
+  color: #915eff;
+}
+
+/* Questions */
+.faq-question {
+  cursor: pointer;
+  margin-bottom: 10px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  color: #333;
+  transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+  background-color: #f0f0f0;
+}
+
+/* Answers */
+.faq-answer {
+  display: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  margin-top: 10px;
+  color: #333;
+}
+
+/* Active Question */
+.faq-question.active {
+  background-color: #ffffffae;
+}
+
+.faq-question.active + .faq-answer {
+  display: block;
+}
+
+/* Arrow Icon */
 .faq-arrow {
   display: inline-block;
   transition: transform 0.3s ease;
@@ -51,45 +66,59 @@
   transform: rotate(180deg);
 }
 
-.btn{
+/* Buttons */
+.btn {
   background: #fff;
-  color: #222;
-  font-weight:500;
+  color: #333;
+  font-weight: 500;
   width: 100%;
-  border: 1px solid #222222;
+  border: 1px solid #ccc;
   padding: 10px;
   margin: 10px 0;
   text-align: left;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: background-color 0.3s;
 }
 
-.btn:hover{
-  background:#dad7d7;
-  /* color: #fff; */
- 
+.btn:hover {
+  background: #f0f0f0;
 }
 
-/* Style for correct answer buttons */
 .btn.correct {
-  background-color: green;
+  background-color: #4caf50;
   color: white;
-  pointer-events: none; /* Disable hover and click events */
 }
 
-/* Style for incorrect answer buttons */
+/* Incorrect Answer Button with Cross */
 .btn.incorrect {
-  background-color: red;
+  background-color: #f44336;
   color: white;
-  pointer-events: none; /* Disable hover and click events */
 }
 
-/* Style for the tick mark and cross mark */
-.tick-mark,
-.cross-mark {
-  display: none; /* Hide tick and cross marks by default */
+/* Tick and Cross Marks */
+.btn span {
+  display: none;
+  font-size: 16px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+/* Show Tick Mark */
+.btn.correct span.tick-mark {
+  display: inline-block;
+  color: green;
+}
+
+/* Show Cross Mark */
+.btn.incorrect span.cross-mark {
+  display: inline-block;
+  color: rgb(0, 0, 0);
+}
+
+/* Explanation Paragraph */
+.faq-answer p {
+  margin: 0;
 }
 
 /* Additional styles for your other elements can be added here */
-

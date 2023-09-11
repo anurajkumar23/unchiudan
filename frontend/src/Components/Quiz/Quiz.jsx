@@ -28,12 +28,12 @@ const Quiz = () => {
     },
     {
       id: 2,
-      question: "What is Meow Coders?",
+      question: "What is Meow Coderrrs?",
       answers: [
-        { text: "Shark", correct: false },
-        { text: "Blue whale", correct: false },
-        { text: "Mewooo", correct: true },
-        { text: "Giraffe", correct: false },
+        { text: "Sharkk", correct: false },
+        { text: "Blue whaleee", correct: true },
+        { text: "Mewooooo", correct: false },
+        { text: "Girafffe", correct: false },
       ],
       answer:
         "Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo Meow mewo mewo ",
@@ -144,7 +144,6 @@ const Quiz = () => {
       isOpen: false,
     },
   ]);
-
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const toggleQuestion = (id) => {
@@ -156,16 +155,20 @@ const Quiz = () => {
   };
 
   const handleAnswerClick = (answerIndex, isCorrect) => {
-    // Set the selected answer index
-    setSelectedAnswer(answerIndex);
+    // Check if the user has already selected an answer for this question
+    if (selectedAnswer === null) {
+      // Set the selected answer index
+      setSelectedAnswer(answerIndex);
 
-    // You can handle the correct/incorrect logic here
-    if (isCorrect) {
-      // Handle correct answer
-    } else {
-      // Handle incorrect answer
+      // You can handle the correct/incorrect logic here
+      if (isCorrect) {
+        // Handle correct answer
+      } else {
+        // Handle incorrect answer
+      }
     }
   };
+
 
   return (
     <div className="mx-auto py-[8rem]">
@@ -224,61 +227,57 @@ const Quiz = () => {
             Daily Quiz / डेली प्रश्न of Junly 2023 Download Set no- 205
           </h1>
           <div className="faq-container rounded-[20px]">
-            {questions.map((q, index) => (
-              <div
-                key={q.id}
-                className={`faq-question ${q.isOpen ? "active" : ""}`}
-              >
-                <h3 onClick={() => toggleQuestion(q.id)}>
-                  सवाल {index + 1}: {q.question}{" "}
-                  <span className={`faq-arrow ${q.isOpen ? "open" : ""}`}>
-                    &#9660;
-                  </span>
-                </h3>
-                <div
-                  className="faq-answer"
-                  style={{ display: q.isOpen ? "block" : "none" }}
-                >
-                  <div id="answer-buttons">
-                    {q.answers.map((answer, answerIndex) => (
-                      <button
-                        className={`btn ${
-                          selectedAnswer === answerIndex
-                            ? answer.correct
-                              ? "correct"
-                              : "incorrect"
-                            : ""
-                        }`}
-                        key={answerIndex}
-                        onClick={() =>
-                          handleAnswerClick(answerIndex, answer.correct)
-                        }
-                        onMouseEnter={() => {
-                          if (!answer.correct) {
-                            // Hide the tick and cross marks for incorrect answers on hover
-                            document.querySelector(".tick-mark").style.display =
-                              "none";
-                            document.querySelector(
-                              ".cross-mark"
-                            ).style.display = "none";
-                          }
-                        }}
-                      >
-                        {answer.text}
-                        {selectedAnswer === answerIndex && answer.correct && (
-                          <span className="tick-mark">&#10003;</span>
-                        )}
-                        {selectedAnswer === answerIndex && !answer.correct && (
-                          <span className="cross-mark">&#10007;</span>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                  {selectedAnswer !== null && <p>Explanation: {q.answer}</p>}
-                </div>
+        {questions.map((q, index) => (
+          <div
+            key={q.id}
+            className={`faq-question ${q.isOpen ? "active" : ""}`}
+          >
+            <h3 onClick={() => toggleQuestion(q.id)}>
+              सवाल {index + 1}: {q.question}{" "}
+              <span className={`faq-arrow ${q.isOpen ? "open" : ""}`}>
+                &#9660;
+              </span>
+            </h3>
+            <div
+              className="faq-answer"
+              style={{ display: q.isOpen ? "block" : "none" }}
+            >
+              <div id="answer-buttons">
+                {q.answers.map((answer, answerIndex) => (
+                  <button
+                    className={`btn ${
+                      selectedAnswer === answerIndex
+                        ? answer.correct
+                          ? "correct"
+                          : "incorrect"
+                        : ""
+                    }`}
+                    key={answerIndex}
+                    onClick={() =>
+                      handleAnswerClick(answerIndex, answer.correct)
+                    }
+                    disabled={selectedAnswer !== null} // Disable the button if an answer is already selected
+                  >
+                    {answer.text}
+                    {selectedAnswer === answerIndex && (
+                      answer.correct ? (
+                        <span className="tick-mark">&#10003;</span>
+                      ) : (
+                        <span className="cross-mark">&#10007;</span>
+                      )
+                    )}
+                  </button>
+                ))}
               </div>
-            ))}
+              {selectedAnswer !== null && (
+                <p>
+                  Explanation: {q.answer}
+                </p>
+              )}
+            </div>
           </div>
+        ))}
+      </div>
         </div>
         <div className=" p-4 space-y-10">
           <div className="flex md:mx-0 items-center mx-4">
