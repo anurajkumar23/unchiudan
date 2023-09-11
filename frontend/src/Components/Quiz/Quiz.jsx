@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./quiz.css";
 import {
   FaDownload,
@@ -144,29 +144,54 @@ const Quiz = () => {
       isOpen: false,
     },
   ]);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+
+  // State to store selected answers for each question
+  const [selectedAnswers, setSelectedAnswers] = useState(
+    questions.reduce((acc, q) => {
+      acc[q.id] = null;
+      return acc;
+    }, {})
+  );
+
+  useEffect(() => {
+    // Load previously saved selected answers from local storage (if available)
+    const savedAnswers = JSON.parse(localStorage.getItem("selectedAnswers"));
+    if (savedAnswers) {
+      setSelectedAnswers(savedAnswers);
+    }
+  }, []);
+
+  // Function to save selected answers to local storage
+  const saveSelectedAnswersToLocalStorage = () => {
+    localStorage.setItem("selectedAnswers", JSON.stringify(selectedAnswers));
+  };
 
   const toggleQuestion = (id) => {
     setQuestions((prevQuestions) =>
-      prevQuestions.map((q) => (q.id === id ? { ...q, isOpen: !q.isOpen } : q))
+      prevQuestions.map((q) =>
+        q.id === id
+          ? { ...q, isOpen: !q.isOpen }
+          : { ...q, isOpen: false }
+      )
     );
-    // Reset selected answer when toggling questions
-    setSelectedAnswer(null);
   };
 
-  const handleAnswerClick = (answerIndex, isCorrect) => {
-    // Check if the user has already selected an answer for this question
-    if (selectedAnswer === null) {
-      // Set the selected answer index
-      setSelectedAnswer(answerIndex);
+  const handleAnswerClick = (questionId, answerIndex, isCorrect) => {
+    // Set the selected answer for the current question
+    setSelectedAnswers((prevSelectedAnswers) => ({
+      ...prevSelectedAnswers,
+      [questionId]: answerIndex,
+    }));
 
-      // You can handle the correct/incorrect logic here
-      if (isCorrect) {
-        // Handle correct answer
-      } else {
-        // Handle incorrect answer
-      }
+    // You can handle the correct/incorrect logic here
+    if (isCorrect) {
+      // Handle correct answer
+    } else {
+      // Handle incorrect answer
     }
+
+   
+    saveSelectedAnswersToLocalStorage();
   };
 
 
@@ -246,7 +271,7 @@ const Quiz = () => {
                 {q.answers.map((answer, answerIndex) => (
                   <button
                     className={`btn ${
-                      selectedAnswer === answerIndex
+                      selectedAnswers[q.id] === answerIndex
                         ? answer.correct
                           ? "correct"
                           : "incorrect"
@@ -254,12 +279,12 @@ const Quiz = () => {
                     }`}
                     key={answerIndex}
                     onClick={() =>
-                      handleAnswerClick(answerIndex, answer.correct)
+                      handleAnswerClick(q.id, answerIndex, answer.correct)
                     }
-                    disabled={selectedAnswer !== null} // Disable the button if an answer is already selected
+                    disabled={false} 
                   >
                     {answer.text}
-                    {selectedAnswer === answerIndex && (
+                    {selectedAnswers[q.id] === answerIndex && (
                       answer.correct ? (
                         <span className="tick-mark">&#10003;</span>
                       ) : (
@@ -269,7 +294,7 @@ const Quiz = () => {
                   </button>
                 ))}
               </div>
-              {selectedAnswer !== null && (
+              {selectedAnswers[q.id] !== null && (
                 <p>
                   Explanation: {q.answer}
                 </p>

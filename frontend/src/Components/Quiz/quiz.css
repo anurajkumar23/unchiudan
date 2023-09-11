@@ -1,4 +1,4 @@
-/* Container */
+
 .faq-container {
   max-width: 800px;
   margin: 0 auto;
@@ -9,7 +9,7 @@
   top: 100px;
 }
 
-/* Headings */
+
 .faqh {
   color: #333;
   font-weight: bold;
@@ -36,7 +36,7 @@
   background-color: #f0f0f0;
 }
 
-/* Answers */
+
 .faq-answer {
   display: none;
   padding: 10px;
@@ -46,7 +46,7 @@
   color: #333;
 }
 
-/* Active Question */
+
 .faq-question.active {
   background-color: #ffffffae;
 }
@@ -55,7 +55,6 @@
   display: block;
 }
 
-/* Arrow Icon */
 .faq-arrow {
   display: inline-block;
   transition: transform 0.3s ease;
@@ -66,7 +65,7 @@
   transform: rotate(180deg);
 }
 
-/* Buttons */
+
 .btn {
   background: #fff;
   color: #333;
@@ -90,13 +89,13 @@
   color: white;
 }
 
-/* Incorrect Answer Button with Cross */
+
 .btn.incorrect {
   background-color: #f44336;
   color: white;
 }
 
-/* Tick and Cross Marks */
+
 .btn span {
   display: none;
   font-size: 16px;
@@ -104,21 +103,21 @@
   margin-left: 5px;
 }
 
-/* Show Tick Mark */
+
 .btn.correct span.tick-mark {
   display: inline-block;
   color: green;
 }
 
-/* Show Cross Mark */
+
 .btn.incorrect span.cross-mark {
   display: inline-block;
   color: rgb(0, 0, 0);
 }
 
-/* Explanation Paragraph */
+
 .faq-answer p {
   margin: 0;
 }
 
-/* Additional styles for your other elements can be added here */
+
