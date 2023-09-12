@@ -7,6 +7,7 @@ import GlobalProvider from "./Components/GlobalProvider";
 import Quiz from "./Components/Quiz/Quiz";
 import Downloads from "./Components/Downloads/Downloads";
 import Blogs from "./Components/Blogs/Blogs";
+import Quizcontainer from "./Components/Quiz/Quizcontainer";
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +19,7 @@ function App() {
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/downloads" element={<Downloads />} />
           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/Quizz" element={<Quizcontainer/>} />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
