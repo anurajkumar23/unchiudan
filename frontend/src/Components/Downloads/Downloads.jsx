@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch, FaEye, FaThumbsUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const blogs = [
   {
@@ -51,11 +52,12 @@ const blogs = [
     likes: 36,
     imageSrc: "/uchiudan.png",
   },
-  // Add more dummy test blogs
+  
 ];
 
 function BlogComps({ date, title, views, likes, imageSrc }) {
   return (
+    <Link to="/downloadpdf">
     <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
       <div className="relative">
         <img className="w-full rounded-xl" src={imageSrc} alt="Blog Cover" />
@@ -84,21 +86,22 @@ function BlogComps({ date, title, views, likes, imageSrc }) {
         Read More
       </button>
     </div>
+    </Link>
   );
 }
 
 function Downloads() {
-  const itemsPerPage = 6; // Number of items to show per page
+  const itemsPerPage = 6; 
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Calculate the index range for the current page
+
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  // Slice the blogs array to display only the current page's items
+
   const visibleBlogs = blogs.slice(startIndex, endIndex);
 
-  // Function to handle page change
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
