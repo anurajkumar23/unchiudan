@@ -78,6 +78,9 @@ const Navbar = () => {
           <Link to="/" className="block py-2">
             Home
           </Link>
+          <Link to="/Quizz" className="block">
+            Quiz
+          </Link>
           <div className="relative group">
             <button
               onClick={toggleDropdown}
@@ -87,14 +90,20 @@ const Navbar = () => {
             </button>
             {isDropdownOpen && (
               <div className="absolute z-10 mt-2 py-2 w-48 bg-white border rounded-lg shadow-md">
-                <Link to="/currentaffairs" className="block px-4 py-2 hover:bg-blue-100">
-                  Section 1
+              <Link to="/currentaffairs" className="block px-4 py-2 hover:bg-blue-100">
+                  UPSC
                 </Link>
                 <Link to="/currentaffairs" className="block px-4 py-2 hover:bg-blue-100">
-                  Section 2
+                  BPSC
                 </Link>
                 <Link to="/currentaffairs" className="block px-4 py-2 hover:bg-blue-100">
-                  Section 3
+                  बिहार दारोगा
+                </Link>
+                <Link to="/currentaffairs" className="block px-4 py-2 hover:bg-blue-100">
+                  SSC
+                </Link>
+                <Link to="/currentaffairs" className="block px-4 py-2 hover:bg-blue-100">
+                  रेलवे
                 </Link>
               </div>
             )}
