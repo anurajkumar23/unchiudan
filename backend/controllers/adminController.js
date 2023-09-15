@@ -48,3 +48,18 @@ exports.getPdfs = catchAsync(async(req,res)=>{
     return next(new AppError(error, 400));
   }
 })
+
+exports.deletePdf = catchAsync(async (req,res)=>{
+  const { id } = req.params;
+  console.log(id);
+  
+  try {
+    await PDF.findByIdAndDelete(id);
+    res.status(200).json({
+      status: 'success'
+    }); 
+  } catch (error) {
+      return next(new AppError(error, 400));
+  }
+}
+)
