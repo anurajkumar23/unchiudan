@@ -1,5 +1,6 @@
 const catchAsync = require('../utils/catchAsync');
 const User = require('../models/userModal');
+const PDF = require('../models/pdfSchema');
 const AppError = require('../utils/appError');
 
 
@@ -32,3 +33,18 @@ exports.getSingle = catchAsync(async (req, res) => {
     return next(new AppError(error, 400));
   }
 });
+
+
+exports.getPdfs = catchAsync(async(req,res)=>{
+  try {
+    const users = await PDF.find();
+    res.status(200).json({
+      status: 'success',
+      data: {
+        users,
+      },
+    });
+  } catch (error) {
+    return next(new AppError(error, 400));
+  }
+})
