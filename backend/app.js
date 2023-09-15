@@ -6,11 +6,16 @@ const xss = require('xss-clean');
 const affairsRoute = require('./router/affairsRoutes');
 const newsRoutes = require('./router/newsRoutes');
 const pdfRoutes = require('./router/pdfRoutes');
+const adminRoutes = require('./router/adminRoutes');
 const userRoutes = require('./router/userRoutes');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
+
+
+
+
 
 const app = express();
 
@@ -42,6 +47,7 @@ app.use('/api/currentaffairs', affairsRoute);
 app.use('/api/user', userRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/pdfs', pdfRoutes);
+app.use('/api/admin',adminRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
