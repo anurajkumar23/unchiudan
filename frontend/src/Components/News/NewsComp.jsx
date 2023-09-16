@@ -13,7 +13,7 @@ function NewsComp({ newsItems }) {
           </div>
           <div className="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
             <div className="flex justify-between item-center">
-              <div className="bg-gray-200 px-3 py-1 rounded-full text-xs font-medium text-gray-800 hidden md:block">
+              <div className="bg-purple-300 px-3 py-1 rounded-full text-xs font-medium text-white hidden md:block">
                 {news.category}
               </div>
             </div>
