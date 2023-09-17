@@ -96,7 +96,7 @@ const Navbar = () => {
           <Link to="/" className="block py-2">
             Home
           </Link>
-          <Link to="/Quizz" className="block">
+          <Link to="/Quizz" className="block py-2">
             Quiz
           </Link>
           <Link to="/News" className="block">
