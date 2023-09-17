@@ -99,6 +99,9 @@ const Navbar = () => {
           <Link to="/Quizz" className="block">
             Quiz
           </Link>
+          <Link to="/News" className="block">
+            News
+          </Link>
           <div className="relative group">
             <button
               onClick={toggleDropdown}
