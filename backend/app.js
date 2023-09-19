@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -12,11 +13,14 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
+const cors = require('cors');
 
 const app = express();
 
 //DEVELOPMENT LOGGING || Global Middleware
-app.use(helmet());
+helmet({
+  crossOriginResourcePolicy: false,
+})
 app.use((req, res, next) => {
   res.setHeader('X-XSS-Protection', '1; mode=block');
   next();
@@ -26,6 +30,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // MIDDLEWARE
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(mongoSanitize());
@@ -36,6 +41,7 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP address, Please try again after 20 minutes!'
 });
 app.use('/api', limiter);
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 

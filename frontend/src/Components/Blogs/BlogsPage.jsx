@@ -1,5 +1,4 @@
-import  { useState, useEffect } from "react";
-
+import React from "react";
 import {
   FaArrowAltCircleLeft,
   FaArrowAltCircleRight,
@@ -206,7 +205,7 @@ function BlogsPage() {
           <img
             alt="meow"
             src="/Images/upsc.jpeg"
-            class="w-full mx-auto rounded-lg"
+            className="w-full mx-auto rounded-lg"
           />
         </div>
 

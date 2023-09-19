@@ -1,5 +1,4 @@
-import React from "react";
-import { FaRegClock } from "react-icons/fa";
+
 
 function NewsComp({ newsItems }) {
   const isNew = (uploadDate) => {
@@ -17,7 +16,7 @@ function NewsComp({ newsItems }) {
           className="relative my-6 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white"
         >
           <div className="w-full md:w-1/3 bg-white grid place-items-center">
-            <img src={news.photo} alt="News Image" className="rounded-xl" />
+            <img src={`news.photo`} alt="News Image" className="rounded-xl" />
           </div>
           <div className="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
             <div className="flex justify-between item-center">
