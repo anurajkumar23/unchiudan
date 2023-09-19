@@ -1,26 +1,22 @@
-import { BlogComps } from "./container";
+import { BlogComps } from "../Quiz/container";
 
 import Sidebar from "../Sidebar/Sidebar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-function Quizcontainer() {
+function Currentaffairs() {
   const [affairs, setAffairs] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  console.log(selectedCategory)
   useEffect(() => {
-    const apiUrl = `/api/currentaffairs/?category=${selectedCategory}`;
-    console.log(apiUrl); // Check if this URL is correct
     axios
-      .get(apiUrl)
+      .get("/api/currentaffairs")
       .then((response) => {
         setAffairs(response.data.data.affairs);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [selectedCategory]);
-  console.log(affairs)
+  }, []);
+
   return (
     <div className="mx-auto py-[8rem]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -45,10 +41,13 @@ function Quizcontainer() {
           </div>
         </div>
 
-        <Sidebar setSelectedCategory={setSelectedCategory} />
+        <Sidebar />
       </div>
     </div>
   );
 }
 
-export default Quizcontainer;
+export default Currentaffairs;
+
+
+
