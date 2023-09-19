@@ -52,31 +52,31 @@ const Navbar = () => {
             {isDropdownOpen && (
               <div className="absolute z-10 mt-2 py-2 w-48 bg-white border rounded-lg shadow-md">
                 <Link
-                  to="/currentaffairs"
+                  to="/currentaffairss"
                   className="block px-4 py-2 hover:bg-blue-100"
                 >
                   UPSC
                 </Link>
                 <Link
-                  to="/currentaffairs"
+                  to="/currentaffairss"
                   className="block px-4 py-2 hover:bg-blue-100"
                 >
                   BPSC
                 </Link>
                 <Link
-                  to="/currentaffairs"
+                  to="/currentaffairss"
                   className="block px-4 py-2 hover:bg-blue-100"
                 >
                   बिहार दारोगा
                 </Link>
                 <Link
-                  to="/currentaffairs"
+                  to="/currentaffairss"
                   className="block px-4 py-2 hover:bg-blue-100"
                 >
                   SSC
                 </Link>
                 <Link
-                  to="/currentaffairs"
+                  to="/currentaffairss"
                   className="block px-4 py-2 hover:bg-blue-100"
                 >
                   रेलवे
@@ -112,31 +112,31 @@ const Navbar = () => {
             {isDropdownOpen && (
               <div className="absolute z-10 mt-2 py-2 w-48 bg-white border rounded-lg shadow-md">
                 <Link
-                  to="/currentaffairs"
+                  to="/currentaffairss"
                   className="block px-4 py-2 hover:bg-blue-100"
                 >
                   UPSC
                 </Link>
                 <Link
-                  to="/currentaffairs"
+                  to="/currentaffairss"
                   className="block px-4 py-2 hover:bg-blue-100"
                 >
                   BPSC
                 </Link>
                 <Link
-                  to="/currentaffairs"
+                  to="/currentaffairss"
                   className="block px-4 py-2 hover:bg-blue-100"
                 >
                   बिहार दारोगा
                 </Link>
                 <Link
-                  to="/currentaffairs"
+                  to="/currentaffairss"
                   className="block px-4 py-2 hover:bg-blue-100"
                 >
                   SSC
                 </Link>
                 <Link
-                  to="/currentaffairs"
+                  to="/currentaffairss"
                   className="block px-4 py-2 hover:bg-blue-100"
                 >
                   रेलवे
