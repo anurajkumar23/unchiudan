@@ -59,6 +59,8 @@ exports.createAffairs = catchAsync(async (req, res, next) => {
     photo = req.file.filename;
   }
   req.body = { ...req.body, photo };
+  const currentDate = Date.now();
+  req.body.updatedAt = currentDate;
   const affairs = await CurrentAffairs.create(req.body);
 
   res.status(201).json({
@@ -110,6 +112,10 @@ exports.updateOne = catchAsync(async (req, res, next) => {
     photo = req.file.filename;
   }
   req.body = { ...req.body, photo };
+
+  // Set updatedAt to current date
+  req.body.updatedAt = Date.now();
+
   const affairs = await CurrentAffairs.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -118,7 +124,7 @@ exports.updateOne = catchAsync(async (req, res, next) => {
       runValidators: true,
     },
   );
-  console.log(req.body);
+
   if (!affairs) {
     return next(new AppError('No doc found with that ID', 404));
   }
@@ -130,3 +136,4 @@ exports.updateOne = catchAsync(async (req, res, next) => {
     },
   });
 });
+

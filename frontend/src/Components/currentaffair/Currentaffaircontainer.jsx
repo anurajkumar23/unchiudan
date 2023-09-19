@@ -37,14 +37,16 @@ function Currentaffairs() {
           <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 mx-10 md:mx-0 gap-6">
             {affairs.map((blog, index) => {
               const createdAt = new Date(blog.createdAt);
+              const updatedAt = new Date(blog.updatedAt);
               const formattedDate = createdAt.toLocaleString("default", {
                 day: "numeric",
                 month: "long",
               });
-              // const updatedDate = updateAt.toLocaleString("default", {
-              //   day: "numeric",
-              //   month: "long",
-              // });
+              const updatedDate = updatedAt.toLocaleString("default", {
+                day: "numeric",
+                month: "long",
+              });
+              
 
               return (
                 <BlogComps
@@ -52,6 +54,7 @@ function Currentaffairs() {
                   date={formattedDate}
                   title={blog.topic}
                   imageSrc={blog.photo}
+                  updatedDate={updatedDate}
                   
                 />
               );
