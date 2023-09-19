@@ -78,8 +78,10 @@ exports.createPdf = catchAsync(async (req, res, next) => {
   }
 
   // Create the PDF record with the other fields
+  const currentDate = Date.now();
   const createdPdf = await PDF.create({
     ...otherFields,
+    updatedAt:currentDate,
     photo: photoFileName,
     pdf: req.files['pdf'][0].filename,
   });
@@ -153,7 +155,8 @@ exports.updateOne = catchAsync(async (req, res, next) => {
       pdf = req.files.pdf[0].filename;
     }
   }
-  req.body = { ...req.body, photo, pdf };
+  const updatedAt = Date.now();
+  req.body = { ...req.body, photo, pdf,updatedAt };
   const pdfs = await PDF.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
