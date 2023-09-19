@@ -13,8 +13,8 @@ import Sidebar from "../Sidebar/Sidebar";
 function DownloadPage() {
   return (
     <div className="mx-auto py-[8rem] ">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
-        <div className="mx-0 col-span-2 xl:mx-0 p-4 md:mx-0 overflow-y-auto lg:my-0">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 ">
+        <div className="mx-0 col-span-3 xl:mx-0 p-4 md:mx-0 overflow-y-auto lg:my-0">
           <h1 className="text-center font-bold text-[2rem] md:text-[2.5rem] mb-6 ">
             UPSC download title 1 pdf note 1
           </h1>
@@ -108,7 +108,7 @@ function DownloadPage() {
           </div>
         </div>
 
-        <Sidebar/>
+        <Sidebar />
       </div>
     </div>
   );
