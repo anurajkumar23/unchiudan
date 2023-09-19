@@ -34,8 +34,8 @@ const Navbar = () => {
           <Link to="/" className="block">
             Home
           </Link>
-          <Link to="/Quizz" className="block">
-            Quiz
+          <Link to="/downloads" className="block">
+            Pdfs
           </Link>
           <Link to="/News" className="block">
             News
@@ -49,9 +49,9 @@ const Navbar = () => {
             </Link>
            
           </div>
-          <Link to="/downloads">
+          <Link to="/login">
             <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
-              Premium Course
+              Login
             </span>
           </Link>
         </div>
@@ -61,8 +61,8 @@ const Navbar = () => {
           <Link to="/" className="block py-2">
             Home
           </Link>
-          <Link to="/Quizz" className="block py-2">
-            Quiz
+          <Link to="/downloads" className="block py-2">
+          Pdfs
           </Link>
           <Link to="/News" className="block">
             News
@@ -75,9 +75,9 @@ const Navbar = () => {
               Current Affairs
             </button>
           </div>
-          <Link to="/downloads">
+          <Link to="/login">
             <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
-              Premium Course
+              Login
             </span>
           </Link>
         </div>
