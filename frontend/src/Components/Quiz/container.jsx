@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export function BlogComps(props) {
   console.log(props);
   return (
-    <Link to="/quiz">
+    <Link to="/currentaffairs/id">
       <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
         <div className="relative">
           <img

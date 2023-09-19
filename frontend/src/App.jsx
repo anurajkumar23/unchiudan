@@ -4,7 +4,7 @@ import Home from "./Components/Home/Home";
 import DownloadPage from "./Components/Downloads/DownloadPage";
 import BlogsPage from "./Components/Blogs/BlogsPage";
 import GlobalProvider from "./Components/GlobalProvider";
-import Quiz from "./Components/Quiz/Quiz";
+
 import Downloads from "./Components/Downloads/Downloads";
 import Blogs from "./Components/Blogs/Blogs";
 import Quizcontainer from "./Components/Quiz/Quizcontainer";
@@ -17,13 +17,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/downloadpdf" element={<DownloadPage />} />
-          <Route path="/currentaffairs" element={<BlogsPage />} />
-          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/currentaffairs/id" element={<BlogsPage />} />
+          {/* <Route path="/quiz" element={<Quiz />} /> */}
           <Route path="/downloads" element={<Downloads />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/Quizz" element={<Quizcontainer />} />
           <Route path="/News" element={<News />} />
-          <Route path="/Currentaffairss" element={<Currentaffaircontainer/>} />
+          <Route path="/Currentaffairs" element={<Currentaffaircontainer/>} />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
