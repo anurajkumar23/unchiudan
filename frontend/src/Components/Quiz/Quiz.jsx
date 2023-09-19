@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import "./quiz.css";
 import {
   FaDownload,
@@ -8,7 +8,6 @@ import {
   FaInstagram,
   FaLinkedin,
   FaWhatsapp,
-  FaSearch,
 } from "react-icons/fa";
 import Sidebar from "../Sidebar/Sidebar";
 

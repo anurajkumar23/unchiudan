@@ -5,38 +5,53 @@ const AppError = require('./../utils/appError');
 const catchAsync = require('./../utils/catchAsync');
 
 exports.getAllAffairs = catchAsync(async (req, res, next) => {
-    // Build query
-    const queryObj = { ...req.query };
-    const excludedFields = ['page', 'limit', 'sort', 'fields'];
-    excludedFields.forEach((el) => delete queryObj[el]);
-  
-    if (queryObj.category) {
-      queryObj.category = {
-        $regex: new RegExp(queryObj.category, 'i'), 
-      };
-    }
-  
-    let query = CurrentAffairs.find(queryObj).sort('-createdAt');
-  
-    // Pagination
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 10;
-    const skip = (page - 1) * limit;
-    query = query.skip(skip).limit(limit);
-  
-    // Execute query
-    const affairs = await query;
-  
-    res.status(200).json({
-      status: 'success',
-      results: affairs.length,
-      data: {
-        affairs,
-      },
-    });
+  // Build query
+  const queryObj = { ...req.query };
+  const excludedFields = ['page', 'limit', 'sort', 'fields'];
+  excludedFields.forEach((el) => delete queryObj[el]);
+
+  if (queryObj.category) {
+    queryObj.category = {
+      $regex: new RegExp(queryObj.category, 'i'),
+    };
+  }
+
+  let query = CurrentAffairs.find(queryObj).sort('-createdAt');
+
+  // Pagination
+  const page = req.query.page * 1 || 1;
+  const limit = req.query.limit * 1 || 10;
+  const skip = (page - 1) * limit;
+  query = query.skip(skip).limit(limit);
+
+  // Execute query
+  const affairs = await query;
+
+  res.status(200).json({
+    status: 'success',
+    results: affairs.length,
+    data: {
+      affairs,
+    },
   });
-  
-  
+});
+
+exports.lastestAffairs = catchAsync(async (req, res, next) => {
+  const limit = req.query.limit * 1 || 4; // Set limit to 4 (or use the provided limit if available)
+ 
+  const affairs = await CurrentAffairs
+    .find()
+    .sort('-createdAt')
+    .limit(limit);
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      affairs,
+    },
+  });
+});
+
 
 exports.createAffairs = catchAsync(async (req, res, next) => {
   let photo;
@@ -107,7 +122,6 @@ exports.updateOne = catchAsync(async (req, res, next) => {
   if (!affairs) {
     return next(new AppError('No doc found with that ID', 404));
   }
-
 
   res.status(200).json({
     status: 'success',

@@ -1,29 +1,20 @@
-import React from "react";
+import {useEffect,useState} from "react";
 import PdfComp from "./PdfComp";
+import axios from "axios";
+
 export default function HomePdf() {
-  const pdfs = [
-    {
-      title: "UPSC Exam PDF Notes 1",
-      date: "29 August",
-    },
-    {
-      title: "UPSC Exam PDF Notes 1",
-      date: "29 August",
-    },
-    {
-      title: "UPSC Exam PDF Notes 1",
-      date: "29 August",
-    },
-    {
-      title: "UPSC Exam PDF Notes 1",
-      date: "29 August",
-    },
-    {
-      title: "UPSC Exam PDF Notes 1",
-      date: "29 August",
-    },
-    // dummy test data
-  ];
+  const [pdfs, setPdfs] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/api/pdfs/lastestPdfs")
+      .then((response) => {
+        setPdfs(response.data.data.pdf);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+  console.log(pdfs)
 
   return (
     <div className="mx-10">
@@ -36,9 +27,22 @@ export default function HomePdf() {
         किये गए प्रश्नों के PDF आपको मासिक तौर पर प्राप्त होगा।
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
-        {pdfs.map((pdf, index) => (
-          <PdfComp key={index} title={pdf.title} date={pdf.date} />
-        ))}
+        {pdfs.map((pdf, index) => {
+          const createdAt = new Date(pdf.createdAt);
+          const formattedDate = createdAt.toLocaleString("default", {
+            day: "numeric",
+            month: "long",
+          });
+
+          return (
+            <PdfComp
+              key={index}
+              date={formattedDate}
+              title={pdf.name}
+              imageSrc={pdf.photo}
+            />
+          );
+        })}
       </div>
       <a href="/pdfs">
         <div className="text-center hover:bg-purple-500 mt-6 text-xl mx-auto  font-semibold w-fit  px-5 py-1 bg-purple-300 text-white rounded-xl hover:shadow-xl ">

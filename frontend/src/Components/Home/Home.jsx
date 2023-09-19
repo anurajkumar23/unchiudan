@@ -1,4 +1,3 @@
-import React from "react";
 import Hero from "./HomeUI/Hero";
 import ServicesOverview from "./HomeUI/ServicesOverview";
 import HomeBlogs from "../Blogs/HomeBlogs";

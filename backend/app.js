@@ -13,10 +13,6 @@ const globalErrorHandler = require('./controllers/errorController');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
 
-
-
-
-
 const app = express();
 
 //DEVELOPMENT LOGGING || Global Middleware
@@ -40,6 +36,7 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP address, Please try again after 20 minutes!'
 });
 app.use('/api', limiter);
+
 
 
 // Routes
