@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FaSearch } from "react-icons/fa";
 
 
