@@ -1,30 +1,20 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import BlogComp from "./BlogComp";
+import axios from "axios";
+
 export default function HomeBlogs() {
-  const blogs = [
-    {
-      date: "29 August",
-      title: "UPSC Training Meow Meow Meow",
-      views: 125,
-      likes: 36,
-      imageSrc: "/uchiudan.png",
-    },
-    {
-      date: "29 August",
-      title: "UPSC Training Meow Meow Meow",
-      views: 125,
-      likes: 36,
-      imageSrc: "/uchiudan.png",
-    },
-    {
-      date: "29 August",
-      title: "UPSC Training Meow Meow Meow",
-      views: 125,
-      likes: 36,
-      imageSrc: "/uchiudan.png",
-    },
-    // dummy test blogs
-  ];
+ 
+  const [affairs, setAffairs] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/api/currentaffairs/lastestAffairs")
+      .then((response) => {
+        setAffairs(response.data.data.affairs);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   return (
     <div className="mx-10">
@@ -37,16 +27,22 @@ export default function HomeBlogs() {
         और फेसबुक पेज को Follow करें।
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
-        {blogs.map((blog, index) => (
-          <BlogComp
-            key={index}
-            date={blog.date}
-            title={blog.title}
-            views={blog.views}
-            likes={blog.likes}
-            imageSrc={blog.imageSrc}
-          />
-        ))}
+        {affairs.map((blog) => {
+          const createdAt = new Date(blog.createdAt);
+          const formattedDate = createdAt.toLocaleString("default", {
+            day: "numeric",
+            month: "long",
+          });
+
+          return (
+            <BlogComp
+              key={blog.id}
+              date={formattedDate}
+              title={blog.topic}
+              imageSrc={blog.photo}
+            />
+          );
+        })}
       </div>
       <a href="/pdfs">
         <div className="text-center hover:bg-purple-500 mt-6 text-xl mx-auto  font-semibold w-fit  px-5 py-1 bg-purple-300 text-white rounded-xl hover:shadow-xl ">

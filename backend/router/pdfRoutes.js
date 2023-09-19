@@ -11,6 +11,8 @@ router.route('/').get(pdfController.getAllPdf).post(
   pdfController.createPdf,
 );
 
+router.get('/lastestPdfs', pdfController.lastestPdfs);
+
 router
   .route('/:id')
   .get(pdfController.getPdf)

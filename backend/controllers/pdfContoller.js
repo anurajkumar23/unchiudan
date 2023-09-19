@@ -230,3 +230,16 @@ const checkFileExists = async (filePath) => {
     return false;
   }
 };
+
+exports.lastestPdfs = catchAsync(async (req, res, next) => {
+  const limit = req.query.limit * 1 || 4; // Set limit to 4 (or use the provided limit if available)
+
+  const pdf = await PDF.find().sort('-createdAt').limit(limit);
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      pdf,
+    },
+  });
+});
