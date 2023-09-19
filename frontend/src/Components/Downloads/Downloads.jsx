@@ -55,7 +55,7 @@ const blogs = [
   },
 ];
 
-function BlogComps({ date, title, views, likes, imageSrc }) {
+function BlogCom({ date, title, views, likes, imageSrc }) {
   return (
     <Link to="/downloadpdf/id">
       <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
@@ -109,7 +109,7 @@ function Downloads() {
         <div className="col-span-3 p-4 md:mx-0 overflow-y-auto lg:my-0">
           <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 mx-10 md:mx-0 gap-6">
             {visibleBlogs.map((blog, index) => (
-              <BlogComps key={index} {...blog} />
+              <BlogCom key={index} {...blog} />
             ))}
           </div>
 
