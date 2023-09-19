@@ -1,7 +1,6 @@
-
-
+import { FaRegClock } from "react-icons/fa";
 function NewsComp({ newsItems }) {
-  console.log(newsItems)
+  console.log(newsItems);
 
   return (
     <div className="flex flex-col justify-center ">
@@ -15,7 +14,12 @@ function NewsComp({ newsItems }) {
           </div>
           <div className="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
             <div className="flex justify-between item-center">
-              
+              <div className="bg-gray-200 px-3 py-1 rounded-full text-xs font-medium text-gray-800 space-x-3">
+                <span>
+                  <FaRegClock className="w-6 h-6" />
+                </span>{" "}
+                <span>{news.date}</span>
+              </div>
             </div>
             <h3 className="font-black text-gray-800 md:text-3xl text-xl">
               {news.heading}
