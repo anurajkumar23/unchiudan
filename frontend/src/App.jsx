@@ -9,6 +9,7 @@ import Downloads from "./Components/Downloads/Downloads";
 import Blogs from "./Components/Blogs/Blogs";
 import Quizcontainer from "./Components/Quiz/Quizcontainer";
 import News from "./Components/News/News";
+import Currentaffaircontainer from "./Components/currentaffair/Currentaffaircontainer";
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/Quizz" element={<Quizcontainer />} />
           <Route path="/News" element={<News />} />
+          <Route path="/Currentaffairss" element={<Currentaffaircontainer/>} />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
