@@ -7,10 +7,17 @@ import { useState, useEffect } from "react";
 function Quizcontainer() {
   const [affairs, setAffairs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+
+
   console.log(selectedCategory)
+
   useEffect(() => {
-    const apiUrl = `/api/currentaffairs/?category=${selectedCategory}`;
-    console.log(apiUrl); // Check if this URL is correct
+    let apiUrl = '/api/currentaffairs';
+   if (selectedCategory !== null) {
+      apiUrl += `/?category=${selectedCategory}`;
+    }
+    // const apiUrl = `/api/currentaffairs/?category=${selectedCategory}`;
+    // console.log(apiUrl); // Check if this URL is correct
     axios
       .get(apiUrl)
       .then((response) => {
@@ -20,7 +27,9 @@ function Quizcontainer() {
         console.error("Error fetching data:", error);
       });
   }, [selectedCategory]);
+
   console.log(affairs)
+  
   return (
     <div className="mx-auto py-[8rem]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">

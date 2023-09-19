@@ -6,17 +6,30 @@ import { useState, useEffect } from "react";
 
 function Currentaffairs() {
   const [affairs, setAffairs] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+
+  console.log(selectedCategory)
+
   useEffect(() => {
+    let apiUrl = '/api/currentaffairs';
+   if (selectedCategory !== null) {
+      apiUrl += `/?category=${selectedCategory}`;
+    }
+    // const apiUrl = `/api/currentaffairs/?category=${selectedCategory}`;
+    // console.log(apiUrl); // Check if this URL is correct
     axios
-      .get("/api/currentaffairs")
+      .get(apiUrl)
       .then((response) => {
         setAffairs(response.data.data.affairs);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [selectedCategory]);
 
+  console.log(affairs)
+  
   return (
     <div className="mx-auto py-[8rem]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -28,6 +41,10 @@ function Currentaffairs() {
                 day: "numeric",
                 month: "long",
               });
+              // const updatedDate = updateAt.toLocaleString("default", {
+              //   day: "numeric",
+              //   month: "long",
+              // });
 
               return (
                 <BlogComps
@@ -35,17 +52,19 @@ function Currentaffairs() {
                   date={formattedDate}
                   title={blog.topic}
                   imageSrc={blog.photo}
+                  
                 />
               );
             })}
           </div>
         </div>
 
-        <Sidebar />
+        <Sidebar setSelectedCategory={setSelectedCategory} />
       </div>
     </div>
   );
 }
+
 
 export default Currentaffairs;
 
