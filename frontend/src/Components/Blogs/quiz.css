@@ -1,12 +1,13 @@
 
 .faq-container {
-  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
   background-color: #f8f8f8;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   position: relative;
-  top: 100px;
+  top: 0px;
+ 
 }
 
 
@@ -106,7 +107,7 @@
 
 .btn.correct span.tick-mark {
   display: inline-block;
-  color: green;
+  color: rgb(0, 0, 0);
 }
 
 
