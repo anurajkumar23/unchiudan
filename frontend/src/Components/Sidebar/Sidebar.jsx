@@ -1,6 +1,23 @@
-import React from 'react'
-import { FaSearch, FaEye, FaThumbsUp } from "react-icons/fa";
-const Sidebar = () => {
+import { FaSearch } from "react-icons/fa";
+
+
+const Sidebar = ({setSelectedCategory}) => {
+
+  // const [affairs, setAffairs] = useState([]);
+  // const [selectedCategory, setSelectedCategory] = useState(null);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/api/currentaffairs/?${selectedCategory}`)
+  //     .then((response) => {
+  //       setAffairs(response.data.data.affairs);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }, [selectedCategory]);
+  
+
+
   return (
     <div className="p-4 space-y-10">
     <div className="flex items-center mx-4">
@@ -18,9 +35,9 @@ const Sidebar = () => {
       <ul className="flex flex-col space-y-2 m-4">
         <li className="flex space-x-2">
           <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
-          <a href="#" className="text-purple-300 hover:text-purple-500">
-            UPSC
-          </a>
+          <button onClick={()=>setSelectedCategory("UPSC")} className="text-purple-300 hover:text-purple-500">
+              UPSC
+            </button>
         </li>
         <a href="">
           <li className="flex space-x-2">

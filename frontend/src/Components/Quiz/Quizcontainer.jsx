@@ -6,17 +6,21 @@ import { useState, useEffect } from "react";
 
 function Quizcontainer() {
   const [affairs, setAffairs] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  console.log(selectedCategory)
   useEffect(() => {
+    const apiUrl = `/api/currentaffairs/?category=${selectedCategory}`;
+    console.log(apiUrl); // Check if this URL is correct
     axios
-      .get("/api/currentaffairs")
+      .get(apiUrl)
       .then((response) => {
         setAffairs(response.data.data.affairs);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
-
+  }, [selectedCategory]);
+  console.log(affairs)
   return (
     <div className="mx-auto py-[8rem]">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -41,7 +45,7 @@ function Quizcontainer() {
           </div>
         </div>
 
-        <Sidebar />
+        <Sidebar setSelectedCategory={setSelectedCategory} />
       </div>
     </div>
   );
