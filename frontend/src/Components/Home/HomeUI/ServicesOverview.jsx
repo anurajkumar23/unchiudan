@@ -50,9 +50,9 @@ function ServicesOverview() {
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
                     <FaUserGraduate className=" w-10 h-10" />
                   </div>
-                  <h6 class="text-xl mb-1 font-semibold">Current Affair</h6>
+                  <h6 class="text-xl mb-1 font-semibold">Latest News</h6>
                   <p class="mb-4 text-blueGray-500">
-                    Get All Latest Current Affairs
+                    Get All Latest News
                   </p>
                 </div>
               </div>

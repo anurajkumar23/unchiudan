@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaTelegramPlane,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div>
@@ -14,12 +15,12 @@ function Footer() {
           <strong className="block text-center text-lg font-bold text-gray-900 sm:text-3xl">
             सारे Updates पाने के लिए Subscribe करें
           </strong>
-          <a href="#">
+          <Link to="https://t.me/UnchiudaanTeam">
             <div className="mt-6 flex w-fit hover:bg-blue-500 px-3 py-1 justify-between space-x-3 text-lg mx-auto rounded-full bg-blue-300 text-white">
               <FaTelegramPlane className="w-7 h-7" />
               <span>Subscribe</span>
             </div>
-          </a>
+          </Link>
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
@@ -178,7 +179,7 @@ function Footer() {
           <p>
             Designed & Developed by {""}
             <a href="/DevTeam" className="text-blue-500">
-              UIT Meow Coders
+              Meow Coders
             </a>
             .
           </p>

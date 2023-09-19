@@ -14,10 +14,11 @@ import Quiz from "./Components/Quiz/Quiz";
 function App() {
   return (
     <BrowserRouter>
+    
       <GlobalProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/downloadpdf" element={<DownloadPage />} />
+          <Route path="/" exact element={<Home />} />
+          <Route path="/downloadpdf/id" element={<DownloadPage />} />
           <Route path="/currentaffairs/id" element={<BlogsPage />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/downloads" element={<Downloads />} />

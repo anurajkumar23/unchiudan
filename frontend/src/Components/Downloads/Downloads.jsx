@@ -57,7 +57,7 @@ const blogs = [
 
 function BlogComps({ date, title, views, likes, imageSrc }) {
   return (
-    <Link to="/downloadpdf">
+    <Link to="/downloadpdf/id">
       <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
         <div className="relative">
           <img className="w-full rounded-xl" src={imageSrc} alt="Blog Cover" />
