@@ -1,6 +1,7 @@
 import {useEffect,useState} from "react";
 import PdfComp from "./PdfComp";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function HomePdf() {
   const [pdfs, setPdfs] = useState([]);
@@ -44,11 +45,11 @@ export default function HomePdf() {
           );
         })}
       </div>
-      <a href="/pdfs">
+      <Link to="/downloads">
         <div className="text-center hover:bg-purple-500 mt-6 text-xl mx-auto  font-semibold w-fit  px-5 py-1 bg-purple-300 text-white rounded-xl hover:shadow-xl ">
           View More
         </div>
-      </a>
+      </Link>
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import React from "react";
 import { FaFileAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function PdfComp({ title, date }) {
   return (
+    <Link to="/downloadpdf/id">
     <div className="w-18 flex justify-between p-4 border border-2 rounded-lg">
       <div>
         <FaFileAlt className="w-12 h-12" />
@@ -12,6 +14,7 @@ function PdfComp({ title, date }) {
         <p>{date}</p>
       </div>
     </div>
+    </Link>
   );
 }
 

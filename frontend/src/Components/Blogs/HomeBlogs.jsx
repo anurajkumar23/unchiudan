@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BlogComp from "./BlogComp";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 
 export default function HomeBlogs() {
  
@@ -45,11 +45,11 @@ export default function HomeBlogs() {
           );
         })}
       </div>
-      <a href="/">
+      <Link to="/Currentaffairs">
         <div className="text-center hover:bg-purple-500 mt-6 text-xl mx-auto  font-semibold w-fit  px-5 py-1 bg-purple-300 text-white rounded-xl hover:shadow-xl ">
           View More
         </div>
-      </a>
+      </Link>
     </div>
   );
 }
