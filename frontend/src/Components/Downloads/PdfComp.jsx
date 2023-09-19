@@ -2,6 +2,7 @@
 import { FaFileAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 function PdfComp({ title, date }) {
   return (
     <Link to="/downloadpdf/id">
