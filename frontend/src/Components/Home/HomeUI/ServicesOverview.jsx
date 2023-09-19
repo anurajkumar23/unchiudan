@@ -44,7 +44,7 @@ function ServicesOverview() {
                 </div>
                 </Link>
               </div>
-
+             <Link to="/News">
               <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
@@ -56,8 +56,10 @@ function ServicesOverview() {
                   </p>
                 </div>
               </div>
+              </Link>
             </div>
             <div class="w-full md:w-6/12 px-4">
+            <Link to="/Currentaffairs">
               <div class="relative flex flex-col min-w-0 mt-4">
                 <div class="px-4 py-5 flex-auto">
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
@@ -69,6 +71,8 @@ function ServicesOverview() {
                   </p>
                 </div>
               </div>
+              </Link>
+              <Link to="/downloads">
               <div class="relative flex flex-col min-w-0">
                 <div class="px-4 py-5 flex-auto">
                   <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
@@ -83,6 +87,7 @@ function ServicesOverview() {
                   </p>
                 </div>
               </div>
+              </Link>
             </div>
           </div>
         </div>
