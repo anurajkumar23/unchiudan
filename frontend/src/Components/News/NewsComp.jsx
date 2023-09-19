@@ -17,7 +17,7 @@ function NewsComp({ newsItems }) {
               <div className="bg-gray-200 px-3 py-1 rounded-full text-xs flex font-medium text-gray-800 space-x-3">
                 <span>
                   <FaRegClock className="w-6 h-6" />
-                </span>{" "}
+                </span>
                 <span>{news.date}</span>
               </div>
             </div>
