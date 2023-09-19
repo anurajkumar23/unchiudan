@@ -10,6 +10,7 @@ import Blogs from "./Components/Blogs/Blogs";
 import Quizcontainer from "./Components/Quiz/Quizcontainer";
 import News from "./Components/News/News";
 import Currentaffaircontainer from "./Components/currentaffair/Currentaffaircontainer";
+import Quiz from "./Components/Quiz/Quiz";
 function App() {
   return (
     <BrowserRouter>
@@ -18,7 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/downloadpdf" element={<DownloadPage />} />
           <Route path="/currentaffairs/id" element={<BlogsPage />} />
-          {/* <Route path="/quiz" element={<Quiz />} /> */}
+          <Route path="/quiz" element={<Quiz />} />
           <Route path="/downloads" element={<Downloads />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/Quizz" element={<Quizcontainer />} />

@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+ 
 
   return (
     <nav className="backdrop-blur text-black p-2 fixed z-50 w-full">
@@ -43,46 +41,13 @@ const Navbar = () => {
             News
           </Link>
           <div className="relative group">
-            <button
-              onClick={toggleDropdown}
+            <Link to="/Currentaffairs"
+
               className="block focus:outline-none"
             >
               Current Affairs
-            </button>
-            {isDropdownOpen && (
-              <div className="absolute z-10 mt-2 py-2 w-48 bg-white border rounded-lg shadow-md">
-                <Link
-                  to="/currentaffairs"
-                  className="block px-4 py-2 hover:bg-blue-100"
-                >
-                  UPSC
-                </Link>
-                <Link
-                  to="/currentaffairs"
-                  className="block px-4 py-2 hover:bg-blue-100"
-                >
-                  BPSC
-                </Link>
-                <Link
-                  to="/currentaffairs"
-                  className="block px-4 py-2 hover:bg-blue-100"
-                >
-                  बिहार दारोगा
-                </Link>
-                <Link
-                  to="/currentaffairs"
-                  className="block px-4 py-2 hover:bg-blue-100"
-                >
-                  SSC
-                </Link>
-                <Link
-                  to="/currentaffairs"
-                  className="block px-4 py-2 hover:bg-blue-100"
-                >
-                  रेलवे
-                </Link>
-              </div>
-            )}
+            </Link>
+           
           </div>
           <Link to="/downloads">
             <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
@@ -104,45 +69,11 @@ const Navbar = () => {
           </Link>
           <div className="relative group">
             <button
-              onClick={toggleDropdown}
+             
               className="block py-2 focus:outline-none"
             >
               Current Affairs
             </button>
-            {isDropdownOpen && (
-              <div className="absolute z-10 mt-2 py-2 w-48 bg-white border rounded-lg shadow-md">
-                <Link
-                  to="/currentaffairs"
-                  className="block px-4 py-2 hover:bg-blue-100"
-                >
-                  UPSC
-                </Link>
-                <Link
-                  to="/currentaffairs"
-                  className="block px-4 py-2 hover:bg-blue-100"
-                >
-                  BPSC
-                </Link>
-                <Link
-                  to="/currentaffairs"
-                  className="block px-4 py-2 hover:bg-blue-100"
-                >
-                  बिहार दारोगा
-                </Link>
-                <Link
-                  to="/currentaffairs"
-                  className="block px-4 py-2 hover:bg-blue-100"
-                >
-                  SSC
-                </Link>
-                <Link
-                  to="/currentaffairs"
-                  className="block px-4 py-2 hover:bg-blue-100"
-                >
-                  रेलवे
-                </Link>
-              </div>
-            )}
           </div>
           <Link to="/downloads">
             <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">

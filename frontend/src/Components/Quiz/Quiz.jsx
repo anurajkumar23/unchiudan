@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./quiz.css";
+import "../Blogs/quiz.css"
 import {
   FaDownload,
   FaFileAlt,

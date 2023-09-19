@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 export function BlogComps(props) {
-  console.log(props);
+  
   return (
     <Link to="/currentaffairs/id">
       <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
@@ -20,9 +20,10 @@ export function BlogComps(props) {
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
           {props.title}
         </h1>
-        <button className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
+        
+        <Link to="/currentaffairs/id"  className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
           Read More
-        </button>
+        </Link>
       </div>
     </Link>
   );
