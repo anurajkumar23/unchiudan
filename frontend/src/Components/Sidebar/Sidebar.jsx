@@ -17,7 +17,7 @@ const Sidebar = ({ setSelectedCategory }) => {
   const [pdfs, setPdfs] = useState([]);
   useEffect(() => {
     axios
-      .get("/api/pdfs/lastestPdfs")
+      .get("https://ucchi-urran-backend.vercel.app/api/pdfs/lastestPdfs")
       .then((response) => {
         setPdfs(response.data.data.pdf);
       })
@@ -106,7 +106,7 @@ const Sidebar = ({ setSelectedCategory }) => {
       </div>
 
       <div className="my-10">
-        <h1 className="text-center text-xl">Latest Posts</h1>
+        <h1 className="text-center text-xl">Latest Pdf</h1>
         <ul className="flex flex-col space-y-3 m-4">
           {pdfs.map((pdf) => {
             const createdAt = new Date(pdf.createdAt);
