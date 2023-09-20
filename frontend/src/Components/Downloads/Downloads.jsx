@@ -33,7 +33,7 @@ function Downloads() {
   const [pdfs, setAffairs] = useState([]);
   useEffect(() => {
     axios
-      .get("/api/pdfs")
+      .get("https://ucchi-urran-backend.vercel.app/api/pdfs")
       .then((response) => {
         setAffairs(response.data.data.pdf);
       })

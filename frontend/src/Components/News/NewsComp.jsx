@@ -31,7 +31,7 @@ function NewsComp({ newsItems }) {
             <div className="w-full md:w-1/3 bg-white grid place-items-center object-cover w-full h-full overflow-hidden">
               <img
                 crossOrigin="anonymous"
-                src={`http://localhost:3000/img/news/${news.photo}`}
+                src={`https://ucchi-urran-backend.vercel.app/img/news/${news.photo}`}
                 alt="News Image"
                 className="rounded-xl "
               />

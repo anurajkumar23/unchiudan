@@ -6,7 +6,7 @@ function News() {
   const [news, setNews] = useState([]);
   useEffect(() => {
     axios
-      .get("/api/news")
+      .get("https://ucchi-urran-backend.vercel.app/api/news")
       .then((response) => {
         setNews(response.data.data.news);
       })

@@ -12,7 +12,7 @@ function Quizcontainer() {
   console.log(selectedCategory)
 
   useEffect(() => {
-    let apiUrl = '/api/currentaffairs';
+    let apiUrl = 'https://ucchi-urran-backend.vercel.app/api/currentaffairs';
    if (selectedCategory !== null) {
       apiUrl += `/?category=${selectedCategory}`;
     }

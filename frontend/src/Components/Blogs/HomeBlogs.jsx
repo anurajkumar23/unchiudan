@@ -8,7 +8,7 @@ export default function HomeBlogs() {
   const [affairs, setAffairs] = useState([]);
   useEffect(() => {
     axios
-      .get("/api/currentaffairs/lastestAffairs")
+      .get("https://ucchi-urran-backend.vercel.app/api/currentaffairs/lastestAffairs")
       .then((response) => {
         setAffairs(response.data.data.affairs);
       })
