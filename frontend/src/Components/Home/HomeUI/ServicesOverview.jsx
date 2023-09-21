@@ -21,19 +21,17 @@ function ServicesOverview() {
               alt="meow"
               src="/uchiudan.png"
               className="w-full align-middle rounded-t-lg"
-              
             />
           </div>
-          
         </div>
 
         <div className="w-full md:w-6/12 px-4">
           <div className="flex flex-wrap">
             <div className="w-full md:w-6/12 px-4">
               <Link to="/quiz">
-                <div className="relative flex flex-col min-w-0 mt-4 transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
+                <div className="relative flex flex-col min-w-0  m-4   transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
                   <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
-                    <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
+                    <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
                       <FaUserTie className=" w-10 h-10" />
                     </div>
                     <h6 className="text-xl mb-1 font-semibold text-white ">
@@ -47,9 +45,9 @@ function ServicesOverview() {
                 </div>
               </Link>
               <Link to="/News">
-                <div className="relative flex flex-col min-w-0 transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
+                <div className="relative flex flex-col min-w-0 transition-all duration-200 hover:scale-95 w-fit shadow-md m-4 shadow-pure-greys-500">
                   <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
-                    <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
+                    <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
                       <FaUserGraduate className=" w-10 h-10" />
                     </div>
                     <h6 className="text-xl mb-1 font-semibold text-white">
@@ -65,9 +63,9 @@ function ServicesOverview() {
             </div>
             <div className="w-full md:w-6/12 px-4">
               <Link to="/Currentaffairs">
-                <div className="relative flex flex-col min-w-0 mt-4 transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
+                <div className="relative flex flex-col min-w-0  m-4   transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
                   <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
-                    <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
+                    <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
                       <FaLanguage className=" w-10 h-10" />
                     </div>
                     <h6 className="text-xl mb-1 font-semibold text-white">
@@ -80,9 +78,9 @@ function ServicesOverview() {
                 </div>
               </Link>
               <Link to="/downloads">
-                <div className="relative flex flex-col min-w-0 transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
+                <div className="relative flex flex-col min-w-0 transition-all duration-200 hover:scale-95 w-fit shadow-md m-4 shadow-pure-greys-500">
                   <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
-                    <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
+                    <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
                       <FaFileAlt className=" w-10 h-10" />
                     </div>
                     <h6 className="text-xl mb-1 font-semibold text-white">
@@ -99,7 +97,7 @@ function ServicesOverview() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mx-6">
         <CodeBlocks
           position={"lg:flex-row"}
           // imgPos = {"-top-[40%] right-[8%]"}
@@ -133,7 +131,7 @@ function ServicesOverview() {
           backgroudGradient={<div className="codeblock1 absolute"></div>}
         />
       </div>
-      <div>
+      <div className="mx-6">
         <CodeBlocks
           position={"lg:flex-row-reverse"}
           // imgPos = {"-top-[40%] right-[66%]"}

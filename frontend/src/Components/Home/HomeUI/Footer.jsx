@@ -8,9 +8,8 @@ import {
 import { Link } from "react-router-dom";
 function Footer() {
   return (
-
-    <div className="bg-pure-greys-5">
-      <div className="mx-auto max-w-md  ">
+    <div className="bg-pure-greys-5 mx-auto pt-[20rem] md:pt-[8rem]">
+      <div className="mx-auto  ">
         <strong className="block text-center text-lg font-bold text-gray-900 sm:text-3xl ">
           सारे Updates पाने के लिए Subscribe करें
         </strong>
@@ -183,8 +182,7 @@ function Footer() {
           .
         </p>
       </div>
-      </div>
-   
+    </div>
   );
 }
 
