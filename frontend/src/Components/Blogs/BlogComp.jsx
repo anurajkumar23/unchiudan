@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 function BlogComp({ date, title, imageSrc }) {
   return (
     <Link to="/currentaffairs/id">
-    <div className="bg-white p-6 w-[20rem] rounded-xl shadow-lg  transition duration-500">
+    <div className="bg-[#FFFFFF] p-6 w-[20rem] rounded-xl shadow-lg  transition duration-500">
       <div className="relative">
         <img className="w-full rounded-xl" src={imageSrc} alt="Blog Cover" />
-        <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
+        <p className="absolute top-0 bg-[#e8c354] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
           {date}
         </p>
       </div>
-      <h1 className="mt-4 text-gray-800 text-xl font-bold cursor-pointer">
+      <h1 className="mt-4 text-gray-800 text-xl font-bold cursor-pointer overflow-hidden">
         {title}
       </h1>
       <div className="my-4 mx-10 flex justify-between">

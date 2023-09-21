@@ -18,7 +18,7 @@ export default function HomePdf() {
   console.log(pdfs)
 
   return (
-    <div className="mx-10">
+    <div className="mx-10 h-[422px]">
       <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-4 ">
         Download Monthly PDF
       </h1>
@@ -27,7 +27,7 @@ export default function HomePdf() {
         Competitive और Government Job Examinations के लिए पूरे महीने में अपडेट
         किये गए प्रश्नों के PDF आपको मासिक तौर पर प्राप्त होगा।
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6 mb-[58px]">
         {pdfs.map((pdf, index) => {
           const createdAt = new Date(pdf.createdAt);
           const formattedDate = createdAt.toLocaleString("default", {
