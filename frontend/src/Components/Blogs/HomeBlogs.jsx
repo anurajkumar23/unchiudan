@@ -37,10 +37,11 @@ export default function HomeBlogs() {
 
           return (
             <BlogComp  
-              key={blog.id}
+              key={blog._id}
               date={formattedDate}
               title={blog.topic}
               imageSrc={blog.photo}
+              id={blog._id}
             />
           );
         })}

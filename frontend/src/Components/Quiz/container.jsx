@@ -24,7 +24,7 @@ export function BlogComps(props) {
           {props.updatedDate}
         </h1>
         
-        <Link to="/currentaffairs/id"  className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
+        <Link to={`/currentaffairs/${props.id}`} className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
           Read More
         </Link>
       </div>

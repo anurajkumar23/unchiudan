@@ -9,7 +9,7 @@ function Currentaffairs() {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
 
-  console.log(selectedCategory)
+  
 
   useEffect(() => {
     let apiUrl = 'https://ucchi-urran-backend.vercel.app/api/currentaffairs';
@@ -28,7 +28,7 @@ function Currentaffairs() {
       });
   }, [selectedCategory]);
 
-  console.log(affairs)
+  
   
   return (
     <div className="mx-auto py-[8rem]">
@@ -55,7 +55,7 @@ function Currentaffairs() {
                   title={blog.topic}
                   imageSrc={blog.photo}
                   updatedDate={updatedDate}
-                  
+                  id={blog._id}
                 />
               );
             })}

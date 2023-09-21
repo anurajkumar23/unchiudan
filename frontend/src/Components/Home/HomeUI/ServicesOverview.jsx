@@ -10,7 +10,7 @@ import CodeBlocks from "../core/Homepage/CodeBlocks";
 
 function ServicesOverview() {
   return (
-    <div className="relative mx-auto  bg-richblack-800 font-bold py-4  ">
+    <div className="relative mx-auto  bg-richblack-800 font-bold py-4 px-[3%] ">
       <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-6 font-semibold text-white">
         हमारे सेवाएँ: <HighlightText text={"Our Services"} />
       </h1>
@@ -121,6 +121,7 @@ function ServicesOverview() {
             btnText: "Learn More",
             linkto: "/login",
             active: false,
+            
           }}
           codeblock={[
             `ऊँची उड़ान
@@ -152,11 +153,13 @@ function ServicesOverview() {
             btnText: "Continue Lesson",
             linkto: "/downloads",
             active: true,
+            
           }}
           ctabtn2={{
             btnText: "learn more",
             linkto: "/login",
             active: false,
+           
           }}
           codeblock={[
             `ऊँची उड़ान - Your Destination for All Current Affairs!`,
