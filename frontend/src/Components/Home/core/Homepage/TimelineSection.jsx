@@ -9,7 +9,7 @@ const TimeLine = [
     {
       Logo: Logo1,
       Heading: "Leadership",
-      Description: "Fully committed to the success company",
+      Description: "Fully committed to the success with ऊँची उड़ान",
     },
     {
       Logo: Logo2,
@@ -19,12 +19,12 @@ const TimeLine = [
     {
       Logo: Logo3,
       Heading: "Flexibility",
-      Description: "The ability to switch is an important skills",
+      Description: "The ability to improve your कर्रेंट अफेयर्स skills",
     },
     {
       Logo: Logo4,
       Heading: "Solve the problem",
-      Description: "Code your way to a solution",
+      Description: "Solve the  Daily Quiz / डेली प्रश्न",
     },
   ];
 
@@ -46,8 +46,9 @@ const TimelineSection = () => {
                     <p className="text-base">{ele.Description}</p>
                   </div>
                 </div>
-                <div
-                  className={`hidden ${
+              
+                  <div
+                  className={` ${
                     TimeLine.length - 1 === i ? "hidden" : "lg:block"
                   }  h-14 border-dotted border-r border-richblack-100 bg-richblack-400/0 w-[26px]`}
                 ></div>
@@ -67,9 +68,9 @@ const TimelineSection = () => {
 
             {/* Section 2 */}
             <div className="flex gap-5 items-center lg:px-14 px-7">
-              <h1 className="text-3xl font-bold w-[75px]">250</h1>
+              <h1 className="text-3xl font-bold w-[75px]">30+</h1>
               <h1 className="text-caribbeangreen-300 text-sm w-[75px]">
-                types of current Affairs and PDF
+                Types of current Affairs and PDF
               </h1>
             </div>
             <div></div>

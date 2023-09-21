@@ -19,7 +19,7 @@ export default function HomeBlogs() {
 
   return (
     <div className="mx-10">
-      <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-4 ">
+      <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-4 font-semibold">
         Latest Current Affairs
       </h1>
       <p className="text-justify text-md mb-16 md:mx-[6rem]">
@@ -27,7 +27,7 @@ export default function HomeBlogs() {
         Competitive और&nbsp;Government Job Examinations के लिए ऊँची उड़ान वेबसाइट
         और फेसबुक पेज को Follow करें।
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6 mb-[58px]">
         {affairs.map((blog) => {
           const createdAt = new Date(blog.createdAt);
           const formattedDate = createdAt.toLocaleString("default", {
