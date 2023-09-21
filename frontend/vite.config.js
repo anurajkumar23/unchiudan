@@ -43,7 +43,13 @@ const manifestForPlugin = {
 };
 
 export default defineConfig({
-  plugins: [react(), VitePWA(manifestForPlugin)],
+  plugins: [
+    react(),
+    VitePWA({
+      injectRegister: "auto",
+    }),
+    VitePWA(manifestForPlugin),
+  ],
   server: {
     proxy: {
       "/api": "http://localhost:3000",
