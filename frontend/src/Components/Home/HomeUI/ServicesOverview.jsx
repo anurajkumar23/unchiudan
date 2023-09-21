@@ -11,12 +11,12 @@ import { Link } from "react-router-dom";
 function ServicesOverview() {
   return (
     <div className="mx-auto">
-      <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-6 ">
+      <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-6 font-semibold">
         Our Services
       </h1>
       <div className="flex flex-wrap items-center">
         <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-78">
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6  rounded-lg bg-pink-500">
+          <div className="relative flex flex-col min-w-0 break-words bg-pure-greys-5 w-full mb-6  rounded-lg bg-pink-500">
             <img
               alt="meow"
               src="/uchiudan.png"
