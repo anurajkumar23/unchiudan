@@ -131,7 +131,7 @@ function ServicesOverview() {
           backgroudGradient={<div className="codeblock1 absolute"></div>}
         />
       </div>
-      <div>
+      <div className="mx-6">
         <CodeBlocks
           position={"lg:flex-row-reverse"}
           // imgPos = {"-top-[40%] right-[66%]"}
