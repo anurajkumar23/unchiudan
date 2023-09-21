@@ -21,12 +21,8 @@ function ServicesOverview() {
               alt="meow"
               src="/uchiudan.png"
               className="w-full align-middle rounded-t-lg"
-              
             />
-            
-  
           </div>
-          
         </div>
 
         <div className="w-full md:w-6/12 px-4">
@@ -101,7 +97,7 @@ function ServicesOverview() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mx-6">
         <CodeBlocks
           position={"lg:flex-row"}
           // imgPos = {"-top-[40%] right-[8%]"}
