@@ -23,8 +23,6 @@ function ServicesOverview() {
               className="w-full align-middle rounded-t-lg"
               
             />
-            
-  
           </div>
           
         </div>
