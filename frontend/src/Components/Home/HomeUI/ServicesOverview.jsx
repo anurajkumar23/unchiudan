@@ -24,7 +24,7 @@ function ServicesOverview() {
               
             />
             
-  <div className="codeblock2 absolute"></div>
+  
           </div>
           
         </div>
