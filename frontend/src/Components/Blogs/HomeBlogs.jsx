@@ -36,7 +36,7 @@ export default function HomeBlogs() {
           });
 
           return (
-            <BlogComp
+            <BlogComp  
               key={blog.id}
               date={formattedDate}
               title={blog.topic}
