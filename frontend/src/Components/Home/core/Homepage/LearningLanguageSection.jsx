@@ -3,16 +3,16 @@ import HighlightText from './HighlightText'
 import CTAButton from "./Button";
 import Know_your_progress from "../../../../../public/Images/Know_your_progress.png";
 import Compare_with_others from "../../../../../public/Images/Compare_with_others.svg";
-import Plan_your_lessons from "../../../../../public/Images/Plan_your_lessons.svg";
+import Plan_your_lessons from "../../../../../public/Images/Plan_your_lessons.png";
 
 const LearningLanguageSection = () => {
   return (
     <div>
         <div className="text-4xl font-semibold text-center my-10">
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesenti
-            <HighlightText text={"learning any language"} />
+        ऊँची उड़ान
+            <HighlightText text={"Gateway to success"} />
             <div className="text-center text-richblack-700 font-medium lg:w-[75%] mx-auto leading-6 text-base mt-3">
-             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi suscipit neque expedita sint aut beatae soluta, officia accusamus alias 
+            Current Affairs for UPSC, BPSC, All State PCS, बिहार दारोगा,SI, BSSC, Railway, JSSC, SSC(CGL, CPO, GD) BANKING, Defence, Police,KVS,CTET और अन्य Competitive और Government Job Examinations 
             </div>
             <div className="flex flex-col lg:flex-row items-center justify-center mt-8 lg:mt-0">
               <img

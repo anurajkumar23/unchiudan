@@ -16,7 +16,7 @@ function Hero() {
             Current Affairs for UPSC, BPSC, All State PCS, बिहार दारोगा,SI,
             BSSC, Railway, JSSC, SSC(CGL, CPO, GD) BANKING, Defence,
             Police,KVS,CTET और अन्य Competitive और&nbsp;Government Job
-            Examinations के लिए ऊँची उड़ान वेबसाइट और फेसबुक पेज को Follow करें।
+            Examinations के लिए ऊँची उड़ान वेबसाइट और Telegram पेज को join करें।
           </p>
 
           <div className="mt-12 flex justify-center items-center">
