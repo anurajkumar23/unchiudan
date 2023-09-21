@@ -13,7 +13,7 @@ export function BlogComps(props) {
             src={props.imageSrc}
             alt="Blog Cover"
           />
-          <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
+          <p className="absolute top-0 bg-[#f2c94f] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
             {props.date}
           </p>
         </div>

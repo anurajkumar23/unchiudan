@@ -10,7 +10,6 @@ import CodeBlocks from "../core/Homepage/CodeBlocks";
 
 function ServicesOverview() {
   return (
-    
     <div className="relative mx-auto  bg-richblack-800 font-bold py-4  ">
       <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-6 font-semibold text-white">
         हमारे सेवाएँ: <HighlightText text={"Our Services"} />
@@ -22,8 +21,12 @@ function ServicesOverview() {
               alt="meow"
               src="/uchiudan.png"
               className="w-full align-middle rounded-t-lg"
+              
             />
+            
+  <div className="codeblock2 absolute"></div>
           </div>
+          
         </div>
 
         <div className="w-full md:w-6/12 px-4">
@@ -31,11 +34,11 @@ function ServicesOverview() {
             <div className="w-full md:w-6/12 px-4">
               <Link to="/quiz">
                 <div className="relative flex flex-col min-w-0 mt-4 transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
-                  <div className="px-4 py-5 flex-auto">
+                  <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
                       <FaUserTie className=" w-10 h-10" />
                     </div>
-                    <h6 className="text-xl mb-1 font-semibold text-white">
+                    <h6 className="text-xl mb-1 font-semibold text-white ">
                       Daily Quiz / डेली प्रश्न
                     </h6>
                     <p className="mb-4 text-blueGray-500 text-white">
@@ -47,7 +50,7 @@ function ServicesOverview() {
               </Link>
               <Link to="/News">
                 <div className="relative flex flex-col min-w-0 transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
-                  <div className="px-4 py-5 flex-auto">
+                  <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
                       <FaUserGraduate className=" w-10 h-10" />
                     </div>
@@ -65,7 +68,7 @@ function ServicesOverview() {
             <div className="w-full md:w-6/12 px-4">
               <Link to="/Currentaffairs">
                 <div className="relative flex flex-col min-w-0 mt-4 transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
-                  <div className="px-4 py-5 flex-auto">
+                  <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
                       <FaLanguage className=" w-10 h-10" />
                     </div>
@@ -80,7 +83,7 @@ function ServicesOverview() {
               </Link>
               <Link to="/downloads">
                 <div className="relative flex flex-col min-w-0 transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
-                  <div className="px-4 py-5 flex-auto">
+                  <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 shadow-lg rounded-full bg-white">
                       <FaFileAlt className=" w-10 h-10" />
                     </div>
@@ -104,9 +107,8 @@ function ServicesOverview() {
           // imgPos = {"-top-[40%] right-[8%]"}
           heading={
             <div className="text-4xl font-semibold text-white">
-             Daily Quiz / डेली प्रश्न
-
-              <HighlightText text={"Practice your potential"} /> 
+              Daily Quiz / डेली प्रश्न
+              <HighlightText text={"Practice your potential"} />
             </div>
           }
           subheading={
@@ -122,7 +124,6 @@ function ServicesOverview() {
             linkto: "/login",
             active: false,
           }}
-         
           codeblock={[
             `ऊँची उड़ान
 में आपका स्वागत है!`,
@@ -134,44 +135,41 @@ function ServicesOverview() {
           backgroudGradient={<div className="codeblock1 absolute"></div>}
         />
       </div>
-      <div> 
-                <CodeBlocks 
-                    position={"lg:flex-row-reverse"}
-                    // imgPos = {"-top-[40%] right-[66%]"}
-                    heading={
-                        <div className='text-4xl font-semibold text-white'>
-                            Free और 
-                            <HighlightText text={`पैड PDFs  `}/>
-                            <br />
-                            <HighlightText text={`खरीदने की शुरुआत करें`}/>
-                        </div>
-                    }
-                    subheading = {
-                        "Go ahead, Start Buying Paid PDFs! - अब आगे बढ़ें, पैड PDFs खरीदने की शुरुआत करें!"
-                    }
-                    ctabtn1={
-                        {
-                            btnText: "Continue Lesson",
-                            linkto: "/downloads",
-                            active: true,
-                        }
-                    }
-                    ctabtn2={
-                        {
-                            btnText: "learn more",
-                            linkto: "/login",
-                            active: false,
-                        }
-                    }
-
-                    codeblock={[`ऊँची उड़ान - Your Destination for All Current Affairs!`,`मुफ्त में पाओ Latest Current Affairs के PDFs प्राप्त करें मासिक Paid PDFs भी खरीदे| `,` Daily News और Insightful Quiz से मिलेगा दिलचस्प ज्ञान। तो अब तैयारी करो आज़ादी के अंदर, यहाँ पर ही!`]}
-                    codeColor={"text-yellow-25"}
-                    
-                    backgroudGradient={<div className="codeblock2 absolute"></div>}
-                />
+      <div>
+        <CodeBlocks
+          position={"lg:flex-row-reverse"}
+          // imgPos = {"-top-[40%] right-[66%]"}
+          heading={
+            <div className="text-4xl font-semibold text-white">
+              Free और
+              <HighlightText text={`पैड PDFs  `} />
+              <br />
+              <HighlightText text={`खरीदने की शुरुआत करें`} />
             </div>
+          }
+          subheading={
+            "Go ahead, Start Buying Paid PDFs! - अब आगे बढ़ें, पैड PDFs खरीदने की शुरुआत करें!"
+          }
+          ctabtn1={{
+            btnText: "Continue Lesson",
+            linkto: "/downloads",
+            active: true,
+          }}
+          ctabtn2={{
+            btnText: "learn more",
+            linkto: "/login",
+            active: false,
+          }}
+          codeblock={[
+            `ऊँची उड़ान - Your Destination for All Current Affairs!`,
+            `मुफ्त में पाओ Latest Current Affairs के PDFs प्राप्त करें मासिक Paid PDFs भी खरीदे| `,
+            ` Daily News और Insightful Quiz से मिलेगा दिलचस्प ज्ञान। तो अब तैयारी करो आज़ादी के अंदर, यहाँ पर ही!`,
+          ]}
+          codeColor={"text-yellow-25"}
+          backgroudGradient={<div className="codeblock2 absolute"></div>}
+        />
+      </div>
     </div>
-  
   );
 }
 

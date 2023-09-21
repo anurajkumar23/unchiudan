@@ -10,7 +10,7 @@ function BlogComps({ date, title, imageSrc,updatedDate }) {
       <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
         <div className="relative">
           <img className="w-full rounded-xl" src={imageSrc} alt="Blog Cover" />
-          <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
+          <p className="absolute top-0 bg-[#f2c94f] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
             {date}
           </p>
         </div>

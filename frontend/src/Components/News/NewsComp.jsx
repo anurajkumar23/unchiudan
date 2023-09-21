@@ -25,7 +25,7 @@ function NewsComp({ newsItems }) {
           <div
             key={news.id}
             className={`relative my-6 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white ${
-              !isRecent && 'opacity-50' // Apply opacity if not recent
+              !isRecent  // Apply opacity if not recent
             } h-[30%]`}
           >
             <div className="w-full md:w-1/3 bg-white grid place-items-center object-cover w-full h-full overflow-hidden">

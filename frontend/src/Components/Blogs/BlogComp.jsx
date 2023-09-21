@@ -8,7 +8,7 @@ function BlogComp({ date, title, imageSrc }) {
     <div className="bg-[#FFFFFF] p-6 w-[20rem] rounded-xl shadow-lg  transition duration-500">
       <div className="relative">
         <img className="w-full rounded-xl" src={imageSrc} alt="Blog Cover" />
-        <p className="absolute top-0 bg-[#e8c354] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
+        <p className="absolute top-0 bg-[#f2c94f] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
           {date}
         </p>
       </div>

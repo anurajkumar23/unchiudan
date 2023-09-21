@@ -3,7 +3,7 @@ import ServicesOverview from "./HomeUI/ServicesOverview";
 import HomeBlogs from "../Blogs/HomeBlogs";
 import HomePdf from "../Downloads/HomePdf";
 import CTAButton from "../Home/core/Homepage/Button";
-import { FaArrowRight } from "react-icons/fa";
+// import { FaArrowRight } from "react-icons/fa";
 import HighlightText from "../Home/core/Homepage/HighlightText";
 import TimelineSection from "../Home/core/Homepage/TimelineSection";
 import LearningLanguageSection from "../Home/core/Homepage/LearningLanguageSection";
