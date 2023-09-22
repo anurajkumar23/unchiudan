@@ -79,7 +79,7 @@ const NewsPostComp = ({ onPostSubmit }) => {
       />
       <div className="flex items-center mb-4">
         <label htmlFor="imageUpload" className="cursor-pointer">
-          <FaImage className="w-8 h-8 text-blue-500" />
+          <FaImage className="w-10 h-10 text-blue-200 hover:text-blue-500" />
         </label>
         <input
           type="file"
@@ -97,7 +97,7 @@ const NewsPostComp = ({ onPostSubmit }) => {
       <div className="flex justify-center">
         <button
           onClick={handleSubmit}
-          className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600"
+          className="bg-blue-200 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-500"
         >
           Submit
         </button>
