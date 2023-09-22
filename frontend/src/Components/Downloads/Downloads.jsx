@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
 
 
-function BlogComps({ date, title, imageSrc,updatedDate,id }) {
+function BlogComps({ date, title, imageSrc,updatedDate,id ,status }) {
   return (
     <Link to={`/pdfs/${id}`}>
       <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
@@ -17,6 +17,9 @@ function BlogComps({ date, title, imageSrc,updatedDate,id }) {
         </div>
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
           {title}
+        </h1>
+        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
+          status: {status}
         </h1>
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
           Updated Date: {updatedDate}
@@ -33,18 +36,19 @@ function BlogComps({ date, title, imageSrc,updatedDate,id }) {
 function Downloads() {
   const [pdfs, setPdfs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  console.log("🚀 ~ file: Quizcontainer.jsx:10 ~ Quizcontainer ~ selectedCategory:", selectedCategory)
-
-
-  
+  const [selectedStatus, setSelectedStatus] = useState(null);
 
   useEffect(() => {
     let apiUrl = 'https://ucchi-urran-backend.vercel.app/api/pdfs';
-   if (selectedCategory !== null) {
+   
+    if (selectedCategory !== null) {
       apiUrl += `/?category=${selectedCategory}`;
     }
-    // const apiUrl = `/api/currentaffairs/?category=${selectedCategory}`;
-    // console.log(apiUrl); // Check if this URL is correct
+
+    if (selectedStatus !== null) {
+      apiUrl += `${selectedCategory ? '&' : '/?'}status=${selectedStatus}`;
+    }
+
     axios
       .get(apiUrl)
       .then((response) => {
@@ -53,8 +57,7 @@ function Downloads() {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [selectedCategory]);
-
+  }, [selectedCategory, selectedStatus]);
   console.log(pdfs)
   return (
     <div className="mx-auto py-[8rem]">
@@ -80,13 +83,14 @@ function Downloads() {
                   imageSrc={pdf.photo}
                   updatedDate={updatedDate}
                   id={pdf._id}
+                  status={pdf.status}
                 />
               );
             })}
           </div>
         </div>
 
-        <Sidebar_pdf setSelectedCategory={setSelectedCategory}/>
+        <Sidebar_pdf setSelectedCategory={setSelectedCategory} setSelectedStatus={setSelectedStatus}/>
       </div>
     </div>
   );

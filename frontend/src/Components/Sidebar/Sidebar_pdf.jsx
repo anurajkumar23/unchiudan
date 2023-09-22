@@ -4,12 +4,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-
-const Sidebar_pdf = ({ setSelectedCategory }) => {
+const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [status] = useState(null);
 
   const handleSearch = () => {
     setSelectedCategory(searchTerm);
+    setSelectedStatus(status);
   };
 
   const handleKeyDown = (e) => {
@@ -85,6 +86,39 @@ const Sidebar_pdf = ({ setSelectedCategory }) => {
       </div>
 
       <div className="my-10">
+        <h1 className="text-center text-xl">Search By Status</h1>
+        <ul className="flex flex-col space-y-2 m-4">
+          <li className="flex space-x-2">
+            <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
+            <button
+              onClick={() => setSelectedStatus('free')}
+              className="text-purple-300 hover:text-purple-500"
+            >
+              Free
+            </button>
+          </li>
+          <li className="flex space-x-2">
+            <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
+            <button
+              onClick={() => setSelectedStatus('paid')}
+              className="text-purple-300 hover:text-purple-500"
+            >
+              Paid
+            </button>
+          </li>
+          <li className="flex space-x-2">
+            <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
+            <button
+              onClick={() => setSelectedStatus(null)}
+              className="text-purple-300 hover:text-purple-500"
+            >
+              All Category
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div className="my-10">
         <h1 className="text-center text-xl">Latest CurrentAffairs</h1>
         <ul className="flex flex-col space-y-3 m-4">
           {affairs.map((affair) => {
@@ -99,7 +133,6 @@ const Sidebar_pdf = ({ setSelectedCategory }) => {
                   <div className="w-1/3 p-4">
                     <FaFileAlt className="w-12 h-12" />
                   </div>
-
                   <div className="flex-col w-2/3 p-4">
                     <h1 className=" text-md overflow-hidden">{affair.topic}</h1>
                     <p>{formattedDate}</p>
