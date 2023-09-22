@@ -29,7 +29,7 @@ function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="mt-6 flex w-full flex-col gap-y-4">
       <label className="w-full">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] ">
+        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
           Email Address <sup className="text-pink-200">*</sup>
         </p>
         <input
@@ -97,6 +97,14 @@ function LoginForm() {
       >
         Continue with Google <span className="ml-[11px]">{GoogleSvg}</span>
       </button>
+      <Link className="mt-6 rounded-[8px] bg-blue-300 hover:bg-blue-500 " to="/Signup">
+      <button
+        type="submit"
+        className="py-[8px] px-[200px] font-medium text-richblack-900 "
+      >
+        Signup
+      </button>
+      </Link>
     </form>
   );
 }
