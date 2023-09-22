@@ -87,10 +87,18 @@ function LoginForm() {
       </label>
       <button
         type="submit"
-        className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
+        className="mt-6 rounded-[8px] bg-yellow-50 hover:bg-yellow-100 py-[8px] px-[12px] font-medium text-richblack-900"
       >
         Sign In
       </button>
+      <Link className="mt-6 rounded-[8px] bg-blue-300 hover:bg-blue-500 " to="/Signup">
+      <button
+        type="submit"
+        className="py-[8px] px-[200px] font-medium text-richblack-900 "
+      >
+        Signup
+      </button>
+      </Link>
     </form>
   );
 }
