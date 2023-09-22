@@ -4,6 +4,7 @@ import Template from "../Home/core/Auth/Template"
 
 function Login() {
   return (
+    <div className="mx-auto py-[4rem]">
     <Template
       title="Welcome Back"
       description1="Build skills for today, tomorrow, and beyond."
@@ -11,6 +12,7 @@ function Login() {
       image={loginImg}
       formType="login"
     />
+    </div>
   )
 }
 

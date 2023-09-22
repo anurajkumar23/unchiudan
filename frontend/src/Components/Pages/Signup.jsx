@@ -3,6 +3,7 @@ import Template from "../Home/core/Auth/Template"
 
 function Signup() {
   return (
+    <div className="mx-auto py-[4rem]">
     <Template
       title="Join for the learning free"
       description1="Build skills for today, tomorrow, and beyond."
@@ -10,6 +11,7 @@ function Signup() {
       image={signupImg}
       formType="signup"
     />
+    </div>
   )
 }
 

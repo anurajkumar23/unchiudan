@@ -47,7 +47,7 @@ function SignupForm() {
       <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4">
         <div className="flex gap-x-4">
           <label>
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-900">
               First Name <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -57,11 +57,11 @@ function SignupForm() {
               value={firstName}
               onChange={handleOnChange}
               placeholder="Enter first name"
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-900"
             />
           </label>
           <label>
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-900">
               Last Name <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -71,12 +71,12 @@ function SignupForm() {
               value={lastName}
               onChange={handleOnChange}
               placeholder="Enter last name"
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-900"
             />
           </label>
         </div>
         <label className="w-full">
-          <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+          <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-900">
             Email Address <sup className="text-pink-200">*</sup>
           </p>
           <input
@@ -86,12 +86,12 @@ function SignupForm() {
             value={email}
             onChange={handleOnChange}
             placeholder="Enter email address"
-            className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+            className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-900"
           />
         </label>
         <div className="flex gap-x-4">
           <label className="relative">
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-900">
               Create Password <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -101,7 +101,7 @@ function SignupForm() {
               value={password}
               onChange={handleOnChange}
               placeholder="Enter Password"
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-5"
+              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-900"
             />
             <span
               onClick={() => setShowPassword((prev) => !prev)}
@@ -115,7 +115,7 @@ function SignupForm() {
             </span>
           </label>
           <label className="relative">
-            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-900">
               Confirm Password <sup className="text-pink-200">*</sup>
             </p>
             <input
@@ -125,7 +125,7 @@ function SignupForm() {
               value={confirmPassword}
               onChange={handleOnChange}
               placeholder="Confirm Password"
-              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-5"
+              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-900"
             />
             <span
               onClick={() => setShowConfirmPassword((prev) => !prev)}
