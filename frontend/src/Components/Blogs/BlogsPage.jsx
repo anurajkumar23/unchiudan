@@ -69,7 +69,7 @@ function BlogsPage() {
       <div className=" py-[8rem] ">
         <div className=" mx-6 ">
           <h1 className="text-center font-bold text-[2rem] md:text-[2.5rem] mb-6 ">
-            Current Affairs UPSC title 5
+            Current Affairs {affairDetails.category} 
           </h1>
           <div className="md:mx-12 my-12">
             <img
