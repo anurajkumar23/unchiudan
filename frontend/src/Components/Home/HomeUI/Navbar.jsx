@@ -61,20 +61,20 @@ const Navbar = () => {
           <Link to="/" className="block py-2">
             Home
           </Link>
-          <Link to="/downloads" className="block py-2">
+          <Link to="/pdfs" className="block py-2">
           Pdfs
           </Link>
           <Link to="/News" className="block">
             News
           </Link>
-          <div className="relative group">
-            <button
+          
+            <Link to="/Currentaffairs"
              
               className="block py-2 focus:outline-none"
             >
               Current Affairs
-            </button>
-          </div>
+            </Link>
+       
           <Link to="/login">
             <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
               Login
