@@ -4,10 +4,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
 
-function BlogComps({ date, title, imageSrc,updatedDate }) {
-  
+
+function BlogComps({ date, title, imageSrc,updatedDate,id }) {
   return (
-    <Link to="/downloadpdf/id">
+    <Link to={`/pdfs/${id}`}>
       <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
         <div className="relative">
           <img className="w-full rounded-xl" src={imageSrc} alt="Blog Cover" />
@@ -74,11 +74,12 @@ function Downloads() {
               });
               return (
                 <BlogComps
-                  key={pdf.id}
+                  key={pdf._id}
                   date={formattedDate}
                   title={pdf.name}
                   imageSrc={pdf.photo}
                   updatedDate={updatedDate}
+                  id={pdf._id}
                 />
               );
             })}

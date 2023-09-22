@@ -1,4 +1,6 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import {
   FaDownload,
   FaFileAlt,
@@ -7,16 +9,46 @@ import {
   FaInstagram,
   FaLinkedin,
   FaWhatsapp,
-  FaSearch,
 } from "react-icons/fa";
-import Sidebar from "../Sidebar/Sidebar";
+
 function DownloadPage() {
+  const { id } = useParams();
+  const [pdfDetails, setPdfDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://ucchi-urran-backend.vercel.app/api/pdfs/${id}`
+        );
+        setPdfDetails(response.data.data.pdf);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  if (!pdfDetails) {
+    return <div>Loading...</div>;
+  }
+
+  const formatUpdatedAtDate = () => {
+    const updatedAtDate = new Date(pdfDetails.updatedAt);
+    const day = updatedAtDate.getDate();
+    const month = updatedAtDate.toLocaleString("default", { month: "long" });
+    const year = updatedAtDate.getFullYear();
+    return `${day} ${month} ${year}`;
+  };
+
   return (
-    <div className="mx-auto py-[8rem] ">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 ">
-        <div className="mx-0 col-span-3 xl:mx-0 p-4 md:mx-0 overflow-y-auto lg:my-0">
-          <h1 className="text-center font-bold text-[2rem] md:text-[2.5rem] mb-6 ">
-            UPSC download title 1 pdf note 1
+    <div className="mx-auto py-[8rem]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="col-span-3 p-4 overflow-y-auto">
+          <h1 className="text-center font-bold text-[2rem] md:text-[2.5rem] mb-6">
+            UPSC PDF download <br />
+            {pdfDetails.name}
           </h1>
           <div className="mx-6 my-12">
             <img
@@ -26,17 +58,16 @@ function DownloadPage() {
             />
           </div>
 
-          <div className="w-18 md:mx-12 flex-col p-4 border border-2 mx-4 rounded-lg mt-16">
-            <div className="flex justify-between space-x-3 ">
+          <div className="w-18 md:mx-12 p-4 border border-2 mx-4 rounded-lg mt-16">
+            <div className="flex justify-between space-x-3 h-[80px]">
               <FaFileAlt className="w-12 h-12" />
-
-              <h1 className="text-center text-lg ">
-                Monthly Current Affairs of Jun 2020 PDF Download Set no- 205
-              </h1>
-            </div>
-            <div className="flex justify-between md:mx-12  mt-4">
-              <span>Size: 10MB</span> <span>Downloads: 125</span>
-              <span>Last Updated: 30 August</span>
+              <div className="text-center text-lg leading-[47px]">
+                {pdfDetails.name}
+                <br />
+                <span className="leading-[5px]">
+                  Last Updated: {formatUpdatedAtDate()}
+                </span>
+              </div>
             </div>
             <a href="#">
               <div className="mt-6 flex w-fit hover:bg-teal-500 px-3 py-1 justify-between space-x-3 text-lg mx-auto rounded-full bg-teal-300 text-white">
@@ -45,28 +76,56 @@ function DownloadPage() {
               </div>
             </a>
           </div>
-          <div className="flex justify-between mt-6  ">
-            <span className="text-center text-md ">Share with Friends :</span>
-            <span className="flex text-gray-400 justify-center space-x-4">
-              <a className=" " href="" target="_blank" rel="noreferrer">
+
+          <div className="flex justify-between mt-6">
+            <span className="text-center text-md">Share with Friends :</span>
+            <div className="flex text-gray-400 justify-center space-x-4">
+              <a
+                className=" "
+                href=""
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+              >
                 <FaFacebook className="text-blue-500 w-7 h-7" />
               </a>
-
-              <a className=" " href="" target="_blank" rel="noreferrer">
+              <a
+                className=" "
+                href=""
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Twitter"
+              >
                 <FaTwitter className="text-blue-400 w-7 h-7" />
               </a>
-
-              <a className=" " href="" target="_blank" rel="noreferrer">
+              <a
+                className=" "
+                href=""
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+              >
                 <FaInstagram className="text-pink-500 w-7 h-7" />
               </a>
-
-              <a className=" " href="" target="_blank" rel="noreferrer">
+              <a
+                className=" "
+                href=""
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Linkedin"
+              >
                 <FaLinkedin className="text-blue-600 w-7 h-7" />
               </a>
-              <a className=" " href="" target="_blank" rel="noreferrer">
+              <a
+                className=" "
+                href=""
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Whatsapp"
+              >
                 <FaWhatsapp className="text-green-500 w-7 h-7" />
               </a>
-            </span>
+            </div>
           </div>
 
           <h1 className="mt-10 text-[1.3rem] font-[550] text-center">
@@ -74,41 +133,66 @@ function DownloadPage() {
           </h1>
           <p className="mt-4 text-justify text-lg">
             Monthly Current Affairs of Jun 2020 PDF Download is now out by
-            UnchiUdaan.in You can Download it here and Get Daily 10 Questions of
+            UnchiUdaan.in. You can Download it here and Get Daily 10 Questions of
             Latest Current Affairs of Jun 2020 on UnchiUdaan Facebook Page. You
             can also Download other Previous Monthly Current Affairs of Jun 2020
             along with Current affairs of Jun available in Free Download page of
             this Website. <br /> <br /> This PDF is the Successive Series of
             Unchiudaan Monthly Current affairs PDF of Jun that is Being Issued
             by Unchi Udaan. You can also Download the Previous Month PDF for
-            Free Monthly PDF. You can also download other PDFs{" "}
+            Free Monthly PDF. You can also download other PDFs.
           </p>
-          <div className="flex justify-between mt-10 ">
-            <span className="text-center text-md ">Share with Friends :</span>
-            <span className="flex text-gray-400 justify-center space-x-4">
-              <a className=" " href="" target="_blank" rel="noreferrer">
+          <div className="flex justify-between mt-10">
+            <span className="text-center text-md">Share with Friends :</span>
+            <div className="flex text-gray-400 justify-center space-x-4">
+              <a
+                className=" "
+                href=""
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+              >
                 <FaFacebook className="text-blue-500 w-7 h-7" />
               </a>
-
-              <a className=" " href="" target="_blank" rel="noreferrer">
+              <a
+                className=" "
+                href=""
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Twitter"
+              >
                 <FaTwitter className="text-blue-400 w-7 h-7" />
               </a>
-
-              <a className=" " href="" target="_blank" rel="noreferrer">
+              <a
+                className=" "
+                href=""
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+              >
                 <FaInstagram className="text-pink-500 w-7 h-7" />
               </a>
-
-              <a className=" " href="" target="_blank" rel="noreferrer">
+              <a
+                className=" "
+                href=""
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Linkedin"
+              >
                 <FaLinkedin className="text-blue-600 w-7 h-7" />
               </a>
-              <a className=" " href="" target="_blank" rel="noreferrer">
+              <a
+                className=" "
+                href=""
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Whatsapp"
+              >
                 <FaWhatsapp className="text-green-500 w-7 h-7" />
               </a>
-            </span>
+            </div>
           </div>
         </div>
-
-        <Sidebar />
       </div>
     </div>
   );

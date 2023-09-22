@@ -17,10 +17,10 @@ function App() {
       <GlobalProvider>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/downloadpdf/:id" element={<DownloadPage />} />
+          <Route path="/pdfs/:id" element={<DownloadPage />} />
           <Route path="/currentaffairs/:id" element={<BlogsPage />} />
           <Route path="/quiz" element={<Quiz />} />
-          <Route path="/downloads" element={<Downloads />} />
+          <Route path="/pdfs" element={<Downloads />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/Quizz" element={<Quizcontainer />} />
           <Route path="/News" element={<News />} />
