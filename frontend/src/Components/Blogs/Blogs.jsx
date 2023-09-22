@@ -103,6 +103,7 @@ function Blogs() {
                 views={blog.views}
                 likes={blog.likes}
                 imageSrc={blog.imageSrc}
+               
               />
             ))}
           </div>

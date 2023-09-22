@@ -16,6 +16,8 @@ router
     affairsController.createAffairs,
   );
 
+  
+
 router.get('/lastestAffairs', affairsController.lastestAffairs);
 
 router

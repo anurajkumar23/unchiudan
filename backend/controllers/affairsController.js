@@ -59,8 +59,10 @@ exports.createAffairs = catchAsync(async (req, res, next) => {
     photo = req.file.filename;
   }
   req.body = { ...req.body, photo };
+
   const currentDate = Date.now();
   req.body.updatedAt = currentDate;
+  
   const affairs = await CurrentAffairs.create(req.body);
 
   res.status(201).json({

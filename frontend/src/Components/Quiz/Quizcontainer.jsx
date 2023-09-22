@@ -5,11 +5,10 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 function Quizcontainer() {
-  const [affairs, setAffairs] = useState([]);
+  const [affairs, setAffairs] = useState();
+
   const [selectedCategory, setSelectedCategory] = useState(null);
-
-
-  console.log(selectedCategory)
+  
 
   useEffect(() => {
     let apiUrl = 'https://ucchi-urran-backend.vercel.app/api/currentaffairs';
@@ -28,26 +27,28 @@ function Quizcontainer() {
       });
   }, [selectedCategory]);
 
-  console.log(affairs)
+ 
   
   return (
     <div className="mx-auto py-[8rem]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="col-span-3 p-4 md:mx-0 overflow-y-auto lg:my-0">
           <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 mx-10 md:mx-0 gap-6">
-            {affairs.map((blog, index) => {
+            {affairs.map((blog) => {
               const createdAt = new Date(blog.createdAt);
               const formattedDate = createdAt.toLocaleString("default", {
                 day: "numeric",
                 month: "long",
               });
+              
 
               return (
                 <BlogComps
-                  key={index}
+                  key={blog._id}
                   date={formattedDate}
                   title={blog.topic}
                   imageSrc={blog.photo}
+                  id={blog._id}
                 />
               );
             })}

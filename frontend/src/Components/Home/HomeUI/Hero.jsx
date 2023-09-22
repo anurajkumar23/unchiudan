@@ -1,5 +1,3 @@
-import React from "react";
-
 function Hero() {
   return (
     <div className="bg-pure-greys-5 md:mx-8 mx-6">

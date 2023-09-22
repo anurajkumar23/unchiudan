@@ -2,11 +2,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Sidebar from "../Sidebar/Sidebar";
+import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
 
-function BlogComps({ date, title, imageSrc,updatedDate }) {
+
+function BlogComps({ date, title, imageSrc,updatedDate,id }) {
   return (
-    <Link to="/downloadpdf/id">
+    <Link to={`/pdfs/${id}`}>
       <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
         <div className="relative">
           <img className="w-full rounded-xl" src={imageSrc} alt="Blog Cover" />
@@ -30,17 +31,31 @@ function BlogComps({ date, title, imageSrc,updatedDate }) {
 }
 
 function Downloads() {
-  const [pdfs, setAffairs] = useState([]);
+  const [pdfs, setPdfs] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  console.log("🚀 ~ file: Quizcontainer.jsx:10 ~ Quizcontainer ~ selectedCategory:", selectedCategory)
+
+
+  
+
   useEffect(() => {
+    let apiUrl = 'https://ucchi-urran-backend.vercel.app/api/pdfs';
+   if (selectedCategory !== null) {
+      apiUrl += `/?category=${selectedCategory}`;
+    }
+    // const apiUrl = `/api/currentaffairs/?category=${selectedCategory}`;
+    // console.log(apiUrl); // Check if this URL is correct
     axios
-      .get("https://ucchi-urran-backend.vercel.app/api/pdfs")
+      .get(apiUrl)
       .then((response) => {
-        setAffairs(response.data.data.pdf);
+        setPdfs(response.data.data.pdf);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [selectedCategory]);
+
+  console.log(pdfs)
   return (
     <div className="mx-auto py-[8rem]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -59,18 +74,19 @@ function Downloads() {
               });
               return (
                 <BlogComps
-                  key={pdf.id}
+                  key={pdf._id}
                   date={formattedDate}
                   title={pdf.name}
                   imageSrc={pdf.photo}
                   updatedDate={updatedDate}
+                  id={pdf._id}
                 />
               );
             })}
           </div>
         </div>
 
-        <Sidebar />
+        <Sidebar_pdf setSelectedCategory={setSelectedCategory}/>
       </div>
     </div>
   );

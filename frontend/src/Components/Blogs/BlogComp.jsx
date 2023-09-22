@@ -1,8 +1,8 @@
-import React from "react";
-import { FaEye, FaThumbsUp } from "react-icons/fa";
+/* eslint-disable react/prop-types */
+
 import { Link } from "react-router-dom";
 
-function BlogComp({ date, title, imageSrc }) {
+function BlogComp({ date, title, imageSrc ,id}) {
   return (
     <Link to="/currentaffairs/id">
     <div className="bg-[#FFFFFF] p-6 w-[20rem] rounded-xl shadow-lg  transition duration-500">
@@ -23,9 +23,9 @@ function BlogComp({ date, title, imageSrc }) {
           
         </div>
       </div>
-      <button className="mt-4 text-lg hover:bg-indigo-600 w-full text-white bg-indigo-400 py-2 px-5 rounded-xl hover:shadow-xl">
+      <Link to={`/currentaffairs/${id}`}  className="mt-4 text-lg hover:bg-indigo-600 w-full text-white bg-indigo-400 py-2 px-5 rounded-xl hover:shadow-xl">
         Read More
-      </button>
+      </Link>
     </div>
     </Link>
   );
