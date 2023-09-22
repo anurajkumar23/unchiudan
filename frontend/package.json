@@ -13,6 +13,7 @@
   "dependencies": {
     "@material-tailwind/react": "^2.1.0",
     "axios": "^1.4.0",
+    "formik": "^2.4.5",
     "install": "^0.13.0",
     "npm": "^10.1.0",
     "react": "^18.2.0",
@@ -23,7 +24,8 @@
     "react-router-dom": "^6.15.0",
     "react-type-animation": "^3.1.0",
     "redux": "^4.2.1",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
