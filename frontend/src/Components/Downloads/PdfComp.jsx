@@ -3,9 +3,9 @@ import { FaFileAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-function PdfComp({ title, date }) {
+function PdfComp({ title, date ,id}) {
   return (
-    <Link to="/downloadpdf/id">
+    <Link to={`/pdfs/${id}`}>
     <div className="w-18 flex justify-between p-4 border border-2 rounded-lg">
       <div>
         <FaFileAlt className="w-12 h-12" />

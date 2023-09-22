@@ -149,7 +149,7 @@ function ServicesOverview() {
           }
           ctabtn1={{
             btnText: "Continue Lesson",
-            linkto: "/downloads",
+            linkto: "/pdfs",
             active: true,
             
           }}
