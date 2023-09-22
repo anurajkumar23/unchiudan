@@ -21,7 +21,7 @@ export function BlogComps(props) {
           {props.title}
         </h1>
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
-          {props.updatedDate}
+          Updated Date: {props.updatedDate}
         </h1>
         
         <Link to={`/currentaffairs/${props.id}`} className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">

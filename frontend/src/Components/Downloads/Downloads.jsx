@@ -19,7 +19,7 @@ function BlogComps({ date, title, imageSrc,updatedDate,id }) {
           {title}
         </h1>
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
-          {updatedDate}
+          Updated Date: {updatedDate}
         </h1>
         <div className="my-2 mx-6 flex justify-between"></div>
         <button className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
