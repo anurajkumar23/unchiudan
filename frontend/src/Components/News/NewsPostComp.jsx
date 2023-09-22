@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaImage } from "react-icons/fa";
 
-const CreatePost = ({ onPostSubmit }) => {
+const NewsPostComp = ({ onPostSubmit }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
@@ -36,7 +36,6 @@ const CreatePost = ({ onPostSubmit }) => {
   };
 
   const handleSubmit = () => {
-    // Create a new post object
     const newPost = {
       title,
       content,
@@ -45,10 +44,8 @@ const CreatePost = ({ onPostSubmit }) => {
       date: new Date().toLocaleDateString(),
     };
 
-    // Pass the new post to the parent component
     onPostSubmit(newPost);
 
-    // Clear the form fields
     setTitle("");
     setContent("");
     setAuthor("");
@@ -109,4 +106,4 @@ const CreatePost = ({ onPostSubmit }) => {
   );
 };
 
-export default CreatePost;
+export default NewsPostComp;
