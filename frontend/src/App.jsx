@@ -10,12 +10,16 @@ import Quizcontainer from "./Components/Quiz/Quizcontainer";
 import News from "./Components/News/News";
 import Currentaffaircontainer from "./Components/currentaffair/Currentaffaircontainer";
 import Quiz from "./Components/Quiz/Quiz";
+import Login from "./Components/Pages/Login";
+import Signup from "./Components/Pages/Signup";
 
 function App() {
   return (
     <BrowserRouter>
       <GlobalProvider>
         <Routes>
+          <Route path="login" element={<Login />} />
+          <Route path="Signup" element={<Signup/>} />
           <Route path="/" element={<Home />} />
           <Route path="/pdfs/:id" element={<DownloadPage />} />
           <Route path="/currentaffairs/:id" element={<BlogsPage />} />
