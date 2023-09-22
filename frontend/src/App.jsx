@@ -12,6 +12,7 @@ import Currentaffaircontainer from "./Components/currentaffair/Currentaffaircont
 import Quiz from "./Components/Quiz/Quiz";
 import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
+import UserSettings from "./Components/Home/core/Auth/UserSettings";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/Quizz" element={<Quizcontainer />} />
           <Route path="/News" element={<News />} />
           <Route path="/Currentaffairs" element={<Currentaffaircontainer />} />
+          <Route path="/user" element={<UserSettings />} />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
