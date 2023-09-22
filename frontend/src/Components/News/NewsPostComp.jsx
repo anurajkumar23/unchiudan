@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-const NewsPostComp = ({ onPostSubmit }) => {
+const CreatePost = ({ onPostSubmit }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
   const [image, setImage] = useState("");
+  const [imagePreview, setImagePreview] = useState("");
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -19,7 +20,18 @@ const NewsPostComp = ({ onPostSubmit }) => {
   };
 
   const handleImageChange = (event) => {
-    setImage(event.target.value);
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setImage(file);
+        setImagePreview(reader.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = () => {
@@ -40,10 +52,11 @@ const NewsPostComp = ({ onPostSubmit }) => {
     setContent("");
     setAuthor("");
     setImage("");
+    setImagePreview("");
   };
 
   return (
-    <div className="border p-4 mb-4 mx-auto w-4/5 rounded-lg  bg-richblack-5">
+    <div className="border p-4 mb-4 mx-auto w-4/5 rounded-lg bg-richblack-5">
       <h2 className="text-xl font-bold mb-2">Create a New Post</h2>
       <input
         type="text"
@@ -67,16 +80,20 @@ const NewsPostComp = ({ onPostSubmit }) => {
         className="w-full mb-2 p-2 border rounded"
       />
       <input
-        type="text"
-        placeholder="Image URL"
-        value={image}
+        type="file"
+        accept="image/*"
         onChange={handleImageChange}
-        className="w-full mb-4 p-2 border rounded"
+        className="mb-4"
       />
+      {imagePreview && (
+        <div className="mb-4">
+          <img src={imagePreview} alt="Preview" className="max-w-full" />
+        </div>
+      )}
       <div className="flex justify-center">
         <button
           onClick={handleSubmit}
-          className="bg-blue-500  text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600"
+          className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600"
         >
           Submit
         </button>
@@ -85,4 +102,4 @@ const NewsPostComp = ({ onPostSubmit }) => {
   );
 };
 
-export default NewsPostComp;
+export default CreatePost;
