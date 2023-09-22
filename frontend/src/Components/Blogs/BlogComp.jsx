@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function BlogComp({ date, title, imageSrc ,id}) {
   return (
-    <Link to="/currentaffairs/id">
+    <Link to={`/currentaffairs/${id}`}>
     <div className="bg-[#FFFFFF] p-6 w-[20rem] rounded-xl shadow-lg  transition duration-500">
       <div className="relative">
         <img className="w-full rounded-xl" src={imageSrc} alt="Blog Cover" />
