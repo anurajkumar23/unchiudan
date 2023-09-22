@@ -7,6 +7,7 @@ import CTAButton from "../Home/core/Homepage/Button";
 import HighlightText from "../Home/core/Homepage/HighlightText";
 import TimelineSection from "../Home/core/Homepage/TimelineSection";
 import LearningLanguageSection from "../Home/core/Homepage/LearningLanguageSection";
+import NewsPostComp from "../News/NewsPostComp";
 function Home() {
   return (
     <div className=" bg-pure-greys-5 mx-auto py-10 space-y-[8rem]">
@@ -39,6 +40,8 @@ function Home() {
       </div>
       <HomeBlogs />
       <HomePdf />
+
+      <NewsPostComp />
     </div>
   );
 }
