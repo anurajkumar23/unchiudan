@@ -15,6 +15,7 @@ const initialValues = {
 
 function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [showsetPassword, SetshowsetPassword] = useState(false);
 
   const {
     errors,
@@ -139,6 +140,16 @@ function SignupForm() {
               placeholder="Confirm Your Password"
               className="w-full rounded-[0.5rem] bg-[#E6E6E6] p-[12px] pr-10"
             />
+            <span
+              onClick={() => SetshowsetPassword((prev) => !prev)}
+              className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+            >
+              {showsetPassword ? (
+                <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+              ) : (
+                <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+              )}
+            </span>
 
             {errors.confirmpassword && touched.confirmpassword && (
               <p className="font-semibold text-[#b40e0e]">
