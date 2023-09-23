@@ -4,17 +4,21 @@ const { promisify } = require('util');
 const scrypt = promisify(_scrypt);
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: [true, 'Please tell us your name!'] },
+  firstname: {
+    type: String,
+    required: [true, 'Please tell us your firstname!'],
+  },
+  lastname: { type: String, required: [true, 'Please tell us your lastname!'] },
   email: {
     type: String,
     required: true,
     unique: true,
     lowercase: true,
   },
-  phone:{
-    type:String,
-    required:true,
-    unique:true,
+  phone: {
+    type: String,
+    required: true,
+    unique: true,
   },
   role: {
     type: String,
@@ -48,7 +52,7 @@ userSchema.pre('save', async function (next) {
 
 userSchema.pre('save', function (next) {
   if (!this.isModified('password') || this.isNew) return next();
-  this.passwordChangedAt = Date.now()-10000;
+  this.passwordChangedAt = Date.now() - 10000;
   next();
 });
 

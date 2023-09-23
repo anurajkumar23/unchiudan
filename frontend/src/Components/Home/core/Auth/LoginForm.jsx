@@ -1,16 +1,30 @@
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { GoogleSvg } from "../../../../consstant/svgfile";
 import { LogInSchema } from "./formvalidator";
-import { FaArrowRight } from 'react-icons/fa'
+import { FaArrowRight } from "react-icons/fa";
+import axios from "axios"; // Import Axios
 
 const initialValues = { email: "", password: "" };
 
+const login = async (userData) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:3000/api/user/login",
+      userData
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error logging in:", error);
+    throw error;
+  }
+};
+
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate();
   const {
     errors,
     handleBlur,
@@ -22,7 +36,13 @@ function LoginForm() {
   } = useFormik({
     initialValues,
     validationSchema: LogInSchema,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
+      login({
+        email: values.email,
+        password: values.password,
+      }).then(() => {
+        navigate("/user"); // Redirect to /user on successful signup
+      });
       action.resetForm();
     },
   });
@@ -30,9 +50,12 @@ function LoginForm() {
   return (
     <div>
       <div className="flex justify-end">
-        <Link to="/Signup" className="text-[#3856ea] font-semibold text-[18px]">
+        <Link
+          to="/user/signup"
+          className="text-[#3856ea] font-semibold text-[18px]"
+        >
           signup
-          <FaArrowRight className="ml-2"/> 
+          <FaArrowRight className="ml-2" />
         </Link>
       </div>
       <form
