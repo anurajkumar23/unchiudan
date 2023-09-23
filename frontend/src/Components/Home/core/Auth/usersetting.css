@@ -24,22 +24,22 @@
   
 
   
-  .flex {
+  /* .flex {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-  }
+  } */
   
-  .span-all-rows {
+  /* .span-all-rows {
     grid-row: 1 / -1;
   }
   
   .container {
     max-width: 120rem;
     margin: 0 auto;
-  }
+  } */
   
-  .ma-bt-md {
+  /* .ma-bt-md {
     margin-bottom: 3rem !important;
   }
   
@@ -50,8 +50,8 @@
   .right {
     text-align: right !important;
   }
-  
-  .line {
+   */
+  /* .line {
     margin: 6rem 0;
     width: 100%;
     height: 1px;
@@ -80,9 +80,9 @@
   }
   .alert--error {
     background-color: #eb4d4b;
-  }
+  } */
   
-  .heading-secondary {
+  /* .heading-secondary {
     font-size: 2.25rem;
     text-transform: uppercase;
     font-weight: 700;
@@ -110,9 +110,9 @@
     );
     background-image: linear-gradient(to right, #ff7730, #eb4d4b);
     font-size: 3.5rem;
-  }
+  } */
   
-  .heading-primary,
+  /* .heading-primary,
   .heading-tertirary {
     color: #fff;
     text-transform: uppercase;
@@ -154,7 +154,7 @@
     width: 70%;
     z-index: 10;
   }
-  
+   */
   .btn,
   .btn:link,
   .btn:visited {
@@ -170,7 +170,7 @@
     font-weight: 400;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    /*Add later when we use this for the button in form*/
+    
     border: none;
     cursor: pointer;
   }
@@ -270,7 +270,7 @@
     outline-offset: 3px;
   }
   
-  .header {
+  /* .header {
     background-color: #444;
     padding: 0 5rem;
     height: 8rem;
@@ -285,8 +285,8 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-  }
-  @media only screen and (max-width: 62.5em) {
+  } */
+  /* @media only screen and (max-width: 62.5em) {
     .header {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
@@ -304,7 +304,7 @@
       order: -1;
       margin-bottom: 1.5rem;
     }
-  }
+  } */
   
   .section-header {
     position: relative;
