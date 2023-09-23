@@ -35,7 +35,8 @@ function BlogComps({ date, title, imageSrc,updatedDate,id ,status ,category}) {
         <h1 className=" text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
         <p><MdOutlineAccessTimeFilled className="card__icon" /></p>
         </h1>
-        <p>updated at: {updatedDate}</p>
+        <p className="text-xl">updated at: {updatedDate}</p>
+
         </div>
         <div className="my-2 mx-6 flex justify-between"></div>
         <button className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
