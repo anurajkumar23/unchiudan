@@ -9,8 +9,8 @@ router
   .route('/')
   .get(affairsController.getAllAffairs)
   .post(
-    protect,
-    restrictTo('admin'),
+    // protect,
+    // restrictTo('admin'),
     uploadPhoto,
     resizePhoto('public/img/affairs'),
     affairsController.createAffairs,
