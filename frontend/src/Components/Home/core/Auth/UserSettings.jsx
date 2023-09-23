@@ -42,7 +42,7 @@ function UserSettings({ user }) {
         <nav className="user-view__menu sm:w-1/4">
           <ul className="side-nav">
             {navItem('#', 'Settings', 'settings', true)}
-            {navItem('/my-tours', 'My bookings', 'briefcase')}
+            {navItem('/pdfs', 'Pdf', 'briefcase')}
             {navItem('#', 'My reviews', 'star')}
             {navItem('#', 'Billing', 'credit-card')}
           </ul>
@@ -50,7 +50,7 @@ function UserSettings({ user }) {
             <div className="admin-nav">
               <h5 className="admin-nav__heading">Admin</h5>
               <ul className="side-nav">
-                {navItem('#', 'Manage tours', 'map')}
+                {navItem('#', 'Settings', 'settings')}
                 {navItem('#', 'Manage users', 'users')}
                 {navItem('#', 'Manage reviews', 'star')}
                 {navItem('#', 'Manage bookings', 'briefcase')}
