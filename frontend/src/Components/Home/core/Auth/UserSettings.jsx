@@ -94,7 +94,7 @@ function UserSettings({ user }) {
                 {navItem('#', 'Settings', <FaCog />)}
                 {navItem('#', 'Manage users', <FaUsers />)}
                 {navItem('#', 'Manage reviews', <FaStar />)}
-                {navItem('#', 'Manage bookings', <FaBriefcase />)}
+                {navItem('#', 'Manage Billing', <FaBriefcase />)}
               </ul>
             </div>
           )}
