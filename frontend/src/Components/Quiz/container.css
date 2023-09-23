@@ -32,7 +32,7 @@
     position: relative;
     -webkit-clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
     clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
-    height: 13rem;
+    height: 18rem;
   }
   .card__picture-overlay {
     position: absolute;
