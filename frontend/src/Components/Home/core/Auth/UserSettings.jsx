@@ -1,4 +1,5 @@
 import "./usersetting.css";
+import { FiUser, FiMail, FiPhone, FiLock } from 'react-icons/fi'; 
 
 function UserSettings() {
   const user = {
@@ -28,19 +29,28 @@ function UserSettings() {
             <form className="">
               <div className="mb-4">
                 <label className="block">Name</label>
-                <input className="form__input border border-gray-300 p-2 rounded" placeholder="Name" />
+                <div className="flex items-center">
+                  <FiUser className="text-gray-400 mr-2" /> {/* Use the icon here */}
+                  <input className="form__input border border-gray-300 p-2 rounded" placeholder="Name" />
+                </div>
               </div>
               <div className="form__group mb-4">
                 <label className="block">Email address</label>
-                <input className="form__input border border-gray-300 p-2 rounded" placeholder="Email Adress"/>
+                <div className="flex items-center">
+                  <FiMail className="text-gray-400 mr-2" /> {/* Use the icon here */}
+                  <input className="form__input border border-gray-300 p-2 rounded" placeholder="Email Address"/>
+                </div>
               </div>
               <div className="form__group mb-4">
                 <label className="block">Phone Number</label>
-                <input className="form__input border border-gray-300 p-2 rounded" placeholder="Number"/>
+                <div className="flex items-center">
+                  <FiPhone className="text-gray-400 mr-2" /> {/* Use the icon here */}
+                  <input className="form__input border border-gray-300 p-2 rounded" placeholder="Number"/>
+                </div>
               </div>
 
               <div className="text-right">
-                <button className="bg-[#55c57a] text-white px-4 py-2 rounded">
+                <button className="bg-[#55c57a] hover:bg-[#449d66] text-white px-4 py-2 rounded transition duration-300 ease-in-out">
                   Save settings
                 </button>
               </div>
@@ -52,18 +62,27 @@ function UserSettings() {
             <form className="">
               <div className=" mb-4">
                 <label className="block">Current Password</label>
-                <input className="form__input border border-gray-300 p-2 rounded" placeholder="••••••••"/>
+                <div className="flex items-center">
+                  <FiLock className="text-gray-400 mr-2" /> {/* Use the icon here */}
+                  <input className="form__input border border-gray-300 p-2 rounded" placeholder="••••••••"/>
+                </div>
               </div>
               <div className=" mb-4">
                 <label className="block">New Password</label>
-                <input className="form__input border border-gray-300 p-2 rounded" placeholder="••••••••"/>
+                <div className="flex items-center">
+                  <FiLock className="text-gray-400 mr-2" /> {/* Use the icon here */}
+                  <input className="form__input border border-gray-300 p-2 rounded" placeholder="••••••••"/>
+                </div>
               </div>
               <div className=" mb-4">
                 <label className="block">Confirm Password</label>
-                <input className="form__input border border-gray-300 p-2 rounded" placeholder="••••••••"/>
+                <div className="flex items-center">
+                  <FiLock className="text-gray-400 mr-2" /> {/* Use the icon here */}
+                  <input className="form__input border border-gray-300 p-2 rounded" placeholder="••••••••"/>
+                </div>
               </div>
               <div className="text-right">
-                <button className="bg-[#55c57a] text-white px-4 py-2 rounded mb-[45px]">
+                <button className="bg-[#55c57a] hover:bg-[#449d66] text-white px-4 py-2 rounded mb-[45px] transition duration-300 ease-in-out">
                   Save password
                 </button>
               </div>
