@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import "./container.css"
-import { MdOutlineAccessTimeFilled } from 'react-icons/Md';
+import { MdOutlineAccessTimeFilled } from 'react-icons/md';
 export function BlogComps(props) {
   
   return (
     <Link to={`/currentaffairs/${props.id}`}>
-      <div className="border border-2 bg-white p-6 w-[18rem] md:w-[20rem] rounded-xl shadow-lg transition duration-500 h-[30rem]" >
+      <div className="border border-2bg-white p-6 w-[18rem] md:w-[20rem] rounded-xl shadow-lg transition duration-500 h-[30rem]" >
       <div className="card__header">
         <div className="card__picture">
           <div className="card__picture-overlay">&nbsp;</div>

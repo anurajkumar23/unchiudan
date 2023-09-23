@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
-import { MdOutlineAccessTimeFilled } from 'react-icons/Md';
+import { MdOutlineAccessTimeFilled } from 'react-icons/md';
 
 
 function BlogComps({ date, title, imageSrc,updatedDate,id ,status ,category}) {
