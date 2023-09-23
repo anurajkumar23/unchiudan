@@ -6,7 +6,7 @@ export function BlogComps(props) {
   
   return (
     <Link to={`/currentaffairs/${props.id}`}>
-      <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
+      <div className="bg-white p-6 w-[18rem] md:w-[20rem] rounded-xl shadow-lg transition duration-500 h-[30rem]" >
       <div className="card__header">
         <div className="card__picture">
           <div className="card__picture-overlay">&nbsp;</div>
@@ -28,14 +28,15 @@ export function BlogComps(props) {
        
         </div>
         
-        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
+        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem]">
           {props.title}
         </h1>
        
-        <div className="card__data">
-        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
-        <span><FaCalendarAlt className="card__icon" />updated at: {props.updatedDate}</span>
+        <div className="card__data flex mb-[1rem]">
+        <h1 className=" text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
+        <p><FaCalendarAlt className="card__icon" /></p>
         </h1>
+        <p>{props.updatedDate}</p>
         </div>
         
         <Link to={`/currentaffairs/${props.id}`} className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
