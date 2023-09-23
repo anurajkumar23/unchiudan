@@ -77,8 +77,9 @@ function UserSettings({ user }) {
   }
 
   return (
-    <main className="bg-gray-200 p-4 sm:p-8 md:p-16 lg:p-32 flex-1 relative bg-gray-100 py-[4rem]">
-      <div className="bg-white max-w-screen-xl mx-auto min-h-screen rounded-3xl overflow-hidden shadow-md flex flex-col sm:flex-row">
+    <div className='py-[4rem]'>
+    <main className=" p-2 sm:p-4 md:p-8 lg:p-16 flex-1 relative">
+      <div className="bg-white max-w-screen-xl mx-auto min-h-screen rounded-3xl overflow-hidden shadow-md flex flex-col sm:flex-row ">
         <nav className="user-view__menu sm:w-1/4">
           <ul className="side-nav">
             {navItem('#', 'Settings', <FaCog />, true)}
@@ -99,7 +100,7 @@ function UserSettings({ user }) {
           )}
         </nav>
         <div className="user-view__content sm:w-3/4">
-          <div className="user-view__form-container max-w-screen-xl mx-auto px-4 sm:px-8 md:px-16 lg:px-32">
+          <div className="user-view__form-container mx-auto px-4 sm:px-8 md:px-16 lg:px-32">
             <h2 className="heading-secondary mt-8 mb-4 text-2xl">Your account settings</h2>
             <form className="form form-user-data">
               {formGroup('Name', 'name', name, handleNameChange)}
@@ -132,7 +133,7 @@ function UserSettings({ user }) {
             </form>
           </div>
           <hr className="my-8 border-gray-300" />
-          <div className="user-view__form-container max-w-screen-xl mx-auto px-4 sm:px-8 md:px-16 lg:px-32">
+          <div className="user-view__form-container mx-auto px-4 sm:px-8 md:px-16 lg:px-32">
             <h2 className="heading-secondary mt-8 mb-4 text-2xl">Password change</h2>
             <form className="form form-user-settings">
               {formGroup('Current password', 'password-current', currentPassword, handleCurrentPasswordChange, 'password', '••••••••')}
@@ -150,7 +151,8 @@ function UserSettings({ user }) {
           </div>
         </div>
       </div>
-    </main>
+      </main>
+      </div>
   );
 }
 
