@@ -3,17 +3,27 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
+import { FaCalendarAlt } from 'react-icons/fa';
 
 
-function BlogComps({ date, title, imageSrc,updatedDate,id ,status }) {
+function BlogComps({ date, title, imageSrc,updatedDate,id ,status ,category}) {
   return (
     <Link to={`/pdfs/${id}`}>
       <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
+      <div className="card__header">
+        <div className="card__picture">
+          <div className="card__picture-overlay">&nbsp;</div>
         <div className="relative">
           <img className="w-full rounded-xl" src={imageSrc} alt="Blog Cover" />
-          <p className="absolute top-0 bg-[#f2c94f] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
+          <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
             {date}
           </p>
+          </div>
+        </div>
+        <h3 className="heading-tertirary">
+          <span>{category}</span>
+        </h3>
+       
         </div>
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
           {title}
@@ -21,9 +31,11 @@ function BlogComps({ date, title, imageSrc,updatedDate,id ,status }) {
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
           status: {status}
         </h1>
-        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
-          Updated Date: {updatedDate}
+        <div className="card__data">
+        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
+        <span><FaCalendarAlt className="card__icon" />updated at: {updatedDate}</span>
         </h1>
+        </div>
         <div className="my-2 mx-6 flex justify-between"></div>
         <button className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
           Read More
@@ -84,6 +96,7 @@ function Downloads() {
                   updatedDate={updatedDate}
                   id={pdf._id}
                   status={pdf.status}
+                  category={pdf.category}
                 />
               );
             })}

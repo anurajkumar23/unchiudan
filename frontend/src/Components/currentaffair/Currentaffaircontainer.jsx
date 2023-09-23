@@ -55,6 +55,7 @@ function Currentaffairs() {
                   title={blog.topic}
                   imageSrc={blog.photo}
                   updatedDate={updatedDate}
+                  category={blog.category}
                   id={blog._id}
                 />
               );
