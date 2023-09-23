@@ -757,11 +757,7 @@
     flex: 1;
     padding: 7rem 0;
   }
-  .user-view__form-container {
-    max-width: 68rem;
-    margin: 0 auto;
-    padding: 0 8rem;
-  }
+
   
   /* .footer {
     background-color: #f7f7f7;
