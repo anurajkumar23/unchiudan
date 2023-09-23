@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import "./container.css"
-import { FaCalendarAlt } from 'react-icons/fa';
+import { MdOutlineAccessTimeFilled } from 'react-icons/Md';
 export function BlogComps(props) {
   
   return (
     <Link to={`/currentaffairs/${props.id}`}>
-      <div className="bg-white p-6 w-[18rem] md:w-[20rem] rounded-xl shadow-lg transition duration-500 h-[30rem]" >
+      <div className="border border-2 bg-white p-6 w-[18rem] md:w-[20rem] rounded-xl shadow-lg transition duration-500 h-[30rem]" >
       <div className="card__header">
         <div className="card__picture">
           <div className="card__picture-overlay">&nbsp;</div>
@@ -34,7 +34,7 @@ export function BlogComps(props) {
        
         <div className="card__data flex mb-[1rem]">
         <h1 className=" text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
-        <p><FaCalendarAlt className="card__icon" /></p>
+        <p><MdOutlineAccessTimeFilled className="card__icon" /></p>
         </h1>
         <p>{props.updatedDate}</p>
         </div>
