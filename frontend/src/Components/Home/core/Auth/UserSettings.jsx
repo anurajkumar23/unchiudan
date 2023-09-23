@@ -1,5 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './usersetting.css';
+import {
+  FaCog,
+  FaFilePdf,
+  FaStar,
+  FaCreditCard,
+  FaUser,
+  FaUsers,
+  FaBriefcase,
+} from 'react-icons/fa';
 
 function UserSettings({ user }) {
   const [name, setName] = useState(user?.name || '');
@@ -36,24 +45,55 @@ function UserSettings({ user }) {
     // Add logic to save password
   };
 
+  function navItem(link, text, icon, active) {
+    return (
+      <li className={`side-nav${active ? ' side-nav--active' : ''}`}>
+        <a href={link} className="block py-2 px-4">
+          {icon} {/* Use the icon component here */}
+          {text}
+        </a>
+      </li>
+    );
+  }
+
+  function formGroup(label, id, value, onChange, type = 'text', placeholder = '') {
+    return (
+      <div className="form__group mb-4">
+        <label className="form__label" htmlFor={id}>
+          {label}
+        </label>
+        <input
+          type={type}
+          id={id}
+          className="form__input border border-gray-300 p-2 rounded"
+          value={value}
+          onChange={onChange}
+          required
+          name={id}
+          placeholder={placeholder}
+        />
+      </div>
+    );
+  }
+
   return (
     <main className="bg-gray-200 p-4 sm:p-8 md:p-16 lg:p-32 flex-1 relative bg-gray-100 py-[4rem]">
       <div className="bg-white max-w-screen-xl mx-auto min-h-screen rounded-3xl overflow-hidden shadow-md flex flex-col sm:flex-row">
         <nav className="user-view__menu sm:w-1/4">
           <ul className="side-nav">
-            {navItem('#', 'Settings', 'settings', true)}
-            {navItem('/pdfs', 'Pdf', 'briefcase')}
-            {navItem('#', 'My reviews', 'star')}
-            {navItem('#', 'Billing', 'credit-card')}
+            {navItem('#', 'Settings', <FaCog />, true)}
+            {navItem('/pdfs', 'Pdf', <FaFilePdf />)}
+            {navItem('#', 'My reviews', <FaStar />)}
+            {navItem('#', 'Billing', <FaCreditCard />)}
           </ul>
           {user && user.role === 'admin' && (
             <div className="admin-nav">
               <h5 className="admin-nav__heading">Admin</h5>
               <ul className="side-nav">
-                {navItem('#', 'Settings', 'settings')}
-                {navItem('#', 'Manage users', 'users')}
-                {navItem('#', 'Manage reviews', 'star')}
-                {navItem('#', 'Manage bookings', 'briefcase')}
+                {navItem('#', 'Settings', <FaCog />)}
+                {navItem('#', 'Manage users', <FaUsers />)}
+                {navItem('#', 'Manage reviews', <FaStar />)}
+                {navItem('#', 'Manage bookings', <FaBriefcase />)}
               </ul>
             </div>
           )}
@@ -78,7 +118,7 @@ function UserSettings({ user }) {
                   name="photo"
                 />
                 <label htmlFor="photo" className="text-blue-500 hover:underline cursor-pointer">
-                  Choose new photo
+                  Choose a new photo
                 </label>
               </div>
               <div className="form__group text-right">
@@ -111,39 +151,6 @@ function UserSettings({ user }) {
         </div>
       </div>
     </main>
-  );
-}
-
-function navItem(link, text, icon, active) {
-  return (
-    <li className={`side-nav${active ? ' side-nav--active' : ''}`}>
-      <a href={link} className="block py-2 px-4">
-        <svg className="w-6 h-6 fill-current">
-          <use xlinkHref={`/img/icons.svg#icon-${icon}`} />
-        </svg>
-        {text}
-      </a>
-    </li>
-  );
-}
-
-function formGroup(label, id, value, onChange, type = 'text', placeholder = '') {
-  return (
-    <div className="form__group mb-4">
-      <label className="form__label" htmlFor={id}>
-        {label}
-      </label>
-      <input
-        type={type}
-        id={id}
-        className="form__input border border-gray-300 p-2 rounded"
-        value={value}
-        onChange={onChange}
-        required
-        name={id}
-        placeholder={placeholder}
-      />
-    </div>
   );
 }
 
