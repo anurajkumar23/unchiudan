@@ -39,6 +39,53 @@ section.adminSection {
   gap: 30px;
 }
 
+.adminHome{
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.users , .pdfs , .payments , .news {
+  height: 250px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction:column ;
+  border-radius: 20px;
+  font-family: "Ubuntu", sans-serif;
+  color: aliceblue;
+  font-weight: 400;
+  font-size: 1.8rem;
+
+}
+.adminLogo{
+  font-size: 4rem;
+}
+.users{
+  background-color: #7da0fa;
+}
+.pdfs{
+  background-color: #7978e9;
+}
+.payments{
+  background-color: #f3797e;
+}
+
+.news{
+  background-color: #4747a1;
+}
+
+
+
+
+
+
+
 @media (max-width: 461px) {
   .menus ul {
     display: flex;
