@@ -9,7 +9,7 @@ import { MdOutlineAccessTimeFilled } from 'react-icons/Md';
 function BlogComps({ date, title, imageSrc,updatedDate,id ,status ,category}) {
   return (
     <Link to={`/pdfs/${id}`}>
-      <div className="bg-white p-6 w-[18rem] md:w-[20rem] rounded-xl shadow-lg transition duration-500 ">
+      <div className="border border-2 bg-white p-6 w-[18rem] md:w-[20rem] rounded-xl shadow-lg transition duration-500 ">
       <div className="card__header">
         <div className="card__picture">
           <div className="card__picture-overlay">&nbsp;</div>
