@@ -16,7 +16,7 @@ function NewsPage() {
       <div className=" py-[8rem] ">
         <div className=" mx-6 ">
           <h1 className="text-center font-bold text-[2rem] md:text-[2.5rem] mb-6 ">
-            Latest News
+            News 5 meow meow meow
           </h1>
           <div className="md:mx-12 my-12">
             <img
@@ -48,9 +48,7 @@ function NewsPage() {
               </a>
             </span>
           </div>
-          <h1 className="mt-10 text-[1.3rem] font-[550] text-center">
-            {affairDetails.topic}
-          </h1>
+
           <p className="mt-4 text-justify text-lg">
             Monthly Current Affairs PDFs are now available on UnchiUdaan.in.
             Stay updated with the latest happenings in various fields such as
