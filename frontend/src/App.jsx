@@ -12,6 +12,7 @@ import Quiz from "./Components/Quiz/Quiz";
 import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
 import UserSettings from "./Components/Home/core/Auth/UserSettings";
+import NewsPage from "./Components/News/NewsPage";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/Quizz" element={<Quizcontainer />} />
           <Route path="/News" element={<News />} />
           <Route path="/Currentaffairs" element={<Currentaffaircontainer />} />
+          <Route path="/News/id" element={<NewsPage />} />
           
           {isAuthenticated ? (
             <Route path="/user" element={<UserSettings />} />
