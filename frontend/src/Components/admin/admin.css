@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Karla:ital,wght@0,300;1,200&family=Montserrat:wght@200;600&family=Poppins:wght@200&family=Roboto:wght@300;400&family=Ubuntu:wght@300;500&family=Work+Sans:wght@300&display=swap");
+
+section.adminSection {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.menus ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+  flex-wrap: wrap;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.menus ul li {
+  cursor: pointer;
+}
+.menus ul li:hover {
+  cursor: pointer;
+  color: rgb(72, 72, 208);
+}
+.adminHeader {
+  font-size: 3.5rem;
+  font-weight: 800;
+  font-family: "Ubuntu", sans-serif;
+}
+.adminNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+@media (max-width: 461px) {
+  .menus ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+  }
+}
+@media (max-width: 415px) {
+  .menus ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+  }
+}

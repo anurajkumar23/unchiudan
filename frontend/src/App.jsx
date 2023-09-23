@@ -13,6 +13,7 @@ import Quiz from "./Components/Quiz/Quiz";
 import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
 import UserSettings from "./Components/Home/core/Auth/UserSettings";
+import AdminHome from "./Components/admin/adminHome";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/News" element={<News />} />
           <Route path="/Currentaffairs" element={<Currentaffaircontainer />} />
           <Route path="/user" element={<UserSettings />} />
+          <Route path="/admin/home" element={<AdminHome/>}  />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
