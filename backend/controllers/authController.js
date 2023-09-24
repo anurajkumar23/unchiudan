@@ -6,7 +6,6 @@ const { promisify } = require('util');
 const Email = require('../utils/email');
 const { createHash } = require('crypto');
 
-
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -15,18 +14,20 @@ const signToken = (id) => {
 
 const createSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
-  console.log(token)
+  console.log(token);
   const cookieOption = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
     ),
     httpOnly: true,
     secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+    signed: true,
   };
 
   res.cookie('jwt', token, cookieOption);
 
   user.password = undefined;
+  console.log(user);
 
   res.status(statusCode).json({
     status: 'success',
@@ -41,7 +42,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     lastname: req.body.lastname,
     email: req.body.email,
     password: req.body.password,
-    phone:req.body.phone
+    phone: req.body.phone,
   });
   // console.log(newUser)
 
@@ -115,33 +116,55 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.isLoggedIn = async (req, res, next) => {
-  if (req.cookies.jwt) {
-    try {
-      // 1) verify token
-      const decoded = await promisify(jwt.verify)(
-        req.cookies.jwt,
-        process.env.JWT_SECRET,
-      );
+  try {
+    // Check if token exists
+    const token = req.signedCookies.jwt;
 
-      // 2) Check if user still exists
-      const currentUser = await User.findById(decoded.id);
-      if (!currentUser) {
-        return next();
-      }
-
-      // 3) Check if user changed password after the token was issued
-      if (currentUser.changedPasswordAfter(decoded.iat)) {
-        return next();
-      }
-
-      // THERE IS A LOGGED IN USER
-      res.locals.user = currentUser;
-      return next();
-    } catch (err) {
-      return next();
+    if (!token) {
+      return res.status(401).json({
+        isAuthorized: false,
+      });
     }
+
+    // console.log('Received Token:', token);
+
+    // Verify token
+    const decoded = await promisify(jwt.verify)(
+      req.signedCookies.jwt,
+      process.env.JWT_SECRET, // This should match the secret used when signing the cookie
+    );
+    // console.log(
+    //   '🚀 ~ file: authController.js:134 ~ exports.isLoggedIn= ~ decoded:',
+    //   decoded,
+    // );
+
+    // Check if user exists
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
+      return res.status(401).json({ message: 'User not found' });
+    }
+    console.log(
+      '🚀 ~ file: authController.js:138 ~ exports.isLoggedIn= ~ currentUser:',
+      currentUser,
+    );
+
+    // Check if password was changed
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      return res.status(401).json({ message: 'Password changed' });
+    }
+
+    // Set user object in req.locals for future middleware
+    // req.locals.user = currentUser;
+
+    // User is authenticated, continue with the request
+    res.status(200).json({
+      user: currentUser,
+      isAuthorized: true,
+    });
+  } catch (error) {
+    console.error('Error:', error);
+    return res.status(500).json({ message: 'Internal Server Error' });
   }
-  next();
 };
 
 exports.restrictTo = (...roles) => {

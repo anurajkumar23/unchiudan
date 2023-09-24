@@ -13,7 +13,7 @@ const signup = async (userData) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/user/signup",
+      "https://ucchi-urran-backend.vercel.app/api/user/signup",
       userData
     );
     // console.log('User signed up:', response.data);
@@ -60,7 +60,7 @@ function SignupForm() {
         navigate("/user"); // Redirect to /user on successful signup
       });
 
-      action.resetForm();
+      // action.resetForm();
     },
   });
 

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import DownloadPage from "./Components/Downloads/DownloadPage";
@@ -11,18 +12,49 @@ import Currentaffaircontainer from "./Components/currentaffair/Currentaffaircont
 import Quiz from "./Components/Quiz/Quiz";
 import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
-import UserSettings from "./Components/Home/core/Auth/UserSettings";
-import NewsPage from "./Components/News/NewsPage";
-
+import UserSettings from "./Components/Home/core/Auth/UserSettings"; // Assuming you have a UserSettings component
 
 function App() {
-  const isAuthenticated = true; // Replace with your authentication logic
+  const [user, setUser] = useState(null);
+
+  // Function to check if user is authenticated
+  const checkAuthenticated = async () => {
+    try {
+      const response = await fetch("https://ucchi-urran-backend.vercel.app/api/user/authenticated", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Add any authentication headers if needed
+        },
+      });
+
+      if (response.ok) {
+        const userData = await response.json();
+        setUser(userData);
+      }
+    } catch (error) {
+      console.error("Error checking authentication:", error);
+    }
+  };
+  // console.log("🚀 ~ file: App.jsx:43 ~ useEffect ~ user:", user.isAuthorized);
+
+  useEffect(() => {
+    // Check if user info is already stored in local storage or cookies
+    const storedUser = JSON.parse(localStorage.getItem("user")); // Assuming you're storing the user info in local storage
+    if (storedUser) {
+      setUser(storedUser);
+    } else {
+      checkAuthenticated();
+    }
+  }, []); // Fetch authentication status only when component mounts
+
+  // const show = user.isAuthorized
 
   return (
     <BrowserRouter>
       <GlobalProvider>
         <Routes>
-          <Route path="/user/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/user/signup" element={<Signup />} />
           <Route path="/" element={<Home />} />
           <Route path="/pdfs/:id" element={<DownloadPage />} />
@@ -33,10 +65,12 @@ function App() {
           <Route path="/Quizz" element={<Quizcontainer />} />
           <Route path="/News" element={<News />} />
           <Route path="/Currentaffairs" element={<Currentaffaircontainer />} />
-          <Route path="/News/id" element={<NewsPage />} />
-          
-          {isAuthenticated ? (
-            <Route path="/user" element={<UserSettings />} />
+
+          {user ? (
+            <Route
+              path="/user"
+              element={<UserSettings userData={user.user} />}
+            />
           ) : (
             <Route path="/user/login" element={<Login />} />
           )}
