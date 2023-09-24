@@ -129,12 +129,12 @@ exports.isLoggedIn = async (req, res, next) => {
     // const authtoken = token.split(" ")
     
    
+    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token[1])
     if (!token[1]) {
       return res.status(401).json({
         isAuthorized: false,
       });
     }
-    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token[1])
 
 
     // console.log('Received Token:', token);
