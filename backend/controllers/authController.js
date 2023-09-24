@@ -29,6 +29,8 @@ const createSendToken = (user, statusCode, req, res) => {
   user.password = undefined;
   console.log(user);
   res.setHeader('Authorization', `Bearer ${token}`);
+  
+  console.log("🚀 ~ file: authController.js:33 ~ createSendToken ~ res:", res.headers)
 
 
   res.status(statusCode).json({

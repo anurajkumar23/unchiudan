@@ -19,7 +19,10 @@ const login = async (userData) => {
     );
     
    // Get the token from the response header
-   const token = response.headers.authorization;
+   const token = response.data.token;
+   document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`; // This sets a cookie named 'jwt' that expires in 7 days
+   console.log("🚀 ~ file: LoginForm.jsx:23 ~ login ~ response.headers:", response.data.token)
+
    
 
    // Set the token in local storage
