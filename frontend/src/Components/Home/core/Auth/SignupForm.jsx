@@ -60,7 +60,7 @@ function SignupForm() {
         navigate("/user"); // Redirect to /user on successful signup
       });
 
-      action.resetForm();
+      // action.resetForm();
     },
   });
 

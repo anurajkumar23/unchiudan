@@ -1,34 +1,3 @@
-/* write your css here */
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities;
-/* @import '~video-react/styles/scss/video-react'; */
-
-/*
-html, body {
-    overflow-x: hidden;
-}
-
-.spinner {
-   width: 56px;
-   height: 56px;
-   border-radius: 50%;
-   align-self: center;
-   margin-top: 2rem;
-   background: conic-gradient(#0000 10%,#ffffff);
-   -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 0);
-   animation: spinner-zp9dbg 1s infinite linear;
-}
-
-@keyframes spinner-zp9dbg {
-   to {
-      transform: rotate(1turn);
-   }
-} */
-/* .ctaButton{
-    box-shadow: -2px -2px 0px 0px rgba(255, 255, 255, 0.18) inset;
-} */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,14 +7,11 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
 * {
   scrollbar-width: auto;
   scrollbar-color: #afb2bf;
 }
 
-/* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 3px;
 }
@@ -66,7 +32,6 @@ body {
   visibility: visible;
 }
 
-/* Hide default styling of details/summary */
 details > summary {
   list-style: none;
 }
@@ -74,11 +39,10 @@ details > summary::-webkit-details-marker {
   display: none;
 }
 
-.ctaButton{
-    box-shadow: -2px -2px 0px 0px rgba(255, 255, 255, 0.18) inset;
+.ctaButton {
+  box-shadow: -2px -2px 0px 0px rgba(255, 255, 255, 0.18) inset;
 }
 
-/* https://10015.io/tools/css-loader-generator */
 .spinner {
   width: 56px;
   height: 56px;
@@ -87,7 +51,6 @@ details > summary::-webkit-details-marker {
   animation: spinner-bulqg1 0.8s infinite linear alternate,
     spinner-oaa3wk 1.6s infinite linear;
 }
-
 
 .moving-div-left {
   opacity: 0;
@@ -104,23 +67,6 @@ details > summary::-webkit-details-marker {
     opacity: 1;
   }
 }
-
-/* .moving-div-right {
-  opacity: 1;
-  animation: moveAndFade 1s ease forwards;
-}
-
-@keyframes moveAndFade {
-  0% {
-    right: 0;
-    opacity: 1;
-  }
-  100% {
-    right: -100px;
-    opacity: 0;
-  }
-} */
-
 
 .codeblock1 {
   width: 372.95px;
@@ -165,7 +111,6 @@ details > summary::-webkit-details-marker {
     rgba(14, 26, 45, 0.24) -1.4%,
     rgba(17, 30, 50, 0.38) 104.96%
   );
-  /* backdrop-filter: blur(26px); */
 }
 .homepage_bg {
   background: url("../src/assets/Images/bghome.svg");
@@ -284,22 +229,10 @@ details > summary::-webkit-details-marker {
   @apply cursor-pointer rounded-md bg-yellow-50 px-[20px] py-[8px] font-semibold text-richblack-900;
 }
 
-/* Swiper CSS Starts */
-/* .swiper {
-  max-width: 1200px;
-  width: 91.66%;
-  height: 185px;
-  margin: 50px 0px;
-} */
-
 .swiper-slide {
   width: 100%;
   height: 100%;
 }
-/* .swiper-slide {
-  @apply bg-richblack-800 text-richblack-25 p-3 text-[14px];
-} */
-/* Swiper CSS Ends */
 
 .blackButton {
   @apply cursor-pointer rounded-md bg-richblack-800 px-[20px] py-[8px] font-semibold text-richblack-5;
@@ -313,4 +246,3 @@ details > summary::-webkit-details-marker {
 .section_heading {
   @apply text-2xl font-bold text-richblack-5 lg:text-4xl;
 }
-

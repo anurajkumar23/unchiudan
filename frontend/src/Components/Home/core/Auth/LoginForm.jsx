@@ -12,9 +12,12 @@ const initialValues = { email: "", password: "" };
 const login = async (userData) => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/user/login",
-      userData
+      "/api/user/login",
+      userData,
+      { withCredentials: true } ,
+      
     );
+    console.log('Response headers:', response.headers);
     return response.data;
   } catch (error) {
     console.error("Error logging in:", error);
@@ -43,7 +46,7 @@ function LoginForm() {
       }).then(() => {
         navigate("/user"); // Redirect to /user on successful signup
       });
-      action.resetForm();
+      // action.resetForm();
     },
   });
 

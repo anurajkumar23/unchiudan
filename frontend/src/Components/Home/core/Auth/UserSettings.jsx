@@ -30,14 +30,14 @@ function UserSettings() {
               <div className="mb-4">
                 <label className="block">Name</label>
                 <div className="flex items-center">
-                  <FiUser className="text-gray-400 mr-2" /> {/* Use the icon here */}
+                  <FiUser className="text-gray-400 mr-2 " /> 
                   <input className="form__input border border-gray-300 p-2 rounded" placeholder="Name" />
                 </div>
               </div>
               <div className="form__group mb-4">
                 <label className="block">Email address</label>
                 <div className="flex items-center">
-                  <FiMail className="text-gray-400 mr-2" /> {/* Use the icon here */}
+                  <FiMail className="text-gray-400 mr-2 "  /> 
                   <input className="form__input border border-gray-300 p-2 rounded" placeholder="Email Address"/>
                 </div>
               </div>
