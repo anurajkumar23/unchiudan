@@ -124,24 +124,24 @@ exports.isLoggedIn = async (req, res, next) => {
   
   try {
     // Check if token exists
-    const token = req.headers.authorization
+    const token = req.headers.authorization.split(" ")
     // const token = req.headers.authorization;
     // const authtoken = token.split(" ")
     
-    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token)
-    if (!token) {
+    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token[1])
+    if (!token[1]) {
       return res.status(401).json({
         isAuthorized: false,
       });
     }
-    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token)
+    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token[1])
 
 
     // console.log('Received Token:', token);
 
     // Verify token
     const decoded = await promisify(jwt.verify)(
-      token,
+      token[1],
       process.env.JWT_SECRET, // This should match the secret used when signing the cookie
     );
     // console.log(
