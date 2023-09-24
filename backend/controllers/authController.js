@@ -120,11 +120,11 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.isLoggedIn = async (req, res, next) => {
-  console.log("🚀 ~ file: authController.js:119 ~ exports.isLoggedIn= ~ req:", req.headers)
+  console.log("🚀 ~ file: authController.js:119 ~ exports.isLoggedIn= ~ req:", req.headers.authorization)
   
   try {
     // Check if token exists
-    const token = response.headers.get('authorization');
+    const token = req.headers.authorization
     // const token = req.headers.authorization;
     // const authtoken = token.split(" ")
     
@@ -135,7 +135,7 @@ exports.isLoggedIn = async (req, res, next) => {
       });
     }
     console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token)
-    
+
 
     // console.log('Received Token:', token);
 
