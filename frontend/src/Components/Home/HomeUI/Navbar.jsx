@@ -1,17 +1,27 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
+import axios from "axios";
+import {useNavigate} from "react-router-dom"
 
-const Navbar = () => {
+const Navbar = ({ userData }) => {
+  const navigate =useNavigate()
+  console.log("🚀 ~ file: Navbar.jsx:6 ~ Navbar ~ userData:", userData);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
- 
-
+  const handleLogout = async () => {
+    try {
+      await axios.get("/api/user/logout"); // Make a request to your backend logout route
+      // Assuming the request is successful, redirect to desired page
+      navigate("/")
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
   return (
     <nav className="backdrop-blur text-black p-2 fixed z-50 w-full">
       <div className="container mx-auto flex justify-between items-center">
@@ -41,19 +51,30 @@ const Navbar = () => {
             News
           </Link>
           <div className="relative group">
-            <Link to="/Currentaffairs"
-
-              className="block focus:outline-none"
-            >
+            <Link to="/Currentaffairs" className="block focus:outline-none">
               Current Affairs
             </Link>
-           
           </div>
-          <Link to="/login">
-            <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
-              Login
-            </span>
-          </Link>
+          {userData ? (
+            <>
+              <Link to="/login">
+                <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
+                  {userData.user.firstname}
+                </span>
+              </Link>
+              <button onClick={handleLogout}>
+                <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
+                  logout
+                </span>
+              </button>
+            </>
+          ) : (
+            <Link to="/login">
+              <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
+                Login
+              </span>
+            </Link>
+          )}
         </div>
       </div>
       {isMenuOpen && (
@@ -62,24 +83,36 @@ const Navbar = () => {
             Home
           </Link>
           <Link to="/pdfs" className="block py-2">
-          Pdfs
+            Pdfs
           </Link>
           <Link to="/News" className="block">
             News
           </Link>
-          
-            <Link to="/Currentaffairs"
-             
-              className="block py-2 focus:outline-none"
-            >
-              Current Affairs
-            </Link>
-       
-          <Link to="/login">
-            <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
-              Login
-            </span>
+
+          <Link to="/Currentaffairs" className="block py-2 focus:outline-none">
+            Current Affairs
           </Link>
+
+          {userData ? (
+            <>
+              <Link to="/login">
+                <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
+                  {userData.user.firstname}
+                </span>
+              </Link>
+              <Link>
+                <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
+                  logout
+                </span>
+              </Link>
+            </>
+          ) : (
+            <Link to="/login">
+              <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
+                Login
+              </span>
+            </Link>
+          )}
         </div>
       )}
     </nav>

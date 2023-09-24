@@ -13,6 +13,7 @@ import Quiz from "./Components/Quiz/Quiz";
 import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
 import UserSettings from "./Components/Home/core/Auth/UserSettings"; // Assuming you have a UserSettings component
+import Navbar from "./Components/Home/HomeUI/Navbar";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,7 +21,7 @@ function App() {
   // Function to check if user is authenticated
   const checkAuthenticated = async () => {
     try {
-      const response = await fetch("https://ucchi-urran-backend.vercel.app/api/user/authenticated", {
+      const response = await fetch("/api/user/authenticated", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -49,10 +50,11 @@ function App() {
   }, []); // Fetch authentication status only when component mounts
 
   // const show = user.isAuthorized
-
+    
   return (
     <BrowserRouter>
-      <GlobalProvider>
+      <GlobalProvider >
+        <Navbar userData={user}/>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/user/signup" element={<Signup />} />

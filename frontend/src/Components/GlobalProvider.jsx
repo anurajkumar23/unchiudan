@@ -5,7 +5,7 @@ import Footer from "./Home/HomeUI/Footer";
 function GlobalProvider({ children }) {
   return (
     <div className="mx-auto">
-      <Navbar />
+      
       {children}
       <Footer />
     </div>

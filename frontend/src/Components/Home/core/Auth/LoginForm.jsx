@@ -12,12 +12,19 @@ const initialValues = { email: "", password: "" };
 const login = async (userData) => {
   try {
     const response = await axios.post(
-      "https://ucchi-urran-backend.vercel.app/api/user/login",
+      "/api/user/login",
       userData,
       { withCredentials: true } ,
       
     );
-    console.log('Response headers:', response.headers);
+    
+   // Get the token from the response header
+   const token = response.headers.authorization;
+   
+
+   // Set the token in local storage
+   localStorage.setItem('jwt_token', token);
+    
     return response.data;
   } catch (error) {
     console.error("Error logging in:", error);
