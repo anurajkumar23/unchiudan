@@ -36,7 +36,7 @@ function UserSettings({ userData }) {
     e.preventDefault();
 
     try {
-      const response = await axios.patch('https://unchiudaanteam.vercel.app/api/user/updateMe', settingsData, {
+      const response = await axios.patch('https://ucchi-urran-backend.vercel.app/api/user/updateMe', settingsData, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}` // Replace YOUR_AUTH_TOKEN_HERE with the actual token
@@ -72,7 +72,7 @@ function UserSettings({ userData }) {
     e.preventDefault();
 
     try {
-      const response = await axios.put('https://unchiudaanteam.vercel.app/api/user/updatePassword', passwordData, {
+      const response = await axios.put('https://ucchi-urran-backend.vercel.app/api/user/updatePassword', passwordData, {
         headers: {
           'Content-Type': 'application/json',
         },

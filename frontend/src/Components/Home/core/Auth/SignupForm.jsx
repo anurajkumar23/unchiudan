@@ -13,7 +13,7 @@ const signup = async (userData) => {
 
   try {
     const response = await axios.post(
-      "https://unchiudaanteam.vercel.app/api/user/signup",
+      "https://ucchi-urran-backend.vercel.app/api/user/signup",
       userData
     );
     // console.log('User signed up:', response.data);
