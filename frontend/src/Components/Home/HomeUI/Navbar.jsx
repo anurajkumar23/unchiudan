@@ -21,17 +21,14 @@ const Navbar = ({ userData }) => {
   const handleLogout = async () => {
     try {
       await axios.get("https://ucchi-urran-backend.vercel.app/api/user/logout"); // Make a request to your backend logout route
-      // Assuming the request is successful, redirect to desired page
       localStorage.clear();
-      console.log("🚀 ~ file: Navbar.jsx:26 ~ handleLogout ~ localStorage: clearedd")
-      
-      window.location.reload();
-      navigate("/");
+      console.log("🚀 ~ file: Navbar.jsx:26 ~ handleLogout ~ localStorage: cleared");
+      window.location.href = "/"; // Reload the page after clearing localStorage
     } catch (error) {
       console.error("Error logging out:", error);
     }
-    localStorage.clear();
-  };
+};
+
   return (
     <nav className="backdrop-blur text-black p-2 fixed z-50 w-full">
       <div className="container mx-auto flex justify-between items-center">
@@ -110,11 +107,11 @@ const Navbar = ({ userData }) => {
                   {userData.user.firstname}
                 </span>
               </Link>
-              <Link>
+              <button onClick={handleLogout} >
                 <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
                   logout
                 </span>
-              </Link>
+              </button>
             </>
           ) : (
             <Link to="/login">
