@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaImage } from "react-icons/fa";
+import axios from "axios";
 
-const NewsPostComp = ({ onPostSubmit }) => {
+const NewsPostComp = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null); // Use null instead of an empty string
   const [imagePreview, setImagePreview] = useState("");
 
   const handleTitleChange = (event) => {
@@ -35,36 +36,44 @@ const NewsPostComp = ({ onPostSubmit }) => {
     }
   };
 
-  const handleSubmit = () => {
-    const newPost = {
-      title,
-      content,
-      author,
-      image,
-      date: new Date().toLocaleDateString(),
-    };
+  const handleSubmit = async () => {
+    const formData = new FormData(); // Use FormData for file upload
+    formData.append("topic", title);
+    formData.append("category", content);
+    formData.append("author", author);
+    formData.append("photo", image);
+    formData.append("date", new Date().toLocaleDateString());
 
-    onPostSubmit(newPost);
-
-    setTitle("");
-    setContent("");
-    setAuthor("");
-    setImage("");
-    setImagePreview("");
+    try {
+      await axios.post("http://localhost:3000/api/currentaffairs/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      window.alert("Post created successfully!");
+      // Clear the form fields and preview
+      setTitle("");
+      setContent("");
+      setAuthor("");
+      setImage(null);
+      setImagePreview("");
+    } catch (error) {
+      console.log(error);
+      window.alert("An error occurred while creating the post.");
+    }
   };
-
   return (
     <div className="border p-4 mb-4 mx-auto w-4/5 rounded-lg bg-richblack-5">
       <h2 className="text-xl font-bold mb-2 text-center">Create a New Post</h2>
       <input
         type="text"
-        placeholder="Title"
+        placeholder="Topic"
         value={title}
         onChange={handleTitleChange}
         className="w-full mb-2 p-2 border rounded-lg"
       />
       <textarea
-        placeholder="Content"
+        placeholder="Category"
         value={content}
         onChange={handleContentChange}
         className="w-full mb-2 p-2 border rounded-lg"
@@ -72,7 +81,7 @@ const NewsPostComp = ({ onPostSubmit }) => {
       />
       <input
         type="text"
-        placeholder="Author"
+        placeholder="Qustions"
         value={author}
         onChange={handleAuthorChange}
         className="w-full mb-2 p-2 border rounded-lg"
