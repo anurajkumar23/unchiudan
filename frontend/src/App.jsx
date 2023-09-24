@@ -20,9 +20,10 @@ function App() {
 
   // Function to check if user is authenticated
   const checkAuthenticated = async () => {
+    console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", "start auth" )
+    const token = localStorage.getItem('jwt_token');
+    console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", token)
     try {
-      const token = localStorage.getItem('jwt_token');
-      console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", token)
       const response = await fetch("https://ucchi-urran-backend.vercel.app/api/user/authenticated", {
         method: "GET",
         headers: {
