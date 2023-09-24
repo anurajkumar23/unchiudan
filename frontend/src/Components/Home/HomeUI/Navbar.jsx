@@ -15,7 +15,7 @@ const Navbar = ({ userData }) => {
   };
   const handleLogout = async () => {
     try {
-      await axios.get("/api/user/logout"); // Make a request to your backend logout route
+      await axios.get("https://ucchi-urran-backend.vercel.app/api/user/logout"); // Make a request to your backend logout route
       // Assuming the request is successful, redirect to desired page
       navigate("/")
     } catch (error) {
