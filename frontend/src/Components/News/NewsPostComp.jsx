@@ -45,7 +45,7 @@ const NewsPostComp = () => {
     formData.append("date", new Date().toLocaleDateString());
 
     try {
-      await axios.post("http://localhost:3000/api/currentaffairs/", formData, {
+      await axios.post("https://ucchi-urran-backend.vercel.app/api/currentaffairs/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -81,7 +81,7 @@ const NewsPostComp = () => {
       />
       <input
         type="text"
-        placeholder="Qustions"
+        placeholder="autho"
         value={author}
         onChange={handleAuthorChange}
         className="w-full mb-2 p-2 border rounded-lg"
