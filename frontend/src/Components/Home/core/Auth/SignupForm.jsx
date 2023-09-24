@@ -14,8 +14,13 @@ const signup = async (userData) => {
   try {
     const response = await axios.post(
       "https://ucchi-urran-backend.vercel.app/api/user/signup",
-      userData
+      userData,
+      { withCredentials: true } ,
     );
+    const token = response.data.token;
+   document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`; 
+   console.log("🚀 ~ file: LoginForm.jsx:23 ~ login ~ response.headers:", response.data.token)
+   localStorage.setItem('jwt_token', token);
     // console.log('User signed up:', response.data);
     return response.data;
   } catch (error) {
@@ -57,7 +62,7 @@ function SignupForm() {
         email: values.email,
         phone: values.phone,
       }).then(() => {
-        navigate("/user"); // Redirect to /user on successful signup
+        window.location.href = '/user'; // Redirect to /user on successful signup
       });
 
       // action.resetForm();
