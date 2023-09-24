@@ -49,7 +49,7 @@ const Navbar = () => {
             </Link>
            
           </div>
-          <Link to="user/login">
+          <Link to="/login">
             <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
               Login
             </span>
@@ -75,7 +75,7 @@ const Navbar = () => {
               Current Affairs
             </Link>
        
-          <Link to="user/login">
+          <Link to="/login">
             <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
               Login
             </span>

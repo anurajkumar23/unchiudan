@@ -13,7 +13,7 @@ const signup = async (userData) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/user/signup",
+      "https://unchiudaanteam.vercel.app/api/user/signup",
       userData
     );
     // console.log('User signed up:', response.data);
