@@ -119,13 +119,15 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 
-const { promisify } = require('util');
-const jwt = require('jsonwebtoken');
-
 exports.isLoggedIn = async (req, res, next) => {
+  console.log("🚀 ~ file: authController.js:119 ~ exports.isLoggedIn= ~ req:", req.headers)
+  
   try {
-    // Check if token exists in the request headers
-    const token = req.headers.authorization;
+    // Check if token exists
+    const token = response.headers.get('authorization');
+    // const token = req.headers.authorization;
+    // const authtoken = token.split(" ")
+    // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", authtoken[1])
 
     if (!token) {
       return res.status(401).json({
@@ -133,14 +135,27 @@ exports.isLoggedIn = async (req, res, next) => {
       });
     }
 
+    // console.log('Received Token:', token);
+
     // Verify token
-    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    const decoded = await promisify(jwt.verify)(
+      token,
+      process.env.JWT_SECRET, // This should match the secret used when signing the cookie
+    );
+    // console.log(
+    //   '🚀 ~ file: authController.js:134 ~ exports.isLoggedIn= ~ decoded:',
+    //   decoded,
+    // );
 
     // Check if user exists
     const currentUser = await User.findById(decoded.id);
     if (!currentUser) {
       return res.status(401).json({ message: 'User not found' });
     }
+    console.log(
+      '🚀 ~ file: authController.js:138 ~ exports.isLoggedIn= ~ currentUser:',
+      currentUser,
+    );
 
     // Check if password was changed
     if (currentUser.changedPasswordAfter(decoded.iat)) {
@@ -148,16 +163,18 @@ exports.isLoggedIn = async (req, res, next) => {
     }
 
     // Set user object in req.locals for future middleware
-    req.locals = { user: currentUser };
+    // req.locals.user = currentUser;
 
     // User is authenticated, continue with the request
-    next();
+    res.status(200).json({
+      user: currentUser,
+      isAuthorized: true,
+    });
   } catch (error) {
     console.error('Error:', error);
     return res.status(500).json({ message: 'Internal Server Error' });
   }
 };
-
 
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
