@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
-import { FaCalendarAlt } from 'react-icons/fa';
+import { MdOutlineAccessTimeFilled } from 'react-icons/md';
 
 
 function BlogComps({ date, title, imageSrc,updatedDate,id ,status ,category}) {
   return (
     <Link to={`/pdfs/${id}`}>
-      <div className="bg-white p-6 w-[18rem] md:w-[14rem] rounded-xl shadow-lg transition duration-500">
+      <div className="border border-2 bg-white p-6 w-[18rem] md:w-[20rem] rounded-xl shadow-lg transition duration-500 ">
       <div className="card__header">
         <div className="card__picture">
           <div className="card__picture-overlay">&nbsp;</div>
@@ -32,9 +32,11 @@ function BlogComps({ date, title, imageSrc,updatedDate,id ,status ,category}) {
           status: {status}
         </h1>
         <div className="card__data">
-        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
-        <span><FaCalendarAlt className="card__icon" />updated at: {updatedDate}</span>
+        <h1 className=" text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
+        <p><MdOutlineAccessTimeFilled className="card__icon" /></p>
         </h1>
+        <p className="text-xl">updated at: {updatedDate}</p>
+
         </div>
         <div className="my-2 mx-6 flex justify-between"></div>
         <button className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
@@ -75,7 +77,7 @@ function Downloads() {
     <div className="mx-auto py-[7rem]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="col-span-3 p-4 md:mx-0 overflow-y-auto lg:my-0">
-          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 mx-10 md:mx-0 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 mx-10 md:mx-0 gap-8">
             {pdfs.map((pdf) => {
               const createdAt = new Date(pdf.createdAt);
               const updatedAt = new Date(pdf.updatedAt);

@@ -34,7 +34,7 @@ function Currentaffairs() {
     <div className="mx-auto py-[8rem]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="col-span-3 p-4 md:mx-0 overflow-y-auto lg:my-0">
-          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 mx-10 md:mx-0 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 mx-10 md:mx-0 gap-8">
             {affairs.map((blog, index) => {
               const createdAt = new Date(blog.createdAt);
               const updatedAt = new Date(blog.updatedAt);

@@ -93,7 +93,7 @@ const Sidebar = ({ setSelectedCategory }) => {
               month: "long",
             });
             return (
-              <Link to={`/downloadpdf/${pdf._id}`} key={pdf._id}>
+              <Link to={`/pdfs/${pdf._id}`} key={pdf._id}>
                 <div className="w-18 flex justify-between p-4 border border-2 rounded-lg">
                   <div>
                     <FaFileAlt className="w-12 h-12" />

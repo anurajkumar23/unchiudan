@@ -30,10 +30,15 @@ export default function HomeBlogs() {
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6 mb-[58px]">
         {affairs.map((blog) => {
           const createdAt = new Date(blog.createdAt);
+          const updatedAt = new Date(blog.updatedAt);
           const formattedDate = createdAt.toLocaleString("default", {
             day: "numeric",
             month: "long",
           });
+          const updatedDate = updatedAt.toLocaleString("default", {
+                day: "numeric",
+                month: "long",
+              });
 
           return (
             <BlogComp  
@@ -41,6 +46,8 @@ export default function HomeBlogs() {
               date={formattedDate}
               title={blog.topic}
               imageSrc={blog.photo}
+              updatedDate={updatedDate}
+              category={blog.category}
               id={blog._id}
             />
           );
