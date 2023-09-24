@@ -28,6 +28,8 @@ const createSendToken = (user, statusCode, req, res) => {
 
   user.password = undefined;
   console.log(user);
+  res.setHeader('Authorization', `Bearer ${token}`);
+
 
   res.status(statusCode).json({
     status: 'success',
@@ -116,6 +118,8 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.isLoggedIn = async (req, res, next) => {
+  console.log("🚀 ~ file: authController.js:119 ~ exports.isLoggedIn= ~ req:", req)
+  
   try {
     // Check if token exists
     const token = req.signedCookies.jwt;
@@ -186,7 +190,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   }
 
   user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
+
   await user.save();
 
   createSendToken(user, 200, req, res);

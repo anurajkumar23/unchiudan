@@ -1,18 +1,22 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import { FiUser, FiMail, FiPhone, FiLock } from 'react-icons/fi';
-import axios from 'axios'; 
+import { useState } from "react";
+import { FiUser, FiMail, FiPhone, FiLock } from "react-icons/fi";
+import axios from "axios";
 
-
+// function getCookie(name) {
+//   const value = `; ${document.cookie}`;
+//   const parts = value.split(`; ${name}=`);
+//   if (parts.length === 2) return parts.pop().split(';').shift();
+// }
 
 function UserSettings({ userData }) {
   const [settingsData, setSettingsData] = useState({
     name: `${userData.firstname} ${userData.lastname}`,
     email: userData.email,
     phone: userData.phone,
-    role:userData.role
+    role: userData.role,
   });
-  
+  // const jwtToken = getCookie('jwt_token');
 
   const handleSettingsChange = (e) => {
     const { name, value } = e.target;
@@ -21,43 +25,39 @@ function UserSettings({ userData }) {
       [name]: value,
     });
   };
-
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    console.log("🚀 ~ file: UserSettings.jsx:28 ~ getCookie ~ value:", value)
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  }
-
-  const authToken = getCookie('jwt');
-  console.log("🚀 ~ file: UserSettings.jsx:30 ~ UserSettings ~ authToken:", authToken)
+  // if (jwtToken) {
+  //   // Set the token in local storage
+  //   localStorage.setItem('jwt_token', jwtToken);
+  // }
+  // console.log("🚀 ~ file: UserSettings.jsx:31 ~ UserSettings ~ jwtToken:", jwtToken)
+  const token = localStorage.getItem("jwt_token");
+  console.log("🚀 ~ file: UserSettings.jsx:34 ~ UserSettings ~ token:", token);
 
   const handleSaveSettings = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.patch('https://ucchi-urran-backend.vercel.app/api/user/updateMe', settingsData, {
+      const response = await axios.patch("/api/user/updateMe", settingsData, {
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}` // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+          "Content-Type": "application/json",
+          Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
         },
       });
 
       if (response.status === 200) {
-        console.log('Settings updated successfully');
+        console.log("Settings updated successfully");
       } else {
-        console.error('Error updating settings:', response.statusText);
+        console.error("Error updating settings:", response.statusText);
       }
     } catch (error) {
-      console.error('Error updating settings:', error);
+      console.error("Error updating settings:", error);
     }
   };
 
-
   const [passwordData, setPasswordData] = useState({
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: '',
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
 
   const handlePasswordChange = (e) => {
@@ -72,19 +72,27 @@ function UserSettings({ userData }) {
     e.preventDefault();
 
     try {
-      const response = await axios.put('https://ucchi-urran-backend.vercel.app/api/user/updatePassword', passwordData, {
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await axios.patch(
+        "/api/user/updateMyPassword",
+        {
+          passwordCurrent: passwordData.currentPassword,
+          password: passwordData.newPassword,
         },
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+          },
+        }
+      );
 
       if (response.status === 200) {
-        console.log('Password updated successfully');
+        console.log("Password updated successfully");
       } else {
-        console.error('Error updating password:', response.statusText);
+        console.error("Error updating password:", response.statusText);
       }
     } catch (error) {
-      console.error('Error updating password:', error);
+      console.error("Error updating password:", error);
     }
   };
 
@@ -93,11 +101,19 @@ function UserSettings({ userData }) {
       <div className="bg-white max-w-screen-xl mx-auto min-h-screen rounded-3xl overflow-hidden shadow-md flex flex-col sm:flex-row">
         <div className="bg-[#55c57a] sm:w-1/4 p-4">
           <ul className="side-nav">
-            <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">Settings</li>
-            <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">Study Material</li>
-            <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">Billing</li>
-            {settingsData.role==="admin" ? (
-              <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">Admin power</li>
+            <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
+              Settings
+            </li>
+            <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
+              Study Material
+            </li>
+            <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
+              Billing
+            </li>
+            {settingsData.role === "admin" ? (
+              <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
+                Admin power
+              </li>
             ) : (
               ""
             )}
@@ -142,7 +158,6 @@ function UserSettings({ userData }) {
                   <input
                     className="form__input border border-gray-300 p-2 rounded"
                     placeholder="Number"
-                    
                     name="phone"
                     value={settingsData.phone}
                     onChange={handleSettingsChange}
@@ -161,7 +176,9 @@ function UserSettings({ userData }) {
           </div>
           <hr className="my-8 " />
           <div className="user-view__form-container max-w-screen-xl mx-auto px-4 sm:px-8 md:px-16 lg:px-32">
-            <h2 className="mt-8 mb-4 text-xl text-[#55c57a]">Password change</h2>
+            <h2 className="mt-8 mb-4 text-xl text-[#55c57a]">
+              Password change
+            </h2>
             <form onSubmit={handleSavePassword}>
               <div className="mb-4">
                 <label className="block">Current Password</label>
