@@ -13,6 +13,7 @@ import {
 function NewsPage() {
   return (
     <>
+    <Link to="">
       <div className=" py-[8rem] ">
         <div className=" mx-6 ">
           <h1 className="text-center font-bold text-[2rem] md:text-[2.5rem] mb-6 ">
@@ -117,6 +118,8 @@ function NewsPage() {
           </div>
         </Link>
       </div>
+    </Link>
+
     </>
   );
 }
