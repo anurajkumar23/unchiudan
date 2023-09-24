@@ -17,7 +17,17 @@ const login = async (userData) => {
       { withCredentials: true } ,
       
     );
-    console.log('Response headers:', response.headers);
+    
+   // Get the token from the response header
+   const token = response.data.token;
+   document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`; // This sets a cookie named 'jwt' that expires in 7 days
+   console.log("🚀 ~ file: LoginForm.jsx:23 ~ login ~ response.headers:", response.data.token)
+
+   
+
+   // Set the token in local storage
+   localStorage.setItem('jwt_token', token);
+    
     return response.data;
   } catch (error) {
     console.error("Error logging in:", error);

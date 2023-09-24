@@ -28,6 +28,10 @@ const createSendToken = (user, statusCode, req, res) => {
 
   user.password = undefined;
   console.log(user);
+  res.setHeader('Authorization', `Bearer ${token}`);
+  
+  console.log("🚀 ~ file: authController.js:33 ~ createSendToken ~ res:", res.headers)
+
 
   res.status(statusCode).json({
     status: 'success',
@@ -116,21 +120,30 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.isLoggedIn = async (req, res, next) => {
+  
+  
+  console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", req.headers.authorization)
+  // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", res)
   try {
     // Check if token exists
-    const token = req.signedCookies.jwt;
-
+    const token = req.headers.authorization
+    // const token = req.headers.authorization;
+    // const authtoken = token.split(" ")
+    
+   
+    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token)
     if (!token) {
       return res.status(401).json({
         isAuthorized: false,
       });
     }
 
+
     // console.log('Received Token:', token);
 
     // Verify token
     const decoded = await promisify(jwt.verify)(
-      req.signedCookies.jwt,
+      token,
       process.env.JWT_SECRET, // This should match the secret used when signing the cookie
     );
     // console.log(
@@ -186,7 +199,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   }
 
   user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
+
   await user.save();
 
   createSendToken(user, 200, req, res);
