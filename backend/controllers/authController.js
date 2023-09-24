@@ -122,17 +122,17 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.isLoggedIn = async (req, res, next) => {
   
   
-  console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", req.headers)
+  console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", req.headers.authorization)
   // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", res)
   try {
     // Check if token exists
-    const token = req.headers.authorization.split(" ")
+    const token = req.headers.authorization
     // const token = req.headers.authorization;
     // const authtoken = token.split(" ")
     
    
-    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token[1])
-    if (!token[1]) {
+    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token)
+    if (!token) {
       return res.status(401).json({
         isAuthorized: false,
       });
@@ -143,7 +143,7 @@ exports.isLoggedIn = async (req, res, next) => {
 
     // Verify token
     const decoded = await promisify(jwt.verify)(
-      token[1],
+      token,
       process.env.JWT_SECRET, // This should match the secret used when signing the cookie
     );
     // console.log(
