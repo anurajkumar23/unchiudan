@@ -81,7 +81,7 @@ const NewsPostComp = () => {
       />
       <input
         type="text"
-        placeholder="autho"
+        placeholder="Qustions"
         value={author}
         onChange={handleAuthorChange}
         className="w-full mb-2 p-2 border rounded-lg"
