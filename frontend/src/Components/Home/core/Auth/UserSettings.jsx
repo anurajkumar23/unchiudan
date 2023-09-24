@@ -37,7 +37,7 @@ function UserSettings({ userData }) {
     e.preventDefault();
 
     try {
-      const response = await axios.patch("/api/user/updateMe", settingsData, {
+      const response = await axios.patch("https://ucchi-urran-backend.vercel.app/api/user/updateMe", settingsData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
@@ -73,7 +73,7 @@ function UserSettings({ userData }) {
 
     try {
       const response = await axios.patch(
-        "/api/user/updateMyPassword",
+        "https://ucchi-urran-backend.vercel.app/api/user/updateMyPassword",
         {
           passwordCurrent: passwordData.currentPassword,
           password: passwordData.newPassword,
