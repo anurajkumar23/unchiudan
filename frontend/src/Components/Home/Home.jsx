@@ -11,6 +11,7 @@ import NewsPostComp from "../News/NewsPostComp";
 
 
 function Home() {
+
   return (
     <div className=" bg-pure-greys-5 mx-auto py-10 space-y-[8rem]">
       <Hero />
@@ -43,7 +44,7 @@ function Home() {
       <HomeBlogs />
       <HomePdf />
 
-      <NewsPostComp />
+      <NewsPostComp/>
     
     </div>
   );
