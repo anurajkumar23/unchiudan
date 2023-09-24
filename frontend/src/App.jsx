@@ -21,7 +21,7 @@ function App() {
   // Function to check if user is authenticated
   const checkAuthenticated = async () => {
     try {
-      const response = await fetch("/api/user/authenticated", {
+      const response = await fetch("https://ucchi-urran-backend.vercel.app/api/user/authenticated", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
