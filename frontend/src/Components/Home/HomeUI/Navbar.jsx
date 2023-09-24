@@ -2,11 +2,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
-import axios from "axios";
-import {useNavigate} from "react-router-dom"
+// import axios from "axios";
+// import {useNavigate} from "react-router-dom"
 
 const Navbar = ({ userData }) => {
-  const navigate =useNavigate()
+  // const navigate =useNavigate()
   console.log("🚀 ~ file: Navbar.jsx:6 ~ Navbar ~ userData:", userData);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -14,13 +14,14 @@ const Navbar = ({ userData }) => {
     setIsMenuOpen(!isMenuOpen);
   };
   const handleLogout = async () => {
-    try {
-      await axios.get("https://ucchi-urran-backend.vercel.app/api/user/logout"); // Make a request to your backend logout route
-      // Assuming the request is successful, redirect to desired page
-      navigate("/")
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
+    // try {
+    //   await axios.get("https://ucchi-urran-backend.vercel.app/api/user/logout"); // Make a request to your backend logout route
+    //   // Assuming the request is successful, redirect to desired page
+    //   navigate("/")
+    // } catch (error) {
+    //   console.error("Error logging out:", error);
+    // }
+    localStorage.clear();
   };
   return (
     <nav className="backdrop-blur text-black p-2 fixed z-50 w-full">
