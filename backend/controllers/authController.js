@@ -122,6 +122,8 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.isLoggedIn = async (req, res, next) => {
   
   
+  console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", res.headers)
+  // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", res)
   try {
     // Check if token exists
     const token = req.headers.authorization.split(" ")
