@@ -1,12 +1,19 @@
 /* eslint-disable react/prop-types */
 import { FaFileAlt, FaSearch } from "react-icons/fa";
+import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./Sidebar.css";
 
-const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus }) => {
+const Sidebar_pdf = ({ setSelectedCategory, setSelectedStatus }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [status] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleSearch = () => {
     setSelectedCategory(searchTerm);
@@ -31,7 +38,9 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus }) => {
 
   useEffect(() => {
     axios
-      .get("https://ucchi-urran-backend.vercel.app/api/currentaffairs/lastestAffairs")
+      .get(
+        "https://ucchi-urran-backend.vercel.app/api/currentaffairs/lastestAffairs"
+      )
       .then((response) => {
         setAffairs(response.data.data.affairs);
       })
@@ -41,107 +50,129 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus }) => {
   }, []);
 
   return (
-    <div className="p-4 space-y-10">
-      <div className="flex items-center mx-4">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="px-4 py-2 w-full rounded-md border border-gray-500 focus:outline-none focus:border-indigo-500"
-        />
+    <div className="flex">
         <button
-          onClick={handleSearch}
-          className="absolute right-10 bg-indigo-500 text-white p-3 rounded-md flex items-center md:right-4 hover:bg-indigo-600 focus:outline-none"
+          onClick={toggleMenu}
+          className="text-black hover:text-gray-300 focus:outline-none"
         >
-          <FaSearch className="mx-2" />
+          {isMenuOpen ? (
+            <RiCloseFill className="text-2xl" />
+          ) : (
+            <RiMenu3Fill className="text-2xl" />
+          )}
         </button>
-      </div>
+      <div
+        className={`sidebar ${
+          isMenuOpen ? "w-64" : "w-0" // Use w-0 to hide the sidebar
+        } md:w-64 md:overflow-x-hidden bg-white fixed top-23 right-0 h-full transition-all duration-300 ease-in-out`}
+      >
+        
+        {isMenuOpen && (<div className="p-4 space-y-10">
+          <div className="flex items-center mx-4">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={handleKeyDown}
+              className="px-4 py-2 w-full rounded-md border border-gray-500 focus:outline-none focus:border-indigo-500"
+            />
+            <button
+              onClick={handleSearch}
+              className="absolute right-10 bg-indigo-500 text-white p-3 rounded-md flex items-center md:right-4 hover:bg-indigo-600 focus:outline-none"
+            >
+              <FaSearch className="mx-2" />
+            </button>
+          </div>
 
-      <div className="my-10">
-        <h1 className="text-center text-xl">Search By Category</h1>
-        <ul className="flex flex-col space-y-2 m-4">
-          {categories.map((item, index) => (
-            <li className="flex space-x-2" key={index}>
-              <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
-              <button
-                onClick={() => setSelectedCategory(item.category)}
-                className="text-purple-300 hover:text-purple-500"
-              >
-                {item.name}
-              </button>
-            </li>
-          ))}
-          <li className="flex space-x-2">
-            <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className="text-purple-300 hover:text-purple-500"
-            >
-              All Category
-            </button>
-          </li>
-        </ul>
-      </div>
+          <div className="my-10">
+            <h1 className="text-center text-xl">Search By Category</h1>
+            <ul className="flex flex-col space-y-2 m-4">
+              {categories.map((item, index) => (
+                <li className="flex space-x-2" key={index}>
+                  <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
+                  <button
+                    onClick={() => setSelectedCategory(item.category)}
+                    className="text-purple-300 hover:text-purple-500"
+                  >
+                    {item.name}
+                  </button>
+                </li>
+              ))}
+              <li className="flex space-x-2">
+                <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
+                <button
+                  onClick={() => setSelectedCategory(null)}
+                  className="text-purple-300 hover:text-purple-500"
+                >
+                  All Category
+                </button>
+              </li>
+            </ul>
+          </div>
 
-      <div className="my-10">
-        <h1 className="text-center text-xl">Search By Status</h1>
-        <ul className="flex flex-col space-y-2 m-4">
-          <li className="flex space-x-2">
-            <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
-            <button
-              onClick={() => setSelectedStatus('free')}
-              className="text-purple-300 hover:text-purple-500"
-            >
-              Free
-            </button>
-          </li>
-          <li className="flex space-x-2">
-            <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
-            <button
-              onClick={() => setSelectedStatus('paid')}
-              className="text-purple-300 hover:text-purple-500"
-            >
-              Paid
-            </button>
-          </li>
-          <li className="flex space-x-2">
-            <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
-            <button
-              onClick={() => setSelectedStatus(null)}
-              className="text-purple-300 hover:text-purple-500"
-            >
-              All Category
-            </button>
-          </li>
-        </ul>
-      </div>
+          <div className="my-10">
+            <h1 className="text-center text-xl">Search By Status</h1>
+            <ul className="flex flex-col space-y-2 m-4">
+              <li className="flex space-x-2">
+                <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
+                <button
+                  onClick={() => setSelectedStatus("free")}
+                  className="text-purple-300 hover:text-purple-500"
+                >
+                  Free
+                </button>
+              </li>
+              <li className="flex space-x-2">
+                <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
+                <button
+                  onClick={() => setSelectedStatus("paid")}
+                  className="text-purple-300 hover:text-purple-500"
+                >
+                  Paid
+                </button>
+              </li>
+              <li className="flex space-x-2">
+                <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
+                <button
+                  onClick={() => setSelectedStatus(null)}
+                  className="text-purple-300 hover:text-purple-500"
+                >
+                  All Category
+                </button>
+              </li>
+            </ul>
+          </div>
 
-      <div className="my-10">
-        <h1 className="text-center text-xl">Latest CurrentAffairs</h1>
-        <ul className="flex flex-col space-y-3 m-4">
-          {affairs.map((affair) => {
-            const createdAt = new Date(affair.createdAt);
-            const formattedDate = createdAt.toLocaleString("default", {
-              day: "numeric",
-              month: "long",
-            });
-            return (
-              <Link to={`/Currentaffairs/${affair._id}`} key={affair._id}>
-                <div className="w-18 flex justify-between p-4 border border-2 rounded-lg ">
-                  <div className="w-1/3 p-4">
-                    <FaFileAlt className="w-12 h-12" />
-                  </div>
-                  <div className="flex-col w-2/3 p-4">
-                    <h1 className=" text-md overflow-hidden">{affair.topic}</h1>
-                    <p>{formattedDate}</p>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
-        </ul>
+          <div className="my-10">
+            <h1 className="text-center text-xl">Latest CurrentAffairs</h1>
+            <ul className="flex flex-col space-y-3 m-4">
+              {affairs.map((affair) => {
+                const createdAt = new Date(affair.createdAt);
+                const formattedDate = createdAt.toLocaleString("default", {
+                  day: "numeric",
+                  month: "long",
+                });
+                return (
+                  <Link to={`/Currentaffairs/${affair._id}`} key={affair._id}>
+                    <div className="w-18 flex justify-between p-4 border border-2 rounded-lg ">
+                      <div className="w-1/3 p-4">
+                        <FaFileAlt className="w-12 h-12" />
+                      </div>
+                      <div className="flex-col w-2/3 p-4">
+                        <h1 className=" text-md overflow-hidden">
+                          {affair.topic}
+                        </h1>
+                        <p>{formattedDate}</p>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+        )}
       </div>
     </div>
   );

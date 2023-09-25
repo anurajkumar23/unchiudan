@@ -4,6 +4,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+
 function Currentaffairs() {
   const [affairs, setAffairs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -62,6 +63,7 @@ function Currentaffairs() {
             })}
           </div>
         </div>
+   
 
         <Sidebar setSelectedCategory={setSelectedCategory} />
       </div>

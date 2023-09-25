@@ -1,0 +1,13 @@
+/* Sidebar Styles */
+.sidebar {
+    background-color: #ffffff; /* Sidebar background color */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); /* Optional sidebar box shadow */
+  }
+  
+  /* Hamburger Menu Icon Styles */
+  .hamburger-icon {
+    cursor: pointer;
+  }
+  
+  /* Rest of your custom styles can be added here */
+  
