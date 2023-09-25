@@ -9,7 +9,7 @@ import { MdOutlineAccessTimeFilled } from 'react-icons/md';
 function BlogComps({ date, title, imageSrc,updatedDate,id ,status ,category}) {
   return (
     <Link to={`/pdfs/${id}`}>
-      <div className="border border-2 bg-white p-6 w-[18rem] md:w-[20rem] rounded-xl shadow-lg transition duration-500 ">
+      <div className="border border-2 bg-white p-6 w-[18rem] md:w-[17.9rem]  rounded-xl shadow-lg transition duration-500 ">
       <div className="card__header">
         <div className="card__picture">
           <div className="card__picture-overlay">&nbsp;</div>
@@ -77,7 +77,7 @@ function Downloads() {
     <div className="mx-auto py-[7rem]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="col-span-3 p-4 md:mx-0 overflow-y-auto lg:my-0">
-          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 mx-10 md:mx-0 gap-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3 mx-10 md:mx-0 ">
             {pdfs.map((pdf) => {
               const createdAt = new Date(pdf.createdAt);
               const updatedAt = new Date(pdf.updatedAt);
