@@ -75,10 +75,10 @@ function Downloads() {
   }, [selectedCategory, selectedStatus]);
   console.log(pdfs)
   return (
-    <div className="mx-auto py-[7rem]">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="col-span-3 p-4 md:mx-0 overflow-y-auto lg:my-0">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3 mx-10 md:mx-0 ">
+<div className="mx-auto py-[7rem]">
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div className="col-span-1 md:col-span-3 p-4 md:mx-0 overflow-y-auto lg:my-0">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3 mx-10 md:mx-0 ">
             {pdfs.map((pdf) => {
               const createdAt = new Date(pdf.createdAt);
               const updatedAt = new Date(pdf.updatedAt);
