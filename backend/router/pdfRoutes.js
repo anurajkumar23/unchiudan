@@ -23,12 +23,12 @@ router
   )
   .patch(
     protect,
-    restrictTo('admin'),
+    // restrictTo('admin'),
     pdfController.uploadPhotoAndPdf,
     pdfController.updateOne,
   );
 
 
-  router.route("/download-pdf/:id").get(protect,pdfController.download)
+  router.route("/download-pdf/:id").get(pdfController.download)
 
 module.exports = router;
