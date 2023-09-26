@@ -49,9 +49,20 @@ function DownloadPage({ userData }) {
       return; // Stop further execution
     }
 
-    // For free PDFs, initiate download
-    const downloadLink = `https://ucchi-urran-backend.vercel.app/api/pdfs/download-pdf/${pdfDetails.id}`;
-    window.location.href = downloadLink;
+    const downloadLink = `https://ucchi-urran-backend.vercel.app/pdfs/download-pdf/${id}`;
+
+    // Create a temporary anchor element
+    const anchor = document.createElement("a");
+    anchor.href = downloadLink;
+    anchor.download = "Unchi_Uddan.pdf"; // Set a default filename for the downloaded file
+  
+    // Trigger a click event on the anchor element
+    document.body.appendChild(anchor);
+    anchor.click();
+  
+    // Remove the anchor element from the DOM
+    document.body.removeChild(anchor);
+  
   };
 
   return (
