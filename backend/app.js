@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const affairsRoute = require('./router/affairsRoutes');
+const ejs = require('ejs');
 
 const newsRoutes = require('./router/newsRoutes');
 const pdfRoutes = require('./router/pdfRoutes');
