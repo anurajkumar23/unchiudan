@@ -12,6 +12,7 @@
       "dest": "server.js"
     }
   ],
+  
   "rewrites": [
     {
       "source": "/public/img/pdf/(.*)",
