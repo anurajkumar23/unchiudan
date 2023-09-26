@@ -49,7 +49,7 @@ function DownloadPage({ userData }) {
       return; // Stop further execution
     }
 
-    const downloadLink = `https://ucchi-urran-backend.vercel.app/pdfs/download-pdf/${id}`;
+    const downloadLink = `https://ucchi-urran-backend.vercel.app/api/pdfs/download-pdf/${id}`;
 
     // Create a temporary anchor element
     const anchor = document.createElement("a");
