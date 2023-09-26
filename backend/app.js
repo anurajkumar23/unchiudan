@@ -23,7 +23,7 @@ const app = express();
 
 
 app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, 'public'));
+app.set('views', path.join(__dirname, 'public'));
 
 
 // Development Logging || Global Middleware
