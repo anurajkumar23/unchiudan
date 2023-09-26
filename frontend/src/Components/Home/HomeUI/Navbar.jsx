@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 import axios from "axios";
-import {useNavigate} from "react-router-dom"
+
 
 // const handleLogout = () => {
 //   localStorage.clear();
@@ -11,7 +11,7 @@ import {useNavigate} from "react-router-dom"
 // };
 
 const Navbar = ({ userData }) => {
-  const navigate =useNavigate()
+  
   console.log("🚀 ~ file: Navbar.jsx:6 ~ Navbar ~ userData:", userData);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

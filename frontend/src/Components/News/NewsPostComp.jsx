@@ -40,21 +40,26 @@ const NewsPostComp = () => {
     const formData = new FormData(); // Use FormData for file upload
     formData.append("topic", title);
     formData.append("category", content);
-    formData.append("author", author);
+    // formData.append("author", author);
     formData.append("photo", image);
-    formData.append("date", new Date().toLocaleDateString());
+    // formData.append("date", new Date().toLocaleDateString());
 
     try {
-      await axios.post("https://ucchi-urran-backend.vercel.app/api/currentaffairs/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.post(
+        "https://ucchi-urran-backend.vercel.app/api/currentaffairs/",
+        
+         formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data; boundary=<calculated when request is sent>",
+          },
+        }
+      );
       window.alert("Post created successfully!");
       // Clear the form fields and preview
       setTitle("");
       setContent("");
-      setAuthor("");
+      // setAuthor("");
       setImage(null);
       setImagePreview("");
     } catch (error) {
@@ -79,13 +84,6 @@ const NewsPostComp = () => {
         className="w-full mb-2 p-2 border rounded-lg"
         rows="4"
       />
-      <input
-        type="text"
-        placeholder="Qustions"
-        value={author}
-        onChange={handleAuthorChange}
-        className="w-full mb-2 p-2 border rounded-lg"
-      />
       <div className="flex items-center mb-4">
         <label htmlFor="imageUpload" className="cursor-pointer">
           <FaImage className="w-10 h-10 text-blue-300 hover:text-blue-500" />
@@ -93,6 +91,7 @@ const NewsPostComp = () => {
         <input
           type="file"
           id="imageUpload"
+          
           accept="image/*"
           onChange={handleImageChange}
           className="hidden"
