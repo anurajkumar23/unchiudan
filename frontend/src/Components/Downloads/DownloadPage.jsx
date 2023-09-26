@@ -11,7 +11,7 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 
-function DownloadPage() {
+function DownloadPage({ userData }) {
   const { id } = useParams();
   const [pdfDetails, setPdfDetails] = useState(null);
 
@@ -40,6 +40,18 @@ function DownloadPage() {
     const month = updatedAtDate.toLocaleString("default", { month: "long" });
     const year = updatedAtDate.getFullYear();
     return `${day} ${month} ${year}`;
+  };
+
+  const handleDownload = () => {
+    if (!userData) {
+      localStorage.setItem("redirectUrl", window.location.href);
+      window.location.href = "/login"; // Redirect to login page
+      return; // Stop further execution
+    }
+
+    // For free PDFs, initiate download
+    const downloadLink = `https://ucchi-urran-backend.vercel.app/api/pdfs/download-pdf/${pdfDetails.id}`;
+    window.location.href = downloadLink;
   };
 
   return (
@@ -72,7 +84,7 @@ function DownloadPage() {
             <a href="#">
               <div className="mt-6 flex w-fit hover:bg-teal-500 px-3 py-1 justify-between space-x-3 text-lg mx-auto rounded-full bg-teal-300 text-white">
                 <FaDownload className="w-6 h-6" />
-                <span>Download</span>
+                <button onClick={handleDownload}>Download</button>
               </div>
             </a>
           </div>
@@ -133,14 +145,14 @@ function DownloadPage() {
           </h1>
           <p className="mt-4 text-justify text-lg">
             Monthly Current Affairs of Jun 2020 PDF Download is now out by
-            UnchiUdaan.in. You can Download it here and Get Daily 10 Questions of
-            Latest Current Affairs of Jun 2020 on UnchiUdaan Facebook Page. You
-            can also Download other Previous Monthly Current Affairs of Jun 2020
-            along with Current affairs of Jun available in Free Download page of
-            this Website. <br /> <br /> This PDF is the Successive Series of
-            Unchiudaan Monthly Current affairs PDF of Jun that is Being Issued
-            by Unchi Udaan. You can also Download the Previous Month PDF for
-            Free Monthly PDF. You can also download other PDFs.
+            UnchiUdaan.in. You can Download it here and Get Daily 10 Questions
+            of Latest Current Affairs of Jun 2020 on UnchiUdaan Facebook Page.
+            You can also Download other Previous Monthly Current Affairs of Jun
+            2020 along with Current affairs of Jun available in Free Download
+            page of this Website. <br /> <br /> This PDF is the Successive
+            Series of Unchiudaan Monthly Current affairs PDF of Jun that is
+            Being Issued by Unchi Udaan. You can also Download the Previous
+            Month PDF for Free Monthly PDF. You can also download other PDFs.
           </p>
           <div className="flex justify-between mt-10">
             <span className="text-center text-md">Share with Friends :</span>
