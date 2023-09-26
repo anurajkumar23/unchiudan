@@ -4,11 +4,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = ({ setSelectedCategory }) => {
-  const [searchTerm, setSearchTerm] = useState(""); 
+const Sidebar = ({ setSelectedCategory, setSelectedStatus }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [status] = useState(null);
 
   const handleSearch = () => {
     setSelectedCategory(searchTerm);
+    setSelectedStatus(status);
   };
 
   const handleKeyDown = (e) => {
@@ -39,15 +41,15 @@ const Sidebar = ({ setSelectedCategory }) => {
   }, []);
 
   return (
-    <div className="p-4 space-y-10">
-      <div className="flex items-center mx-4">
+    <div className="p-4 space-y-10 xl:w-[100%]">
+      <div className="flex items-center mx-2">
         <input
           type="text"
           placeholder="Search..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="px-4 py-2 w-full rounded-md border border-gray-500 focus:outline-none focus:border-indigo-500"
+          className="px-2 py-2 w-full rounded-md border border-gray-500 focus:outline-none focus:border-indigo-500"
         />
         <button
           onClick={handleSearch}
@@ -60,8 +62,8 @@ const Sidebar = ({ setSelectedCategory }) => {
       <div className="my-10">
         <h1 className="text-center text-xl">Search By Category</h1>
         <ul className="flex flex-col space-y-2 m-4">
-          {categories.map((item, index) => (
-            <li className="flex space-x-2" key={index}>
+          {categories.map((item) => (
+            <li className="flex space-x-2" key={item._id}>
               <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
               <button
                 onClick={() => setSelectedCategory(item.category)}
@@ -95,10 +97,10 @@ const Sidebar = ({ setSelectedCategory }) => {
             return (
               <Link to={`/pdfs/${pdf._id}`} key={pdf._id}>
                 <div className="w-18 flex justify-between p-4 border border-2 rounded-lg">
-                  <div>
+                  <div className="w-1/3 p-4">
                     <FaFileAlt className="w-12 h-12" />
                   </div>
-                  <div className="flex flex-col justify-center">
+                  <div className="flex-col w-2/3 p-4">
                     <h1 className="text-center text-md">{pdf.name}</h1>
                     <p>{formattedDate}</p>
                   </div>

@@ -1,47 +1,47 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import "./container.css"
-import { MdOutlineAccessTimeFilled } from 'react-icons/md';
-export function BlogComps(props) {
-  
+import "./container.css";
+import { MdOutlineAccessTimeFilled } from "react-icons/md";
+
+export function BlogComps({
+  date,
+  id,
+  imageSrc,
+  updatedDate,
+  category,
+  title,
+}) {
   return (
-    <Link to={`/currentaffairs/${props.id}`}>
-      <div className="border border-2bg-white p-6 w-[18rem] md:w-[17.9rem] rounded-xl shadow-lg transition duration-500 h-[30rem]" >
-      <div className="card__header">
-        <div className="card__picture">
-          <div className="card__picture-overlay">&nbsp;</div>
-        <div className="relative">
-          <img
-            className="w-full rounded-xl"
-            
-            src={props.imageSrc}
-            alt="Blog Cover"
-          />
-          <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
-            {props.date}
-          </p>
+    <Link to={`/pdfs/${id}`}>
+      <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 ">
+        <div className="card__header">
+          <div className="card__picture relative">
+            <div className="card__picture-overlay"></div>
+            <div className="relative">
+              <img className="rounded-xl" src={imageSrc} alt="Blog Cover" />
+              <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
+                {date}
+              </p>
+            </div>
           </div>
-          </div>
-          <h3 className="heading-tertirary">
-          <span>{props.category}</span>
-        </h3>
-       
+          <h3 className="heading-tertiary">
+            <span>{category}</span>
+          </h3>
         </div>
-        
-        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem]">
-          {props.title}
+        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
+          {title}
         </h1>
-       
-        <div className="card__data flex mb-[1rem]">
-        <h1 className=" text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
-        <p><MdOutlineAccessTimeFilled className="card__icon" /></p>
-        </h1>
-        <p className="text-xl">updated at: {props.updatedDate}</p>
+
+        <div className="card__data">
+          <h1 className="text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
+            <MdOutlineAccessTimeFilled className="card__icon" />
+          </h1>
+          <p className="text-lg ">updated at: {updatedDate}</p>
         </div>
-        
-        <Link to={`/currentaffairs/${props.id}`} className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
+        <div className="my-2 mx-6 flex justify-between"></div>
+        <button className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
           Read More
-        </Link>
+        </button>
       </div>
     </Link>
   );
