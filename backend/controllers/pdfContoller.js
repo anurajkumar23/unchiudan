@@ -181,6 +181,7 @@ exports.download = catchAsync(async (req, res, next) => {
   }
   const filename = pdf.pdf;
   const filePath = path.join(__dirname, '../public/img/pdf/', filename);
+  console.log("🚀 ~ file: pdfContoller.js:184 ~ exports.download=catchAsync ~ filePath:", filePath)
 
   const exists = await checkFileExists(filePath);
 
