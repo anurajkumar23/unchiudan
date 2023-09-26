@@ -16,10 +16,6 @@
     {
       "source": "/public/img/pdf/(.*)",
       "destination": "/public/img/pdf/$1"
-    },
-    {
-      "source": "/:path*",
-      "destination": "/"
     }
   ]
 }
