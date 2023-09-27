@@ -22,6 +22,14 @@ const signup = async (userData) => {
    console.log("🚀 ~ file: LoginForm.jsx:23 ~ login ~ response.headers:", response.data.token)
    localStorage.setItem('jwt_token', token);
     // console.log('User signed up:', response.data);
+    const redirectUrl = localStorage.getItem('redirectUrl');
+   if (redirectUrl) {
+    // Redirect to the originally requested URL
+    window.location.href = redirectUrl;
+  } else {
+    // If there's no redirect URL, go to a default page
+    window.location.href = '/user';
+  }
     return response.data;
   } catch (error) {
     console.error("Error signing up:", error);
