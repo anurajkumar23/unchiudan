@@ -27,7 +27,14 @@ const login = async (userData) => {
 
    // Set the token in local storage
    localStorage.setItem('jwt_token', token);
-    
+   const redirectUrl = localStorage.getItem('redirectUrl');
+   if (redirectUrl) {
+    // Redirect to the originally requested URL
+    window.location.href = redirectUrl;
+  } else {
+    // If there's no redirect URL, go to a default page
+    window.location.href = '/user';
+  }
     return response.data;
   } catch (error) {
     console.error("Error logging in:", error);
