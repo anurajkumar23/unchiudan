@@ -38,11 +38,8 @@ exports.getAllAffairs = catchAsync(async (req, res, next) => {
 
 exports.lastestAffairs = catchAsync(async (req, res, next) => {
   const limit = req.query.limit * 1 || 4; // Set limit to 4 (or use the provided limit if available)
- 
-  const affairs = await CurrentAffairs
-    .find()
-    .sort('-createdAt')
-    .limit(limit);
+
+  const affairs = await CurrentAffairs.find().sort('-createdAt').limit(limit);
 
   res.status(200).json({
     status: 'success',
@@ -51,7 +48,6 @@ exports.lastestAffairs = catchAsync(async (req, res, next) => {
     },
   });
 });
-
 
 exports.createAffairs = catchAsync(async (req, res, next) => {
   let photo;
@@ -62,7 +58,7 @@ exports.createAffairs = catchAsync(async (req, res, next) => {
 
   const currentDate = Date.now();
   req.body.updatedAt = currentDate;
-  
+
   const affairs = await CurrentAffairs.create(req.body);
 
   res.status(201).json({
@@ -139,3 +135,39 @@ exports.updateOne = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.showimage = catchAsync(async (req, res, next) => {
+  console.log(
+    '🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:',
+    'here it start 😀😀😀😀😀😀😀',
+  );
+  console.log(
+    '🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:',
+    req.params.imageName,
+  );
+
+  const filename = req.params.imageName;
+  const backendBaseUrl = 'https://ucchi-urran-backend.vercel.app/api';
+  const filePath = path.join(__dirname, '../public/img/affairs/', filename);
+  const backendUrl = `${backendBaseUrl}${filePath}`;
+
+  console.log('🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:', backendUrl);
+
+  const exists = await fetch(backendUrl);
+
+  console.log(
+    '🚀🚀~ file: affairContoller.js:191 ~ exports.download=catchAsync ~ exists:',
+    exists,
+  );
+
+  if (!exists) {
+    return next(new AppError('PDF file not found', 404));
+  }
+
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+
+  const fileStream = fs.createReadStream(filePath);
+  fileStream.pipe(res);
+
+  res.sendFile(backendUrl);
+});
