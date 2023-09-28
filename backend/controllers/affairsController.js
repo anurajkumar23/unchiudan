@@ -146,28 +146,21 @@ exports.showimage = catchAsync(async (req, res, next) => {
   );
 
   const filename = req.params.imageName;
-  const backendBaseUrl = 'https://ucchi-urran-backend.vercel.app/api';
+  // const backendBaseUrl = 'https://ucchi-urran-backend.vercel.app/api';
   const filePath = path.join(__dirname, '../public/img/affairs/', filename);
-  const backendUrl = `${backendBaseUrl}${filePath}`;
+  // const backendUrl = `${backendBaseUrl}${filePath}`;
 
-  console.log('🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:', backendUrl);
+  console.log('🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:', filePath);
 
-  const exists = await fetch(backendUrl);
+  // const exists = await fetch(backendUrl);
 
-  console.log(
-    '🚀🚀~ file: affairContoller.js:191 ~ exports.download=catchAsync ~ exists:',
-    exists,
-  );
+  const exists = await fs.promises.access(backendUrl)
+  .then(() => true)
+  .catch(() => false);
 
-  if (!exists) {
-    return next(new AppError('PDF file not found', 404));
-  }
+if (!exists) {
+  return res.status(404).send('Image not found');
+}
 
-  res.setHeader('Content-Type', 'application/pdf');
-  res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-
-  const fileStream = fs.createReadStream(filePath);
-  fileStream.pipe(res);
-
-  res.sendFile(backendUrl);
+  res.sendFile(filePath);
 });
