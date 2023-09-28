@@ -86,20 +86,20 @@ app.use(cors({ credentials: true, origin: true, withCredentials: true }));
 //   res.sendFile(filePath);
 // });
 
-app.get('/api/news/images/:imageName', async (req, res) => {
-  const filename = req.params.imageName;
-  const filePath = path.join(__dirname, '../public/img/news/', filename);
+// app.get('/api/news/images/:imageName', async (req, res) => {
+//   const filename = req.params.imageName;
+//   const filePath = path.join(__dirname, '../public/img/news/', filename);
 
-  const exists = await fs.promises.access(filePath)
-    .then(() => true)
-    .catch(() => false);
+//   const exists = await fs.promises.access(filePath)
+//     .then(() => true)
+//     .catch(() => false);
 
-  if (!exists) {
-    return res.status(404).send('Image not found');
-  }
+//   if (!exists) {
+//     return res.status(404).send('Image not found');
+//   }
 
-  res.sendFile(filePath);
-});
+//   res.sendFile(filePath);
+// });
 
 app.use('/api/currentaffairs', affairsRoute);
 app.use('/api/user', userRoutes);
