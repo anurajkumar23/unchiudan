@@ -67,9 +67,11 @@ app.use(cors({ credentials: true, origin: true, withCredentials: true }));
 app.use('/images', express.static(__dirname + '/public/img/affairs'));
 
 app.get('/api/currentaffairs/images/:imageName', async (req, res) => {
+  console.log("🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:", "here it start 😀😀😀😀😀😀😀")
+  console.log("🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:", req.params.imageName)
   const filename = req.params.imageName;
   const filePath = path.join(__dirname, '../public/img/affairs/', filename);
-  console.log("🚀 ~ file: app.js:72 ~ app.get ~ filePath:", filePath)
+  console.log("🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:", filePath)
 
   const exists = await fs.promises.access(filePath)
     .then(() => true)
