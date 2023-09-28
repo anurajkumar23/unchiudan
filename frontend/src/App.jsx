@@ -14,6 +14,7 @@ import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
 import UserSettings from "./Components/Home/core/Auth/UserSettings"; // Assuming you have a UserSettings component
 import Navbar from "./Components/Home/HomeUI/Navbar";
+import NewsPage from "./Components/News/NewsPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -71,6 +72,7 @@ function App() {
           <Route path="/Quizz" element={<Quizcontainer />} />
           <Route path="/News" element={<News />} />
           <Route path="/Currentaffairs" element={<Currentaffaircontainer />} />
+          <Route path="/News/:id" element={<NewsPage />} />
 
           {user ? (
             <Route

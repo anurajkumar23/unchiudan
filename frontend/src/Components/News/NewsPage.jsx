@@ -9,20 +9,46 @@ import {
   FaLinkedin,
   FaWhatsapp,
 } from "react-icons/fa";
+import axios from "axios";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 function NewsPage() {
+  const { id } = useParams();
+  const [news, setNews] = useState(null);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://ucchi-urran-backend.vercel.app/api/news/${id}`
+        );
+        setNews(response.data.data.news);
+        // console.log("🚀 ~ file: BlogsPage.jsx:29 ~ fetchData ~ response.data.affairs:", response.data.data.affairs)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+  if (!news) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
     <Link to="">
       <div className=" py-[8rem] ">
         <div className=" mx-6 ">
           <h1 className="text-center font-bold text-[2rem] md:text-[2.5rem] mb-6 ">
-            News 5 meow meow meow
+            {news.heading}
           </h1>
           <div className="md:mx-12 my-12">
             <img
               alt="meow"
-              src="/Images/upsc.jpeg"
+              src={`https://ucchi-urran-backend.vercel.app/img/news/${news.photo}`}
               className="w-full mx-auto rounded-lg"
             />
           </div>
@@ -51,22 +77,7 @@ function NewsPage() {
           </div>
 
           <p className="mt-4 text-justify text-lg">
-            Monthly Current Affairs PDFs are now available on UnchiUdaan.in.
-            Stay updated with the latest happenings in various fields such as
-            politics, economy, technology, and more. Download your copy today
-            and get access to a curated selection of 10 questions related to the
-            current affairs of the day, exclusively on the UnchiUdaan Facebook
-            Page. <br /> <br /> Stay ahead in your UPSC, SSC, Railway, BPSC
-            preparations with our Monthly Current Affairs PDFs, now available on
-            UnchiUdaan.in. Dive into a wealth of knowledge covering the latest
-            in politics, economy, technology, and more. Download your copy now
-            and gain access to a specially curated set of 10 questions, tailored
-            to UPSC, SSC, Railway, and BPSC exams, exclusively on the UnchiUdaan
-            Facebook Page. In addition to the freshest updates, explore an
-            extensive collection of previous monthly current affairs reports,
-            all conveniently accessible in the Free Download section of this
-            website. Stay informed about the events that hold significance for
-            your competitive exams.
+           {news.article}
           </p>
         </div>
       </div>
