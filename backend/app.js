@@ -68,7 +68,7 @@ app.use('/images', express.static(__dirname + '/public/img/affairs'));
 
 app.get('/api/currentaffairs/images/:imageName', async (req, res) => {
   const filename = req.params.imageName;
-  const filePath = path.join(__dirname, '/public/img/affairs/', filename);
+  const filePath = path.join(__dirname, '../public/img/affairs/', filename);
 
   const exists = await fs.promises.access(filePath)
     .then(() => true)
@@ -81,6 +81,20 @@ app.get('/api/currentaffairs/images/:imageName', async (req, res) => {
   res.sendFile(filePath);
 });
 
+app.get('/api/news/images/:imageName', async (req, res) => {
+  const filename = req.params.imageName;
+  const filePath = path.join(__dirname, '../public/img/news/', filename);
+
+  const exists = await fs.promises.access(filePath)
+    .then(() => true)
+    .catch(() => false);
+
+  if (!exists) {
+    return res.status(404).send('Image not found');
+  }
+
+  res.sendFile(filePath);
+});
 
 app.use('/api/currentaffairs', affairsRoute);
 app.use('/api/user', userRoutes);
@@ -88,11 +102,6 @@ app.use('/api/news', newsRoutes);
 app.use('/api/pdfs', pdfRoutes);
 app.use('/api/admin', adminRoutes);
 
-app.get('/api/news/images/:imageName', (req, res) => {
-  const imageName = req.params.imageName;
-  const imagePath = path.join(__dirname, 'public/img/news', imageName);
-  res.sendFile(imagePath);
-});
 // Error Handling
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
