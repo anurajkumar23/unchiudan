@@ -1,33 +1,53 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 import axios from "axios";
+import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
+import { VscDashboard, VscSignOut } from "react-icons/vsc";
+import useOnClickOutside from "../../../hooks/useOnClickOutside";
 
-
-// const handleLogout = () => {
-//   localStorage.clear();
-//   window.location.reload();
-// };
-
-const Navbar = ({ userData }) => {
-  
-  console.log("🚀 ~ file: Navbar.jsx:6 ~ Navbar ~ userData:", userData);
+export default function Navbar({ userData }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(
+          "https://ucchi-urran-backend.vercel.app/api/user"
+        );
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+        } else {
+          console.error("Failed to fetch user data");
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching user data", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   const handleLogout = async () => {
     try {
-      await axios.get("https://ucchi-urran-backend.vercel.app/api/user/logout"); // Make a request to your backend logout route
+      await axios.get("https://ucchi-urran-backend.vercel.app/api/user/logout");
       localStorage.clear();
-      console.log("🚀 ~ file: Navbar.jsx:26 ~ handleLogout ~ localStorage: cleared");
-      window.location.href = "/"; // Reload the page after clearing localStorage
+      console.log(
+        "🚀 ~ file: Navbar.jsx:26 ~ handleLogout ~ localStorage: cleared"
+      );
+      window.location.href = "/";
     } catch (error) {
       console.error("Error logging out:", error);
     }
-};
+  };
 
   return (
     <nav className="backdrop-blur text-black p-2 fixed z-50 w-full">
@@ -63,18 +83,53 @@ const Navbar = ({ userData }) => {
             </Link>
           </div>
           {userData ? (
-            <>
-              <Link to="/login">
-                <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
-                  {userData.user.firstname}
-                </span>
-              </Link>
-              <button onClick={handleLogout}>
-                <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
-                  logout
-                </span>
-              </button>
-            </>
+            <div className="relative" onClick={() => setOpen(!open)}>
+              <div className="flex items-center gap-x-1">
+                {user && user.image ? (
+                  <img
+                    src={user.image}
+                    alt={`profile-${user.firstName}`}
+                    className="aspect-square w-[30px] rounded-full object-cover"
+                  />
+                ) : (
+                  <span className="w-[30px] h-[30px] flex items-center justify-center text-sm text-white bg-blue-500 rounded-full">
+                    {userData && userData.user
+                      ? `${userData.user.firstname.charAt(
+                          0
+                        )} ${userData.user.lastname.charAt(0)}`
+                      : ""}
+                  </span>
+                )}
+                {open ? (
+                  <AiOutlineCaretUp className="text-sm text-richblack-100" />
+                ) : (
+                  <AiOutlineCaretDown className="text-sm text-richblack-100" />
+                )}
+              </div>
+              {open && (
+                <div className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800">
+                  <Link
+                    to="/dashboard/my-profile"
+                    onClick={() => setOpen(false)}
+                  >
+                    <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
+                      <VscDashboard className="text-lg" />
+                      Dashboard
+                    </div>
+                  </Link>
+                  <div
+                    onClick={() => {
+                      handleLogout();
+                      setOpen(false);
+                    }}
+                    className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover.bg-richblack-700 hover.text-richblack-25"
+                  >
+                    <VscSignOut className="text-lg" />
+                    Logout
+                  </div>
+                </div>
+              )}
+            </div>
           ) : (
             <Link to="/login">
               <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
@@ -95,24 +150,57 @@ const Navbar = ({ userData }) => {
           <Link to="/News" className="block">
             News
           </Link>
-
           <Link to="/Currentaffairs" className="block py-2 focus:outline-none">
             Current Affairs
           </Link>
-
           {userData ? (
-            <>
-              <Link to="/login">
-                <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
-                  {userData.user.firstname}
-                </span>
-              </Link>
-              <button onClick={handleLogout} >
-                <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
-                  logout
-                </span>
-              </button>
-            </>
+            <div className="relative" onClick={() => setOpen(!open)}>
+              <div className="flex items-center gap-x-1">
+                {user && user.image ? (
+                  <img
+                    src={user.image}
+                    alt={`profile-${user.firstName}`}
+                    className="aspect-square w-[30px] rounded-full object-cover"
+                  />
+                ) : (
+                  <span className="w-[30px] h-[30px] flex items-center justify-center text-sm text-white bg-blue-500 rounded-full">
+                    {userData && userData.user
+                      ? `${userData.user.firstname.charAt(
+                          0
+                        )} ${userData.user.lastname.charAt(0)}`
+                      : ""}
+                  </span>
+                )}
+                {open ? (
+                  <AiOutlineCaretUp className="text-sm text-richblack-100" />
+                ) : (
+                  <AiOutlineCaretDown className="text-sm text-richblack-100" />
+                )}
+              </div>
+              {open && (
+                <div className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800">
+                  <Link
+                    to="/dashboard/my-profile"
+                    onClick={() => setOpen(false)}
+                  >
+                    <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover.bg-richblack-700 hover.text-richblack-25">
+                      <VscDashboard className="text-lg" />
+                      Dashboard
+                    </div>
+                  </Link>
+                  <div
+                    onClick={() => {
+                      handleLogout();
+                      setOpen(false);
+                    }}
+                    className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover.bg-richblack-700 hover.text-richblack-25"
+                  >
+                    <VscSignOut className="text-lg" />
+                    Logout
+                  </div>
+                </div>
+              )}
+            </div>
           ) : (
             <Link to="/login">
               <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
@@ -124,6 +212,4 @@ const Navbar = ({ userData }) => {
       )}
     </nav>
   );
-};
-
-export default Navbar;
+}
