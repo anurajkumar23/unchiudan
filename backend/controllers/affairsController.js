@@ -146,9 +146,9 @@ exports.showimage = catchAsync(async (req, res, next) => {
   );
 
   const filename = req.params.imageName;
-  // const backendBaseUrl = 'https://ucchi-urran-backend.vercel.app/api';
+  const backendBaseUrl = 'https://ucchi-urran-backend.vercel.app/api';
   const filePath = path.join(__dirname, '../public/img/affairs/', filename);
-  // const backendUrl = `${backendBaseUrl}${filePath}`;
+  const backendUrl = `${backendBaseUrl}${filePath}`;
 
   console.log('🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:', filePath);
 
