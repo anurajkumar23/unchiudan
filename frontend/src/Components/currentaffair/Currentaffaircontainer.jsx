@@ -72,6 +72,7 @@ function Currentaffairs() {
                 updatedDate={updatedDate}
                 category={blog.category}
                 id={blog._id}
+              
               />
             );
           })}

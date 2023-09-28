@@ -15,16 +15,15 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
+const fs = require('fs');
 
 const cors = require('cors');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 
-
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'public'));
-
 
 // Development Logging || Global Middleware
 if (process.env.NODE_ENV === 'development') {
@@ -56,15 +55,32 @@ app.use(xss());
 // app.use('/api', limiter);
 
 // CORS Setup
-app.use(cors({credentials: true, origin: true, withCredentials: true }))
+app.use(cors({ credentials: true, origin: true, withCredentials: true }));
 
 // Proxy Setup
 // app.use('/api', createProxyMiddleware({
-//   target: 'http://localhost:5173',
+//   target: 'https://ucchi-urran-backend.vercel.app/api',
 //   changeOrigin: true,
 // }));
 
 // Routes
+app.use('/images', express.static(__dirname + '/public/img/affairs'));
+
+app.get('/api/currentaffairs/images/:imageName', async (req, res) => {
+  const filename = req.params.imageName;
+  const filePath = path.join(__dirname, '/public/img/affairs/', filename);
+
+  const exists = await fs.promises.access(filePath)
+    .then(() => true)
+    .catch(() => false);
+
+  if (!exists) {
+    return res.status(404).send('Image not found');
+  }
+
+  res.sendFile(filePath);
+});
+
 
 app.use('/api/currentaffairs', affairsRoute);
 app.use('/api/user', userRoutes);
@@ -72,6 +88,11 @@ app.use('/api/news', newsRoutes);
 app.use('/api/pdfs', pdfRoutes);
 app.use('/api/admin', adminRoutes);
 
+app.get('/api/news/images/:imageName', (req, res) => {
+  const imageName = req.params.imageName;
+  const imagePath = path.join(__dirname, 'public/img/news', imageName);
+  res.sendFile(imagePath);
+});
 // Error Handling
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

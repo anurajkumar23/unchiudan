@@ -9,10 +9,10 @@ export function BlogComps({
   imageSrc,
   updatedDate,
   category,
-  title,
+  title
 }) {
   return (
-    <Link to={`/pdfs/${id}`}>
+    <Link to={`/currentaffairs/${id}`}>
       <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 ">
         <div className="card__header">
           <div className="card__picture relative">
