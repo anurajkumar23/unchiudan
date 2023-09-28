@@ -70,10 +70,12 @@ app.get('/api/currentaffairs/images/:imageName', async (req, res) => {
   console.log("🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:", "here it start 😀😀😀😀😀😀😀")
   console.log("🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:", req.params.imageName)
   const filename = req.params.imageName;
+  const backendBaseUrl = 'https://ucchi-urran-backend.vercel.app/api';
   const filePath = path.join(__dirname, '../public/img/affairs/', filename);
-  console.log("🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:", filePath)
+  const backendUrl =`${backendBaseUrl}${filePath}`;
+  console.log("🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:", backendUrl)
 
-  const exists = await fs.promises.access(filePath)
+  const exists = await fs.promises.access(backendUrl)
     .then(() => true)
     .catch(() => false);
 
