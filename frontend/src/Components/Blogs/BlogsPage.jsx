@@ -72,7 +72,7 @@ function BlogsPage() {
           <div className="md:mx-12 my-12">
             <img
               alt={`${affairDetails.photo}`}
-              src={`/api/currentaffairs/images/${affairDetails.photo}`}
+              src={`https://ucchi-urran-backend.vercel.app/api/currentaffairs/images/${affairDetails.photo}`}
               className="w-full mx-auto rounded-lg"
             />
           </div>

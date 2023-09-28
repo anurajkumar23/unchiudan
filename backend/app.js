@@ -69,6 +69,7 @@ app.use('/images', express.static(__dirname + '/public/img/affairs'));
 app.get('/api/currentaffairs/images/:imageName', async (req, res) => {
   const filename = req.params.imageName;
   const filePath = path.join(__dirname, '../public/img/affairs/', filename);
+  console.log("🚀 ~ file: app.js:72 ~ app.get ~ filePath:", filePath)
 
   const exists = await fs.promises.access(filePath)
     .then(() => true)
