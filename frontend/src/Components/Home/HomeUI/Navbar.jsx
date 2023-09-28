@@ -5,8 +5,6 @@ import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 import axios from "axios";
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
 import { VscDashboard, VscSignOut } from "react-icons/vsc";
-import useOnClickOutside from "../../../hooks/useOnClickOutside";
-
 export default function Navbar({ userData }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
@@ -107,9 +105,9 @@ export default function Navbar({ userData }) {
                 )}
               </div>
               {open && (
-                <div className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800">
+                <div className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800 cursor-pointer">
                   <Link
-                    to="/dashboard/my-profile"
+                    to="/user"
                     onClick={() => setOpen(false)}
                   >
                     <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
@@ -122,9 +120,9 @@ export default function Navbar({ userData }) {
                       handleLogout();
                       setOpen(false);
                     }}
-                    className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover.bg-richblack-700 hover.text-richblack-25"
+                    className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover.bg-richblack-700 hover.text-richblack-25 "
                   >
-                    <VscSignOut className="text-lg" />
+                    <VscSignOut className="text-lg " />
                     Logout
                   </div>
                 </div>
@@ -180,7 +178,7 @@ export default function Navbar({ userData }) {
               {open && (
                 <div className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800">
                   <Link
-                    to="/dashboard/my-profile"
+                    to="/user"
                     onClick={() => setOpen(false)}
                   >
                     <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover.bg-richblack-700 hover.text-richblack-25">
@@ -193,7 +191,7 @@ export default function Navbar({ userData }) {
                       handleLogout();
                       setOpen(false);
                     }}
-                    className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover.bg-richblack-700 hover.text-richblack-25"
+                    className=" cursor-pointer flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover.bg-richblack-700 hover.text-richblack-25"
                   >
                     <VscSignOut className="text-lg" />
                     Logout
