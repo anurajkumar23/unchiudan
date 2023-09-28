@@ -16,7 +16,7 @@ router
     affairsController.createAffairs,
   );
 
-  
+router.get('//images/:imageName',affairsController.showimage)
 
 router.get('/lastestAffairs', affairsController.lastestAffairs);
 
