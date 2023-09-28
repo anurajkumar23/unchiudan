@@ -15,6 +15,12 @@ router
     newsController.createOne,
   );
 
+  router.get('/images/:imageName', (req, res) => {
+    const imageName = req.params.imageName;
+    const imagePath = path.join(__dirname, '../public/img/news', imageName);
+    res.sendFile(imagePath);
+  });
+
 router
   .route('/autodelete')
   .delete(protect, restrictTo('admin'), newsController.autoDelete);
