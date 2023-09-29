@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Hero() {
   return (
     <div className="bg-pure-greys-5 md:mx-8 mx-6">
@@ -18,12 +20,14 @@ function Hero() {
           </p>
 
           <div className="mt-12 flex justify-center items-center">
+          <Link to="/Currentaffairs">
             <button
               type="button"
               className="bg-blue-500 mx-auto text-[18px] text-white rounded-lg px-4 py-1 hover:scale-110 duration-500 "
             >
               Start Learning & Fly High
             </button>
+            </Link>
           </div>
         </div>
         <div className="flex items-center gap-8 p-2 lg:p-24">
