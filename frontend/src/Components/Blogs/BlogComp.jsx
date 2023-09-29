@@ -6,7 +6,7 @@ import { MdOutlineAccessTimeFilled } from 'react-icons/md';
 function BlogComp({ date, title, imageSrc ,id ,category, updatedDate}) {
   return (
    <Link to={`/currentaffairs/${id}`}>
-      <div className="border border-2bg-white p-6 w-[18rem] md:w-[20rem] rounded-xl shadow-lg transition duration-500 h-[30rem]" >
+     <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 ">
       <div className="card__header">
         <div className="card__picture">
           <div className="card__picture-overlay">&nbsp;</div>
@@ -31,7 +31,7 @@ function BlogComp({ date, title, imageSrc ,id ,category, updatedDate}) {
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem]">
           {title}
         </h1>
-       
+
         <div className="card__data flex mb-[1rem]">
         <h1 className=" text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
         <p><MdOutlineAccessTimeFilled className="card__icon" /></p>

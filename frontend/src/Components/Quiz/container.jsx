@@ -14,21 +14,28 @@ export function BlogComps({
   return (
     <Link to={`/currentaffairs/${id}`}>
       <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 ">
-        <div className="card__header">
-          <div className="card__picture relative">
-            <div className="card__picture-overlay"></div>
-            <div className="relative">
-              <img className="rounded-xl" src={imageSrc} alt="Blog Cover" />
-              <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
-                {date}
-              </p>
-            </div>
+      <div className="card__header">
+        <div className="card__picture">
+          <div className="card__picture-overlay">&nbsp;</div>
+        <div className="relative">
+          <img
+            className="w-full rounded-xl"
+            
+            src={imageSrc}
+            alt="Blog Cover"
+          />
+          <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
+            {date}
+          </p>
           </div>
-          <h3 className="heading-tertiary">
-            <span>{category}</span>
-          </h3>
+          </div>
+          <h3 className="heading-tertirary">
+          <span>{category}</span>
+        </h3>
+       
         </div>
-        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
+        
+        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem]">
           {title}
         </h1>
 
