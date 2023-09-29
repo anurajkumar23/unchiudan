@@ -77,7 +77,7 @@ function ServicesOverview() {
                   </div>
                 </div>
               </Link>
-              <Link to="/downloads">
+              <Link to="/pdfs">
                 <div className="relative flex flex-col min-w-0 transition-all duration-200 hover:scale-95 w-fit shadow-md m-4 shadow-pure-greys-500">
                   <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
