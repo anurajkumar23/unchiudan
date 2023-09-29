@@ -29,11 +29,11 @@ console.log("🚀 ~ file: NewsComp.jsx:5 ~ NewsComp ~ newsItems:", newsItems)
 
         return (
           <Link to={`/News/${news._id}`} key={news._id}>
-            <div className="relative my-6 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white ">
-              <div className="w-full md:w-1/3 bg-white grid place-items-center object-cover w-full h-full overflow-hidden">
+            <div className="relative my-6 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white h-[50%]">
+              <div className="w-full md:w-1/3 bg-white grid place-items-center overflow-hidden">
               <img className="rounded-xl" src={`https://ucchi-urran-backend.vercel.app/img/news/${news.photo}`} alt={`logo`} />
               </div>
-              <div className="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
+              <div className="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3 overflow-hidden">
                 <div className="flex justify-between items-center">
                   <div className="bg-gray-200 px-3 py-1 rounded-full text-xs flex font-medium text-gray-800 space-x-3">
                     {formattedDate}
@@ -47,7 +47,7 @@ console.log("🚀 ~ file: NewsComp.jsx:5 ~ NewsComp ~ newsItems:", newsItems)
                 <h3 className="font-black text-gray-800 md:text-3xl text-xl">
                   {news.heading}
                 </h3>
-                <p className="md:text-lg text-gray-500 text-base">
+                <p className="md:text-lg text-gray-500 text-base ">
                   {news.article}
                 </p>
               </div>

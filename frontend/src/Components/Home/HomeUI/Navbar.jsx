@@ -106,10 +106,7 @@ export default function Navbar({ userData }) {
               </div>
               {open && (
                 <div className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800 cursor-pointer">
-                  <Link
-                    to="/user"
-                    onClick={() => setOpen(false)}
-                  >
+                  <Link to="/user" onClick={() => setOpen(false)}>
                     <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
                       <VscDashboard className="text-lg" />
                       Dashboard
@@ -139,72 +136,54 @@ export default function Navbar({ userData }) {
       </div>
       {isMenuOpen && (
         <div className="md:hidden">
+          <div className="flex items-center gap-x-1 justify-center">
+            {userData && (
+              <Link
+                to="/user"
+                className="w-[50px] h-[50px] flex items-center justify-center text-xl text-white bg-blue-500 rounded-full"
+              >
+                {userData && userData.user
+                  ? `${userData.user.firstname.charAt(
+                      0
+                    )} ${userData.user.lastname.charAt(0)}`
+                  : ""}
+              </Link>
+            )}
+          </div>
+
           <Link to="/" className="block py-2">
             Home
           </Link>
           <Link to="/pdfs" className="block py-2">
             Pdfs
           </Link>
-          <Link to="/News" className="block">
+          <Link to="/News" className="block py-2 ">
             News
           </Link>
-          <Link to="/Currentaffairs" className="block py-2 focus:outline-none">
+          <Link to="/Currentaffairs" className="block py-2 focus:outline-none ">
             Current Affairs
           </Link>
-          {userData ? (
-            <div className="relative" onClick={() => setOpen(!open)}>
-              <div className="flex items-center gap-x-1">
-                {user && user.image ? (
-                  <img
-                    src={user.image}
-                    alt={`profile-${user.firstName}`}
-                    className="aspect-square w-[30px] rounded-full object-cover"
-                  />
-                ) : (
-                  <span className="w-[30px] h-[30px] flex items-center justify-center text-sm text-white bg-blue-500 rounded-full">
-                    {userData && userData.user
-                      ? `${userData.user.firstname.charAt(
-                          0
-                        )} ${userData.user.lastname.charAt(0)}`
-                      : ""}
-                  </span>
-                )}
-                {open ? (
-                  <AiOutlineCaretUp className="text-sm text-richblack-100" />
-                ) : (
-                  <AiOutlineCaretDown className="text-sm text-richblack-100" />
-                )}
+          <Link to="/login">
+            {!userData && (
+              <div className="py-2">
+                <span className="w-full rounded-full py-2 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
+                  Login
+                </span>
               </div>
-              {open && (
-                <div className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800">
-                  <Link
-                    to="/user"
-                    onClick={() => setOpen(false)}
-                  >
-                    <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover.bg-richblack-700 hover.text-richblack-25">
-                      <VscDashboard className="text-lg" />
-                      Dashboard
-                    </div>
-                  </Link>
-                  <div
-                    onClick={() => {
-                      handleLogout();
-                      setOpen(false);
-                    }}
-                    className=" cursor-pointer flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover.bg-richblack-700 hover.text-richblack-25"
-                  >
-                    <VscSignOut className="text-lg" />
-                    Logout
-                  </div>
-                </div>
-              )}
+            )}
+          </Link>
+
+          {userData && (
+            <div
+              onClick={() => {
+                handleLogout();
+                setOpen(false);
+              }}
+              className=" cursor-pointer flex w-full items-center gap-x-1 py-[2px]    hover.bg-richblack-700 hover.text-richblack-25"
+            >
+              <VscSignOut className="text-lg" />
+              Logout
             </div>
-          ) : (
-            <Link to="/login">
-              <span className="w-full rounded-full py-1 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
-                Login
-              </span>
-            </Link>
           )}
         </div>
       )}

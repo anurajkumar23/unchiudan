@@ -105,30 +105,7 @@ function NewsPage() {
         </span>
       </div>
 
-      <div className="w-full  flex justify-between mt-8">
-        <Link to="/">
-          <div className="flex flex-col mx-1 justify-center space-y-2 rounded-lg md:mx-10 border-2 p-2">
-            <span className="flex space-x-3 justify-center">
-              <span>
-                <FaArrowAltCircleLeft className="w-7 h-7" />
-              </span>
-              <span className="text-lg">Previous News</span>
-            </span>
-            <span>News 4</span>
-          </div>
-        </Link>
-        <Link to="/">
-          <div className="flex flex-col  justify-center mx-1 rounded-lg space-y-2  md:mx-10 border-2 p-2">
-            <span className="flex space-x-3 justify-center">
-              <span className="text-lg">Next News</span>
-              <span>
-                <FaArrowAltCircleRight className="w-7 h-7" />
-              </span>
-            </span>
-            <span>News 6</span>
-          </div>
-        </Link>
-      </div>
+     
     </Link>
 
     </>
