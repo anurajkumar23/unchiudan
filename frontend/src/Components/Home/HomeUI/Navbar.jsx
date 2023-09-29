@@ -46,6 +46,7 @@ export default function Navbar({ userData }) {
       console.error("Error logging out:", error);
     }
   };
+ 
 
   return (
     <nav className="backdrop-blur text-black p-2 fixed z-50 w-full">
@@ -151,19 +152,19 @@ export default function Navbar({ userData }) {
             )}
           </div>
 
-          <Link to="/" className="block py-2">
+          <Link onClick={toggleMenu} to="/" className="block py-2">
             Home
           </Link>
-          <Link to="/pdfs" className="block py-2">
+          <Link to="/pdfs" onClick={toggleMenu} className="block py-2">
             Pdfs
           </Link>
-          <Link to="/News" className="block py-2 ">
+          <Link to="/News" onClick={toggleMenu} className="block py-2 ">
             News
           </Link>
-          <Link to="/Currentaffairs" className="block py-2 focus:outline-none ">
+          <Link to="/Currentaffairs" onClick={toggleMenu} className="block py-2 focus:outline-none ">
             Current Affairs
           </Link>
-          <Link to="/login">
+          <Link to="/login" onClick={toggleMenu}>
             {!userData && (
               <div className="py-2">
                 <span className="w-full rounded-full py-2 px-5  bg-blue-300 md:w-max hover:bg-blue-500 text-white text-center font-semibold shadow-md">
@@ -181,7 +182,7 @@ export default function Navbar({ userData }) {
               }}
               className=" cursor-pointer flex w-full items-center gap-x-1 py-[2px]    hover.bg-richblack-700 hover.text-richblack-25"
             >
-              <VscSignOut className="text-lg" />
+              <VscSignOut className="text-lg" onClick={toggleMenu}/>
               Logout
             </div>
           )}
