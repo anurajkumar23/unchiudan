@@ -4,18 +4,21 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-
-const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus,togglefilter}) => {
+const Sidebar_pdf = ({
+  setSelectedCategory,
+  setSelectedStatus,
+  togglefilter,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [status] = useState(null);
 
   const handleSearch = () => {
     setSelectedCategory(searchTerm);
     setSelectedStatus(status);
-    togglefilter();
+    if (window.innerWidth <= 680) {
+      togglefilter();
+    }
   };
-  
-
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -35,7 +38,9 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus,togglefilter}) => {
 
   useEffect(() => {
     axios
-      .get("https://ucchi-urran-backend.vercel.app/api/currentaffairs/lastestAffairs")
+      .get(
+        "https://ucchi-urran-backend.vercel.app/api/currentaffairs/lastestAffairs"
+      )
       .then((response) => {
         setAffairs(response.data.data.affairs);
       })
@@ -46,7 +51,6 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus,togglefilter}) => {
 
   return (
     <div className="p-4 space-y-10 xl:w-[100%]">
-              
       <div className="flex items-center mx-2">
         <input
           type="text"
@@ -60,7 +64,7 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus,togglefilter}) => {
           onClick={handleSearch}
           className="absolute right-10 bg-indigo-500 text-white p-3 rounded-md flex items-center md:right-4 hover:bg-indigo-600 focus:outline-none"
         >
-          <FaSearch className="mx-2" z-1/>
+          <FaSearch className="mx-2" z-1 />
         </button>
       </div>
 
@@ -72,8 +76,10 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus,togglefilter}) => {
               <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
               <button
                 onClick={() => {
-                setSelectedCategory(item.category)
-                togglefilter();
+                  setSelectedCategory(item.category);
+                  if (window.innerWidth <= 680) {
+                    togglefilter();
+                  }
                 }}
                 className="text-purple-300 hover:text-purple-500"
               >
@@ -84,13 +90,14 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus,togglefilter}) => {
           <li className="flex space-x-2">
             <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
             <button
-             onClick={() => {
+              onClick={() => {
                 setSelectedCategory(null);
                 setSelectedStatus(null);
-                togglefilter();
+                if (window.innerWidth <= 680) {
+                  togglefilter();
+                }
               }}
               className="text-purple-300 hover:text-purple-500"
-              
             >
               All Category
             </button>
@@ -105,8 +112,10 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus,togglefilter}) => {
             <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
             <button
               onClick={() => {
-              setSelectedStatus('free')
-              togglefilter(); 
+                setSelectedStatus("free");
+                if (window.innerWidth <= 680) {
+                  togglefilter();
+                }
               }}
               className="text-purple-300 hover:text-purple-500"
             >
@@ -116,9 +125,11 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus,togglefilter}) => {
           <li className="flex space-x-2">
             <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
             <button
-              onClick={() => { 
-              setSelectedStatus('paid')
-              togglefilter();
+              onClick={() => {
+                setSelectedStatus("paid");
+                if (window.innerWidth <= 680) {
+                  togglefilter();
+                }
               }}
               className="text-purple-300 hover:text-purple-500"
             >
@@ -129,11 +140,12 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus,togglefilter}) => {
             <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
             <button
               onClick={() => {
-              setSelectedStatus(null)
-              togglefilter();
+                setSelectedStatus(null);
+                if (window.innerWidth <= 680) {
+                  togglefilter();
+                }
               }}
               className="text-purple-300 hover:text-purple-500"
-            
             >
               All Category
             </button>

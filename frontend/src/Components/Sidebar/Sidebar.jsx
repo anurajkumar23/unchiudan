@@ -11,10 +11,10 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus, togglefilter }) => {
   const handleSearch = () => {
     setSelectedCategory(searchTerm);
     setSelectedStatus(status);
-    togglefilter();
+    if (window.innerWidth <= 680) {
+      togglefilter();
+    }
   };
-  
-
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -56,11 +56,13 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus, togglefilter }) => {
         />
         <button
           onClick={() => {
-                togglefilter();
-                }}
+            if (window.innerWidth <= 680) {
+              togglefilter();
+            }
+          }}
           className="absolute right-10 bg-indigo-500 text-white p-3 rounded-md flex items-center md:right-4 hover:bg-indigo-600 focus:outline-none"
         >
-          <FaSearch className="mx-2" z-1/>
+          <FaSearch className="mx-2" />
         </button>
       </div>
 
@@ -72,8 +74,10 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus, togglefilter }) => {
               <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
               <button
                 onClick={() => {
-                setSelectedCategory(item.category)
-                togglefilter();
+                  setSelectedCategory(item.category);
+                  if (window.innerWidth <= 680) {
+                    togglefilter();
+                  }
                 }}
                 className="text-purple-300 hover:text-purple-500"
               >
@@ -85,8 +89,10 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus, togglefilter }) => {
             <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
             <button
               onClick={() => {
-              setSelectedCategory(null)
-              togglefilter();
+                setSelectedCategory(null);
+                if (window.innerWidth <= 680) {
+                  togglefilter();
+                }
               }}
               className="text-purple-300 hover:text-purple-500"
             >
