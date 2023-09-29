@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus }) => {
+const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus,togglefilter}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [status] = useState(null);
 
   const handleSearch = () => {
     setSelectedCategory(searchTerm);
     setSelectedStatus(status);
+    togglefilter();
   };
   
 
@@ -70,7 +71,10 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus }) => {
             <li className="flex space-x-2" key={item._id}>
               <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
               <button
-                onClick={() => setSelectedCategory(item.category)}
+                onClick={() => {
+                setSelectedCategory(item.category)
+                togglefilter();
+                }}
                 className="text-purple-300 hover:text-purple-500"
               >
                 {item.name}
@@ -80,8 +84,13 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus }) => {
           <li className="flex space-x-2">
             <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
             <button
-              onClick={() => setSelectedCategory(null)}
+             onClick={() => {
+                setSelectedCategory(null);
+                setSelectedStatus(null);
+                togglefilter();
+              }}
               className="text-purple-300 hover:text-purple-500"
+              
             >
               All Category
             </button>
@@ -95,7 +104,10 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus }) => {
           <li className="flex space-x-2">
             <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
             <button
-              onClick={() => setSelectedStatus('free')}
+              onClick={() => {
+              setSelectedStatus('free')
+              togglefilter(); 
+              }}
               className="text-purple-300 hover:text-purple-500"
             >
               Free
@@ -104,7 +116,10 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus }) => {
           <li className="flex space-x-2">
             <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
             <button
-              onClick={() => setSelectedStatus('paid')}
+              onClick={() => { 
+              setSelectedStatus('paid')
+              togglefilter();
+              }}
               className="text-purple-300 hover:text-purple-500"
             >
               Paid
@@ -113,8 +128,12 @@ const Sidebar_pdf = ({ setSelectedCategory,setSelectedStatus }) => {
           <li className="flex space-x-2">
             <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
             <button
-              onClick={() => setSelectedStatus(null)}
+              onClick={() => {
+              setSelectedStatus(null)
+              togglefilter();
+              }}
               className="text-purple-300 hover:text-purple-500"
+            
             >
               All Category
             </button>

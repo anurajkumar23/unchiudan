@@ -82,7 +82,9 @@ function Currentaffairs() {
             filter ? "block" : "hidden"
           } lg:flex sm:block`}
         >
-          <Sidebar setSelectedCategory={setSelectedCategory} />
+          <Sidebar setSelectedCategory={setSelectedCategory} 
+          togglefilter={togglefilter}
+           />
         </div>
       </div>
     </div>

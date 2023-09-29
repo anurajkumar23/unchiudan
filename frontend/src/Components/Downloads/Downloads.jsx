@@ -14,7 +14,8 @@ function BlogComps({
   id,
   status,
   category,
-}) {
+})
+ {
   return (
     <Link to={`/pdfs/${id}`}>
       <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 ">
@@ -66,6 +67,7 @@ function Downloads() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [filter, setFilter] = useState(false);
+  
 
   const togglefilter = () => {
     setFilter(!filter);
@@ -145,6 +147,7 @@ function Downloads() {
           <Sidebar_pdf
             setSelectedCategory={setSelectedCategory}
             setSelectedStatus={setSelectedStatus}
+            togglefilter ={togglefilter}
           />
         </div>
       </div>

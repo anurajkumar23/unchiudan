@@ -4,14 +4,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = ({ setSelectedCategory, setSelectedStatus }) => {
+const Sidebar = ({ setSelectedCategory, setSelectedStatus, togglefilter }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [status] = useState(null);
 
   const handleSearch = () => {
     setSelectedCategory(searchTerm);
     setSelectedStatus(status);
+    togglefilter();
   };
+  
+
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -52,10 +55,12 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus }) => {
           className="px-2 py-2 w-full rounded-md border border-gray-500 focus:outline-none focus:border-indigo-500"
         />
         <button
-          onClick={handleSearch}
+          onClick={() => {
+                togglefilter();
+                }}
           className="absolute right-10 bg-indigo-500 text-white p-3 rounded-md flex items-center md:right-4 hover:bg-indigo-600 focus:outline-none"
         >
-          <FaSearch className="mx-2" />
+          <FaSearch className="mx-2" z-1/>
         </button>
       </div>
 
@@ -66,7 +71,10 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus }) => {
             <li className="flex space-x-2" key={item._id}>
               <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
               <button
-                onClick={() => setSelectedCategory(item.category)}
+                onClick={() => {
+                setSelectedCategory(item.category)
+                togglefilter();
+                }}
                 className="text-purple-300 hover:text-purple-500"
               >
                 {item.name}
@@ -76,7 +84,10 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus }) => {
           <li className="flex space-x-2">
             <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
             <button
-              onClick={() => setSelectedCategory(null)}
+              onClick={() => {
+              setSelectedCategory(null)
+              togglefilter();
+              }}
               className="text-purple-300 hover:text-purple-500"
             >
               All Category
