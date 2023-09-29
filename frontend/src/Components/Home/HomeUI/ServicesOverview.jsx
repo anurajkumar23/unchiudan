@@ -1,12 +1,13 @@
 import {
   FaFileAlt,
-  FaUserGraduate,
-  FaLanguage,
+
   FaUserTie,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import HighlightText from "../core/Homepage/HighlightText";
 import CodeBlocks from "../core/Homepage/CodeBlocks";
+import { AiFillRead } from "react-icons/ai";
+import { BiSolidNews } from "react-icons/bi";
 
 function ServicesOverview() {
   return (
@@ -48,7 +49,7 @@ function ServicesOverview() {
                 <div className="relative flex flex-col min-w-0 transition-all duration-200 hover:scale-95 w-fit shadow-md m-4 shadow-pure-greys-500">
                   <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
-                      <FaUserGraduate className=" w-10 h-10" />
+                      <BiSolidNews className=" w-10 h-10" />
                     </div>
                     <h6 className="text-xl mb-1 font-semibold text-white">
                       News / Blog
@@ -66,7 +67,7 @@ function ServicesOverview() {
                 <div className="relative flex flex-col min-w-0  m-4   transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
                   <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
-                      <FaLanguage className=" w-10 h-10" />
+                      <AiFillRead className=" w-10 h-10" />
                     </div>
                     <h6 className="text-xl mb-1 font-semibold text-white">
                       कर्रेंट अफेयर्स
