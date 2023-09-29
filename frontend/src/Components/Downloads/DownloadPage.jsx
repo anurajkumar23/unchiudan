@@ -81,8 +81,8 @@ function DownloadPage({ userData }) {
             />
           </div>
 
-          <div className="w-18 md:mx-12 p-4 border border-2 mx-4 rounded-lg mt-16">
-            <div className="flex justify-between space-x-3 h-[80px]">
+          <div className="w-18 md:mx-12 p-4 border-2 mx-4 rounded-lg mt-16 ">
+            <div className="flex justify-between space-x-3 h-[150px] md:h-[80px]">
               <FaFileAlt className="w-12 h-12" />
               <div className="text-center text-lg leading-[47px]">
                 {pdfDetails.name}
