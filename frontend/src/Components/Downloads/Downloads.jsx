@@ -67,8 +67,7 @@ function Downloads() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [filter, setFilter] = useState(false);
-  
-
+  const isSmallScreen = window.innerWidth <= 680; 
   const togglefilter = () => {
     setFilter(!filter);
   };
@@ -97,16 +96,18 @@ function Downloads() {
   return (
     <div className="mx-auto py-[7rem]">
       <div className="p-2">
-        <button
-          onClick={togglefilter}
-          className="text-black hover:text-gray-300 focus:outline-none md:hidden "
-        >
-          {filter ? (
-            <RiCloseFill className="text-2xl" />
-          ) : (
-            <RiMenu3Fill className="text-2xl" />
-          )}
-        </button>
+        {isSmallScreen && (
+          <button
+            onClick={togglefilter}
+            className="text-black hover:text-gray-300 focus:outline-none md:hidden "
+          >
+            {filter ? (
+              <RiCloseFill className="text-2xl" />
+            ) : (
+              <RiMenu3Fill className="text-2xl" />
+            )}
+          </button>
+        )}
       </div>
       <div className="flex">
         <div
