@@ -5,11 +5,11 @@ import DownloadPage from "./Components/Downloads/DownloadPage";
 import BlogsPage from "./Components/Blogs/BlogsPage";
 import GlobalProvider from "./Components/GlobalProvider";
 import Downloads from "./Components/Downloads/Downloads";
-import Blogs from "./Components/Blogs/Blogs";
-import Quizcontainer from "./Components/Quiz/Quizcontainer";
+
+
 import News from "./Components/News/News";
 import Currentaffaircontainer from "./Components/currentaffair/Currentaffaircontainer";
-import Quiz from "./Components/Quiz/Quiz";
+
 import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
 import UserSettings from "./Components/Home/core/Auth/UserSettings"; // Assuming you have a UserSettings component
@@ -64,14 +64,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/user/signup" element={<Signup />} />
           <Route path="/" element={<Home />} />
-          <Route path="/pdfs/:id" element={<DownloadPage userData={user}/>} />
-          <Route path="/currentaffairs/:id" element={<BlogsPage />} />
-          <Route path="/quiz" element={<Quiz />} />
           <Route path="/pdfs" element={<Downloads />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/Quizz" element={<Quizcontainer />} />
-          <Route path="/News" element={<News />} />
+          <Route path="/pdfs/:id" element={<DownloadPage userData={user}/>} />
           <Route path="/Currentaffairs" element={<Currentaffaircontainer />} />
+          <Route path="/currentaffairs/:id" element={<BlogsPage />} />
+          <Route path="/News" element={<News />} />
           <Route path="/News/:id" element={<NewsPage />} />
 
           {user ? (

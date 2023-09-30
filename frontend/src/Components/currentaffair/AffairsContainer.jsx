@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import "./container.css";
+import "./AffairsContainer.css";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 
 export function BlogComps({

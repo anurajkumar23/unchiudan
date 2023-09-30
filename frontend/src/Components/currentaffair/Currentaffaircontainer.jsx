@@ -1,4 +1,4 @@
-import { BlogComps } from "../Quiz/container";
+import { BlogComps } from "./AffairsContainer";
 
 import Sidebar from "../Sidebar/Sidebar";
 import axios from "axios";

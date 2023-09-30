@@ -25,7 +25,7 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus, togglefilter }) => {
   const categories = [
     { name: "UPSC", category: "UPSC" },
     { name: "BPSC", category: "BPSC" },
-    { name: "SSC-Bass", category: "SSC-Bass" },
+    { name: "SSC", category: "SSC" },
     { name: "BiharDaroga", category: "BiharDaroga" },
     { name: "Railway", category: "Railway" },
   ];
