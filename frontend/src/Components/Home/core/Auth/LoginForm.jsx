@@ -62,17 +62,15 @@ function LoginForm() {
     initialValues,
     validationSchema: LogInSchema,
     onSubmit: async (values, action) => {
-      try {
+    
         await login({
           email: values.email,
           password: values.password,
         });
         toast.success("Login successful!");
         navigate("/user"); 
-      } catch (error) {
-        // The error is already handled in the login function
-        // No need to handle it here again
-      }
+        action.resetForm();
+      
     },
   });
 

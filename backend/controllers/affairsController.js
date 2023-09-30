@@ -164,3 +164,19 @@ if (!exists) {
 
   res.sendFile(filePath);
 });
+
+exports.newest = catchAsync(async (req, res, next) => {
+  try {
+    const newestAffair = await CurrentAffairs.findOne()
+      .sort({ date: -1 }); // Sort by date in descending order (newest first)
+
+    if (!newestAffair) {
+      return next(new AppError('No affairs found', 404));
+    }
+
+    const newestAffairId = newestAffair._id;
+    res.json({ id: newestAffairId });
+  } catch (err) {
+    next(err);
+  }
+});

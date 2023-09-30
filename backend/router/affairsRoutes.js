@@ -19,6 +19,7 @@ router
 router.get('/images/:imageName',affairsController.showimage)
 
 router.get('/lastestAffairs', affairsController.lastestAffairs);
+router.get('/dailyquiz',affairsController.newest)
 
 router
   .route('/:id')

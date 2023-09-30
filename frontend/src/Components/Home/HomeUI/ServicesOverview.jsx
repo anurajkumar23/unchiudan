@@ -8,8 +8,29 @@ import HighlightText from "../core/Homepage/HighlightText";
 import CodeBlocks from "../core/Homepage/CodeBlocks";
 import { AiFillRead } from "react-icons/ai";
 import { BiSolidNews } from "react-icons/bi";
+import Axios from 'axios';
+
 
 function ServicesOverview() {
+  const handleClick = async () => {
+    try {
+      const response = await Axios.get('http://your-backend-server-url/api/currentaffairs/dailyquiz');
+  
+      if (response.status === 200) {
+        const data = response.data;
+        const id = data.id;
+        window.location.href = `http://your-backend-server-url/api/currentaffairs/${id}`;
+        // Process the data here
+        console.log(data);
+
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    } catch (error) {
+      // Handle errors here
+      console.error('Error:', error);
+    }
+  };
   return (
     <div className="relative mx-auto  bg-richblack-800 font-bold py-4 px-[3%] ">
       <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-6 font-semibold text-white">
@@ -29,7 +50,7 @@ function ServicesOverview() {
         <div className="w-full md:w-6/12 px-4">
           <div className="flex flex-wrap">
             <div className="w-full md:w-6/12 px-4">
-              <Link to="/quiz">
+              <button  onClick={handleClick}>
                 <div className="relative flex flex-col min-w-0  m-4   transition-all duration-200 hover:scale-95 w-fit shadow-md  shadow-pure-greys-500">
                   <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
@@ -44,7 +65,7 @@ function ServicesOverview() {
                     </p>
                   </div>
                 </div>
-              </Link>
+              </button>
               <Link to="/News">
                 <div className="relative flex flex-col min-w-0 transition-all duration-200 hover:scale-95 w-fit shadow-md m-4 shadow-pure-greys-500">
                   <div className="px-4 py-5 flex-auto relative w-fit h-fit shadow-blue-700 shadow-[0px_0px_30px_0px]">

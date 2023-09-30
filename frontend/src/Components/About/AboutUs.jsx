@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const AboutUs = () => {
