@@ -258,3 +258,68 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   await user.save();
   createSendToken(user, 200, req, res);
 });
+
+
+
+
+exports.authenticateCors = async (req, res, next) => {
+  
+  // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", req.headers.authorization)
+  console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", req.headers.authorization)
+  
+  // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", res)
+  try {
+    // Check if token exists
+    const token = req.headers.authorization
+    // const token = req.headers.authorization;
+    // const authtoken = token.split(" ")
+    
+   
+    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token)
+    if (!token) {
+      return res.status(401).json({
+        isAuthorized: false,
+      });
+    }
+
+
+    // console.log('Received Token:', token);
+
+    // Verify token
+    const decoded = await promisify(jwt.verify)(
+      token,
+      process.env.JWT_SECRET, // This should match the secret used when signing the cookie
+    );
+    // console.log(
+    //   '🚀 ~ file: authController.js:134 ~ exports.isLoggedIn= ~ decoded:',
+    //   decoded,
+    // );
+
+    // Check if user exists
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
+      return res.status(401).json({ message: 'User not found' });
+    }
+    console.log(
+      '🚀 ~ file: authController.js:138 ~ exports.isLoggedIn= ~ currentUser:',
+      currentUser,
+    );
+
+    // Check if password was changed
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      return res.status(401).json({ message: 'Password changed' });
+    }
+
+    // Set user object in req.locals for future middleware
+    // req.locals.user = currentUser;
+
+    // User is authenticated, continue with the request
+    req.user = currentUser;
+    res.locals.user = currentUser;
+  
+    next();
+  } catch (error) {
+    console.error('Error:', error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
