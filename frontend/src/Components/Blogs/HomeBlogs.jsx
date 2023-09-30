@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import BlogComp from "./BlogComp";
+import BlogComp from "./container";
 import axios from "axios";
 import { Link } from "react-router-dom";
 

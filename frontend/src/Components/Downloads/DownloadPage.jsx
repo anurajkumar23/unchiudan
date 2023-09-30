@@ -1,15 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import {
-  FaDownload,
-  FaFileAlt,
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaDownload, FaFileAlt } from "react-icons/fa";
+import { SocialMedia } from "../../consstant/socialmedia";
 
 function DownloadPage({ userData }) {
   const { id } = useParams();
@@ -55,14 +49,13 @@ function DownloadPage({ userData }) {
     const anchor = document.createElement("a");
     anchor.href = downloadLink;
     anchor.download = "Unchi_Uddan.pdf"; // Set a default filename for the downloaded file
-  
+
     // Trigger a click event on the anchor element
     document.body.appendChild(anchor);
     anchor.click();
-  
+
     // Remove the anchor element from the DOM
     document.body.removeChild(anchor);
-  
   };
 
   return (
@@ -100,56 +93,7 @@ function DownloadPage({ userData }) {
             </a>
           </div>
 
-          <div className="flex justify-between mt-6">
-            <span className="text-center text-md">Share with Friends :</span>
-            <div className="flex text-gray-400 justify-center space-x-4">
-              <a
-                className=" "
-                href=""
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Facebook"
-              >
-                <FaFacebook className="text-blue-500 w-7 h-7" />
-              </a>
-              <a
-                className=" "
-                href=""
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Twitter"
-              >
-                <FaTwitter className="text-blue-400 w-7 h-7" />
-              </a>
-              <a
-                className=" "
-                href=""
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
-              >
-                <FaInstagram className="text-pink-500 w-7 h-7" />
-              </a>
-              <a
-                className=" "
-                href=""
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Linkedin"
-              >
-                <FaLinkedin className="text-blue-600 w-7 h-7" />
-              </a>
-              <a
-                className=" "
-                href=""
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Whatsapp"
-              >
-                <FaWhatsapp className="text-green-500 w-7 h-7" />
-              </a>
-            </div>
-          </div>
+          <SocialMedia />
 
           <h1 className="mt-10 text-[1.3rem] font-[550] text-center">
             Monthly Current Affairs of Jun 2020 PDF Download Set no- 205
@@ -165,56 +109,7 @@ function DownloadPage({ userData }) {
             Being Issued by Unchi Udaan. You can also Download the Previous
             Month PDF for Free Monthly PDF. You can also download other PDFs.
           </p>
-          <div className="flex justify-between mt-10">
-            <span className="text-center text-md">Share with Friends :</span>
-            <div className="flex text-gray-400 justify-center space-x-4">
-              <a
-                className=" "
-                href=""
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Facebook"
-              >
-                <FaFacebook className="text-blue-500 w-7 h-7" />
-              </a>
-              <a
-                className=" "
-                href=""
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Twitter"
-              >
-                <FaTwitter className="text-blue-400 w-7 h-7" />
-              </a>
-              <a
-                className=" "
-                href=""
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
-              >
-                <FaInstagram className="text-pink-500 w-7 h-7" />
-              </a>
-              <a
-                className=" "
-                href=""
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Linkedin"
-              >
-                <FaLinkedin className="text-blue-600 w-7 h-7" />
-              </a>
-              <a
-                className=" "
-                href=""
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Whatsapp"
-              >
-                <FaWhatsapp className="text-green-500 w-7 h-7" />
-              </a>
-            </div>
-          </div>
+          <SocialMedia />
         </div>
       </div>
     </div>
