@@ -6,6 +6,7 @@ import { GoogleSvg } from "../../../../consstant/svgfile";
 import { LogInSchema } from "./formvalidator";
 import { FaArrowRight } from "react-icons/fa";
 import axios from "axios"; // Import Axios
+import { Toaster, toast } from "react-hot-toast";
 
 const initialValues = { email: "", password: "" };
 
@@ -14,30 +15,34 @@ const login = async (userData) => {
     const response = await axios.post(
       "https://ucchi-urran-backend.vercel.app/api/user/login",
       userData,
-      { withCredentials: true } ,
-      
+      { withCredentials: true },
     );
+
+    // Get the token from the response header
+    const token = response.data.token;
+    document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`; // This sets a cookie named 'jwt' that expires in 7 days
+    console.log(
+      "🚀 ~ file: LoginForm.jsx:23 ~ login ~ response.headers:",
+      response.data.token
+    );
+
+    // Set the token in local storage
+    localStorage.setItem("jwt_token", token);
+    const redirectUrl = localStorage.getItem("redirectUrl");
     
-   // Get the token from the response header
-   const token = response.data.token;
-   document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`; // This sets a cookie named 'jwt' that expires in 7 days
-   console.log("🚀 ~ file: LoginForm.jsx:23 ~ login ~ response.headers:", response.data.token)
+    if (redirectUrl) {
+      // Redirect to the originally requested URL
+      window.location.href = redirectUrl;
+    } else {
+      // If there's no redirect URL, go to a default page
 
-   
+      window.location.href = "/user";
+    }
 
-   // Set the token in local storage
-   localStorage.setItem('jwt_token', token);
-   const redirectUrl = localStorage.getItem('redirectUrl');
-   if (redirectUrl) {
-    // Redirect to the originally requested URL
-    window.location.href = redirectUrl;
-  } else {
-    // If there's no redirect URL, go to a default page
-    window.location.href = '/user';
-  }
     return response.data;
   } catch (error) {
     console.error("Error logging in:", error);
+    toast.error("Login failed. Please check your credentials.");
     throw error;
   }
 };
@@ -57,6 +62,7 @@ function LoginForm() {
     initialValues,
     validationSchema: LogInSchema,
     onSubmit: async (values, action) => {
+<<<<<<< HEAD
       login({
         email: values.email,
         password: values.password,
@@ -64,6 +70,19 @@ function LoginForm() {
         navigate("/user"); // Redirect to /user on successful signup
       });
       action.resetForm();
+=======
+      try {
+        await login({
+          email: values.email,
+          password: values.password,
+        });
+        toast.success("Login successful!");
+        navigate("/user"); 
+      } catch (error) {
+        // The error is already handled in the login function
+        // No need to handle it here again
+      }
+>>>>>>> 94eac3d894ee5f9b854ce94140a0dc44b1258e9d
     },
   });
 
@@ -159,6 +178,7 @@ function LoginForm() {
       </button> */}
         </Link>
       </form>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }
