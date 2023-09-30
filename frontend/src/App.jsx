@@ -18,7 +18,7 @@ import NewsPage from "./Components/News/NewsPage";
 import AboutUs from "./Components/About/AboutUs";
 import TermsAndConditions from "./Components/About/TermsAndConditions";
 import Disclaimer from "./Components/About/Disclaimer";
-import PrivacyPolicy from "./Components/About/PrivacyPolicy";
+// import PrivacyPolicy from "./Components/About/PrivacyPolicy";
 import FAQ from "./Components/Support/FAQ";
 
 function App() {
@@ -78,7 +78,7 @@ function App() {
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/tearm&conditions" element={<TermsAndConditions />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
-          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          {/* <Route path="/privacypolicy" element={<PrivacyPolicy />} /> */}
           <Route path="/faqs" element={<FAQ />} />
 
           {user ? (

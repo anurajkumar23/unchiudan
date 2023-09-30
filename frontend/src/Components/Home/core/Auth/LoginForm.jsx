@@ -62,27 +62,15 @@ function LoginForm() {
     initialValues,
     validationSchema: LogInSchema,
     onSubmit: async (values, action) => {
-<<<<<<< HEAD
-      login({
-        email: values.email,
-        password: values.password,
-      }).then(() => {
-        navigate("/user"); // Redirect to /user on successful signup
-      });
-      action.resetForm();
-=======
-      try {
+    
         await login({
           email: values.email,
           password: values.password,
         });
         toast.success("Login successful!");
         navigate("/user"); 
-      } catch (error) {
-        // The error is already handled in the login function
-        // No need to handle it here again
-      }
->>>>>>> 94eac3d894ee5f9b854ce94140a0dc44b1258e9d
+        action.resetForm();
+      
     },
   });
 
