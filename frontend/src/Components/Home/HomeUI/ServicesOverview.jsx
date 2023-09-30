@@ -19,7 +19,7 @@ function ServicesOverview() {
       if (response.status === 200) {
         const data = response.data;
         const id = data.id;
-        window.location.href = `https://ucchi-urran-backend.vercel.app/currentaffairs/${id}`;
+        window.location.href = `https://unchiudaanteam.vercel.app/currentaffairs/${id}`;
         // Process the data here
         console.log(data);
 
