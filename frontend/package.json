@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "@material-tailwind/react": "^2.1.0",
     "axios": "^1.4.0",
     "formik": "^2.4.5",

@@ -15,6 +15,11 @@ import Signup from "./Components/Pages/Signup";
 import UserSettings from "./Components/Home/core/Auth/UserSettings"; // Assuming you have a UserSettings component
 import Navbar from "./Components/Home/HomeUI/Navbar";
 import NewsPage from "./Components/News/NewsPage";
+import AboutUs from "./Components/About/AboutUs";
+import TermsAndConditions from "./Components/About/TermsAndConditions";
+import Disclaimer from "./Components/About/Disclaimer";
+import PrivacyPolicy from "./Components/About/PrivacyPolicy";
+import FAQ from "./Components/Support/FAQ";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -70,6 +75,11 @@ function App() {
           <Route path="/currentaffairs/:id" element={<BlogsPage />} />
           <Route path="/News" element={<News />} />
           <Route path="/News/:id" element={<NewsPage />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/tearm&conditions" element={<TermsAndConditions />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route path="/faqs" element={<FAQ />} />
 
           {user ? (
             <Route

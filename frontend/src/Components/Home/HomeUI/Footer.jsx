@@ -59,34 +59,34 @@ function Footer() {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/"
                 >
-                  UPSC
+                  Home
                 </a>
               </li>
 
               <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  href="/pdfs"
                 >
-                  BPSC
+                  Pdfs
                 </a>
               </li>
 
               <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  href="/News"
                 >
-                  SSC
+                  News/Blogs
                 </a>
               </li>
 
               <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  href="/Currentaffairs"
                 >
-                  Jee Advance
+                  Current Affairs
                 </a>
               </li>
             </ul>
@@ -99,7 +99,7 @@ function Footer() {
               <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  href="/AboutUs"
                 >
                   About
                 </a>
@@ -108,27 +108,27 @@ function Footer() {
               <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  href="/tearm&conditions"
                 >
-                  Our Teachers
+                 Terms & Conditions
                 </a>
               </li>
 
               <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  href="/disclaimer"
                 >
-                  meow
+                 Disclaimer
                 </a>
               </li>
 
               <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  href="/privacypolicy"
                 >
-                  Our Tech Team
+                 Privacy Policy
                 </a>
               </li>
             </ul>
@@ -141,7 +141,7 @@ function Footer() {
               <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  href="/faqs"
                 >
                   FAQs
                 </a>
@@ -150,20 +150,20 @@ function Footer() {
               <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
+                  href="/contantus"
                 >
                   Contact
                 </a>
               </li>
 
-              <li>
+              {/* <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/"
                 >
                   meow
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
