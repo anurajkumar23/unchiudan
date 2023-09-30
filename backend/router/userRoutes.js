@@ -17,10 +17,10 @@ router.patch('/resetPassword/:token', authController.resetPassword);
 
 router.patch(
   '/updateMyPassword',
-  authController.protect,
+  authController.authenticateCors,
   authController.updatePassword,
 );
-router.patch('/updateMe', authController.protect, userController.updateMe);
+router.patch('/updateMe', authController.authenticateCors, userController.updateMe);
 router.delete('/deleteMe', authController.protect, userController.deleteMe);
 
 router

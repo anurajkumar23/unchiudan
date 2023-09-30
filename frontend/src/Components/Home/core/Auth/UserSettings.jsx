@@ -40,8 +40,9 @@ function UserSettings({ userData }) {
       const response = await axios.patch("https://ucchi-urran-backend.vercel.app/api/user/updateMe", settingsData, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+          "Authorization": token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
         },
+        
       });
 
       if (response.status === 200) {
@@ -81,7 +82,7 @@ function UserSettings({ userData }) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+            "Authorization": token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
           },
         }
       );
