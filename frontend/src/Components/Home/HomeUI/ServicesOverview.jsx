@@ -14,12 +14,12 @@ import Axios from 'axios';
 function ServicesOverview() {
   const handleClick = async () => {
     try {
-      const response = await Axios.get('http://your-backend-server-url/api/currentaffairs/dailyquiz');
+      const response = await Axios.get('https://ucchi-urran-backend.vercel.app/api/currentaffairs/dailyquiz');
   
       if (response.status === 200) {
         const data = response.data;
         const id = data.id;
-        window.location.href = `http://your-backend-server-url/api/currentaffairs/${id}`;
+        window.location.href = `https://ucchi-urran-backend.vercel.app/api/currentaffairs/${id}`;
         // Process the data here
         console.log(data);
 
