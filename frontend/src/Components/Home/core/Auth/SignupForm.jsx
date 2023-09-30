@@ -4,7 +4,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { SignUpSchema } from "./formvalidator";
 import { GoogleSvg } from "../../../../consstant/svgfile";
 import { useFormik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import axios from "axios";
 
@@ -73,7 +73,7 @@ function SignupForm() {
         window.location.href = '/user'; // Redirect to /user on successful signup
       });
 
-      // action.resetForm();
+      action.resetForm();
     },
   });
 
