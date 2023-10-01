@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FiUser, FiMail, FiPhone, FiLock } from "react-icons/fi";
 import axios from "axios";
 import { toast , Toaster } from "react-hot-toast"; // Import toast
+import { Link } from "react-router-dom";
 
 function UserSettings({ userData }) {
   const [settingsData, setSettingsData] = useState({
@@ -104,9 +105,11 @@ function UserSettings({ userData }) {
             <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
               Settings
             </li>
+            <Link to="/studymaterials">
             <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
               Study Material
             </li>
+            </Link>
             <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
               Billing
             </li>

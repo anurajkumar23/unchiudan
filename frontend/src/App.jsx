@@ -5,7 +5,7 @@ import DownloadPage from "./Components/Downloads/DownloadPage";
 import BlogsPage from "./Components/Blogs/BlogsPage";
 import GlobalProvider from "./Components/GlobalProvider";
 import Downloads from "./Components/Downloads/Downloads";
-
+import { Navigate } from "react-router-dom";
 
 import News from "./Components/News/News";
 import Currentaffaircontainer from "./Components/currentaffair/Currentaffaircontainer";
@@ -20,24 +20,31 @@ import TermsAndConditions from "./Components/About/TermsAndConditions";
 import Disclaimer from "./Components/About/Disclaimer";
 // import PrivacyPolicy from "./Components/About/PrivacyPolicy";
 import FAQ from "./Components/Support/FAQ";
+import StudyMaterials from "./Components/Study Materials/StudyMaterials";
 
 function App() {
   const [user, setUser] = useState(null);
 
   // Function to check if user is authenticated
   const checkAuthenticated = async () => {
-    console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", "start auth" )
-    const token = localStorage.getItem('jwt_token');
-    console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", token)
+    console.log(
+      "🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:",
+      "start auth"
+    );
+    const token = localStorage.getItem("jwt_token");
+    console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", token);
     try {
-      const response = await fetch("https://ucchi-urran-backend.vercel.app/api/user/authenticated", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          // Add any authentication headers if needed
-          "Authorization": token, 
-        },
-      });
+      const response = await fetch(
+        "https://ucchi-urran-backend.vercel.app/api/user/authenticated",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // Add any authentication headers if needed
+            Authorization: token,
+          },
+        }
+      );
 
       if (response.ok) {
         const userData = await response.json();
@@ -60,17 +67,17 @@ function App() {
   }, []); // Fetch authentication status only when component mounts
 
   // const show = user.isAuthorized
-    
+
   return (
     <BrowserRouter>
-      <GlobalProvider >
-        <Navbar userData={user}/>
+      <GlobalProvider>
+        <Navbar userData={user} />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/user/signup" element={<Signup />} />
           <Route path="/" element={<Home />} />
           <Route path="/pdfs" element={<Downloads />} />
-          <Route path="/pdfs/:id" element={<DownloadPage userData={user}/>} />
+          <Route path="/pdfs/:id" element={<DownloadPage userData={user} />} />
           <Route path="/Currentaffairs" element={<Currentaffaircontainer />} />
           <Route path="/currentaffairs/:id" element={<BlogsPage />} />
           <Route path="/News" element={<News />} />
@@ -89,6 +96,16 @@ function App() {
           ) : (
             <Route path="/user/login" element={<Login />} />
           )}
+          <Route
+            path="/studymaterials"
+            element={
+              user ? (
+                <StudyMaterials userData={user.user} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
