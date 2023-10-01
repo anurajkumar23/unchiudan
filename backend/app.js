@@ -11,6 +11,7 @@ const newsRoutes = require('./router/newsRoutes');
 const pdfRoutes = require('./router/pdfRoutes');
 const adminRoutes = require('./router/adminRoutes');
 const userRoutes = require('./router/userRoutes');
+const paymentRoutes = require('./router/paymentRoutes');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const cookieParser = require('cookie-parser');
@@ -55,13 +56,18 @@ app.use(xss());
 // app.use('/api', limiter);
 
 // CORS Setup
+
 app.use(cors({ credentials: true, origin: true, withCredentials: true }));
 
 // Proxy Setup
-// app.use('/api', createProxyMiddleware({
-//   target: 'https://ucchi-urran-backend.vercel.app/api',
-//   changeOrigin: true,
-// }));
+app.use(
+  '/api',
+  createProxyMiddleware({
+    // target: 'https://ucchi-urran-backend.vercel.app/api',
+    target: 'http://localhost:3000/api',
+    changeOrigin: true,
+  }),
+);
 
 // Routes
 // app.use('/images', express.static(__dirname ,'/public/img/affairs'));
@@ -106,6 +112,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/pdfs', pdfRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/payment',paymentRoutes);
 
 // Error Handling
 app.all('*', (req, res, next) => {

@@ -8,6 +8,7 @@ import { SocialMedia } from "../../consstant/socialmedia";
 function DownloadPage({ userData }) {
   const { id } = useParams();
   const [pdfDetails, setPdfDetails] = useState(null);
+  const [userDetails , setUserDetails ] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +17,7 @@ function DownloadPage({ userData }) {
           `https://ucchi-urran-backend.vercel.app/api/pdfs/${id}`
         );
         setPdfDetails(response.data.data.pdf);
+        setUserDetails(response.data.data.currentUser);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -42,6 +44,7 @@ function DownloadPage({ userData }) {
       window.location.href = "/login"; // Redirect to login page
       return; // Stop further execution
     }
+    
 
     const downloadLink = `https://ucchi-urran-backend.vercel.app/api/pdfs/download-pdf/${id}`;
 
