@@ -9,6 +9,7 @@ const {
   CFOrderPayRequest,
 } = require('cashfree-pg-sdk-nodejs');
 const catchAsync = require('./../utils/catchAsync');
+const User = require('../models/userModal');
 
 const cfConfig = new CFConfig(
   CFEnvironment.SANDBOX,
@@ -87,4 +88,32 @@ const payWithUPI = catchAsync(async (req, res) => {
   }
 });
 
-module.exports = { createOrder, payWithUPI };
+const addPdfInUsers = catchAsync(
+  async (req, res) => {
+    console.log("working");
+    // const { pdfId , userId } = req.body;
+const { pdfId , userId } = req.params;
+
+try {
+  // Find the user by their ID or any other unique identifier
+  const user = await User.findById(userId);
+
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  // Append the pdfId to the user's pdfs array
+  user.pdfs.push(pdfId);
+
+  // Save the updated user document
+  await user.save();
+
+  // Redirect the user to the specified URL
+  return res.redirect('https://unchiudaanteam.vercel.app/studymaterials');
+} catch (error) {
+  console.error(error);
+  return res.status(500).json({ message: 'Internal server error' });
+}
+});
+
+module.exports = { createOrder, payWithUPI , addPdfInUsers};
