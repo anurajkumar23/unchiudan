@@ -206,7 +206,7 @@ function SignupForm() {
               Confirm Password <sup className="text-pink-200">*</sup>
             </p>
             <input
-              type="password"
+              type={showsetPassword ? "text" : "password"}
               id="confirmPassword"
               autoComplete="off"
               name="confirmpassword"

@@ -5,41 +5,31 @@ import { useFormik } from "formik";
 import { GoogleSvg } from "../../../../consstant/svgfile";
 import { LogInSchema } from "./formvalidator";
 import { FaArrowRight } from "react-icons/fa";
-import axios from "axios"; // Import Axios
+import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 
 const initialValues = { email: "", password: "" };
 
 const login = async (userData) => {
-  
   try {
     const response = await axios.post(
       "https://ucchi-urran-backend.vercel.app/api/user/login",
       userData,
-      { withCredentials: true },
+      { withCredentials: true }
     );
 
-    // Get the token from the response header
     const token = response.data.token;
-    document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`; // This sets a cookie named 'jwt' that expires in 7 days
-    console.log(
-      "🚀 ~ file: LoginForm.jsx:23 ~ login ~ response.headers:",
-      response.data.token
-    );
+    document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`;
     if (response.status === 200) {
       toast.success("Login successful!");
-      }
+    }
 
-    // Set the token in local storage
     localStorage.setItem("jwt_token", token);
     const redirectUrl = localStorage.getItem("redirectUrl");
-    
+
     if (redirectUrl) {
-      // Redirect to the originally requested URL
       window.location.href = redirectUrl;
     } else {
-      // If there's no redirect URL, go to a default page
-
       window.location.href = "/user";
     }
 
@@ -66,17 +56,18 @@ function LoginForm() {
     initialValues,
     validationSchema: LogInSchema,
     onSubmit: async (values, action) => {
-    
-        await login({
-          email: values.email,
-          password: values.password,
-        });
-        
-        navigate("/user"); 
-        action.resetForm();
-      
+      await login({
+        email: values.email,
+        password: values.password,
+      }).then(() => {
+        navigate("/user"); // Redirect to /user on successful signup
+      });
     },
   });
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   return (
     <div>
@@ -89,10 +80,7 @@ function LoginForm() {
           <FaArrowRight className="ml-2" />
         </Link>
       </div>
-      <form
-        onSubmit={handleSubmit}
-        className="mt-6 flex w-full flex-col gap-y-4"
-      >
+      <form onSubmit={handleSubmit} className="mt-6 flex w-full flex-col gap-y-4">
         <label className="w-full">
           <p className="mb-1 text-[0.875rem] leading-[1.375rem]">
             Email Address <sup className="text-pink-200">*</sup>
@@ -118,7 +106,7 @@ function LoginForm() {
             Password <sup className="text-pink-200">*</sup>
           </p>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"} // Toggle input type
             name="password"
             id="password"
             autoComplete="off"
@@ -133,7 +121,7 @@ function LoginForm() {
           )}
           <br />
           <span
-            onClick={() => setShowPassword((prev) => !prev)}
+            onClick={togglePasswordVisibility}
             className="absolute right-3 top-[38px] z-[10] cursor-pointer"
           >
             {showPassword ? (
