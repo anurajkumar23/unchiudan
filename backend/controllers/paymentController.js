@@ -13,8 +13,8 @@ const catchAsync = require('./../utils/catchAsync');
 const cfConfig = new CFConfig(
   CFEnvironment.SANDBOX,
   '2023-08-01',
-  process.env.PAY_API_ID,
-  process.env.PAY_API_SEC,
+  'TEST10029050f0191f770bef07b9eaa405092001',
+  'TESTa581bbfb034c15e39f848ec3a7e3a279b7f64fdc',
 );
 
 const paymentGateway = new CFPaymentGateway();
@@ -87,4 +87,4 @@ const payWithUPI = catchAsync(async (req, res) => {
   }
 });
 
-module.exports = {createOrder,payWithUPI }
+module.exports = { createOrder, payWithUPI };
