@@ -60,14 +60,14 @@ app.use(xss());
 app.use(cors({ credentials: true, origin: true, withCredentials: true }));
 
 // Proxy Setup
-app.use(
-  '/api',
-  createProxyMiddleware({
-    // target: 'https://ucchi-urran-backend.vercel.app/api',
-    target: 'http://localhost:3000/api',
-    changeOrigin: true,
-  }),
-);
+// app.use(
+//   '/api',
+//   createProxyMiddleware({
+//     target: 'https://ucchi-urran-backend.vercel.app/api',
+//     // target: 'http://localhost:3000/api',
+//     changeOrigin: true,
+//   }),
+// );
 
 // Routes
 // app.use('/images', express.static(__dirname ,'/public/img/affairs'));

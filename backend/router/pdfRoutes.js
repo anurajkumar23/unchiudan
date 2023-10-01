@@ -15,7 +15,7 @@ router.get('/lastestPdfs', pdfController.lastestPdfs);
 
 router
   .route('/:id')
-  .get(protect,pdfController.getPdf)
+  .get(pdfController.getPdf)
   .delete(
     protect,
     // restrictTo('admin'),
