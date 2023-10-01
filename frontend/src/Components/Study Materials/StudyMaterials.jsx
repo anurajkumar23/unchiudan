@@ -14,32 +14,29 @@ function StudyMaterial({
   id,
   status,
   category,
-})
- {
+}) {
   return (
-    <Link to={`/studymaterials/${id}`}>
+    <Link to={`/pdfs/${id}`}>
       <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 ">
-      <div className="card__header">
-        <div className="card__picture">
-          <div className="card__picture-overlay">&nbsp;</div>
-        <div className="relative">
-          <img
-            className="w-full rounded-xl"
-            
-            src={imageSrc}
-            alt="Blog Cover"
-          />
-          <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
-            {date}
-          </p>
-          </div>
+        <div className="card__header">
+          <div className="card__picture">
+            <div className="card__picture-overlay">&nbsp;</div>
+            <div className="relative">
+              <img
+                className="w-full rounded-xl"
+                src={imageSrc}
+                alt="Blog Cover"
+              />
+              <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
+                {date}
+              </p>
+            </div>
           </div>
           <h3 className="heading-tertirary">
-          <span>{category}</span>
-        </h3>
-       
+            <span>{category}</span>
+          </h3>
         </div>
-        
+
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem]">
           {title}
         </h1>
@@ -62,58 +59,46 @@ function StudyMaterial({
   );
 }
 
-function StudyMaterials() {
+function StudyMaterials({ userData }) {
+
   const [pdfs, setPdfs] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedStatus, setSelectedStatus] = useState(null);
-  const [filter, setFilter] = useState(false);
-  const isSmallScreen = window.innerWidth <= 680; 
-  const togglefilter = () => {
-    setFilter(!filter);
-  };
+
+  const pdfid = userData.pdfs; // Assuming this is a valid array of IDs
+  console.log("🚀 ~ file: StudyMaterials.jsx:67 ~ StudyMaterials ~ pdfid:", pdfid)
+  
+  const apiUrl = "https://ucchi-urran-backend.vercel.app/api/pdfs/";
 
   useEffect(() => {
-    let apiUrl = "https://ucchi-urran-backend.vercel.app/api/pdfs";
+    // Define a function to fetch PDF data by ID
+    const fetchPdfDataById = async (id) => {
+      try {
+        const response = await axios.get(apiUrl + id);
+        
+        console.log("🚀 ~ file: StudyMaterials.jsx:75 ~ fetchPdfDataById ~ response.data.data.pdf:", response.data.data.pdf)
+        return response.data.data.pdf;
+      } catch (error) {
+        console.error(`Error fetching data for ID ${id}:`, error);
+        return null; // You might want to handle errors differently
+      }
+    };
 
-    if (selectedCategory !== null) {
-      apiUrl += `/?category=${selectedCategory}`;
-    }
+    // Use Promise.all to fetch data for all IDs
+    const fetchDataForAllIds = async () => {
+      const promises = pdfid.map((id) => fetchPdfDataById(id));
+      const pdfData = await Promise.all(promises);
+      setPdfs(pdfData); 
+    };
 
-    if (selectedStatus !== null) {
-      apiUrl += `${selectedCategory ? "&" : "/?"}status=${selectedStatus}`;
-    }
+    fetchDataForAllIds();
+  }, [pdfid, apiUrl]);
 
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        setPdfs(response.data.data.pdf);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, [selectedCategory, selectedStatus]);
+  console.log(pdfs)
 
   return (
     <div className="mx-auto py-[7rem]">
-      <div className="p-2">
-        {isSmallScreen && (
-          <button
-            onClick={togglefilter}
-            className="text-black hover:text-gray-300 focus:outline-none md:hidden "
-          >
-            {filter ? (
-              <RiCloseFill className="text-2xl" />
-            ) : (
-              <RiMenu3Fill className="text-2xl" />
-            )}
-          </button>
-        )}
-      </div>
       <div className="flex">
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full mx-10 md:mx-0 ${
-            filter ? "hidden" : "block"
-          } `}
+          className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full mx-10 md:mx-0  `}
         >
           {pdfs.map((pdf) => {
             const createdAt = new Date(pdf.createdAt);
@@ -139,17 +124,6 @@ function StudyMaterials() {
               />
             );
           })}
-        </div>
-        <div
-          className={`z-1 flex-1 ${
-            filter ? "block" : "hidden"
-          } lg:flex sm:block`}
-        >
-          <Sidebar_pdf
-            setSelectedCategory={setSelectedCategory}
-            setSelectedStatus={setSelectedStatus}
-            togglefilter ={togglefilter}
-          />
         </div>
       </div>
     </div>
