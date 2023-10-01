@@ -31,9 +31,9 @@ const userSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
-  pdfid: [
+  pdfs: [
     {
-      type: String,
+      pdfid: String,
     },
   ],
   passwordChangedAt: Date,
