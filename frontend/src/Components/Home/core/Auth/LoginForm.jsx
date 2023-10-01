@@ -11,6 +11,7 @@ import { Toaster, toast } from "react-hot-toast";
 const initialValues = { email: "", password: "" };
 
 const login = async (userData) => {
+  
   try {
     const response = await axios.post(
       "https://ucchi-urran-backend.vercel.app/api/user/login",
@@ -25,6 +26,9 @@ const login = async (userData) => {
       "🚀 ~ file: LoginForm.jsx:23 ~ login ~ response.headers:",
       response.data.token
     );
+    if (response.status === 200) {
+      toast.success("Login successful!");
+      }
 
     // Set the token in local storage
     localStorage.setItem("jwt_token", token);
@@ -67,7 +71,7 @@ function LoginForm() {
           email: values.email,
           password: values.password,
         });
-        toast.success("Login successful!");
+        
         navigate("/user"); 
         action.resetForm();
       

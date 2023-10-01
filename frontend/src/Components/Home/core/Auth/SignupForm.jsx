@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import axios from "axios";
+import { toast, Toaster } from "react-hot-toast";
 
 const signup = async (userData) => {
   console.log("🚀 ~ file: SignupForm.jsx:15 ~ signup ~ userData:", userData);
@@ -21,6 +22,9 @@ const signup = async (userData) => {
    document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`; 
    console.log("🚀 ~ file: LoginForm.jsx:23 ~ login ~ response.headers:", response.data.token)
    localStorage.setItem('jwt_token', token);
+
+   toast.success("Sign up successful!");
+
     // console.log('User signed up:', response.data);
     const redirectUrl = localStorage.getItem('redirectUrl');
    if (redirectUrl) {
@@ -34,6 +38,7 @@ const signup = async (userData) => {
   } catch (error) {
     console.error("Error signing up:", error);
     console.log("🚀 ~ file: SignupForm.jsx:23 ~ signup ~ error:", error);
+    toast.error("Sign up failed. Please try again.");
     throw error;
   }
 };
@@ -79,6 +84,7 @@ function SignupForm() {
 
   return (
     <div>
+    <Toaster position="top-center" reverseOrder={false} />
       <div className="flex justify-end">
         <Link
           to="/user/login"

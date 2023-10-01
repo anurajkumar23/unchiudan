@@ -2,12 +2,7 @@
 import { useState } from "react";
 import { FiUser, FiMail, FiPhone, FiLock } from "react-icons/fi";
 import axios from "axios";
-
-// function getCookie(name) {
-//   const value = `; ${document.cookie}`;
-//   const parts = value.split(`; ${name}=`);
-//   if (parts.length === 2) return parts.pop().split(';').shift();
-// }
+import { toast , Toaster } from "react-hot-toast"; // Import toast
 
 function UserSettings({ userData }) {
   const [settingsData, setSettingsData] = useState({
@@ -16,7 +11,8 @@ function UserSettings({ userData }) {
     phone: userData.phone,
     role: userData.role,
   });
-  // const jwtToken = getCookie('jwt_token');
+
+  const token = localStorage.getItem("jwt_token");
 
   const handleSettingsChange = (e) => {
     const { name, value } = e.target;
@@ -25,33 +21,32 @@ function UserSettings({ userData }) {
       [name]: value,
     });
   };
-  // if (jwtToken) {
-  //   // Set the token in local storage
-  //   localStorage.setItem('jwt_token', jwtToken);
-  // }
-  // console.log("🚀 ~ file: UserSettings.jsx:31 ~ UserSettings ~ jwtToken:", jwtToken)
-  const token = localStorage.getItem("jwt_token");
-  console.log("🚀 ~ file: UserSettings.jsx:34 ~ UserSettings ~ token:", token);
 
   const handleSaveSettings = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.patch("https://ucchi-urran-backend.vercel.app/api/user/updateMe", settingsData, {
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
-        },
-        
-      });
+      const response = await axios.patch(
+        "https://ucchi-urran-backend.vercel.app/api/user/updateMe",
+        settingsData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+          },
+        }
+      );
 
       if (response.status === 200) {
         console.log("Settings updated successfully");
+        toast.success("Settings updated successfully"); // Show success toast
       } else {
         console.error("Error updating settings:", response.statusText);
+        toast.error("Error updating settings. Please try again."); // Show error toast
       }
     } catch (error) {
       console.error("Error updating settings:", error);
+      toast.error("Error updating settings. Please try again."); // Show error toast
     }
   };
 
@@ -82,23 +77,27 @@ function UserSettings({ userData }) {
         {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+            Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
           },
         }
       );
 
       if (response.status === 200) {
         console.log("Password updated successfully");
+        toast.success("Password updated successfully"); // Show success toast
       } else {
         console.error("Error updating password:", response.statusText);
+        toast.error("Error updating password. Please try again."); // Show error toast
       }
     } catch (error) {
       console.error("Error updating password:", error);
+      toast.error("Error updating password. Please try again."); // Show error toast
     }
   };
 
   return (
     <div className="bg-gray-200 p-4 sm:p-8 md:p-16 lg:p-32 flex-1 relative bg-gray-100 py-[4rem]">
+    <Toaster position="top-center" reverseOrder={false} />
       <div className="bg-white max-w-screen-xl mx-auto min-h-screen rounded-3xl overflow-hidden shadow-md flex flex-col sm:flex-row">
         <div className="bg-[#55c57a] sm:w-1/4 p-4">
           <ul className="side-nav">
