@@ -66,6 +66,7 @@ exports.logout = (req, res) => {
 exports.login = catchAsync(async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  console.log("done");
 
   if (!email && !password) {
     return next(new AppError('please prove email and password', 400));
