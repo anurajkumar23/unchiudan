@@ -31,11 +31,7 @@ const userSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
-  pdfs: [
-    {
-      pdfid: String,
-    },
-  ],
+  pdfs: [String],
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
