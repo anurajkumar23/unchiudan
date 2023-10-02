@@ -63,8 +63,13 @@ app.use(cors({ credentials: true, origin: true, withCredentials: true }));
 // app.use(
 //   '/api',
 //   createProxyMiddleware({
+<<<<<<< HEAD
 //     // target: 'https://ucchi-urran-backend.vercel.app/api',
 //     target: 'http://localhost:3000/api',
+=======
+//     target: 'https://ucchi-urran-backend.vercel.app/api',
+//     // target: 'http://localhost:3000/api',
+>>>>>>> 308272a1492416f7e1942dfb3d2c8939d0645b54
 //     changeOrigin: true,
 //   }),
 // );

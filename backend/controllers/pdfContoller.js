@@ -95,7 +95,7 @@ exports.createPdf = catchAsync(async (req, res, next) => {
 });
 
 exports.getPdf = catchAsync(async (req, res, next) => {
-  const { currentUser } = req.user;
+
   const pdf = await PDF.findById(req.params.id);
   if (!pdf) {
     return next(new AppError('No pdf found with that ID', 404));
@@ -103,8 +103,7 @@ exports.getPdf = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     data: {
-      pdf,
-      currentUser
+      pdf
     },
   });
 });

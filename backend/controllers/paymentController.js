@@ -9,12 +9,13 @@ const {
   CFOrderPayRequest,
 } = require('cashfree-pg-sdk-nodejs');
 const catchAsync = require('./../utils/catchAsync');
+const User = require('../models/userModal');
 
 const cfConfig = new CFConfig(
   CFEnvironment.SANDBOX,
   '2023-08-01',
-  process.env.PAY_API_ID,
-  process.env.PAY_API_SEC,
+  'TEST10029050f0191f770bef07b9eaa405092001',
+  'TESTa581bbfb034c15e39f848ec3a7e3a279b7f64fdc',
 );
 
 const paymentGateway = new CFPaymentGateway();
@@ -87,4 +88,36 @@ exports.payWithUPI = catchAsync(async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 // module.exports = {createOrder,payWithUPI }
+=======
+const addPdfInUsers = catchAsync(
+  async (req, res) => {
+    console.log("working");
+    // const { pdfId , userId } = req.body;
+const { pdfId , userId } = req.params;
+
+try {
+  // Find the user by their ID or any other unique identifier
+  const user = await User.findById(userId);
+
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  // Append the pdfId to the user's pdfs array
+  user.pdfs.push(pdfId);
+
+  // Save the updated user document
+  await user.save();
+
+  // Redirect the user to the specified URL
+  return res.redirect('https://unchiudaanteam.vercel.app/studymaterials');
+} catch (error) {
+  console.error(error);
+  return res.status(500).json({ message: 'Internal server error' });
+}
+});
+
+module.exports = { createOrder, payWithUPI , addPdfInUsers};
+>>>>>>> 308272a1492416f7e1942dfb3d2c8939d0645b54
