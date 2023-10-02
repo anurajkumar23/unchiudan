@@ -13,7 +13,8 @@ function DownloadPage({ userData }) {
 
 
   // const data = userData;
-  // console.log(userData.user.email);
+  console.log(userData.user._id);
+  console.log(id);
   // console.log(userData.user.phone);
 
 
@@ -54,7 +55,7 @@ function DownloadPage({ userData }) {
     const res = await axios.post(
       "https://ucchi-urran-backend.vercel.app/api/payment/createOrderId",
       // "http://localhost:3000/api/payment/createOrderId",
-     { "name": userData.user.firstname, "email": userData.user.email, "phone": userData.user.phone,"amount":"30" });
+      { "name": userData.user.firstname, "email": userData.user.email, "phone": userData.user.phone, "amount": "30" });
     console.log("Session Id - ", res.data.paymentSessionId);
 
     const cashfree = Cashfree({ mode: 'sandbox' });
@@ -63,7 +64,7 @@ function DownloadPage({ userData }) {
     cashfree
       .checkout({
         paymentSessionId: res.data.paymentSessionId, // Use the state variable
-        returnUrl: "https://github.com/Puskar-Roy", // Use the state variable
+        returnUrl: `https://ucchi-urran-backend.vercel.app/api/payment/addPdf/${userData.user._id}/${id}`, // Use the state variable
         redirectTarget: '_blank',
       })
       .then(() => {
@@ -77,7 +78,7 @@ function DownloadPage({ userData }) {
       });
 
 
-      // __________Disable This Things
+    // __________Disable This Things
 
     // // ------
     // const downloadLink = `https://ucchi-urran-backend.vercel.app/api/pdfs/download-pdf/${id}`;
