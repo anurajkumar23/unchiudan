@@ -5,7 +5,7 @@ import DownloadPage from "./Components/Downloads/DownloadPage";
 import BlogsPage from "./Components/Blogs/BlogsPage";
 import GlobalProvider from "./Components/GlobalProvider";
 import Downloads from "./Components/Downloads/Downloads";
-import { Navigate } from "react-router-dom";
+
 
 import News from "./Components/News/News";
 import Currentaffaircontainer from "./Components/currentaffair/Currentaffaircontainer";
@@ -18,9 +18,10 @@ import NewsPage from "./Components/News/NewsPage";
 import AboutUs from "./Components/About/AboutUs";
 import TermsAndConditions from "./Components/About/TermsAndConditions";
 import Disclaimer from "./Components/About/Disclaimer";
-// import PrivacyPolicy from "./Components/About/PrivacyPolicy";
+
 import FAQ from "./Components/Support/FAQ";
 import StudyMaterials from "./Components/Study Materials/StudyMaterials";
+import PrivacyPolicy from "./Components/About/policy";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -85,7 +86,7 @@ function App() {
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/tearm&conditions" element={<TermsAndConditions />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
-          {/* <Route path="/privacypolicy" element={<PrivacyPolicy />} /> */}
+          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/faqs" element={<FAQ />} />
 
           {user ? (

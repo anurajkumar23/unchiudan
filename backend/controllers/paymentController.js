@@ -19,7 +19,7 @@ const cfConfig = new CFConfig(
 
 const paymentGateway = new CFPaymentGateway();
 
-const createOrder = catchAsync(async (req, res) => {
+exports.createOrder = catchAsync(async (req, res) => {
   const { name, phone, email, amount } = req.body;
   console.log('working');
   console.log(req.body);
@@ -52,7 +52,7 @@ const createOrder = catchAsync(async (req, res) => {
   }
 });
 
-const payWithUPI = catchAsync(async (req, res) => {
+exports.payWithUPI = catchAsync(async (req, res) => {
   try {
     const { paymentSessionId, paymentMethod } = req.body;
 
@@ -87,4 +87,4 @@ const payWithUPI = catchAsync(async (req, res) => {
   }
 });
 
-module.exports = {createOrder,payWithUPI }
+// module.exports = {createOrder,payWithUPI }

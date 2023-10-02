@@ -10,6 +10,9 @@ function DownloadPage({ userData }) {
   const [pdfDetails, setPdfDetails] = useState(null);
   const [userDetails , setUserDetails ] = useState({});
 
+  
+  console.log("🚀 ~ file: DownloadPage.jsx:14 ~ DownloadPage ~ userData:", userData)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
