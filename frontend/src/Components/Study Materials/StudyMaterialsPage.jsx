@@ -13,8 +13,7 @@ function StudyMaterialsPage({ userData }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://ucchi-urran-backend.vercel.app/api/pdfs/${id}`
-        );
+          `https://ucchi-urran-backend.vercel.app/api/pdfs/${id}`);
         setPdfDetails(response.data.data.pdf);
       } catch (error) {
         console.error("Error fetching data:", error);
