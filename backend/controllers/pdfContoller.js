@@ -81,7 +81,7 @@ exports.createPdf = catchAsync(async (req, res, next) => {
   const currentDate = Date.now();
   const createdPdf = await PDF.create({
     ...otherFields,
-    updatedAt:currentDate,
+    updatedAt: currentDate,
     photo: photoFileName,
     pdf: req.files['pdf'][0].filename,
   });
@@ -95,7 +95,6 @@ exports.createPdf = catchAsync(async (req, res, next) => {
 });
 
 exports.getPdf = catchAsync(async (req, res, next) => {
-
   const pdf = await PDF.findById(req.params.id);
   if (!pdf) {
     return next(new AppError('No pdf found with that ID', 404));
@@ -103,7 +102,7 @@ exports.getPdf = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     data: {
-      pdf
+      pdf,
     },
   });
 });
@@ -157,7 +156,7 @@ exports.updateOne = catchAsync(async (req, res, next) => {
     }
   }
   const updatedAt = Date.now();
-  req.body = { ...req.body, photo, pdf,updatedAt };
+  req.body = { ...req.body, photo, pdf, updatedAt };
   const pdfs = await PDF.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
@@ -182,45 +181,34 @@ exports.download = catchAsync(async (req, res, next) => {
   }
   const filename = pdf.pdf;
   // console.log("🚀 ~ file: pdfContoller.js:184 ~ exports.download=catchAsync ~ filePath:", filePath)
-  
+
   const backendBaseUrl = 'https://ucchi-urran-backend.vercel.app/api';
   const filePath = path.join(__dirname, '../public/img/pdf/', filename);
-  const backendUrl =`${backendBaseUrl}${filePath}`;
-  
-  console.log("🚀 ~ file: pdfContoller.js:189 ~ exports.download=catchAsync ~ backendUrl:", backendUrl)
+  const backendUrl = `${backendBaseUrl}${filePath}`;
+
+  console.log(
+    '🚀 ~ file: pdfContoller.js:189 ~ exports.download=catchAsync ~ backendUrl:',
+    backendUrl,
+  );
   const exists = await fetch(backendUrl);
-  console.log("🚀 ~ file: pdfContoller.js:191 ~ exports.download=catchAsync ~ exists:", exists)
+  console.log(
+    '🚀 ~ file: pdfContoller.js:191 ~ exports.download=catchAsync ~ exists:',
+    exists,
+  );
   // const exists = await checkFileExists(filePath);
 
   if (!exists) {
     return next(new AppError('PDF file not found', 404));
   }
 
-  if (pdf.status === 'free') {
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
 
-    // Stream the file as the response
-    const fileStream = fs.createReadStream(filePath);
-    fileStream.pipe(res);
-  } else {
-    // Check if the user has paid for the PDF
+  // Stream the file as the response
+  const fileStream = fs.createReadStream(filePath);
+  fileStream.pipe(res);
 
-    const userPaidFor = req.user.pdfs;
-    const isPaid = userPaidFor.includes(pdfId);
-
-    if (isPaid) {
-      // If the user has paid, proceed with the download
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader(
-        'Content-Disposition',
-        `attachment; filename="${filename}"`,
-      );
-
-      const fileStream = fs.createReadStream(filePath);
-      fileStream.pipe(res);
-    } 
-  }
+  // Check if the user has paid for the PDF
 });
 
 // Helper function to check if a file exists
