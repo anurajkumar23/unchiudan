@@ -8,8 +8,6 @@ const router = express.Router();
 
 router.post('/createOrderId', createOrder);
 router.get('/addPdf/:userId/:pdfId', addPdfInUsers);
-// router.post('/addPdf/:userId/:pdfId', addPdfInUsers);
-
 
 
 
