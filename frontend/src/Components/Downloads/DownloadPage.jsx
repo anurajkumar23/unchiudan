@@ -83,7 +83,7 @@ function DownloadPage({ userData }) {
       cashfree
         .checkout({
           paymentSessionId: res.data.paymentSessionId, // Use the state variable
-          returnUrl: `${import.meta.env.VITE_BACKEND_URL}/payment/addPdf/${userData.user._id}/${id}`, // Use the state variable
+          returnUrl: `${import.meta.env.VITE_BACKEND_URL}/payment/NR&t#6@43p2*zs!SFvX5&Up5%&T8@ft/unchiudan/pdf/${userData.user._id}/${id}`, // Use the state variable
           redirectTarget: "_blank",
         })
         .then(() => {
