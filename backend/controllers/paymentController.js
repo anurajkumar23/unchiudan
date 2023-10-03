@@ -20,7 +20,7 @@ const cfConfig = new CFConfig(
 
 const paymentGateway = new CFPaymentGateway();
 
-exports.createOrder = catchAsync(async (req, res) => {
+const createOrder = catchAsync(async (req, res) => {
   const { name, phone, email, amount } = req.body;
   console.log('working');
   console.log(req.body);
@@ -53,7 +53,7 @@ exports.createOrder = catchAsync(async (req, res) => {
   }
 });
 
-exports.payWithUPI = catchAsync(async (req, res) => {
+const payWithUPI = catchAsync(async (req, res) => {
   try {
     const { paymentSessionId, paymentMethod } = req.body;
 
@@ -88,36 +88,31 @@ exports.payWithUPI = catchAsync(async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-// module.exports = {createOrder,payWithUPI }
-=======
-const addPdfInUsers = catchAsync(
-  async (req, res) => {
-    console.log("working");
-    // const { pdfId , userId } = req.body;
-const { pdfId , userId } = req.params;
+const addPdfInUsers = catchAsync(async (req, res) => {
+  console.log('working');
+  // const { pdfId , userId } = req.body;
+  const { pdfId, userId } = req.params;
 
-try {
-  // Find the user by their ID or any other unique identifier
-  const user = await User.findById(userId);
+  try {
+    // Find the user by their ID or any other unique identifier
+    const user = await User.findById(userId);
 
-  if (!user) {
-    return res.status(404).json({ message: 'User not found' });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Append the pdfId to the user's pdfs array
+    user.pdfs.push(pdfId);
+
+    // Save the updated user document
+    await user.save();
+
+    // Redirect the user to the specified URL
+    return res.redirect('https://unchiudaanteam.vercel.app/studymaterials');
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
-
-  // Append the pdfId to the user's pdfs array
-  user.pdfs.push(pdfId);
-
-  // Save the updated user document
-  await user.save();
-
-  // Redirect the user to the specified URL
-  return res.redirect('https://unchiudaanteam.vercel.app/studymaterials');
-} catch (error) {
-  console.error(error);
-  return res.status(500).json({ message: 'Internal server error' });
-}
 });
 
-module.exports = { createOrder, payWithUPI , addPdfInUsers};
->>>>>>> 308272a1492416f7e1942dfb3d2c8939d0645b54
+module.exports = { createOrder, payWithUPI, addPdfInUsers };

@@ -17,6 +17,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
 const fs = require('fs');
+const paymentRoutes = require('./router/paymentRoutes');
 
 const cors = require('cors');
 const { createProxyMiddleware } = require('http-proxy-middleware');

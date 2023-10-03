@@ -125,54 +125,6 @@ packages:
       selderee: 0.11.0
     dev: false
 
-  /@sentry-internal/tracing@7.72.0:
-    resolution: {integrity: sha512-DToryaRSHk9R5RLgN4ktYEXZjQdqncOAWPqyyIurji8lIobXFRfmLtGL1wjoCK6sQNgWsjhSM9kXxwGnva1DNw==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@sentry/core': 7.72.0
-      '@sentry/types': 7.72.0
-      '@sentry/utils': 7.72.0
-      tslib: 2.6.2
-    dev: false
-
-  /@sentry/core@7.72.0:
-    resolution: {integrity: sha512-G03JdQ5ZsFNRjcNNi+QvCjqOuBvYqU92Gs1T2iK3GE8dSBTu2khThydMpG4xrKZQLIpHOyiIhlFZiuPtZ66W8w==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@sentry/types': 7.72.0
-      '@sentry/utils': 7.72.0
-      tslib: 2.6.2
-    dev: false
-
-  /@sentry/node@7.72.0:
-    resolution: {integrity: sha512-R5kNCIdaDa92EN6oCLiGJehw5wxayOM53WF60Ap6EJHZb5U8dM2BnODmQ6SCRLNB677p+620oSV6CCU286IleQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@sentry-internal/tracing': 7.72.0
-      '@sentry/core': 7.72.0
-      '@sentry/types': 7.72.0
-      '@sentry/utils': 7.72.0
-      cookie: 0.5.0
-      https-proxy-agent: 5.0.1
-      lru_map: 0.3.3
-      tslib: 2.6.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
-  /@sentry/types@7.72.0:
-    resolution: {integrity: sha512-g6u0mk62yGshx02rfFADIfyR/S9VXcf3RG2qQPuvykrWtOfN/BOTrZypF7I+MiqKwRW76r3Pcu2C/AB+6z9XQA==}
-    engines: {node: '>=8'}
-    dev: false
-
-  /@sentry/utils@7.72.0:
-    resolution: {integrity: sha512-o/MtqI7WJXuswidH0bSgBP40KN2lrnyQEIx5uoyJUJi/QEaboIsqbxU62vaFJpde8SYrbA+rTnP3J3ujF2gUag==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@sentry/types': 7.72.0
-      tslib: 2.6.2
-    dev: false
-
   /@types/bluebird@3.5.38:
     resolution: {integrity: sha512-yR/Kxc0dd4FfwtEoLZMoqJbM/VE/W7hXn/MIjb+axcwag0iFmSPK7OBUZq1YWLynJUoWQkfUrI7T0HDqGApNSg==}
     dev: false
@@ -505,18 +457,6 @@ packages:
 
   /caseless@0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
-    dev: false
-
-  /cashfree-pg-sdk-nodejs@2.0.2:
-    resolution: {integrity: sha512-LT2d5e2jSeTBJ0ut4Pf2yop2FWGkvyAdgOufJAbManKO2eNz8NbIJhpoBANzHwLvXrKR0ZYwMpvOWRNBuxKfVg==}
-    dependencies:
-      '@sentry/node': 7.72.0
-      '@types/request': 2.48.8
-      commonjs: 0.0.1
-      http: 0.0.1-security
-      request: 2.88.2
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /chalk@4.1.2:
