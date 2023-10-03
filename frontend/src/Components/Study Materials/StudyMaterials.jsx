@@ -2,9 +2,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
+
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
-import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 
 function StudyMaterial({
   date,
@@ -60,12 +59,14 @@ function StudyMaterial({
 }
 
 function StudyMaterials({ userData }) {
-
   const [pdfs, setPdfs] = useState([]);
 
   const pdfid = userData.pdfs; // Assuming this is a valid array of IDs
-  console.log("🚀 ~ file: StudyMaterials.jsx:67 ~ StudyMaterials ~ pdfid:", pdfid)
-  
+  console.log(
+    "🚀 ~ file: StudyMaterials.jsx:67 ~ StudyMaterials ~ pdfid:",
+    pdfid
+  );
+
   const apiUrl = "https://ucchi-urran-backend.vercel.app/api/pdfs/";
 
   useEffect(() => {
@@ -73,8 +74,11 @@ function StudyMaterials({ userData }) {
     const fetchPdfDataById = async (id) => {
       try {
         const response = await axios.get(apiUrl + id);
-        
-        console.log("🚀 ~ file: StudyMaterials.jsx:75 ~ fetchPdfDataById ~ response.data.data.pdf:", response.data.data.pdf)
+
+        console.log(
+          "🚀 ~ file: StudyMaterials.jsx:75 ~ fetchPdfDataById ~ response.data.data.pdf:",
+          response.data.data.pdf
+        );
         return response.data.data.pdf;
       } catch (error) {
         console.error(`Error fetching data for ID ${id}:`, error);
@@ -86,13 +90,13 @@ function StudyMaterials({ userData }) {
     const fetchDataForAllIds = async () => {
       const promises = pdfid.map((id) => fetchPdfDataById(id));
       const pdfData = await Promise.all(promises);
-      setPdfs(pdfData); 
+      setPdfs(pdfData);
     };
 
     fetchDataForAllIds();
   }, [pdfid, apiUrl]);
 
-  console.log(pdfs)
+  console.log(pdfs);
 
   return (
     <div className="mx-auto py-[7rem]">

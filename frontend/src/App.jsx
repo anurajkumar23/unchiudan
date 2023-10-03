@@ -89,20 +89,23 @@ function App() {
           <Route path="/faqs" element={<FAQ />} />
 
           {user ? (
-              <>
             <Route
               path="/user"
               element={<UserSettings userData={user.user} />}
             />
-            <Route
-              path="/studymaterials"
-              element={<StudyMaterials userData={user.user} />}
-            />
-            </>
           ) : (
             <Route path="/user/login" element={<Login />} />
           )}
-        
+          <Route
+            path="/studymaterials"
+            element={
+              user ? (
+                <StudyMaterials userData={user.user} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>

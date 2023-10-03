@@ -8,6 +8,8 @@ import { SocialMedia } from "../../consstant/socialmedia";
 function DownloadPage({ userData }) {
   const { id } = useParams();
   const [pdfDetails, setPdfDetails] = useState(null);
+  const [paymentMessage, setPaymentMessage] = useState("");
+  const [paymentMessageClass, setPaymentMessageClass] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,26 +38,63 @@ function DownloadPage({ userData }) {
     return `${day} ${month} ${year}`;
   };
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     if (!userData) {
       localStorage.setItem("redirectUrl", window.location.href);
       window.location.href = "/login"; // Redirect to login page
       return; // Stop further execution
     }
+    const alreadybuy = userData.user.pdfs.includes(pdfDetails._id);
+    console.log(
+      "🚀 ~ file: DownloadPage.jsx:46 ~ handleDownload ~ alreadybuy:",
+      alreadybuy
+    );
+    if (pdfDetails.status === "free" || alreadybuy) {
+      const downloadLink = `https://ucchi-urran-backend.vercel.app/api/pdfs/download-pdf/${id}`;
 
-    const downloadLink = `https://ucchi-urran-backend.vercel.app/api/pdfs/download-pdf/${id}`;
+      // Create a temporary anchor element
+      const anchor = document.createElement("a");
+      anchor.href = downloadLink;
+      anchor.download = "Unchi_Uddan.pdf"; // Set a default filename for the downloaded file
 
-    // Create a temporary anchor element
-    const anchor = document.createElement("a");
-    anchor.href = downloadLink;
-    anchor.download = "Unchi_Uddan.pdf"; // Set a default filename for the downloaded file
+      // Trigger a click event on the anchor element
+      document.body.appendChild(anchor);
+      anchor.click();
 
-    // Trigger a click event on the anchor element
-    document.body.appendChild(anchor);
-    anchor.click();
+      // Remove the anchor element from the DOM
+      document.body.removeChild(anchor);
+    } else {
+      const res = await axios.post(
+        "https://ucchi-urran-backend.vercel.app/api/payment/createOrderId",
+        // "http://localhost:3000/api/payment/createOrderId",
+        {
+          name: userData.user.firstname,
+          email: userData.user.email,
+          phone: userData.user.phone,
+          amount: "30",
+        }
+      );
+      console.log("Session Id - ", res.data.paymentSessionId);
 
-    // Remove the anchor element from the DOM
-    document.body.removeChild(anchor);
+      const cashfree = Cashfree({ mode: "sandbox" });
+
+      // Perform Cashfree checkout
+      cashfree
+        .checkout({
+          paymentSessionId: res.data.paymentSessionId, // Use the state variable
+          returnUrl: `https://ucchi-urran-backend.vercel.app/api/payment/addPdf/${userData.user._id}/${id}`, // Use the state variable
+          redirectTarget: "_blank",
+        })
+        .then(() => {
+          console.log("on-going redirection");
+        })
+        .catch((error) => {
+          // Handle errors
+          setPaymentMessage("Checkout failed. Please try again."); // Set an error message
+          setPaymentMessageClass("alert-danger");
+          console.error("Checkout error:", error);
+        });
+    }
   };
 
   return (
@@ -88,7 +127,9 @@ function DownloadPage({ userData }) {
             <a href="#">
               <div className="mt-6 flex w-fit hover:bg-teal-500 px-3 py-1 justify-between space-x-3 text-lg mx-auto rounded-full bg-teal-300 text-white">
                 <FaDownload className="w-6 h-6" />
-                <button onClick={handleDownload}>Download</button>
+                <button onClick={handleDownload}>
+                  {pdfDetails.status === "free" ? "Download" : "pay & Download"}
+                </button>
               </div>
             </a>
           </div>
