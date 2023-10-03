@@ -28,7 +28,7 @@ function UserSettings({ userData }) {
 
     try {
       const response = await axios.patch(
-        "https://ucchi-urran-backend.vercel.app/api/user/updateMe",
+        `${import.meta.env.VITE_BACKEND_URL}/user/updateMe`,
         settingsData,
         {
           headers: {
@@ -70,7 +70,7 @@ function UserSettings({ userData }) {
 
     try {
       const response = await axios.patch(
-        "https://ucchi-urran-backend.vercel.app/api/user/updateMyPassword",
+        `${import.meta.env.VITE_BACKEND_URL}/user/updateMyPassword`,
         {
           passwordCurrent: passwordData.currentPassword,
           password: passwordData.newPassword,

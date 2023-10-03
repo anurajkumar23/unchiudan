@@ -7,7 +7,7 @@ export default function HomePdf() {
   const [pdfs, setPdfs] = useState([]);
   useEffect(() => {
     axios
-      .get("https://ucchi-urran-backend.vercel.app/api/pdfs/lastestPdfs")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/pdfs/lastestPdfs`)
       .then((response) => {
         setPdfs(response.data.data.pdf);
       })

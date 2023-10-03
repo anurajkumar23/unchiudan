@@ -52,7 +52,7 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      "/api": "https://ucchi-urran-backend.vercel.app/",
+      "/api": import.meta.env.VITE_BACKEND_URL,
     },
   },
 });

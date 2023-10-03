@@ -14,7 +14,7 @@ import Axios from 'axios';
 function ServicesOverview() {
   const handleClick = async () => {
     try {
-      const response = await Axios.get('https://ucchi-urran-backend.vercel.app/api/currentaffairs/dailyquiz');
+      const response = await Axios.get(`${import.meta.env.VITE_BACKEND_URL}/currentaffairs/dailyquiz`);
   
       if (response.status === 200) {
         const data = response.data;

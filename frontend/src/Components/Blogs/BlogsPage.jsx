@@ -27,7 +27,7 @@ function BlogsPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://ucchi-urran-backend.vercel.app/api/currentaffairs/${id}`
+          `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${id}`
         );
         setAffairDetails(response.data.data.affairs);
         // console.log("🚀 ~ file: BlogsPage.jsx:29 ~ fetchData ~ response.data.affairs:", response.data.data.affairs)

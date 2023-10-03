@@ -6,7 +6,7 @@ function News() {
   const [news, setNews] = useState([]);
   useEffect(() => {
     axios
-      .get("https://ucchi-urran-backend.vercel.app/api/news")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/news`)
       .then((response) => {
         setNews(response.data.data.news);
       })

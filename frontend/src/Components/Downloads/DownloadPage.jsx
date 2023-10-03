@@ -15,7 +15,8 @@ function DownloadPage({ userData }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://ucchi-urran-backend.vercel.app/api/pdfs/${id}`
+       
+          `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`
         );
         setPdfDetails(response.data.data.pdf);
       } catch (error) {
@@ -50,7 +51,7 @@ function DownloadPage({ userData }) {
       alreadybuy
     );
     if (pdfDetails.status === "free" || alreadybuy) {
-      const downloadLink = `https://ucchi-urran-backend.vercel.app/api/pdfs/download-pdf/${id}`;
+      const downloadLink = `${import.meta.env.VITE_BACKEND_URL}/pdfs/download-pdf/${id}`;
 
       // Create a temporary anchor element
       const anchor = document.createElement("a");
@@ -65,7 +66,7 @@ function DownloadPage({ userData }) {
       document.body.removeChild(anchor);
     } else {
       const res = await axios.post(
-        "https://ucchi-urran-backend.vercel.app/api/payment/createOrderId",
+        `${import.meta.env.VITE_BACKEND_URL}/payment/createOrderId`,
         // "http://localhost:3000/api/payment/createOrderId",
         {
           name: userData.user.firstname,
@@ -82,7 +83,7 @@ function DownloadPage({ userData }) {
       cashfree
         .checkout({
           paymentSessionId: res.data.paymentSessionId, // Use the state variable
-          returnUrl: `https://ucchi-urran-backend.vercel.app/api/payment/addPdf/${userData.user._id}/${id}`, // Use the state variable
+          returnUrl: `${import.meta.env.VITE_BACKEND_URL}/payment/addPdf/${userData.user._id}/${id}`, // Use the state variable
           redirectTarget: "_blank",
         })
         .then(() => {

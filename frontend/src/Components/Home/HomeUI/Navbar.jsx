@@ -14,7 +14,7 @@ export default function Navbar({ userData }) {
     const fetchUserData = async () => {
       try {
         const response = await fetch(
-          "https://ucchi-urran-backend.vercel.app/api/user"
+          `${import.meta.env.VITE_BACKEND_URL}/user`
         );
         if (response.ok) {
           const userData = await response.json();
@@ -36,7 +36,7 @@ export default function Navbar({ userData }) {
 
   const handleLogout = async () => {
     try {
-      await axios.get("https://ucchi-urran-backend.vercel.app/api/user/logout");
+      await axios.get(`${import.meta.env.VITE_BACKEND_URL}/user/logout`);
       localStorage.clear();
       console.log(
         "🚀 ~ file: Navbar.jsx:26 ~ handleLogout ~ localStorage: cleared"

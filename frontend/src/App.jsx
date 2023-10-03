@@ -36,7 +36,7 @@ function App() {
     console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", token);
     try {
       const response = await fetch(
-        "https://ucchi-urran-backend.vercel.app/api/user/authenticated",
+        `${import.meta.env.VITE_BACKEND_URL}/user/authenticated`,
         {
           method: "GET",
           headers: {
