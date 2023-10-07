@@ -14,7 +14,7 @@ const signup = async (userData) => {
 
   try {
     const response = await axios.post(
-      "https://ucchi-urran-backend.vercel.app/api/user/signup",
+      `${import.meta.env.VITE_BACKEND_URL}/user/signup`,
       userData,
       { withCredentials: true } ,
     );

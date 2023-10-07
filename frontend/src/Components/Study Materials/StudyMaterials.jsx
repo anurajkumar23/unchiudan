@@ -67,7 +67,7 @@ function StudyMaterials({ userData }) {
     pdfid
   );
 
-  const apiUrl = "https://ucchi-urran-backend.vercel.app/api/pdfs/";
+  const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs/`;
 
   useEffect(() => {
     // Define a function to fetch PDF data by ID

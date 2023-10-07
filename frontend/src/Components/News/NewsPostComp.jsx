@@ -46,7 +46,7 @@ const NewsPostComp = () => {
 
     try {
       await axios.post(
-        "https://ucchi-urran-backend.vercel.app/api/currentaffairs/",
+        `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/`,
         
          formData,
         {

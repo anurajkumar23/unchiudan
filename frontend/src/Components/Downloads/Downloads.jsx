@@ -73,7 +73,7 @@ function Downloads() {
   };
 
   useEffect(() => {
-    let apiUrl = "https://ucchi-urran-backend.vercel.app/api/pdfs";
+    let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs`;
 
     if (selectedCategory !== null) {
       apiUrl += `/?category=${selectedCategory}`;

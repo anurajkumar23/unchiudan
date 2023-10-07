@@ -13,7 +13,7 @@ function StudyMaterialsPage({ userData }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://ucchi-urran-backend.vercel.app/api/pdfs/${id}`);
+          `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`);
         setPdfDetails(response.data.data.pdf);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -42,7 +42,7 @@ function StudyMaterialsPage({ userData }) {
       return; // Stop further execution
     }
 
-    const downloadLink = `https://ucchi-urran-backend.vercel.app/api/pdfs/download-pdf/${id}`;
+    const downloadLink = `${import.meta.env.VITE_BACKEND_URL}/pdfs/download-pdf/${id}`;
 
     // Create a temporary anchor element
     const anchor = document.createElement("a");

@@ -15,7 +15,8 @@ function DownloadPage({ userData }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://ucchi-urran-backend.vercel.app/api/pdfs/${id}`
+       
+          `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`
         );
         setPdfDetails(response.data.data.pdf);
       } catch (error) {
@@ -50,7 +51,7 @@ function DownloadPage({ userData }) {
       alreadybuy
     );
     if (pdfDetails.status === "free" || alreadybuy) {
-      const downloadLink = `https://ucchi-urran-backend.vercel.app/api/pdfs/download-pdf/${id}`;
+      const downloadLink = `${import.meta.env.VITE_BACKEND_URL}/pdfs/download-pdf/${id}`;
 
       // Create a temporary anchor element
       const anchor = document.createElement("a");
@@ -65,8 +66,8 @@ function DownloadPage({ userData }) {
       document.body.removeChild(anchor);
     } else {
       const res = await axios.post(
-        // "https://ucchi-urran-backend.vercel.app/api/payment/createOrderId",
-        "http://localhost:3000/api/payment/createOrderId",
+        `${import.meta.env.VITE_BACKEND_URL}/payment/createOrderId`,
+        // "http://localhost:3000/api/payment/createOrderId",
         {
           name: userData.user.firstname,
           email: userData.user.email,
@@ -80,12 +81,20 @@ function DownloadPage({ userData }) {
       const cashfree = Cashfree({ mode: "sandbox" });
 
       // Perform Cashfree checkout
-      try {
-        await cashfree.checkout({
-          paymentSessionId: res.data.paymentSessionId,
-          // Add any other necessary properties here
-          // returnUrl : `https://ucchi-urran-backend.vercel.app/api/payment/addPdf/${userData.user._id}/${id}`,
-          returnUrl : "https://unchiudaanteam.vercel.app/",
+      cashfree
+        .checkout({
+          paymentSessionId: res.data.paymentSessionId, // Use the state variable
+          returnUrl: `${import.meta.env.VITE_BACKEND_URL}/payment/NR&t#6@43p2*zs!SFvX5&Up5%&T8@ft/unchiudan/pdf/${userData.user._id}/${id}`, // Use the state variable
+          redirectTarget: "_blank",
+        })
+        .then(() => {
+          console.log("on-going redirection");
+        })
+        .catch((error) => {
+          // Handle errors
+          setPaymentMessage("Checkout failed. Please try again."); // Set an error message
+          setPaymentMessageClass("alert-danger");
+          console.error("Checkout error:", error);
         });
       
         // Code to be executed after successful checkout

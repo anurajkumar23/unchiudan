@@ -15,7 +15,7 @@ function Currentaffairs() {
   };
 
   useEffect(() => {
-    let apiUrl = "https://ucchi-urran-backend.vercel.app/api/currentaffairs";
+    let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/currentaffairs`;
     if (selectedCategory !== null) {
       apiUrl += `/?category=${selectedCategory}`;
     }

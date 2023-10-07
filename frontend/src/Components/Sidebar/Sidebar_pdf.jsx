@@ -39,7 +39,7 @@ const Sidebar_pdf = ({
   useEffect(() => {
     axios
       .get(
-        "https://ucchi-urran-backend.vercel.app/api/currentaffairs/lastestAffairs"
+        `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/lastestAffairs`
       )
       .then((response) => {
         setAffairs(response.data.data.affairs);

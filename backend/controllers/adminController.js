@@ -63,3 +63,17 @@ exports.deletePdf = catchAsync(async (req,res)=>{
   }
 }
 )
+exports.deleteUser = catchAsync(async (req,res)=>{
+  const { id } = req.params;
+  console.log(id);
+  
+  try {
+    await User.findByIdAndDelete(id);
+    res.status(200).json({
+      status: 'success'
+    }); 
+  } catch (error) {
+      return next(new AppError(error, 400));
+  }
+}
+)
