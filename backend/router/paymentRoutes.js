@@ -6,8 +6,8 @@ const { createOrder , addPdfInUsers } = require('../controllers/paymentControlle
 const router = express.Router();
 
 
-router.post('/createOrderId', createOrder);
-router.get('/addPdf/:userId/:pdfId', addPdfInUsers);
+router.post('/createOrderId', createOrder,addPdfInUsers);
+// router.get('/addPdf/:userId/:pdfId', addPdfInUsers);
 
 
 
