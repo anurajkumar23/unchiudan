@@ -69,6 +69,7 @@ function DownloadPage({ userData }) {
         );
         console.log("Session Id - ", res.data.paymentSessionId);
 
+        // eslint-disable-next-line no-undef
         const cashfree = Cashfree({ mode: "sandbox" });
 
         cashfree

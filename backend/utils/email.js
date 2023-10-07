@@ -9,6 +9,8 @@ module.exports = class Email {
     this.url = url;
     this.firstName = user.firstname;
   }
+
+  
   newTransport() {
     return nodemailer.createTransport({
       host: process.env.SENDINBLUE_HOST,

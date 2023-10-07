@@ -7,6 +7,8 @@ import axios from "axios";
 
 const forgotpassword =async (userData) => {
     console.log("🚀😀😀 ~ file: forgotpassword.jsx:9 ~ forgotpassword ~ userData:", userData)
+    console.log("🚀😀😀 ~ file: forgotpassword.jsx:9 ~ forgotpassword ~ userData:",  `${import.meta.env.VITE_BACKEND_URL}/user/forgotPassword`,)
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/user/forgotPassword`,
@@ -46,7 +48,7 @@ const ForgotPassword = () => {
       } = useFormik({
         initialValues,
         validationSchema: ForgotPasswordSchema,
-        onSubmit: async (values, action) => {
+        onSubmit: async (values) => {
           await forgotpassword({
             email: values.email,
           }).then(() => {

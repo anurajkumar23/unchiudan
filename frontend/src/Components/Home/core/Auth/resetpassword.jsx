@@ -48,7 +48,7 @@ function ResetPassword() {
   } = useFormik({
     initialValues,
     validationSchema: ResetSchema,
-    onSubmit: (values, action) => {
+    onSubmit: (values) => {
         resetPassword({
         password: values.password,
         },token).then(() => {

@@ -209,7 +209,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
-  console.log("🚀 ~ file: authController.js:212 ~ exports.forgotPassword=catchAsync ~ user:", user)
+  // console.log("🚀 ~ file: authController.js:212 ~ exports.forgotPassword=catchAsync ~ user:", user)
   if (!user) {
     return next(
       new AppError('User does not exist with this Email address.', 404),
