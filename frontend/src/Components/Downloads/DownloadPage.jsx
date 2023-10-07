@@ -8,14 +8,11 @@ import { SocialMedia } from "../../consstant/socialmedia";
 function DownloadPage({ userData }) {
   const { id } = useParams();
   const [pdfDetails, setPdfDetails] = useState(null);
-  const [paymentMessage, setPaymentMessage] = useState("");
-  const [paymentMessageClass, setPaymentMessageClass] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-       
           `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`
         );
         setPdfDetails(response.data.data.pdf);
@@ -42,8 +39,8 @@ function DownloadPage({ userData }) {
   const handleDownload = async () => {
     if (!userData) {
       localStorage.setItem("redirectUrl", window.location.href);
-      window.location.href = "/login"; // Redirect to login page
-      return; // Stop further execution
+      window.location.href = "/login";
+      return;
     }
     const alreadybuy = userData.user.pdfs.includes(pdfDetails._id);
     console.log(
@@ -52,49 +49,47 @@ function DownloadPage({ userData }) {
     );
     if (pdfDetails.status === "free" || alreadybuy) {
       const downloadLink = `${import.meta.env.VITE_BACKEND_URL}/pdfs/download-pdf/${id}`;
-
-      // Create a temporary anchor element
       const anchor = document.createElement("a");
       anchor.href = downloadLink;
-      anchor.download = "Unchi_Uddan.pdf"; // Set a default filename for the downloaded file
-
-      // Trigger a click event on the anchor element
+      anchor.download = "Unchi_Uddan.pdf";
       document.body.appendChild(anchor);
       anchor.click();
-
-      // Remove the anchor element from the DOM
       document.body.removeChild(anchor);
     } else {
-      const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/payment/createOrderId`,
-        // "http://localhost:3000/api/payment/createOrderId",
-        {
-          name: userData.user.firstname,
-          email: userData.user.email,
-          phone: userData.user.phone,
-          amount: "30",
-        }
-      );
-      console.log("Session Id - ", res.data.paymentSessionId);
+      try {
+        const res = await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/payment/createOrderId`,
+          {
+            name: userData.user.firstname,
+            email: userData.user.email,
+            phone: userData.user.phone,
+            amount: "30",
+            pdfid: pdfDetails._id
+          }
+        );
+        console.log("Session Id - ", res.data.paymentSessionId);
 
-      const cashfree = Cashfree({ mode: "sandbox" });
+        const cashfree = Cashfree({ mode: "sandbox" });
 
-      // Perform Cashfree checkout
-      cashfree
-        .checkout({
-          paymentSessionId: res.data.paymentSessionId, // Use the state variable
-          returnUrl: `${import.meta.env.VITE_BACKEND_URL}/payment/NR&t#6@43p2*zs!SFvX5&Up5%&T8@ft/unchiudan/pdf/${userData.user._id}/${id}`, // Use the state variable
-          redirectTarget: "_blank",
-        })
-        .then(() => {
-          console.log("on-going redirection");
-        })
-        .catch((error) => {
-          // Handle errors
-          setPaymentMessage("Checkout failed. Please try again."); // Set an error message
-          setPaymentMessageClass("alert-danger");
-          console.error("Checkout error:", error);
-        });
+        cashfree
+          .checkout({
+            paymentSessionId: res.data.paymentSessionId,
+            returnUrl: `${import.meta.env.VITE_BACKEND_URL}/payment/NRRTWSD/unchiudan/pdf/${userData.user._id}/${id}`,
+            redirectTarget: "_blank",
+          })
+          .then(() => {
+            console.log("on-going redirection");
+          })
+          .catch((error) => {
+            console.error("Checkout error:", error);
+          });
+
+        console.log("🚀 ~ file: DownloadPage.jsx:93 ~ handleDownload", "😎😎😎😎😎😎😎😎😎 first wala");
+
+      } catch (error) {
+        console.error("Checkout error:", error);
+      }
+      console.log("😎😎😎😎😎😎😎😎😎 second wala");
     }
   };
 
@@ -114,7 +109,7 @@ function DownloadPage({ userData }) {
             />
           </div>
 
-          <div className="w-18 md:mx-12 p-4 border-2 mx-4 rounded-lg mt-16 ">
+          <div className="w-18 md:mx-12 p-4 border-2 mx-4 rounded-lg mt-16">
             <div className="flex justify-between space-x-3 h-[150px] md:h-[80px]">
               <FaFileAlt className="w-12 h-12" />
               <div className="text-center text-lg leading-[47px]">

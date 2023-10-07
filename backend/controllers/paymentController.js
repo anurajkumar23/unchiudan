@@ -20,8 +20,8 @@ const cfConfig = new CFConfig(
 
 const paymentGateway = new CFPaymentGateway();
 
-const createOrder = catchAsync(async (req, res) => {
-  const { name, phone, email, amount } = req.body;
+const createOrder = catchAsync(async (req, res, next) => {
+  const { name, phone, email, amount, pdfid } = req.body;
   console.log('working');
   console.log(req.body);
   try {
@@ -43,7 +43,19 @@ const createOrder = catchAsync(async (req, res) => {
 
     if (paymentSessionResponse && paymentSessionResponse.cfOrder) {
       const paymentSessionId = paymentSessionResponse.cfOrder.paymentSessionId;
+
       res.json({ paymentSessionId });
+
+      // req.session = paymentSessionId;
+      // res.locals.session = paymentSessionId;
+
+      // req.email = email;
+      // res.locals.email = email;
+
+      // req.pdfid = pdfid;
+      // res.locals.pdfid = pdfid;
+
+      // next()
     } else {
       res.status(500).json({ error: 'Failed to generate payment session ID' });
     }
@@ -89,30 +101,37 @@ const payWithUPI = catchAsync(async (req, res) => {
 });
 
 const addPdfInUsers = catchAsync(async (req, res) => {
-  console.log('working');
-  // const { pdfId , userId } = req.body;
-  const { pdfId, userId } = req.params;
+  console.log(
+    '🚀 ~ file: paymentController.js:105 ~ addPdfInUsers ~ req:',
+    req.email,
+    req.pdfid,
+    req.session,
+  );
 
-  try {
-    // Find the user by their ID or any other unique identifier
-    const user = await User.findById(userId);
+  // console.log('working');
+  // // const { pdfId , userId } = req.body;
+  // const { pdfId, userId } = req.params;
 
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
+  // try {
+  //   // Find the user by their ID or any other unique identifier
+  //   const user = await User.findById(userId);
 
-    // Append the pdfId to the user's pdfs array
-    user.pdfs.push(pdfId);
+  //   if (!user) {
+  //     return res.status(404).json({ message: 'User not found' });
+  //   }
 
-    // Save the updated user document
-    await user.save();
+  //   // Append the pdfId to the user's pdfs array
+  //   user.pdfs.push(pdfId);
 
-    // Redirect the user to the specified URL
-    return res.redirect('https://unchiudaanteam.vercel.app/studymaterials');
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'Internal server error' });
-  }
+  //   // Save the updated user document
+  //   await user.save();
+
+  //   // Redirect the user to the specified URL
+  //   return res.redirect('https://unchiudaanteam.vercel.app/studymaterials');
+  // } catch (error) {
+  //   console.error(error);
+  //   return res.status(500).json({ message: 'Internal server error' });
+  // }
 });
 
 module.exports = { createOrder, payWithUPI, addPdfInUsers };
