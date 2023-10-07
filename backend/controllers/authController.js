@@ -48,10 +48,11 @@ exports.signup = catchAsync(async (req, res, next) => {
     password: req.body.password,
     phone: req.body.phone,
   });
-  // console.log(newUser)
+  console.log(newUser)
 
   // const url = `${req.protocol}://${req.get('host')}/me`;
   // await new Email(newUser, url).sendWelcome();
+
   createSendToken(newUser, 201, req, res);
 });
 
@@ -208,6 +209,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
+  console.log("🚀 ~ file: authController.js:212 ~ exports.forgotPassword=catchAsync ~ user:", user)
   if (!user) {
     return next(
       new AppError('User does not exist with this Email address.', 404),
@@ -217,10 +219,11 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   const resetToken = user.createPasswordResetToken();
   await user.save({ validateBeforeSave: false });
 
-  const resetURL = `${req.protocol}://${req.get(
-    'host',
-  )}/api/user/resetPassword/${resetToken}`;
+  const resetURL = `${process.env.FRONTEND_URL}/resetPassword/${resetToken}`;
 
+  //  const resetURL = `${process.env.FRONTEND_URL}/resetPassword/${resetToken}`;   WORKING 
+
+   console.log("🚀 ~ file: authController.js:228 ~ exports.forgotPassword=catchAsync ~ resetURL:", resetURL)
   try {
     await new Email(user, resetURL).sendPasswordReset();
     res.status(200).json({
