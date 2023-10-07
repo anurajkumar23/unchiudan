@@ -75,7 +75,7 @@ function DownloadPage({ userData }) {
           .checkout({
             paymentSessionId: res.data.paymentSessionId,
             returnUrl: `${import.meta.env.VITE_BACKEND_URL}/payment/NRRTWSD/unchiudan/pdf/${userData.user._id}/${id}`,
-            redirectTarget: "_blank",
+            // redirectTarget: "_blank",
           })
           .then(() => {
             console.log("on-going redirection");

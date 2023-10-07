@@ -7,7 +7,7 @@ module.exports = class Email {
     this.to = user.email;
     this.from = `Unchi Uddan <${process.env.EMAIL_FROM}>`;
     this.url = url;
-    this.firstName = user.name.split(' ')[0];
+    this.firstName = user.firstname;
   }
   newTransport() {
     return nodemailer.createTransport({

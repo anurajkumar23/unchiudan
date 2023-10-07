@@ -22,6 +22,8 @@ import Disclaimer from "./Components/About/Disclaimer";
 import FAQ from "./Components/Support/FAQ";
 import StudyMaterials from "./Components/Study Materials/StudyMaterials";
 import PrivacyPolicy from "./Components/About/policy";
+import ForgotPassword from "./Components/Home/core/Auth/forgotpassword";
+import ResetPassword from "./Components/Home/core/Auth/resetpassword";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -88,6 +90,8 @@ function App() {
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route path="/faqs" element={<FAQ />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/resetpassword/:token" element={<ResetPassword />} />
 
           {user ? (
             <Route
