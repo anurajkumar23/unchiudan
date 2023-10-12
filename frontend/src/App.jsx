@@ -6,7 +6,6 @@ import BlogsPage from "./Components/Blogs/BlogsPage";
 import GlobalProvider from "./Components/GlobalProvider";
 import Downloads from "./Components/Downloads/Downloads";
 
-
 import News from "./Components/News/News";
 import Currentaffaircontainer from "./Components/currentaffair/Currentaffaircontainer";
 
@@ -16,6 +15,8 @@ import UserSettings from "./Components/Home/core/Auth/UserSettings"; // Assuming
 import Navbar from "./Components/Home/HomeUI/Navbar";
 import NewsPage from "./Components/News/NewsPage";
 import AboutUs from "./Components/About/AboutUs";
+import AdminPage from "./Components/Home/core/Auth/Admin/AdminPower";
+import ErrorPage from "./Errorpage"
 import TermsAndConditions from "./Components/About/TermsAndConditions";
 import Disclaimer from "./Components/About/Disclaimer";
 
@@ -111,6 +112,19 @@ function App() {
               )
             }
           />
+          {user ?     <Route
+            path="/adminpower"
+            element={
+              user.user.role==="admin" ? (
+                <AdminPage userData={user.user} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          : <Route path="/errorpage" element={<ErrorPage />} />
+        }
+      
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
