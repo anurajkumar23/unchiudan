@@ -114,9 +114,11 @@ function UserSettings({ userData }) {
               Billing
             </li>
             {settingsData.role === "admin" ? (
+              <Link to="/adminpower">
               <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
                 Admin power
               </li>
+              </Link>
             ) : (
               ""
             )}

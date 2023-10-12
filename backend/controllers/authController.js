@@ -124,7 +124,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.isLoggedIn = async (req, res, next) => {
   
   
-  console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", req.headers.authorization)
+  // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", req.headers.authorization)
   // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", res)
   try {
     // Check if token exists
@@ -133,7 +133,7 @@ exports.isLoggedIn = async (req, res, next) => {
     // const authtoken = token.split(" ")
     
    
-    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token)
+    // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token)
     if (!token) {
       return res.status(401).json({
         isAuthorized: false,
@@ -158,10 +158,10 @@ exports.isLoggedIn = async (req, res, next) => {
     if (!currentUser) {
       return res.status(401).json({ message: 'User not found' });
     }
-    console.log(
-      '🚀 ~ file: authController.js:138 ~ exports.isLoggedIn= ~ currentUser:',
-      currentUser,
-    );
+    // console.log(
+    //   '🚀 ~ file: authController.js:138 ~ exports.isLoggedIn= ~ currentUser:',
+    //   currentUser,
+    // );
 
     // Check if password was changed
     if (currentUser.changedPasswordAfter(decoded.iat)) {
@@ -184,11 +184,14 @@ exports.isLoggedIn = async (req, res, next) => {
 
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
+    console.log("🚀 ~ file: authController.js:187 ~ return ~ req:", req.file)
+    // console.log("🚀 ~ file: authController.js:187 ~ return ~ req:", req)
     if (!roles.includes(req.user.role)) {
       return next(
         new AppError('You do not have permission to perform this action', 403),
       );
     }
+    
     next();
   };
 };
@@ -267,9 +270,10 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
 
 exports.authenticateCors = async (req, res, next) => {
+  // console.log("🚀 ~ file: authController.js:273 ~ exports.authenticateCors= ~ req:", req)
   
+  console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", req.file)
   // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", req.headers.authorization)
-  console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", req.headers.authorization)
   
   // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", res)
   try {
@@ -279,7 +283,7 @@ exports.authenticateCors = async (req, res, next) => {
     // const authtoken = token.split(" ")
     
    
-    console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token)
+    // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token)
     if (!token) {
       return res.status(401).json({
         isAuthorized: false,
@@ -304,10 +308,10 @@ exports.authenticateCors = async (req, res, next) => {
     if (!currentUser) {
       return res.status(401).json({ message: 'User not found' });
     }
-    console.log(
-      '🚀 ~ file: authController.js:138 ~ exports.isLoggedIn= ~ currentUser:',
-      currentUser,
-    );
+    // console.log(
+    //   '🚀 ~ file: authController.js:138 ~ exports.isLoggedIn= ~ currentUser:',
+    //   currentUser,
+    // );
 
     // Check if password was changed
     if (currentUser.changedPasswordAfter(decoded.iat)) {
@@ -320,10 +324,11 @@ exports.authenticateCors = async (req, res, next) => {
     // User is authenticated, continue with the request
     req.user = currentUser;
     res.locals.user = currentUser;
-  
+    // console.log("🚀 ~ file: authController.js:323 ~ exports.authenticateCors= ~ currentUser:", currentUser)
+    
     next();
   } catch (error) {
     console.error('Error:', error);
-    return res.status(500).json({ message: 'Internal Server Error' });
+    return res.status(500).json({ message: 'Internal Server Error 😀' });
   }
 };

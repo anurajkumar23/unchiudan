@@ -1,6 +1,6 @@
 const express = require('express');
 const newsController = require('./../controllers/newsController');
-const { protect, restrictTo } = require('../controllers/authController');
+const { protect, restrictTo,authenticateCors} = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -8,10 +8,12 @@ router
   .route('/')
   .get(newsController.getAllNews)
   .post(
-    protect,
+    authenticateCors,
+    // protect,
     restrictTo('admin'),
     newsController.uploadPhoto,
     newsController.resizePhoto('public/img/news'),
+
     newsController.createOne,
   );
 

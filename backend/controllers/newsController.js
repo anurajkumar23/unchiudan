@@ -8,6 +8,7 @@ const sharp = require('sharp');
 
 const multerStorage = multer.memoryStorage();
 const multerFilter = (req, file, cb) => {
+  
   if (file.mimetype.startsWith('image')) {
     cb(null, true);
   } else {
@@ -20,6 +21,8 @@ const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 exports.uploadPhoto = upload.single('photo');
 
 exports.resizePhoto = (path) => {
+  
+  
   return catchAsync(async (req, res, next) => {
     console.log(req.file);
     if (!req.file) return next();
@@ -52,6 +55,7 @@ exports.getAllNews = catchAsync(async (req, res, next) => {
 });
 
 exports.createOne = catchAsync(async (req, res, next) => {
+  // console.log("🚀 ~ file: newsController.js:58 ~ exports.createOne=catchAsync ~ req:", req)
   let photo;
   if (req.file) {
     photo = req.file.filename;
