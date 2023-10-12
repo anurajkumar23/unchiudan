@@ -11,6 +11,7 @@ router
     authenticateCors,
     // protect,
     restrictTo('admin'),
+    
     newsController.uploadPhoto,
     newsController.resizePhoto('public/img/news'),
 
