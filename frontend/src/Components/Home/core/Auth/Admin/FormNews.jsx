@@ -10,17 +10,19 @@ formData.append('heading', newsData.heading);
 formData.append('article', newsData.article);
 formData.append('highlight', newsData.highlight);
 formData.append('photo', newsData.photo);
+
   console.log("🚀 ~ file: FormNews.jsx:12 ~ postnews ~ ewsData.photo:", newsData.photo)
 
   try {
     const response = await axios.post(
-        // `${import.meta.env.VITE_BACKEND_URL}/news`,
-      `http://localhost:3000/api/news`,
+        `${import.meta.env.VITE_BACKEND_URL}/news`,
+    //   `http://localhost:3000/api/news`,
       formData,
       {
         headers: {
         //   "Content-Type": "application/json",
           Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+          file:newsData.photo,
         },
       }
     );
