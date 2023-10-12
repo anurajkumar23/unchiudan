@@ -8,6 +8,7 @@ const sharp = require('sharp');
 
 const multerStorage = multer.memoryStorage();
 const multerFilter = (req, file, cb) => {
+
   
   if (file.mimetype.startsWith('image')) {
     cb(null, true);
@@ -55,12 +56,12 @@ exports.getAllNews = catchAsync(async (req, res, next) => {
 });
 
 exports.createOne = catchAsync(async (req, res, next) => {
-  console.log("🚀 ~ file: newsController.js:58 ~ exports.createOne=catchAsync ~ req:", req.file)
+  // console.log("🚀 ~ file: newsController.js:58 ~ exports.createOne=catchAsync ~ req:", req.file)
   let photo;
   if (req.file) {
     photo = req.file.filename;
   }
-  console.log("🚀 ~ file: newsController.js:60 ~ exports.createOne=catchAsync ~ photo:", photo)
+  // console.log("🚀 ~ file: newsController.js:60 ~ exports.createOne=catchAsync ~ photo:", photo)
   req.body = { ...req.body, photo };
   const news = await News.create(req.body);
 

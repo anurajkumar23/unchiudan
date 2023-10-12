@@ -4,25 +4,23 @@ import { useState } from "react";
 const postnews = async (newsData) => {
   console.log("🚀 ~ file: FormNews.jsx:6 ~ signup ~ newsData:", newsData);
   const token = localStorage.getItem("jwt_token");
-  console.log("🚀 ~ file: FormNews.jsx:7 ~ postnews ~ token:", token)
-  const formData = new FormData();
-formData.append('heading', newsData.heading);
-formData.append('article', newsData.article);
-formData.append('highlight', newsData.highlight);
-formData.append('photo', newsData.photo);
+  console.log("🚀 ~ file: FormNews.jsx:7 ~ postnews ~ token:", token);
 
-  console.log("🚀 ~ file: FormNews.jsx:12 ~ postnews ~ ewsData.photo:", newsData.photo)
+  const formData = new FormData();
+  formData.append("heading", newsData.heading);
+  formData.append("article", newsData.article);
+  formData.append("highlight", newsData.highlight);
+  formData.append("photo", newsData.photo);
 
   try {
     const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/news`,
-    //   `http://localhost:3000/api/news`,
+      `${import.meta.env.VITE_BACKEND_URL}/news`,
+        // `http://localhost:3000/api/news`,
       formData,
       {
         headers: {
-        //   "Content-Type": "application/json",
+          //   "Content-Type": "application/json",
           Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
-          file:newsData.photo,
         },
       }
     );
@@ -58,7 +56,6 @@ const FormNews = () => {
   };
 
   const handleSubmit = async (e) => {
-    
     e.preventDefault();
     // Here, you can send the formData to your server for processing
     console.log(formData);

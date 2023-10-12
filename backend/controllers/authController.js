@@ -276,7 +276,8 @@ exports.authenticateCors = async (req, res, next) => {
 
   
   // console.log("🚀 ~ file: authController.js:275 ~ exports.isLoggedIn= ~ exists:", req.file)
-  const file = req.headers.file
+  
+  // console.log("🚀 ~ file: authController.js:280 ~ exports.authenticateCors= ~ req.file:", req)
   // console.log("🚀 ~ file: authController.js:131 ~ exports.isLoggedIn= ~ file:", file)
   try {
     // Check if token exists
@@ -285,7 +286,7 @@ exports.authenticateCors = async (req, res, next) => {
     // const authtoken = token.split(" ")
     
    
-    console.log("🚀 ~ file: authController.js:284 ~ exports.isLoggedIn= ~ exists:", token)
+    // console.log("🚀 ~ file: authController.js:284 ~ exports.isLoggedIn= ~ exists:", token)
     if (!token) {
       return res.status(401).json({
         isAuthorized: false,
@@ -325,9 +326,9 @@ exports.authenticateCors = async (req, res, next) => {
 
     // User is authenticated, continue with the request
     req.user = currentUser;
-    req.file = file
+    
     res.locals.user = currentUser;
-    console.log("🚀 ~ file: authController.js:325 ~ exports.authenticateCors= ~ currentUser:", currentUser)
+    // console.log("🚀 ~ file: authController.js:325 ~ exports.authenticateCors= ~ currentUser:", currentUser)
     
     next();
   } catch (error) {
