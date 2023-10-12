@@ -4,6 +4,7 @@ import { useState } from "react";
 const postnews = async (newsData) => {
   console.log("🚀 ~ file: FormNews.jsx:6 ~ signup ~ newsData:", newsData);
   const token = localStorage.getItem("jwt_token");
+  console.log("🚀 ~ file: FormNews.jsx:7 ~ postnews ~ token:", token)
   const formData = new FormData();
 formData.append('heading', newsData.heading);
 formData.append('article', newsData.article);
@@ -13,8 +14,8 @@ formData.append('photo', newsData.photo);
 
   try {
     const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/news`,
-    //   `http://localhost:3000/api/news`,
+        // `${import.meta.env.VITE_BACKEND_URL}/news`,
+      `http://localhost:3000/api/news`,
       formData,
       {
         headers: {
