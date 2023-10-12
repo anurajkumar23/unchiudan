@@ -14,8 +14,8 @@ formData.append('photo', newsData.photo);
 
   try {
     const response = await axios.post(
-        // `${import.meta.env.VITE_BACKEND_URL}/news`,
-      `http://localhost:3000/api/news`,
+        `${import.meta.env.VITE_BACKEND_URL}/news`,
+      // `http://localhost:3000/api/news`,
       formData,
       {
         headers: {
