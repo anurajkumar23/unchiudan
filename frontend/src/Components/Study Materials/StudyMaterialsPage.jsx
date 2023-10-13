@@ -68,7 +68,7 @@ function StudyMaterialsPage({ userData }) {
           <div className="mx-6 my-12">
             <img
               alt="meow"
-              src={`https://ucchi-urran-backend.vercel.app/img/pdf/${pdfDetails.photo}`}
+              src={`${import.meta.env.VITE_BACKEND_URL_IMAGE}/img/pdf/${pdfDetails.photo}`}
               className="w-full mx-auto rounded-lg"
             />
           </div>

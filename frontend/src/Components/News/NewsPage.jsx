@@ -39,7 +39,7 @@ function NewsPage() {
             <div className="md:mx-12 my-12">
               <img
                 alt="meow"
-                src={`https://ucchi-urran-backend.vercel.app/img/news/${news.photo}`}
+                src={`${import.meta.env.VITE_BACKEND_URL_IMAGE}/img/news/${news.photo}`}
                 className="w-full mx-auto rounded-lg"
               />
             </div>

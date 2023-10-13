@@ -31,7 +31,7 @@ console.log("🚀 ~ file: NewsComp.jsx:5 ~ NewsComp ~ newsItems:", newsItems)
           <Link to={`/News/${news._id}`} key={news._id}>
             <div className="relative my-6 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white h-[50%]">
               <div className="w-full md:w-1/3 bg-white grid place-items-center overflow-hidden">
-              <img className="rounded-xl" src={`https://ucchi-urran-backend.vercel.app/img/news/${news.photo}`} alt={`logo`} />
+              <img className="rounded-xl" src={`https://ucchi-urran-backend.onrender.com/img/news/${news.photo}`} alt={`logo`} />
               </div>
               <div className="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3 overflow-hidden">
                 <div className="flex justify-between items-center">
