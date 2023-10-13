@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
+
 const postnews = async (newsData) => {
   console.log("🚀 ~ file: FormNews.jsx:6 ~ signup ~ newsData:", newsData);
   const token = localStorage.getItem("jwt_token");
@@ -11,12 +12,13 @@ const postnews = async (newsData) => {
   formData.append("article", newsData.article);
   formData.append("highlight", newsData.highlight);
   formData.append("photo", newsData.photo);
-
+  
+  console.log("🚀 ~ file: FormNews.jsx:11 ~ postnews ~ formData:", formData)
   try {
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/news`,
         // `http://localhost:3000/api/news`,
-      formData,
+        formData,
       {
         headers: {
           //   "Content-Type": "application/json",
