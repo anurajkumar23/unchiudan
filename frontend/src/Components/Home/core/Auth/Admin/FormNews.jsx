@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-
+import { Toaster, toast } from "react-hot-toast";
 const postnews = async (newsData) => {
   console.log("🚀 ~ file: FormNews.jsx:6 ~ signup ~ newsData:", newsData);
   const token = localStorage.getItem("jwt_token");
@@ -59,13 +59,20 @@ const FormNews = () => {
     e.preventDefault();
     // Here, you can send the formData to your server for processing
     console.log(formData);
-
+try{
     await postnews({
       heading: formData.heading,
       article: formData.article,
       highlight: formData.highlight,
       photo: formData.photo,
     });
+    toast.success("News posted successfully!");
+  } catch (error) {
+    console.error(error);
+
+    // Show an error toast when an error occurs
+    toast.error("Error posting news. Please try again.");
+  }
   };
 
   return (
@@ -143,6 +150,7 @@ const FormNews = () => {
           Submit
         </button>
       </form>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
