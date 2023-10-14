@@ -102,7 +102,7 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus, togglefilter }) => {
         </ul>
       </div>
 
-      <div className="my-10">
+      <div className="my-10 ">
         <h1 className="text-center text-xl">Latest Pdf</h1>
         <ul className="flex flex-col space-y-3 m-4">
           {pdfs.map((pdf) => {
@@ -113,12 +113,12 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus, togglefilter }) => {
             });
             return (
               <Link to={`/pdfs/${pdf._id}`} key={pdf._id}>
-                <div className="w-18 flex justify-between p-4 border border-2 rounded-lg">
+                <div className="w-18 flex justify-between p-4 border border-2 rounded-lg ">
                   <div className="w-1/3 p-4">
                     <FaFileAlt className="w-12 h-12" />
                   </div>
-                  <div className="flex-col w-2/3 p-4">
-                    <h1 className="text-center text-md">{pdf.name}</h1>
+                  <div className="flex-col w-2/3 p-4 overflow-hidden">
+                    <h1 className="text-center text-md ">{pdf.name}</h1>
                     <p>{formattedDate}</p>
                   </div>
                 </div>

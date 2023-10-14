@@ -94,7 +94,7 @@ function Currentaffairs() {
         </div>
         
       </div>
-      <div className='sm:padding-top'>
+      <div className=''>
       <Pagination
         currentPage={currentPage}
         totalPages={Math.ceil(affairs.length / postsPerPage)}
