@@ -4,10 +4,24 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaDownload, FaFileAlt } from "react-icons/fa";
 import { SocialMedia } from "../../consstant/socialmedia";
+import PDFPatchForm from "../Home/core/Auth/Admin/PDFPatchForm"
 
 function DownloadPage({ userData }) {
   const { id } = useParams();
   const [pdfDetails, setPdfDetails] = useState(null);
+
+  console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData);
+  let role;
+  if (userData) {
+    if(userData.user.role==="admin"){
+      role=true
+    }
+    else{
+      role=false
+    }
+  } else {
+    role = false;
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +51,7 @@ function DownloadPage({ userData }) {
   };
 
   const handleDownload = async () => {
+ 
     if (!userData) {
       localStorage.setItem("redirectUrl", window.location.href);
       window.location.href = "/login";
@@ -150,6 +165,7 @@ function DownloadPage({ userData }) {
           <SocialMedia />
         </div>
       </div>
+      {role ? <PDFPatchForm details={pdfDetails} /> : ""}
     </div>
   );
 }

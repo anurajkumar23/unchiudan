@@ -2,7 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const postaffairs = async (affairsData,id) => {
+const patchaffairs = async (affairsData,id) => {
   
   console.log(
     "🚀 ~ file: FormCurrentAffairs.jsx:7 ~ affairsData:",
@@ -85,7 +85,7 @@ const CurrentAffairsForm = ({details}) => {
     // } catch (error) {
     //   console.error("Error posting data:", error);
     // }
-    await postaffairs({
+    await patchaffairs({
       topic: formData.topic,
       category: formData.category,
       data: formData.data,
