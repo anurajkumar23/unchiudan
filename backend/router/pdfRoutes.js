@@ -18,8 +18,8 @@ router
   .route('/:id')
   .get(pdfController.getPdf)
   .delete(
-    protect,
-    // restrictTo('admin'),
+    authenticateCors,
+    restrictTo('admin'),
     pdfController.deletePdf,
   )
   .patch(

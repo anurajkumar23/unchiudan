@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -15,12 +16,36 @@ function BlogComps({
   status,
   category,
 }) {
-  const handleDeleteClick = (event) => {
+  const handleDeleteClick = async (event) => {
     event.stopPropagation(); // Prevent the click event from propagating to the parent link element
     if (window.confirm("Are you sure you want to delete this item?")) {
       // Perform the delete action here, e.g., call an API to delete the item
       // You may want to pass the `id` or some identifier to delete the specific item
       // Example: deleteItem(id);
+      const token = localStorage.getItem("jwt_token");
+      console.log("🚀 ~ file: FormPDF.jsx:9 ~ postpdf ~ token:", token);
+      try {
+        const response = await axios.delete(
+          `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`,
+          // `http://localhost:3000/api/pdfs/${id}`,
+          {
+            headers: {
+              //   "Content-Type": "application/json",
+              Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          // The item was deleted successfully
+          // Perform any additional actions you need here
+          console.log("Item deleted successfully");
+        } else {
+          console.error("Error deleting item:", response);
+        }
+      } catch (error) {
+        console.error("Error deleting item:", error);
+      }
     }
   };
   return (
