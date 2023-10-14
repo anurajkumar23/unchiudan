@@ -15,7 +15,7 @@ const postaffairs = async (affairsData) => {
   
   formData.append("topic", affairsData.topic);
   formData.append("category", affairsData.category);
-  formData.append("data", affairsData.data);
+  formData.append("data", JSON.stringify(affairsData.data));
   formData.append("photo", affairsData.photo);
 
   try {
@@ -174,7 +174,7 @@ const CurrentAffairsForm = () => {
             value={question.ques}
             onChange={(e) => handleChange(e, index)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
+            // required
           />
           {question.options.map((option, optionIndex) => (
             <div key={optionIndex} className="mb-2">
@@ -186,7 +186,7 @@ const CurrentAffairsForm = () => {
                 value={option}
                 onChange={(e) => handleOptionChange(e, index, optionIndex)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                required
+                // required
               />
             </div>
           ))}
@@ -204,7 +204,7 @@ const CurrentAffairsForm = () => {
             value={question.ans}
             onChange={(e) => handleChange(e, index)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
+            // required
           />
         </div>
       ))}
