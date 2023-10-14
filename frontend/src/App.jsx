@@ -85,7 +85,7 @@ function App() {
           <Route path="/Currentaffairs" element={<Currentaffaircontainer />} />
           <Route path="/currentaffairs/:id" element={<BlogsPage userData={user}/>} />
           <Route path="/News" element={<News />} />
-          <Route path="/News/:id" element={<NewsPage />} />
+          <Route path="/News/:id" element={<NewsPage userData={user}/>} />
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/tearm&conditions" element={<TermsAndConditions />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
