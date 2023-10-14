@@ -1,12 +1,13 @@
 const express = require('express');
 const pdfController = require('../controllers/pdfContoller');
-const { protect, restrictTo } = require('../controllers/authController');
+const { protect, restrictTo,authenticateCors } = require('../controllers/authController');
 
 const router = express.Router();
 
 router.route('/').get(pdfController.getAllPdf).post(
-  protect,
-  // restrictTo("admin"),
+  authenticateCors,
+  // protect,
+  restrictTo("admin"),
   pdfController.uploadPhotoAndPdf,
   pdfController.createPdf,
 );

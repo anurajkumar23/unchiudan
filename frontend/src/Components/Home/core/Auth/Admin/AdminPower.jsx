@@ -1,6 +1,8 @@
 import CurrentAffairsForm from "./FormCurrentAffairs";
 import FormNews from "./FormNews";
 import SidebarAdmin from "./SidebarAdmin";
+import FormPdf from "./FormPDF";
+
 
 
 
@@ -13,6 +15,7 @@ const AdminPage = ({userData}) => {
       <SidebarAdmin />
       <FormNews />
       <CurrentAffairsForm/>
+      <FormPdf/>
     </div>
     </div>
   );
