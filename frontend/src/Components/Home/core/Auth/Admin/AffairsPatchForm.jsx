@@ -2,7 +2,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-const postaffairs = async (affairsData) => {
+const postaffairs = async (affairsData,id) => {
+  
   console.log(
     "🚀 ~ file: FormCurrentAffairs.jsx:7 ~ affairsData:",
     affairsData
@@ -21,8 +22,8 @@ const postaffairs = async (affairsData) => {
 
   try {
     const response = await axios.patch(
-    //   `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${affairsData._id}`,
-      `http://localhost:3000/api/currentaffairs/${affairsData._id}`,
+      `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${id}`,
+    //   `http://localhost:3000/api/currentaffairs/${id}`,
       formData,
       {
         headers: {
@@ -89,7 +90,7 @@ const CurrentAffairsForm = ({details}) => {
       category: formData.category,
       data: formData.data,
       photo: formData.photo,
-    });
+    },details._id);
   };
   const handleFileChange = (e) => {
     const file = e.target.files[0];
