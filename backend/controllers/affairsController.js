@@ -91,6 +91,7 @@ exports.getAffair = catchAsync(async (req, res, next) => {
 
 exports.deleteAffair = catchAsync(async (req, res, next) => {
   const affairs = await CurrentAffairs.findByIdAndRemove(req.params.id);
+  console.log("🚀 ~ file: affairsController.js:94 ~ exports.deleteAffair ~ req.params.id:", req.params.id)
   if (!affairs) {
     return next(new AppError('No affairs found with that ID', 404));
   }

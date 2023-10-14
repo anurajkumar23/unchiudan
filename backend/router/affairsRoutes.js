@@ -25,7 +25,7 @@ router.get('/dailyquiz',affairsController.newest)
 router
   .route('/:id')
   .get(affairsController.getAffair)
-  .delete(protect, restrictTo('admin'), affairsController.deleteAffair)
+  .delete(authenticateCors, restrictTo('admin'), affairsController.deleteAffair)
   .patch(
     authenticateCors,
     // protect,
