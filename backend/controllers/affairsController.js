@@ -50,17 +50,25 @@ exports.lastestAffairs = catchAsync(async (req, res, next) => {
 });
 
 exports.createAffairs = catchAsync(async (req, res, next) => {
+  // const { topic, category, data } = req.body;
+  // const parsedData = JSON.parse(data);
+  // console.log("🚀 ~ file: affairsController.js:55 ~ exports.createAffairs=catchAsync ~ parsedData:", parsedData)
+
+
+
   let photo;
   if (req.file) {
     photo = req.file.filename;
   }
   req.body = { ...req.body, photo };
+  console.log("🚀 ~ file: affairsController.js:58 ~ exports.createAffairs=catchAsync ~ req.body:", req.body)
 
   const currentDate = Date.now();
   req.body.updatedAt = currentDate;
 
   const affairs = await CurrentAffairs.create(req.body);
-
+  console.log("🚀 ~ file: affairsController.js:63 ~ exports.createAffairs=catchAsync ~ affairs:", affairs)
+  
   res.status(201).json({
     status: 'success',
     data: {
