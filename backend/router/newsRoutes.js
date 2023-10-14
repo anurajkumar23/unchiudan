@@ -33,7 +33,7 @@ router
   .get(newsController.getNews)
   .delete(protect, restrictTo('admin'), newsController.deleteNews)
   .patch(
-    protect,
+    authenticateCors,
     restrictTo('admin'),
     newsController.uploadPhoto,
     newsController.resizePhoto('public/img/news'),
