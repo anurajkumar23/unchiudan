@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+import { Toaster, toast } from "react-hot-toast";
 const postaffairs = async (affairsData) => {
   console.log(
     "🚀 ~ file: FormCurrentAffairs.jsx:7 ~ affairsData:",
@@ -80,12 +80,20 @@ const CurrentAffairsForm = () => {
     // } catch (error) {
     //   console.error("Error posting data:", error);
     // }
+  try{ 
     await postaffairs({
       topic: formData.topic,
       category: formData.category,
       data: formData.data,
       photo: formData.photo,
     });
+    toast.success("CurrentAffairs posted successfully!");
+  } catch (error) {
+    console.error(error);
+
+    // Show an error toast when an error occurs
+    toast.error("Error posting CurrentAffairs. Please try again.");
+  }
   };
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -96,6 +104,7 @@ const CurrentAffairsForm = () => {
   };
 
   return (
+    <div>
     <form className="max-w-2xl mx-auto mt-8" onSubmit={handleSubmit}>
       <div className="mb-4">
         <label
@@ -179,7 +188,7 @@ const CurrentAffairsForm = () => {
           />
           {question.options.map((option, optionIndex) => (
             <div key={optionIndex} className="mb-2">
-              <label>Option: {optionIndex}</label>
+              <label>Option: {optionIndex + 1}</label>
               <input
                 type="text"
                 id={`option${index}-${optionIndex}`}
@@ -233,6 +242,8 @@ const CurrentAffairsForm = () => {
         Submit
       </button>
     </form>
+    <Toaster position="top-center" reverseOrder={false} />
+    </div>
   );
 };
 
