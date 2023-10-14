@@ -61,7 +61,11 @@ const Sidebar_pdf = ({
           className="px-2 py-2 w-full rounded-md border border-gray-500 focus:outline-none focus:border-indigo-500"
         />
         <button
-          onClick={handleSearch}
+          onClick={() => {
+            if (window.innerWidth <= 680) {
+              togglefilter();
+            }
+          }}
           className="absolute right-10 bg-indigo-500 text-white p-3 rounded-md flex items-center md:right-4 hover:bg-indigo-600 focus:outline-none"
         >
           <FaSearch className="mx-2" z-1 />
@@ -107,7 +111,7 @@ const Sidebar_pdf = ({
 
       <div className="my-10">
         <h1 className="text-center text-xl">Search By Status</h1>
-        <ul className="flex flex-col space-y-2 m-4">
+        <ul className="flex flex-col space-y-3 m-4">
           <li className="flex space-x-2">
             <span className="h-2 w-2 bg-black rounded-md my-auto"></span>
             <button
@@ -164,12 +168,12 @@ const Sidebar_pdf = ({
             });
             return (
               <Link to={`/Currentaffairs/${affair._id}`} key={affair._id}>
-                <div className="w-18 flex justify-between p-4 border border-2 rounded-lg ">
+                <div className="w-18 flex justify-between p-4 border border-2 rounded-lg">
                   <div className="w-1/3 p-4">
                     <FaFileAlt className="w-12 h-12" />
                   </div>
                   <div className="flex-col w-2/3 p-4">
-                    <h1 className=" text-md overflow-hidden">{affair.topic}</h1>
+                    <h1 className=" text-center text-md">{affair.topic}</h1>
                     <p>{formattedDate}</p>
                   </div>
                 </div>

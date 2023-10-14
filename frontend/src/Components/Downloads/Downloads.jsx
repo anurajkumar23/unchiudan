@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
-import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import { MdOutlineAccessTimeFilled, MdOutlineDelete } from "react-icons/md";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
+import Sidebar_pdf from "../Sidebar/Sidebar_pdf"
 
 function BlogComps({
   date,
@@ -14,36 +14,48 @@ function BlogComps({
   id,
   status,
   category,
-})
- {
+}) {
+  const handleDeleteClick = (event) => {
+    event.stopPropagation(); // Prevent the click event from propagating to the parent link element
+    if (window.confirm("Are you sure you want to delete this item?")) {
+      // Perform the delete action here, e.g., call an API to delete the item
+      // You may want to pass the `id` or some identifier to delete the specific item
+      // Example: deleteItem(id);
+    }
+  };
   return (
-    <Link to={`/pdfs/${id}`}>
-      <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 ">
-      <div className="card__header">
-        <div className="card__picture">
-          <div className="card__picture-overlay">&nbsp;</div>
-        <div className="relative">
-          <img
-            className="w-full rounded-xl"
-            
-            src={imageSrc}
-            alt="Blog Cover"
-          />
-          <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
-            {date}
-          </p>
-          </div>
+    
+      <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 relative">
+       
+        <button
+          className="absolute top-0 right-0 text-red-600 cursor-pointer bg-red-500 rounded-full p-2"
+          style={{ zIndex: 1 }} // Increase the z-index value
+          onClick={handleDeleteClick}
+        >
+          <MdOutlineDelete size={32} color="#fff" />
+        </button>
+        <Link to={`/pdfs/${id}`} className="w-full h-full">
+        <div className="card__header">
+          <div className="card__picture">
+            <div className="card__picture-overlay">&nbsp;</div>
+            <div className="relative">
+              <img
+                className="w-full rounded-xl"
+                src={imageSrc}
+                alt="Blog Cover"
+              />
+              <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
+                {date}
+              </p>
+            </div>
           </div>
           <h3 className="heading-tertirary">
-          <span>{category}</span>
-        </h3>
-       
+            <span>{category}</span>
+          </h3>
         </div>
-        
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem]">
           {title}
         </h1>
-
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
           status: {status}
         </h1>
@@ -54,11 +66,12 @@ function BlogComps({
           <p className="text-lg ">updated at: {updatedDate}</p>
         </div>
         <div className="my-2 mx-6 flex justify-between"></div>
-        <button className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
+        <button className="mt-4 text-md hover-bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
           Read More
         </button>
+        </Link>
       </div>
-    </Link>
+    
   );
 }
 
@@ -67,7 +80,7 @@ function Downloads() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [filter, setFilter] = useState(false);
-  const isSmallScreen = window.innerWidth <= 680; 
+  const isSmallScreen = window.innerWidth <= 680;
   const togglefilter = () => {
     setFilter(!filter);
   };
@@ -99,7 +112,7 @@ function Downloads() {
         {isSmallScreen && (
           <button
             onClick={togglefilter}
-            className="text-black hover:text-gray-300 focus:outline-none md:hidden "
+            className="text-black hover:text-gray-300 focus:outline-none md:hidden"
           >
             {filter ? (
               <RiCloseFill className="text-2xl" />
@@ -113,7 +126,7 @@ function Downloads() {
         <div
           className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full mx-10 md:mx-0 ${
             filter ? "hidden" : "block"
-          } `}
+          }`}
         >
           {pdfs.map((pdf) => {
             const createdAt = new Date(pdf.createdAt);
@@ -141,9 +154,7 @@ function Downloads() {
           })}
         </div>
         <div
-          className={`z-1 flex-1 ${
-            filter ? "block" : "hidden"
-          } lg:flex sm:block`}
+          className={`z-1 flex-1 ${filter ? "block" : "hidden"} lg:flex sm:block`}
         >
           <Sidebar_pdf
             setSelectedCategory={setSelectedCategory}

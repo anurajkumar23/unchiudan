@@ -11,7 +11,7 @@ function Currentaffairs() {
   const [filter, setFilter] = useState(false);
   const isSmallScreen = window.innerWidth <= 680;
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(4); // Number of posts per page
+  const [postsPerPage] = useState(8); // Number of posts per page
 
   const togglefilter = () => {
     setFilter(!filter);
@@ -94,7 +94,7 @@ function Currentaffairs() {
         </div>
         
       </div>
-      <div className='sm:padding-top'>
+      <div className=''>
       <Pagination
         currentPage={currentPage}
         totalPages={Math.ceil(affairs.length / postsPerPage)}
