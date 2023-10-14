@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import PatchAffairsForm from "../Home/core/Auth/Admin/AffairsPatchForm"
+import PatchAffairsForm from "../Home/core/Auth/Admin/AffairsPatchForm";
 import axios from "axios";
 import {
   FaFacebook,
@@ -14,8 +14,20 @@ import {
 import "./quiz.css";
 import { SocialMedia } from "../../consstant/socialmedia";
 
-function BlogsPage({userData}) {
-  // console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData.user.role)
+function BlogsPage({ userData }) {
+  console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData);
+  let role;
+  if (userData) {
+    if(userData.user.role==="admin"){
+      role=true
+    }
+    else{
+      role=false
+    }
+  } else {
+    role = false;
+  }
+
   const { id } = useParams();
 
   const [affairDetails, setAffairDetails] = useState(null);
@@ -74,11 +86,13 @@ function BlogsPage({userData}) {
           <div className="md:mx-12 my-12">
             <img
               alt={`${affairDetails.photo}`}
-              src={`${import.meta.env.VITE_BACKEND_URL_IMAGE}/img/affairs/${affairDetails.photo}`}
+              src={`${import.meta.env.VITE_BACKEND_URL_IMAGE}/img/affairs/${
+                affairDetails.photo
+              }`}
               className="w-full mx-auto rounded-lg"
             />
           </div>
-          <SocialMedia/>
+          <SocialMedia />
           <h1 className="mt-10 text-[1.3rem] font-[550] text-center">
             {affairDetails.topic}
           </h1>
@@ -195,9 +209,7 @@ function BlogsPage({userData}) {
           </a>
         </span>
       </div>
-      {userData.user.role==="admin" ? <PatchAffairsForm details={affairDetails} /> : ""}
-      
-      
+      {role ? <PatchAffairsForm details={affairDetails} /> : ""}
     </>
   );
 }
