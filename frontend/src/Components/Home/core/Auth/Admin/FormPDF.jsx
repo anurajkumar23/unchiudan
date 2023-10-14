@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 
 const postpdf = async (pdfData) => {
   console.log("🚀 ~ file: FormPDF.jsx:7 ~ postpdf ~ pdfData:", pdfData);
@@ -68,6 +69,7 @@ const PdfForm = () => {
     e.preventDefault();
     console.log(formData);
 
+  try{
     await postpdf({
       name: formData.name,
       category: formData.category,
@@ -77,6 +79,13 @@ const PdfForm = () => {
       status: formData.status,
       price: formData.price,
     });
+    toast.success("PDF posted successfully!");
+  } catch (error) {
+    console.error(error);
+
+    // Show an error toast when an error occurs
+    toast.error("Error posting PDF. Please try again.");
+  }
   };
 
   return (
@@ -173,6 +182,7 @@ const PdfForm = () => {
           </button>
         </div>
       </form>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
