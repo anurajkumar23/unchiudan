@@ -27,7 +27,8 @@ router
   .get(affairsController.getAffair)
   .delete(protect, restrictTo('admin'), affairsController.deleteAffair)
   .patch(
-    protect,
+    authenticateCors,
+    // protect,
     restrictTo('admin'),
     uploadPhoto,
     resizePhoto('public/img/affairs'),

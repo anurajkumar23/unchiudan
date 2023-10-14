@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import PatchAffairsForm from "../Home/core/Auth/Admin/AffairsPatchForm"
 import axios from "axios";
 import {
   FaFacebook,
@@ -12,7 +14,8 @@ import {
 import "./quiz.css";
 import { SocialMedia } from "../../consstant/socialmedia";
 
-function BlogsPage() {
+function BlogsPage({userData}) {
+  // console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData.user.role)
   const { id } = useParams();
 
   const [affairDetails, setAffairDetails] = useState(null);
@@ -192,7 +195,8 @@ function BlogsPage() {
           </a>
         </span>
       </div>
-
+      {userData.user.role==="admin" ? <PatchAffairsForm details={affairDetails} /> : ""}
+      
       
     </>
   );
