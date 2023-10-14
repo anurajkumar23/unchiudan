@@ -51,16 +51,15 @@ exports.lastestAffairs = catchAsync(async (req, res, next) => {
 
 exports.createAffairs = catchAsync(async (req, res, next) => {
   // const { topic, category, data } = req.body;
-  // const parsedData = JSON.parse(data);
+  const parsedData = JSON.parse(req.body.data);
   // console.log("🚀 ~ file: affairsController.js:55 ~ exports.createAffairs=catchAsync ~ parsedData:", parsedData)
-
-
-
+  
+  let data = parsedData
   let photo;
   if (req.file) {
     photo = req.file.filename;
   }
-  req.body = { ...req.body, photo };
+  req.body = { ...req.body, photo ,data };
   console.log("🚀 ~ file: affairsController.js:58 ~ exports.createAffairs=catchAsync ~ req.body:", req.body)
 
   const currentDate = Date.now();
