@@ -284,25 +284,27 @@ exports.authenticateCors = async (req, res, next) => {
     const token = req.headers.authorization
     // const token = req.headers.authorization;
     // const authtoken = token.split(" ")
-    
+    const tokenWithoutBearer = token.replace('Bearer ', '');
+    console.log("🚀 ~ file: authController.js:288 ~ exports.authenticateCors= ~ token2:", tokenWithoutBearer)
    
     // console.log("🚀 ~ file: authController.js:284 ~ exports.isLoggedIn= ~ exists:", token)
-    if (!token) {
+    if (!tokenWithoutBearer) {
       return res.status(401).json({
         isAuthorized: false,
       });
     }
 
 
-    // console.log('Received Token:', token);
+    console.log('Received Token:😀', token);
 
     // Verify token
     const decoded = await promisify(jwt.verify)(
-      token,
+      tokenWithoutBearer,
       process.env.JWT_SECRET, // This should match the secret used when signing the cookie
     );
+    console.log("🚀 ~ file: authController.js:304 ~ exports.authenticateCors= ~ decoded:", decoded)
     // console.log(
-    //   '🚀 ~ file: authController.js:134 ~ exports.isLoggedIn= ~ decoded:',
+      // '🚀 ~ file: authController.js:134 ~ exports.isLoggedIn= ~ decoded:',
     //   decoded,
     // );
 
@@ -328,7 +330,7 @@ exports.authenticateCors = async (req, res, next) => {
     req.user = currentUser;
     
     res.locals.user = currentUser;
-    // console.log("🚀 ~ file: authController.js:325 ~ exports.authenticateCors= ~ currentUser:", currentUser)
+    console.log("🚀 ~ file: authController.js:325 ~ exports.authenticateCors= ~ currentUser:", currentUser)
     
     next();
   } catch (error) {
