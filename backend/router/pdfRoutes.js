@@ -23,8 +23,9 @@ router
     pdfController.deletePdf,
   )
   .patch(
-    protect,
-    // restrictTo('admin'),
+    authenticateCors,
+    // protect,
+    restrictTo('admin'),
     pdfController.uploadPhotoAndPdf,
     pdfController.updateOne,
   );
