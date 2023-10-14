@@ -83,7 +83,7 @@ function App() {
           <Route path="/pdfs" element={<Downloads />} />
           <Route path="/pdfs/:id" element={<DownloadPage userData={user} />} />
           <Route path="/Currentaffairs" element={<Currentaffaircontainer />} />
-          <Route path="/currentaffairs/:id" element={<BlogsPage />} />
+          <Route path="/currentaffairs/:id" element={<BlogsPage userData={user}/>} />
           <Route path="/News" element={<News />} />
           <Route path="/News/:id" element={<NewsPage />} />
           <Route path="/AboutUs" element={<AboutUs />} />
