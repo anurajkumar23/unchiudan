@@ -12,7 +12,7 @@ const postaffairs = async (affairsData) => {
     token
   );
   const formData = new FormData();
-  
+
   formData.append("topic", affairsData.topic);
   formData.append("category", affairsData.category);
   formData.append("data", JSON.stringify(affairsData.data));
@@ -40,13 +40,12 @@ const postaffairs = async (affairsData) => {
   }
 };
 
-const CurrentAffairsForm = () => {
+const FormCurrentAffairs = () => {
   const [formData, setFormData] = useState({
     topic: "",
     category: "",
     photo: null, // <-- Added photo field
     data: [{ ques: "", options: ["", "", "", ""], ans: "" }],
-    
   });
 
   const handleChange = (e, index) => {
@@ -80,20 +79,20 @@ const CurrentAffairsForm = () => {
     // } catch (error) {
     //   console.error("Error posting data:", error);
     // }
-  try{ 
-    await postaffairs({
-      topic: formData.topic,
-      category: formData.category,
-      data: formData.data,
-      photo: formData.photo,
-    });
-    toast.success("CurrentAffairs posted successfully!");
-  } catch (error) {
-    console.error(error);
+    try {
+      await postaffairs({
+        topic: formData.topic,
+        category: formData.category,
+        data: formData.data,
+        photo: formData.photo,
+      });
+      toast.success("CurrentAffairs posted successfully!");
+    } catch (error) {
+      console.error(error);
 
-    // Show an error toast when an error occurs
-    toast.error("Error posting CurrentAffairs. Please try again.");
-  }
+      // Show an error toast when an error occurs
+      toast.error("Error posting CurrentAffairs. Please try again.");
+    }
   };
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -105,146 +104,148 @@ const CurrentAffairsForm = () => {
 
   return (
     <div>
-    <form className="max-w-2xl mx-auto mt-8" onSubmit={handleSubmit}>
-      <div className="mb-4">
-        <label
-          htmlFor="topic"
-          className="block text-gray-700 text-sm font-bold mb-2"
-        >
-          Topic
-        </label>
-        <input
-          type="text"
-          id="topic"
-          name="topic"
-          value={formData.topic}
-          onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          required
-        />
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="category"
-          className="block text-gray-700 text-sm font-bold mb-2"
-        >
-          Category
-        </label>
-        <select
-          id="category"
-          name="category"
-          value={formData.category}
-          onChange={(e) =>
-            setFormData({ ...formData, category: e.target.value })
-          }
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          required
-        >
-          <option value="">Select a category</option>
-          <option value="BiharDaroga">Bihar Daroga</option>
-          <option value="BPSC">BPSC</option>
-          <option value="Railway">Railway</option>
-          <option value="UPSC">UPSC</option>
-          <option value="SSC">SSC</option>
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <label
-          htmlFor="photo"
-          className="block text-gray-700 text-sm font-bold mb-2"
-        >
-          Photo
-        </label>
-        <input
-          type="file"
-          id="photo"
-          name="photo"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          // required 
-        />
-      </div>
-      {/* Add other fields like category, photo, etc., using similar code */}
-
-      {/* Questions Section */}
-      {formData.data.map((question, index) => (
-        <div key={index} className="mb-4">
+      <form className="max-w-2xl mx-auto mt-8" onSubmit={handleSubmit}>
+        <div className="mb-4">
           <label
-            htmlFor={`ques${index}`}
+            htmlFor="topic"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Question {index + 1}
+            Topic
           </label>
           <input
             type="text"
-            id={`ques${index}`}
-            name="ques"
-            value={question.ques}
-            onChange={(e) => handleChange(e, index)}
+            id="topic"
+            name="topic"
+            value={formData.topic}
+            onChange={(e) =>
+              setFormData({ ...formData, topic: e.target.value })
+            }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            // required
+            required
           />
-          {question.options.map((option, optionIndex) => (
-            <div key={optionIndex} className="mb-2">
-              <label>Option: {optionIndex + 1}</label>
-              <input
-                type="text"
-                id={`option${index}-${optionIndex}`}
-                name="option"
-                value={option}
-                onChange={(e) => handleOptionChange(e, index, optionIndex)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                // required
-              />
-            </div>
-          ))}
+        </div>
+        <div className="mb-4">
           <label
-            htmlFor={`ans${index}`}
+            htmlFor="category"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Answer {index + 1} <br />
-            *please put option Number only
+            Category
+          </label>
+          <select
+            id="category"
+            name="category"
+            value={formData.category}
+            onChange={(e) =>
+              setFormData({ ...formData, category: e.target.value })
+            }
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          >
+            <option value="">Select a category</option>
+            <option value="BiharDaroga">Bihar Daroga</option>
+            <option value="BPSC">BPSC</option>
+            <option value="Railway">Railway</option>
+            <option value="UPSC">UPSC</option>
+            <option value="SSC">SSC</option>
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="photo"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Photo
           </label>
           <input
-            type="text"
-            id={`ans${index}`}
-            name="ans"
-            value={question.ans}
-            onChange={(e) => handleChange(e, index)}
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/*"
+            onChange={handleFileChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             // required
           />
         </div>
-      ))}
+        {/* Add other fields like category, photo, etc., using similar code */}
 
-      <button
-        type="button"
-        onClick={() =>
-          setFormData({
-            ...formData,
-            data: [
-              ...formData.data,
-              { ques: "", options: ["", "", "", ""], ans: "" },
-            ],
-          })
-        }
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Add Question
-      </button>
+        {/* Questions Section */}
+        {formData.data.map((question, index) => (
+          <div key={index} className="mb-4">
+            <label
+              htmlFor={`ques${index}`}
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Question {index + 1}
+            </label>
+            <input
+              type="text"
+              id={`ques${index}`}
+              name="ques"
+              value={question.ques}
+              onChange={(e) => handleChange(e, index)}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              // required
+            />
+            {question.options.map((option, optionIndex) => (
+              <div key={optionIndex} className="mb-2">
+                <label>Option: {optionIndex + 1}</label>
+                <input
+                  type="text"
+                  id={`option${index}-${optionIndex}`}
+                  name="option"
+                  value={option}
+                  onChange={(e) => handleOptionChange(e, index, optionIndex)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  // required
+                />
+              </div>
+            ))}
+            <label
+              htmlFor={`ans${index}`}
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Answer {index + 1} <br />
+              *please put option Number only
+            </label>
+            <input
+              type="text"
+              id={`ans${index}`}
+              name="ans"
+              value={question.ans}
+              onChange={(e) => handleChange(e, index)}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              // required
+            />
+          </div>
+        ))}
 
-      <button
-        type="submit"
-        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4"
-      >
-        Submit
-      </button>
-    </form>
-    <Toaster position="top-center" reverseOrder={false} />
+        <button
+          type="button"
+          onClick={() =>
+            setFormData({
+              ...formData,
+              data: [
+                ...formData.data,
+                { ques: "", options: ["", "", "", ""], ans: "" },
+              ],
+            })
+          }
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Add Question
+        </button>
+
+        <button
+          type="submit"
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4"
+        >
+          Submit
+        </button>
+      </form>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };
 
-export default CurrentAffairsForm;
+export default FormCurrentAffairs;

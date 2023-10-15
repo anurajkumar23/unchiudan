@@ -11,21 +11,9 @@ const SidebarAdmin = () => {
       <div className="container mx-auto mt-5">
         <TabBar setActiveTab={setActiveTab} activeTab={activeTab} />
         <div className="mt-5">
-          {activeTab === "tab1" && (
-            <div>
-              <FormNews />
-            </div>
-          )}
-          {activeTab === "tab2" && (
-            <div>
-              <CurrentAffairsForm />
-            </div>
-          )}
-          {activeTab === "tab3" && (
-            <div>
-              <FormPdf />
-            </div>
-          )}
+          {activeTab === "tab1" && <FormNews />}
+          {activeTab === "tab2" && <CurrentAffairsForm />}
+          {activeTab === "tab3" && <FormPdf />}
         </div>
       </div>
     </div>

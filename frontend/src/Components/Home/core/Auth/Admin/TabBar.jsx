@@ -1,44 +1,33 @@
 import React, { useState } from "react";
 
-const TabBar = () => {
-  const [activeTab, setActiveTab] = useState("tab1");
+const tabs = [
+  { id: "tab1", label: "Tab 1" },
+  { id: "tab2", label: "Tab 2" },
+  { id: "tab3", label: "Tab 3" },
+];
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
+const TabBar = () => {
+  const [activeTab, setActiveTab] = useState(tabs[0].id);
+
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
   };
 
   return (
     <div className="flex">
-      <button
-        className={`${
-          activeTab === "tab1"
-            ? "bg-blue-500 text-white"
-            : "bg-gray-200 text-black"
-        } p-3 flex-1 text-center`}
-        onClick={() => handleTabChange("tab1")}
-      >
-        Tab 1
-      </button>
-      <button
-        className={`${
-          activeTab === "tab2"
-            ? "bg-blue-500 text-white"
-            : "bg-gray-200 text-black"
-        } p-3 flex-1 text-center`}
-        onClick={() => handleTabChange("tab2")}
-      >
-        Tab 2
-      </button>
-      <button
-        className={`${
-          activeTab === "tab3"
-            ? "bg-blue-500 text-white"
-            : "bg-gray-200 text-black"
-        } p-3 flex-1 text-center`}
-        onClick={() => handleTabChange("tab3")}
-      >
-        Tab 3
-      </button>
+      {tabs.map((tab) => (
+        <button
+          key={tab.id}
+          className={`${
+            activeTab === tab.id
+              ? "bg-blue-500 text-white"
+              : "bg-gray-200 text-black"
+          } p-3 flex-1 text-center`}
+          onClick={() => handleTabChange(tab.id)}
+        >
+          {tab.label}
+        </button>
+      ))}
     </div>
   );
 };
