@@ -1,6 +1,6 @@
-import CurrentAffairsForm from "./FormCurrentAffairs";
+import FormCurrentAffairs from "./FormCurrentAffairs";
 import FormNews from "./FormNews";
-import FormPdf from "./FormPDF";
+import FormPDF from "./FormPDF";
 import React, { useState } from "react";
 import TabBar from "./TabBar";
 const SidebarAdmin = () => {
@@ -12,8 +12,8 @@ const SidebarAdmin = () => {
         <TabBar setActiveTab={setActiveTab} activeTab={activeTab} />
         <div className="mt-5">
           {activeTab === "tab1" && <FormNews />}
-          {activeTab === "tab2" && <CurrentAffairsForm />}
-          {activeTab === "tab3" && <FormPdf />}
+          {activeTab === "tab2" && <FormCurrentAffairs />}
+          {activeTab === "tab3" && <FormPDF />}
         </div>
       </div>
     </div>
