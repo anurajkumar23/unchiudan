@@ -4,15 +4,40 @@ import SidebarAdmin from "./SidebarAdmin";
 import FormPdf from "./FormPDF";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 
+const AdminPage = ({ userData }) => {
+  const [totalUsers, setTotalUsers] = useState(0);
 
+  const fetchTotalUsers = async () => {
+    try {
+      const token = localStorage.getItem("jwt_token");
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/user`,
+      // `http://localhost:3000/api/user`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      });
+      const {results}  = response.data;
+      setTotalUsers(results);
+      
+    } catch (error) {
+      console.error("Error fetching total users:", error);
+      toast.error("Error fetching total users");
+    }
+  };
 
-
-
-const AdminPage = ({userData}) => {
+  useEffect(() => {
+    fetchTotalUsers();
+  }, []);
 
   const handleDeleteClick = async (event, newsId) => {
-    console.log("🚀 ~ file: NewsComp.jsx:33 ~ handleDeleteClick ~ newsId:", newsId)
+    console.log(
+      "🚀 ~ file: NewsComp.jsx:33 ~ handleDeleteClick ~ newsId:",
+      newsId
+    );
     event.preventDefault(); // Prevent default behavior (e.g., navigation)
     event.stopPropagation(); // Prevent the click event from propagating to the parent link element
 
@@ -21,8 +46,8 @@ const AdminPage = ({userData}) => {
 
       try {
         const response = await axios.delete(
-          // `${import.meta.env.VITE_BACKEND_URL}/news/autodelete`,
-          `http://localhost:3000/api/news/autodelete`,
+          `${import.meta.env.VITE_BACKEND_URL}/news/autodelete`,
+          // `http://localhost:3000/api/news/autodelete`,
           {
             headers: {
               Authorization: token,
@@ -50,16 +75,28 @@ const AdminPage = ({userData}) => {
   };
 
   return (
-    <div className="flex  ">
+    <div className="flex">
       <div className="mt-[7%] flex">
-      <SidebarAdmin />
-      <FormNews />
-      <CurrentAffairsForm/>
-      <FormPdf/>
-      <div>❗❗ Delete News that are older than 90 Days ❗❗<br/>
-        <button className="bg-[#e10707] text-white rounded p-2" onClick={handleDeleteClick}>Delete News</button>
+        <SidebarAdmin />
+        <FormNews />
+        <CurrentAffairsForm />
+        <FormPdf />
+        <div>
+          ❗❗ Delete News that are older than 90 Days ❗❗
+          <br />
+          <button
+            className="bg-[#e10707] text-white rounded p-2"
+            onClick={handleDeleteClick}
+          >
+            Delete News
+          </button>
+        </div>
+        <div>
+          <strong>Total Users</strong>
+          <br />
+          <p className="bg-[#06ca06] text-white rounded p-2">{totalUsers}</p>
+        </div>
       </div>
-    </div>
     </div>
   );
 };
