@@ -1,12 +1,23 @@
 /* eslint-disable react/prop-types */
 
 import { Link } from "react-router-dom";
-function NewsComp({ newsItems }) {
-console.log("🚀 ~ file: NewsComp.jsx:5 ~ NewsComp ~ newsItems:", newsItems)
+import { MdOutlineDelete } from "react-icons/md";
+import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 
+function NewsComp({ newsItems, userData }) {
+  let role;
 
+  if (userData) {
+    if (userData.user.role === "admin") {
+      role = true;
+    } else {
+      role = false;
+    }
+  } else {
+    role = false;
+  }
 
-  
   const isWithin48Hours = (createdAt) => {
     const now = new Date();
     const newsDate = new Date(createdAt);
@@ -16,10 +27,49 @@ console.log("🚀 ~ file: NewsComp.jsx:5 ~ NewsComp ~ newsItems:", newsItems)
     return hoursDifference <= 48;
   };
 
+ 
+
+  const handleDeleteClick = async (event, newsId) => {
+    event.preventDefault(); // Prevent default behavior (e.g., navigation)
+    event.stopPropagation(); // Prevent the click event from propagating to the parent link element
+
+    if (window.confirm("Are you sure you want to delete this item?")) {
+      const token = localStorage.getItem("jwt_token");
+
+      try {
+        const response = await axios.delete(
+          `${import.meta.env.VITE_BACKEND_URL}/news/${newsId}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          // The news item was deleted successfully
+          // Show a success toast
+          toast.success("News item deleted successfully");
+
+          // Perform any additional actions you need here
+          console.log("News item deleted successfully");
+        } else {
+          console.error("Error deleting news item:", response);
+          // Show an error toast if needed
+          toast.error("Error deleting news item");
+        }
+      } catch (error) {
+        console.error("Error deleting news item:", error);
+        // Show an error toast if needed
+        toast.error("Error deleting news item");
+      }
+    }
+  };
+
   return (
-    <div className="flex flex-col  md:w-[429%] ">
+    <div className="flex flex-col md:w-[429%]">
       {newsItems.map((news) => {
-        const createdAt = new Date(news.createdAt);
+        const createdAt =  new Date(news.createdAt);
         const formattedDate = createdAt.toLocaleString("default", {
           day: "numeric",
           month: "long",
@@ -30,8 +80,23 @@ console.log("🚀 ~ file: NewsComp.jsx:5 ~ NewsComp ~ newsItems:", newsItems)
         return (
           <Link to={`/News/${news._id}`} key={news._id}>
             <div className="relative my-6 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white h-[50%]">
+              {role ? (
+                <button
+                  className="absolute top-0 right-0 text-red-600 cursor-pointer bg-red-500 rounded-full p-2"
+                  style={{ zIndex: 1 }}
+                  onClick={(event) => handleDeleteClick(event, news._id)}
+                >
+                  <MdOutlineDelete size={32} color="#fff" />
+                </button>
+              ) : (
+                ""
+              )}
               <div className="w-full md:w-1/3 bg-white grid place-items-center overflow-hidden">
-              <img className="rounded-xl" src={`https://ucchi-urran-backend.onrender.com/img/news/${news.photo}`} alt={`logo`} />
+                <img
+                  className="rounded-xl"
+                  src={`https://ucchi-urran-backend.onrender.com/img/news/${news.photo}`}
+                  alt={`logo`}
+                />
               </div>
               <div className="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3 overflow-hidden">
                 <div className="flex justify-between items-center">
@@ -58,4 +123,5 @@ console.log("🚀 ~ file: NewsComp.jsx:5 ~ NewsComp ~ newsItems:", newsItems)
     </div>
   );
 }
+
 export default NewsComp;

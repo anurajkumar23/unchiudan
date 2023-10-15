@@ -80,11 +80,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/user/signup" element={<Signup />} />
           <Route path="/" element={<Home />} />
-          <Route path="/pdfs" element={<Downloads />} />
+          <Route path="/pdfs" element={<Downloads userData={user} />} />
           <Route path="/pdfs/:id" element={<DownloadPage userData={user} />} />
-          <Route path="/Currentaffairs" element={<Currentaffaircontainer />} />
+          <Route path="/Currentaffairs" element={<Currentaffaircontainer userData={user} />} />
           <Route path="/currentaffairs/:id" element={<BlogsPage userData={user}/>} />
-          <Route path="/News" element={<News />} />
+          <Route path="/News" element={<News userData={user} />} />
           <Route path="/News/:id" element={<NewsPage userData={user}/>} />
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/tearm&conditions" element={<TermsAndConditions />} />

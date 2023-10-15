@@ -15,7 +15,19 @@ function BlogComps({
   id,
   status,
   category,
+  userData,
 }) {
+  let role;
+
+  if (userData) {
+    if (userData.user.role === "admin") {
+      role = true;
+    } else {
+      role = false;
+    }
+  } else {
+    role = false;
+  }
   const handleDeleteClick = async (event) => {
     event.stopPropagation(); // Prevent the click event from propagating to the parent link element
     if (window.confirm("Are you sure you want to delete this item?")) {
@@ -51,14 +63,15 @@ function BlogComps({
   return (
     
       <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 relative">
-       
+       {role ?
         <button
           className="absolute top-0 right-0 text-red-600 cursor-pointer bg-red-500 rounded-full p-2"
-          style={{ zIndex: 1 }} // Increase the z-index value
+          style={{ zIndex: 1 }}
           onClick={handleDeleteClick}
         >
           <MdOutlineDelete size={32} color="#fff" />
         </button>
+      : "" }
         <Link to={`/pdfs/${id}`} className="w-full h-full">
         <div className="card__header">
           <div className="card__picture">
@@ -100,7 +113,7 @@ function BlogComps({
   );
 }
 
-function Downloads() {
+function Downloads({userData}) {
   const [pdfs, setPdfs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState(null);
@@ -174,6 +187,7 @@ function Downloads() {
                 id={pdf._id}
                 status={pdf.status}
                 category={pdf.category}
+                userData={userData}
               />
             );
           })}

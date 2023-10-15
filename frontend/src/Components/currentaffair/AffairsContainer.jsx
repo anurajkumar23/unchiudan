@@ -12,7 +12,20 @@ export function BlogComps({
   updatedDate,
   category,
   title,
+  userData,
 }) {
+  let role;
+
+  if (userData) {
+    if (userData.user.role === "admin") {
+      role = true;
+    } else {
+      role = false;
+    }
+  } else {
+    role = false;
+  }
+
   const handleDeleteClick = async (event) => {
     event.stopPropagation(); // Prevent the click event from propagating to the parent link element
     if (window.confirm("Are you sure you want to delete this item?")) {
@@ -20,12 +33,10 @@ export function BlogComps({
       console.log("🚀 ~ file: FormPDF.jsx:9 ~ postpdf ~ token:", token);
       try {
         const response = await axios.delete(
-          // `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${id}`,
-          `http://localhost:3000/api/currentaffairs/${id}`,
+          `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${id}`,
           {
             headers: {
-              //   "Content-Type": "application/json",
-              Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+              Authorization: token,
             },
           }
         );
@@ -42,15 +53,18 @@ export function BlogComps({
       }
     }
   };
+
   return (
     <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 relative">
-      <button
-        className="absolute top-0 right-0 text-red-600 cursor-pointer bg-red-500 rounded-full p-2"
-        style={{ zIndex: 1 }}
-        onClick={handleDeleteClick}
-      >
-        <MdOutlineDelete size={32} color="#fff" />
-      </button>
+      {role ?
+        <button
+          className="absolute top-0 right-0 text-red-600 cursor-pointer bg-red-500 rounded-full p-2"
+          style={{ zIndex: 1 }}
+          onClick={handleDeleteClick}
+        >
+          <MdOutlineDelete size={32} color="#fff" />
+        </button>
+      : "" }
 
       <Link to={`/currentaffairs/${id}`} className="w-full h-full">
         <div className="card__header">

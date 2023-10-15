@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Pagination from '../Pagination/Pagination'; 
@@ -5,14 +6,15 @@ import { BlogComps } from './AffairsContainer';
 import Sidebar from '../Sidebar/Sidebar';
 import { RiMenu3Fill, RiCloseFill } from 'react-icons/ri';
 
-function Currentaffairs() {
+function Currentaffairs({userData}) {
+
+
   const [affairs, setAffairs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filter, setFilter] = useState(false);
   const isSmallScreen = window.innerWidth <= 680;
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(8); // Number of posts per page
-
+  const [postsPerPage] = useState(8); 
   const togglefilter = () => {
     setFilter(!filter);
   };
@@ -84,6 +86,7 @@ function Currentaffairs() {
                 updatedDate={updatedDate}
                 category={blog.category}
                 id={blog._id}
+                userData={userData}
               />
             );
           })}
