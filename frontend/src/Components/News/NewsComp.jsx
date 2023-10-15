@@ -45,7 +45,6 @@ function NewsComp({ newsItems, userData }) {
             },
           }
         );
-
         if (response.status === 200) {
           // The news item was deleted successfully
           // Show a success toast
