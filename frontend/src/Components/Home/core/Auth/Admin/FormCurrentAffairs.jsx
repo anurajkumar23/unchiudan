@@ -219,7 +219,7 @@ const FormCurrentAffairs = () => {
             />
           </div>
         ))}
-        <span>
+        <span className=" flex space-x-6">
           <button
             type="button"
             onClick={() =>
