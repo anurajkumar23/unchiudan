@@ -31,7 +31,7 @@ router
 router
   .route('/:id')
   .get(newsController.getNews)
-  .delete(protect, restrictTo('admin'), newsController.deleteNews)
+  .delete(authenticateCors, restrictTo('admin'), newsController.deleteNews)
   .patch(
     authenticateCors,
     restrictTo('admin'),

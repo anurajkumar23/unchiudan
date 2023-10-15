@@ -30,6 +30,7 @@ function NewsComp({ newsItems, userData }) {
  
 
   const handleDeleteClick = async (event, newsId) => {
+    console.log("🚀 ~ file: NewsComp.jsx:33 ~ handleDeleteClick ~ newsId:", newsId)
     event.preventDefault(); // Prevent default behavior (e.g., navigation)
     event.stopPropagation(); // Prevent the click event from propagating to the parent link element
 
@@ -39,6 +40,7 @@ function NewsComp({ newsItems, userData }) {
       try {
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/news/${newsId}`,
+          // `http://localhost:3000/api/news/${newsId}`,
           {
             headers: {
               Authorization: token,
