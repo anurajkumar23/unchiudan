@@ -17,6 +17,7 @@ exports.getAllAffairs = catchAsync(async (req, res, next) => {
   }
 
   let query = CurrentAffairs.find(queryObj).sort('-createdAt');
+  let query1 = CurrentAffairs.find(queryObj).sort('-createdAt');
 
   // Pagination
   const page = req.query.page * 1 || 1;
@@ -26,10 +27,12 @@ exports.getAllAffairs = catchAsync(async (req, res, next) => {
 
   // Execute query
   const affairs = await query;
+  const totaldata =await query1;
 
   res.status(200).json({
     status: 'success',
     results: affairs.length,
+    totallength:totaldata.length,
     data: {
       affairs,
     },

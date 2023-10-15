@@ -1,46 +1,59 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Pagination from '../Pagination/Pagination'; 
 import { BlogComps } from './AffairsContainer';
 import Sidebar from '../Sidebar/Sidebar';
 import { RiMenu3Fill, RiCloseFill } from 'react-icons/ri';
 
-function Currentaffairs({userData}) {
-
+function Currentaffairs({ userData }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const postsPerPage = 10;
 
   const [affairs, setAffairs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filter, setFilter] = useState(false);
   const isSmallScreen = window.innerWidth <= 680;
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(8); 
+
   const togglefilter = () => {
     setFilter(!filter);
   };
 
   useEffect(() => {
-    let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/currentaffairs`;
-    if (selectedCategory !== null) {
-      apiUrl += `/?category=${selectedCategory}`;
+    let apiUrl = `http://localhost:3000/api/currentaffairs`;
+  
+    if (selectedCategory) {
+      setCurrentPage(1); // Reset currentPage to 1 when a category is selected
+      apiUrl += `?category=${selectedCategory}&page=1`; // Set page to 1
+    } else {
+      apiUrl += `?page=${currentPage}`;
     }
 
     axios
-      .get(apiUrl)
-      .then((response) => {
-        setAffairs(response.data.data.affairs);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, [selectedCategory]);
+  .get(apiUrl)
+  .then((response) => {
+    const { affairs } = response.data.data;
+    const { totallength } = response.data;
+    console.log("Total Length:", totallength);
+    setAffairs(affairs);
+    setTotalPages(Math.ceil(parseInt(totallength) / postsPerPage));
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentAffairs = affairs.slice(indexOfFirstPost, indexOfLastPost);
+  }, [selectedCategory, currentPage]);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
   return (
@@ -65,7 +78,7 @@ function Currentaffairs({userData}) {
             filter ? "hidden" : "block"
           }`}
         >
-          {currentAffairs.map((blog, index) => {
+          {affairs.map((blog, index) => {
             const createdAt = new Date(blog.createdAt);
             const updatedAt = new Date(blog.updatedAt);
             const formattedDate = createdAt.toLocaleString("default", {
@@ -91,21 +104,35 @@ function Currentaffairs({userData}) {
             );
           })}
         </div>
-        
-        <div className={`z-1 flex-1 ${filter ? "block" : "hidden"} lg:flex sm:block`}>
-          <Sidebar setSelectedCategory={setSelectedCategory} togglefilter={togglefilter} />
+
+        <div
+          className={`z-1 flex-1 ${
+            filter ? "block" : "hidden"
+          } lg:flex sm:block`}
+        >
+          <Sidebar
+            setSelectedCategory={setSelectedCategory}
+            togglefilter={togglefilter}
+          />
         </div>
-        
       </div>
-      <div className=''>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={Math.ceil(affairs.length / postsPerPage)}
-        onPageChange={handlePageChange}
-      />
+
+      <div className="flex justify-center my-4">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="mr-2"
+        >
+          Previous Page
+        </button>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          Next Page
+        </button>
+      </div>
+      <div className="text-center">
+        Page {currentPage} of {totalPages}
       </div>
     </div>
-    
   );
 }
 
