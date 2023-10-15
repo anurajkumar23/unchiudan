@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 const tabs = [
-  { id: "tab1", label: "Tab 1" },
-  { id: "tab2", label: "Tab 2" },
-  { id: "tab3", label: "Tab 3" },
+  { id: "tab1", label: "Post News" },
+  { id: "tab2", label: "Post Current Affair" },
+  { id: "tab3", label: "Post PDF" },
 ];
 
 const TabBar = () => {

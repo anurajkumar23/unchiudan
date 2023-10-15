@@ -74,11 +74,9 @@ const AdminPage = ({ userData }) => {
   const [activeTab, setActiveTab] = useState("tab1");
 
   return (
-    <div className="flex pt-[8rem] ">
-      <div className=" flex">
-        <SidebarAdmin />
-
-        <div>
+    <div className=" pt-[8rem] ">
+      <div className=" flex justify-center mb-10">
+        <span>
           ❗❗ Delete News that are older than 90 Days ❗❗
           <br />
           <button
@@ -87,13 +85,14 @@ const AdminPage = ({ userData }) => {
           >
             Delete News
           </button>
-        </div>
-        <div>
+        </span>
+        <span>
           <strong>Total Users</strong>
           <br />
           <p className="bg-[#06ca06] text-white rounded p-2">{totalUsers}</p>
-        </div>
+        </span>
       </div>
+      <SidebarAdmin />
     </div>
   );
 };
