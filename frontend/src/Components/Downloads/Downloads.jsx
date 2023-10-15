@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdOutlineAccessTimeFilled, MdOutlineDelete } from "react-icons/md";
@@ -114,6 +114,10 @@ function BlogComps({
 }
 
 function Downloads({userData}) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const postsPerPage = 10;
+
   const [pdfs, setPdfs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState(null);
@@ -123,26 +127,65 @@ function Downloads({userData}) {
     setFilter(!filter);
   };
 
-  useEffect(() => {
-    let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs`;
+  // useEffect(() => {
+  //   let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs`;
 
-    if (selectedCategory !== null) {
-      apiUrl += `/?category=${selectedCategory}`;
-    }
+  //   if (selectedCategory !== null) {
+  //     apiUrl += `/?category=${selectedCategory}`;
+  //   }
 
-    if (selectedStatus !== null) {
-      apiUrl += `${selectedCategory ? "&" : "/?"}status=${selectedStatus}`;
+  //   if (selectedStatus !== null) {
+  //     apiUrl += `${selectedCategory ? "&" : "/?"}status=${selectedStatus}`;
+  //   }
+
+  //   axios
+  //     .get(apiUrl)
+  //     .then((response) => {
+  //       setPdfs(response.data.data.pdf);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }, [selectedCategory, selectedStatus]);
+
+  const fetchData = (page, category) => {
+    // let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs`;
+    let apiUrl = `http://localhost:3000/api/pdfs`;
+    if (category) {
+      apiUrl += `/?category=${category}&page=${page}`;
+    } else {
+      apiUrl += `?page=${page}`;
     }
 
     axios
       .get(apiUrl)
       .then((response) => {
-        setPdfs(response.data.data.pdf);
+        const { pdf } = response.data.data;
+        const {totallength} = response.data;
+        console.log('Total Length:', totallength);
+        setPdfs(pdf);
+        setTotalPages(Math.ceil(parseInt(totallength) / postsPerPage));
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       });
-  }, [selectedCategory, selectedStatus]);
+  };
+
+  useEffect(() => {
+    fetchData(currentPage, selectedCategory);
+  }, [selectedCategory, currentPage]);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <div className="mx-auto py-[7rem]">
@@ -201,6 +244,17 @@ function Downloads({userData}) {
             togglefilter ={togglefilter}
           />
         </div>
+      </div>
+      <div className="flex justify-center my-4">
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          Previous Page
+        </button>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          Next Page
+        </button>
+      </div>
+      <div className="text-center">
+        Page {currentPage} of {totalPages}
       </div>
     </div>
   );
