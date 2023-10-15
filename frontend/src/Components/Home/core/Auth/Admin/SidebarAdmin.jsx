@@ -8,7 +8,7 @@ const SidebarAdmin = () => {
   const [activeTab, setActiveTab] = useState("tab1");
 
   return (
-    <div className="m-8 rounded-lg border-2  text-white p-4">
+    <div className="m-8 rounded-lg border-2  p-4">
       <div className="container mx-auto mt-5">
         <TabBar activeTab={activeTab} setActiveTab={setActiveTab} />
         <div className="mt-5">
