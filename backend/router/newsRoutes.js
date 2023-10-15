@@ -26,7 +26,7 @@ router
 
 router
   .route('/autodelete')
-  .delete(protect, restrictTo('admin'), newsController.autoDelete);
+  .delete(authenticateCors, restrictTo('admin'), newsController.autoDelete);
 
 router
   .route('/:id')

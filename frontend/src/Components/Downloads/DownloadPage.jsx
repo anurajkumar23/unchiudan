@@ -78,7 +78,7 @@ function DownloadPage({ userData }) {
             name: userData.user.firstname,
             email: userData.user.email,
             phone: userData.user.phone,
-            amount: "30",
+            amount: pdfDetails.price,
             pdfid: pdfDetails._id
           }
         );
