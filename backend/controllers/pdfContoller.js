@@ -50,6 +50,7 @@ exports.getAllPdf = catchAsync(async (req, res, next) => {
   }
 
   let query = PDF.find(queryObj).sort('-createdAt');
+  let query1 = PDF.find(queryObj).sort('-createdAt');
 
   // Pagination
   const page = req.query.page * 1 || 1;
@@ -59,10 +60,12 @@ exports.getAllPdf = catchAsync(async (req, res, next) => {
 
   // Execute query
   const pdf = await query;
+  const totaldata =await query1;
 
   res.status(200).json({
     status: 'success',
     results: pdf.length,
+    totallength:totaldata.length,
     data: {
       pdf,
     },
