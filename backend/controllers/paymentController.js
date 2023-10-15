@@ -101,37 +101,37 @@ const payWithUPI = catchAsync(async (req, res) => {
 });
 
 const addPdfInUsers = catchAsync(async (req, res) => {
-  console.log(
-    '🚀 ~ file: paymentController.js:105 ~ addPdfInUsers ~ req:',
-    req.email,
-    req.pdfid,
-    req.session,
-  );
+  // console.log(
+  //   '🚀 ~ file: paymentController.js:105 ~ addPdfInUsers ~ req:',
+  //   req.email,
+  //   req.pdfid,
+  //   req.session,
+  // );
 
-  // console.log('working');
-  // // const { pdfId , userId } = req.body;
-  // const { pdfId, userId } = req.params;
+  console.log('working');
+  // const { pdfId , userId } = req.body;
+  const { pdfId, userId } = req.params;
 
-  // try {
-  //   // Find the user by their ID or any other unique identifier
-  //   const user = await User.findById(userId);
+  try {
+    // Find the user by their ID or any other unique identifier
+    const user = await User.findById(userId);
 
-  //   if (!user) {
-  //     return res.status(404).json({ message: 'User not found' });
-  //   }
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
 
-  //   // Append the pdfId to the user's pdfs array
-  //   user.pdfs.push(pdfId);
+    // Append the pdfId to the user's pdfs array
+    user.pdfs.push(pdfId);
 
-  //   // Save the updated user document
-  //   await user.save();
+    // Save the updated user document
+    await user.save();
 
-  //   // Redirect the user to the specified URL
-  //   return res.redirect('https://unchiudaanteam.vercel.app/studymaterials');
-  // } catch (error) {
-  //   console.error(error);
-  //   return res.status(500).json({ message: 'Internal server error' });
-  // }
+    // Redirect the user to the specified URL
+    return res.redirect(`${process.env.FRONTEND_URL}/studymaterials`);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 module.exports = { createOrder, payWithUPI, addPdfInUsers };
