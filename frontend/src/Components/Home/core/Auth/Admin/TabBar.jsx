@@ -12,7 +12,7 @@ const TabBar = ({ activeTab, setActiveTab }) => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex rounded-full bg-gray-200 ">
       {tabs.map((tab) => (
         <button
           key={tab.id}
@@ -20,7 +20,7 @@ const TabBar = ({ activeTab, setActiveTab }) => {
             activeTab === tab.id
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-black"
-          } p-3 flex-1 text-center`}
+          } p-3 flex-1 text-center rounded-full`}
           onClick={() => handleTabChange(tab.id)}
         >
           {tab.label}
