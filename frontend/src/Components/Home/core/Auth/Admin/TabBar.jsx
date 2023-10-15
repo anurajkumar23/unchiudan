@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
-const tabs = [
-  { id: "tab1", label: "Post News" },
-  { id: "tab2", label: "Post Current Affair" },
-  { id: "tab3", label: "Post PDF" },
-];
-
-const TabBar = () => {
-  const [activeTab, setActiveTab] = useState(tabs[0].id);
+const TabBar = ({ activeTab, setActiveTab }) => {
+  const tabs = [
+    { id: "tab1", label: "Post News" },
+    { id: "tab2", label: "Post Current Affair" },
+    { id: "tab3", label: "Post PDF" },
+  ];
 
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
