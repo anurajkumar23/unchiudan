@@ -149,8 +149,8 @@ function Downloads({userData}) {
   // }, [selectedCategory, selectedStatus]);
 
   const fetchData = (page, category) => {
-    // let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs`;
-    let apiUrl = `http://localhost:3000/api/pdfs`;
+    let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs`;
+    // let apiUrl = `http://localhost:3000/api/pdfs`;
     if (category) {
       apiUrl += `/?category=${category}&page=${page}`;
     } else {
