@@ -5,50 +5,41 @@ import DownloadPage from "./Components/Downloads/DownloadPage";
 import BlogsPage from "./Components/Blogs/BlogsPage";
 import GlobalProvider from "./Components/GlobalProvider";
 import Downloads from "./Components/Downloads/Downloads";
-
 import News from "./Components/News/News";
 import Currentaffaircontainer from "./Components/currentaffair/Currentaffaircontainer";
-
 import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
-import UserSettings from "./Components/Home/core/Auth/UserSettings"; // Assuming you have a UserSettings component
+import UserSettings from "./Components/Home/core/Auth/UserSettings";
 import Navbar from "./Components/Home/HomeUI/Navbar";
 import NewsPage from "./Components/News/NewsPage";
 import AboutUs from "./Components/About/AboutUs";
 import AdminPage from "./Components/Home/core/Auth/Admin/AdminPower";
-import ErrorPage from "./Errorpage"
+import ErrorPage from "./Errorpage";
 import TermsAndConditions from "./Components/About/TermsAndConditions";
 import Disclaimer from "./Components/About/Disclaimer";
-
 import FAQ from "./Components/Support/FAQ";
 import StudyMaterials from "./Components/Study Materials/StudyMaterials";
 import PrivacyPolicy from "./Components/About/policy";
 import ForgotPassword from "./Components/Home/core/Auth/forgotpassword";
 import ResetPassword from "./Components/Home/core/Auth/resetpassword";
 
+
 function App() {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Function to check if user is authenticated
   const checkAuthenticated = async () => {
-    console.log(
-      "🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:",
-      "start auth"
-    );
+    console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", "start auth");
     const token = localStorage.getItem("jwt_token");
     console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", token);
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/user/authenticated`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            // Add any authentication headers if needed
-            Authorization: token,
-          },
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/authenticated`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      });
 
       if (response.ok) {
         const userData = await response.json();
@@ -58,20 +49,24 @@ function App() {
       console.error("Error checking authentication:", error);
     }
   };
-  // console.log("🚀 ~ file: App.jsx:43 ~ useEffect ~ user:", user.isAuthorized);
 
   useEffect(() => {
-    // Check if user info is already stored in local storage or cookies
-    const storedUser = JSON.parse(localStorage.getItem("user")); // Assuming you're storing the user info in local storage
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
       setUser(storedUser);
+      setIsLoading(false);
     } else {
-      checkAuthenticated();
+      checkAuthenticated().then(() => setIsLoading(false));
     }
-  }, []); // Fetch authentication status only when component mounts
+  }, []);
 
-  // const show = user.isAuthorized
-
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="spinner border-t-4 border-blue-500 border-solid rounded-full w-12 h-12"></div>
+      </div>
+    );
+  }
   return (
     <BrowserRouter>
       <GlobalProvider>
@@ -128,7 +123,7 @@ function App() {
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
-  );
+  );  
 }
 
 export default App;
