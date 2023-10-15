@@ -104,7 +104,7 @@ const FormCurrentAffairs = () => {
 
   return (
     <div>
-      <form className="max-w-2xl mx-auto mt-8" onSubmit={handleSubmit}>
+      <form className=" mx-auto mt-8" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
             htmlFor="topic"
@@ -219,29 +219,29 @@ const FormCurrentAffairs = () => {
             />
           </div>
         ))}
-
-        <button
-          type="button"
-          onClick={() =>
-            setFormData({
-              ...formData,
-              data: [
-                ...formData.data,
-                { ques: "", options: ["", "", "", ""], ans: "" },
-              ],
-            })
-          }
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Add Question
-        </button>
-
-        <button
-          type="submit"
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4"
-        >
-          Submit
-        </button>
+        <span className=" flex space-x-6">
+          <button
+            type="button"
+            onClick={() =>
+              setFormData({
+                ...formData,
+                data: [
+                  ...formData.data,
+                  { ques: "", options: ["", "", "", ""], ans: "" },
+                ],
+              })
+            }
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+          >
+            Add Question
+          </button>
+          <button
+            type="submit"
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
+          >
+            Submit
+          </button>{" "}
+        </span>
       </form>
       <Toaster position="top-center" reverseOrder={false} />
     </div>

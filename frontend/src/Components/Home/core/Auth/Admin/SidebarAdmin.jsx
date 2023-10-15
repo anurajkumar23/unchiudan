@@ -1,15 +1,16 @@
-import FormCurrentAffairs from "./FormCurrentAffairs";
-import FormNews from "./FormNews";
-import FormPDF from "./FormPDF";
 import React, { useState } from "react";
 import TabBar from "./TabBar";
+import FormNews from "./FormNews";
+import FormCurrentAffairs from "./FormCurrentAffairs";
+import FormPDF from "./FormPDF";
+
 const SidebarAdmin = () => {
   const [activeTab, setActiveTab] = useState("tab1");
 
   return (
-    <div className="m-8 rounded-lg border-2  text-white ">
+    <div className="m-8 rounded-lg border-2  text-white p-4">
       <div className="container mx-auto mt-5">
-        <TabBar setActiveTab={setActiveTab} activeTab={activeTab} />
+        <TabBar activeTab={activeTab} setActiveTab={setActiveTab} />
         <div className="mt-5">
           {activeTab === "tab1" && <FormNews />}
           {activeTab === "tab2" && <FormCurrentAffairs />}
