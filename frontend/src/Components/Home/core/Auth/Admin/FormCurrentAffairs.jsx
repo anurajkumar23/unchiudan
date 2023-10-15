@@ -104,7 +104,7 @@ const FormCurrentAffairs = () => {
 
   return (
     <div>
-      <form className="max-w-2xl mx-auto mt-8" onSubmit={handleSubmit}>
+      <form className=" mx-auto mt-8" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
             htmlFor="topic"
