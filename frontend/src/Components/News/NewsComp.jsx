@@ -27,10 +27,11 @@ function NewsComp({ newsItems, userData }) {
     return hoursDifference <= 48;
   };
 
- 
-
   const handleDeleteClick = async (event, newsId) => {
-    console.log("🚀 ~ file: NewsComp.jsx:33 ~ handleDeleteClick ~ newsId:", newsId)
+    console.log(
+      "🚀 ~ file: NewsComp.jsx:33 ~ handleDeleteClick ~ newsId:",
+      newsId
+    );
     event.preventDefault(); // Prevent default behavior (e.g., navigation)
     event.stopPropagation(); // Prevent the click event from propagating to the parent link element
 
@@ -70,7 +71,7 @@ function NewsComp({ newsItems, userData }) {
   return (
     <div className="flex flex-col md:w-[429%]">
       {newsItems.map((news) => {
-        const createdAt =  new Date(news.createdAt);
+        const createdAt = new Date(news.createdAt);
         const formattedDate = createdAt.toLocaleString("default", {
           day: "numeric",
           month: "long",
