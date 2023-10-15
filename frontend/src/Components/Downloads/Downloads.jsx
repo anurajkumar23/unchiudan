@@ -149,19 +149,21 @@ function Downloads({userData}) {
   // }, [selectedCategory, selectedStatus]);
 
   const fetchData = (page, category) => {
-    // let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs`;
-    let apiUrl = `http://localhost:3000/api/pdfs`;
+    let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs?page=${page}`;
+  
     if (category) {
-      apiUrl += `/?category=${category}&page=${page}`;
-    } else {
-      apiUrl += `?page=${page}`;
+      apiUrl += `&category=${category}`;
     }
-
+  
+    if (selectedStatus !== null) {
+      apiUrl += `&status=${selectedStatus}`;
+    }
+  
     axios
       .get(apiUrl)
       .then((response) => {
         const { pdf } = response.data.data;
-        const {totallength} = response.data;
+        const { totallength } = response.data;
         console.log('Total Length:', totallength);
         setPdfs(pdf);
         setTotalPages(Math.ceil(parseInt(totallength) / postsPerPage));
@@ -170,6 +172,27 @@ function Downloads({userData}) {
         console.error('Error fetching data:', error);
       });
   };
+   useEffect(() => {
+    let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs`;
+
+    if (selectedCategory !== null) {
+      apiUrl += `/?category=${selectedCategory}`;
+    }
+
+    if (selectedStatus !== null) {
+      apiUrl += `${selectedCategory ? "&" : "/?"}status=${selectedStatus}`;
+    }
+
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setPdfs(response.data.data.pdf);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [selectedCategory, selectedStatus]);
+  
 
   useEffect(() => {
     fetchData(currentPage, selectedCategory);
