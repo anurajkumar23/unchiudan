@@ -1,7 +1,5 @@
-import CurrentAffairsForm from "./FormCurrentAffairs";
-import FormNews from "./FormNews";
 import SidebarAdmin from "./SidebarAdmin";
-import FormPdf from "./FormPDF";
+
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
@@ -14,15 +12,15 @@ const AdminPage = ({ userData }) => {
       const token = localStorage.getItem("jwt_token");
       const response = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/user`,
-      // `http://localhost:3000/api/user`,
-      {
-        headers: {
-          Authorization: token,
-        },
-      });
-      const {results}  = response.data;
+        // `http://localhost:3000/api/user`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      const { results } = response.data;
       setTotalUsers(results);
-      
     } catch (error) {
       console.error("Error fetching total users:", error);
       toast.error("Error fetching total users");
@@ -73,14 +71,13 @@ const AdminPage = ({ userData }) => {
       }
     }
   };
+  const [activeTab, setActiveTab] = useState("tab1");
 
   return (
-    <div className="flex">
-      <div className="mt-[7%] flex">
+    <div className="flex pt-[8rem] ">
+      <div className=" flex">
         <SidebarAdmin />
-        <FormNews />
-        <CurrentAffairsForm />
-        <FormPdf />
+
         <div>
           ❗❗ Delete News that are older than 90 Days ❗❗
           <br />
