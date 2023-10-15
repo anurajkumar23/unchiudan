@@ -76,7 +76,7 @@ const AdminPage = ({ userData }) => {
   return (
     <div className=" pt-[8rem] ">
       <div className=" flex justify-center mb-10">
-        <span>
+        <span className="mx-[5%] text-center">
           ❗❗ Delete News that are older than 90 Days ❗❗
           <br />
           <button
@@ -86,10 +86,10 @@ const AdminPage = ({ userData }) => {
             Delete News
           </button>
         </span>
-        <span>
-          <strong>Total Users</strong>
+        <span className="text-center">
+          <strong>Total Users 🧑</strong>
           <br />
-          <p className="bg-[#06ca06] text-white rounded p-2">{totalUsers}</p>
+          <p className="bg-[#06ca06] text-white rounded px-2 py-2 item-center">{totalUsers}</p>
         </span>
       </div>
       <SidebarAdmin />
