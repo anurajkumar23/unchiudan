@@ -96,7 +96,7 @@ const FormPDF = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="border p-2 w-full"
+            className="border p-2 w-full text-black"
             required
           />
         </div>
@@ -106,7 +106,7 @@ const FormPDF = () => {
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className="border p-2 w-full"
+            className="border p-2 w-full text-black"
             required
           >
             <option value="" disabled>
@@ -119,7 +119,7 @@ const FormPDF = () => {
             <option value="SSC">SSC</option>
           </select>
         </div>
-        <div className="mb-4">
+        <div className="mb-4 text-black">
           <label className="block mb-2 text-gray-800">Status</label>
           <select
             name="status"
@@ -133,7 +133,7 @@ const FormPDF = () => {
           </select>
         </div>
         {formData.status === "paid" && (
-          <div className="mb-4">
+          <div className="mb-4 text-black">
             <label className="block mb-2 text-gray-800">Price</label>
             <input
               type="number"
@@ -145,7 +145,7 @@ const FormPDF = () => {
             />
           </div>
         )}
-        <div className="mb-4">
+        <div className="mb-4 text-black">
           <label className="block mb-2 text-gray-800">Photo</label>
           <input
             type="file"
@@ -155,7 +155,7 @@ const FormPDF = () => {
             className="border p-2 w-full"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 text-black">
           <label className="block mb-2 text-gray-800">Description</label>
           <textarea
             name="description"
@@ -164,7 +164,7 @@ const FormPDF = () => {
             className="border p-2 w-full h-32"
           ></textarea>
         </div>
-        <div className="mb-4">
+        <div className="mb-4 text-black">
           <label className="block mb-2 text-gray-800">PDF</label>
           <input
             type="file"
@@ -174,7 +174,7 @@ const FormPDF = () => {
             className="border p-2 w-full"
           />
         </div>
-        <div className="mt-6">
+        <div className="mt-6 text-black">
           <button type="submit" className="bg-blue-500 text-white p-2">
             Submit
           </button>

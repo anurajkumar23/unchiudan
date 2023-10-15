@@ -45,7 +45,7 @@ const AdminPage = ({ userData }) => {
       try {
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/news/autodelete`,
-          // `http://localhost:3000/api/news/autodelete`,
+          
           {
             headers: {
               Authorization: token,
