@@ -10,7 +10,7 @@ function DownloadPage({ userData }) {
   const { id } = useParams();
   const [pdfDetails, setPdfDetails] = useState(null);
 
-  console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData);
+  console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData.user._id);
   let role;
   if (userData) {
     if(userData.user.role==="admin"){
@@ -91,6 +91,7 @@ function DownloadPage({ userData }) {
           .checkout({
             paymentSessionId: res.data.paymentSessionId,
             returnUrl: `${import.meta.env.VITE_BACKEND_URL}/payment/NRRTWSD/unchiudan/pdf/${userData.user._id}/${id}`,
+            // returnUrl: `https://www.youtube.com/`,
             // redirectTarget: "_blank",
           })
           .then(() => {

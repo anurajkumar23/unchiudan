@@ -7,10 +7,7 @@ const router = express.Router();
 
 
 router.post('/createOrderId', createOrder);
-router.get(
-  '/NRRTWSD/unchiudan/pdf/:userId/:pdfId',
-  addPdfInUsers,
-);
+router.get('/NRRTWSD/unchiudan/pdf/:userId/:pdfId',addPdfInUsers);
 
 
 
