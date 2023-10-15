@@ -11,7 +11,7 @@ function Currentaffairs() {
   const [filter, setFilter] = useState(false);
   const isSmallScreen = window.innerWidth <= 680;
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(40); // Number of posts per page
+  const [postsPerPage] = useState(8); // Number of posts per page
 
   const togglefilter = () => {
     setFilter(!filter);
