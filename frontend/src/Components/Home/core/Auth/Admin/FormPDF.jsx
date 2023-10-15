@@ -19,7 +19,7 @@ const postpdf = async (pdfData) => {
   try {
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/pdfs`,
-    //   `http://localhost:3000/api/pdfs`,
+      //   `http://localhost:3000/api/pdfs`,
       formData,
       {
         headers: {
@@ -29,15 +29,13 @@ const postpdf = async (pdfData) => {
       }
     );
     const data = response;
-    console.log("🚀 ~ file: FormPDF.jsx:31 ~ postpdf ~ data:", data)
-   
+    console.log("🚀 ~ file: FormPDF.jsx:31 ~ postpdf ~ data:", data);
   } catch (error) {
     console.log(error);
   }
-
 };
 
-const PdfForm = () => {
+const FormPDF = () => {
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -69,23 +67,23 @@ const PdfForm = () => {
     e.preventDefault();
     console.log(formData);
 
-  try{
-    await postpdf({
-      name: formData.name,
-      category: formData.category,
-      description: formData.description,
-      photo: formData.photo,
-      pdf: formData.pdf,
-      status: formData.status,
-      price: formData.price,
-    });
-    toast.success("PDF posted successfully!");
-  } catch (error) {
-    console.error(error);
+    try {
+      await postpdf({
+        name: formData.name,
+        category: formData.category,
+        description: formData.description,
+        photo: formData.photo,
+        pdf: formData.pdf,
+        status: formData.status,
+        price: formData.price,
+      });
+      toast.success("PDF posted successfully!");
+    } catch (error) {
+      console.error(error);
 
-    // Show an error toast when an error occurs
-    toast.error("Error posting PDF. Please try again.");
-  }
+      // Show an error toast when an error occurs
+      toast.error("Error posting PDF. Please try again.");
+    }
   };
 
   return (
@@ -187,4 +185,4 @@ const PdfForm = () => {
   );
 };
 
-export default PdfForm;
+export default FormPDF;
