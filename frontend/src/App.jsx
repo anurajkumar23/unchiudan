@@ -123,7 +123,7 @@ function App() {
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
-  );
+  );  
 }
 
 export default App;
