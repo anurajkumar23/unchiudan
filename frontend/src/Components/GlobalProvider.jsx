@@ -2,12 +2,17 @@
 
 import BottomToTopButton from "./Home/HomeUI/BottomToTopButton";
 import Footer from "./Home/HomeUI/Footer";
+
 function GlobalProvider({ children }) {
+
+
+
   return (
     <div className="mx-auto">
       {children}
-      <Footer />
+        <Footer />
       <BottomToTopButton />
+      
     </div>
   );
 }

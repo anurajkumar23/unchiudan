@@ -23,23 +23,28 @@ import PrivacyPolicy from "./Components/About/policy";
 import ForgotPassword from "./Components/Home/core/Auth/forgotpassword";
 import ResetPassword from "./Components/Home/core/Auth/resetpassword";
 
-
 function App() {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const checkAuthenticated = async () => {
-    console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", "start auth");
+    console.log(
+      "🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:",
+      "start auth"
+    );
     const token = localStorage.getItem("jwt_token");
     console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", token);
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/authenticated`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token,
-        },
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/user/authenticated`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
+      );
 
       if (response.ok) {
         const userData = await response.json();
@@ -67,38 +72,45 @@ function App() {
       </div>
     );
   }
+
   return (
     <BrowserRouter>
       <GlobalProvider>
         <Navbar userData={user} />
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/user/signup" element={<Signup />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/pdfs" element={<Downloads userData={user} />} />
-          <Route path="/pdfs/:id" element={<DownloadPage userData={user} />} />
-          <Route path="/Currentaffairs" element={<Currentaffaircontainer userData={user} />} />
-          <Route path="/currentaffairs/:id" element={<BlogsPage userData={user}/>} />
-          <Route path="/News" element={<News userData={user} />} />
-          <Route path="/News/:id" element={<NewsPage userData={user}/>} />
-          <Route path="/AboutUs" element={<AboutUs />} />
-          <Route path="/tearm&conditions" element={<TermsAndConditions />} />
-          <Route path="/disclaimer" element={<Disclaimer />} />
-          <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-          <Route path="/faqs" element={<FAQ />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
-          <Route path="/resetpassword/:token" element={<ResetPassword />} />
-
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/user/signup" element={<Signup />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/pdfs" element={<Downloads userData={user} />} />
+          <Route exact path="/pdfs/:id" element={<DownloadPage userData={user} />} />
+          <Route
+            exact path="/Currentaffairs"
+            element={<Currentaffaircontainer userData={user} />}
+          />
+          <Route
+            exact path="/currentaffairs/:id"
+            element={<BlogsPage userData={user} />}
+          />
+          <Route exact path="/News" element={<News userData={user} />} />
+          <Route exact path="/News/:id" element={<NewsPage userData={user} />} />
+          <Route exact path="/AboutUs" element={<AboutUs />} />
+          <Route exact path="/terms&conditions" element={<TermsAndConditions />} />
+          <Route exact path="/disclaimer" element={<Disclaimer />} />
+          <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route exact path="/faqs" element={<FAQ />} />
+          <Route exact path="/forgotpassword" element={<ForgotPassword />} />
+          <Route exact path="/resetpassword/:token" element={<ResetPassword />} />
+          
           {user ? (
             <Route
-              path="/user"
+              exact path="/user"
               element={<UserSettings userData={user.user} />}
             />
           ) : (
-            <Route path="/user/login" element={<Login />} />
+            <Route exact path="/user/login" element={<Login />} />
           )}
           <Route
-            path="/studymaterials"
+            exact path="/studymaterials"
             element={
               user ? (
                 <StudyMaterials userData={user.user} />
@@ -107,23 +119,21 @@ function App() {
               )
             }
           />
-          {user ?     <Route
+          <Route
             path="/adminpower"
             element={
-              user.user.role==="admin" ? (
+              user && user.user.role === "admin" ? (
                 <AdminPage userData={user.user} />
               ) : (
                 <Navigate to="/login" />
               )
             }
           />
-          : <Route path="/errorpage" element={<ErrorPage />} />
-        }
-      
+          <Route path = "/*" element={<ErrorPage />} />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
-  );  
+  );
 }
 
 export default App;
