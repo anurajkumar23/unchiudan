@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import  { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Sidebar from '../Sidebar/Sidebar';
 import { BlogComps } from './AffairsContainer';
@@ -8,7 +8,7 @@ import { RiMenu3Fill, RiCloseFill } from 'react-icons/ri';
 function Currentaffairs({ userData }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const postsPerPage = 10;
+  const [postsPerPage, setPostsPerPage] = useState(10);
 
   const [affairs, setAffairs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -22,9 +22,9 @@ function Currentaffairs({ userData }) {
   const fetchData = (page, category) => {
     let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/currentaffairs`;
     if (category) {
-      apiUrl += `?category=${category}&page=${page}`;
+      apiUrl += `?category=${category}&page=${page}&limit=${postsPerPage}`;
     } else {
-      apiUrl += `?page=${page}`;
+      apiUrl += `?page=${page}&limit=${postsPerPage}`;
     }
 
     axios
@@ -43,7 +43,7 @@ function Currentaffairs({ userData }) {
 
   useEffect(() => {
     fetchData(currentPage, selectedCategory);
-  }, [selectedCategory, currentPage]);
+  }, [selectedCategory, currentPage, postsPerPage]);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -60,6 +60,11 @@ function Currentaffairs({ userData }) {
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
     setCurrentPage(1); // Reset page number to 1 when category changes
+  };
+
+  const handlePostsPerPageChange = (value) => {
+    setPostsPerPage(value);
+    setCurrentPage(1); // Reset page number to 1 when limit changes
   };
 
   return (
@@ -104,31 +109,44 @@ function Currentaffairs({ userData }) {
       </div>
 
       <div className="flex justify-center my-4">
-  <button
-    onClick={handlePrevPage}
-    disabled={currentPage === 1}
-    className={`
-      px-4 py-2 mx-2 rounded-full
-      ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
-    `}
-  >
-    <i className="fas fa-chevron-left mr-2"></i> Previous
-  </button>
-  <button
-    onClick={handleNextPage}
-    disabled={currentPage === totalPages}
-    className={`
-      px-4 py-2 mx-2 rounded-full
-      ${currentPage === totalPages ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
-    `}
-  >
-    Next <i className="fas fa-chevron-right ml-2"></i>
-  </button>
-</div>
-<div className="text-center text-gray-500">
-  Page {currentPage} of {totalPages}
-</div>
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className={`
+            px-4 py-2 mx-2 rounded-full
+            ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
+          `}
+        >
+          <i className="fas fa-chevron-left mr-2"></i> Previous
+        </button>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className={`
+            px-4 py-2 mx-2 rounded-full
+            ${currentPage === totalPages ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
+          `}
+        >
+          Next <i className="fas fa-chevron-right ml-2"></i>
+        </button>
+      </div>
+      <div className="text-center text-gray-500">
+        Page {currentPage} of {totalPages}
+      </div>
 
+      <div className="flex justify-center mt-4">
+        <div className="mr-2">Show:</div>
+        <select
+          value={postsPerPage}
+          onChange={(e) => handlePostsPerPageChange(e.target.value)}
+          className="px-2 py-1 border rounded-md"
+        >
+          <option value="12">12</option>
+          <option value="24">24</option>
+          <option value="48">48</option>
+          <option value="60">60</option>
+        </select>
+      </div>
     </div>
   );
 }
