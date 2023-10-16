@@ -50,7 +50,7 @@ function StudyMaterial({
           <p className="text-lg ">updated at: {updatedDate}</p>
         </div>
         <div className="my-2 mx-6 flex justify-between"></div>
-        <button className="mt-4 text-md hover:bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
+        <button className="mt-4 text-md hover-bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover-shadow-xl">
           Read More
         </button>
       </div>
@@ -100,6 +100,13 @@ function StudyMaterials({ userData }) {
 
   return (
     <div className="mx-auto py-[7rem]">
+      {/* Add your text here */}
+      <h1 className="text-2xl font-bold text-gray-800 mb-4 flex items-center justify-center text-center">
+  <span className="mr-2">Your Purchased PDFs</span>
+  <span className="text-xl">/आपके खरीदे गए PDF🎉</span>
+</h1>
+
+
       <div className="flex">
         <div
           className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full mx-10 md:mx-0  `}
