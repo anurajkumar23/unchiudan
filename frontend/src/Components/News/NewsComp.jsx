@@ -51,7 +51,6 @@ function NewsComp({ newsItems, userData }) {
         if (response.status === 200) {
           // The news item was deleted successfully
           // Show a success toast
-          
 
           // Perform any additional actions you need here
           console.log("News item deleted successfully");
@@ -82,7 +81,7 @@ function NewsComp({ newsItems, userData }) {
 
         return (
           <Link to={`/News/${news._id}`} key={news._id}>
-            <div className="relative my-6 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white h-[50%]">
+            <div className="relative flex flex-col md:flex-row md:space-x-5 my-6 md:space-y-0 rounded-xl shadow-lg  max-w-xs md:max-w-3xl mx-auto border border-white bg-white h-[50%]">
               {role ? (
                 <button
                   className="absolute top-0 right-0 text-red-600 cursor-pointer bg-red-500 rounded-full p-2"
