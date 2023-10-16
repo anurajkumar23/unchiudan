@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { MdOutlineAccessTimeFilled, MdOutlineDelete } from "react-icons/md";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
-
+import { Toaster, toast } from "react-hot-toast";
 function BlogComps({
   date,
   title,
@@ -50,11 +50,13 @@ function BlogComps({
           // The item was deleted successfully
           // Perform any additional actions you need here
           console.log("Item deleted successfully");
+          toast.success("Item deleted successfully")
         } else {
           console.error("Error deleting item:", response);
         }
       } catch (error) {
         console.error("Error deleting item:", error);
+        toast.error("Error in deleting item")
       }
     }
   };
@@ -107,6 +109,7 @@ function BlogComps({
           Read More
         </button>
       </Link>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }

@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+
 import { Link } from "react-router-dom";
 import { MdOutlineAccessTimeFilled, MdOutlineDelete } from "react-icons/md";
 import "./AffairsContainer.css";
 import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 
 export function BlogComps({
   date,
@@ -46,11 +47,13 @@ export function BlogComps({
           // The item was deleted successfully
           // Perform any additional actions you need here
           console.log("Item deleted successfully");
+          toast.success("Item deleted successfully")
         } else {
           console.error("Error deleting item:", response);
         }
       } catch (error) {
         console.error("Error deleting item:", error);
+        toast.error("Error in deleting item")
       }
     }
   };
@@ -100,6 +103,7 @@ export function BlogComps({
           Read More
         </button>
       </Link>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }

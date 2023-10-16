@@ -51,10 +51,11 @@ function NewsComp({ newsItems, userData }) {
         if (response.status === 200) {
           // The news item was deleted successfully
           // Show a success toast
-          toast.success("News item deleted successfully");
+          
 
           // Perform any additional actions you need here
           console.log("News item deleted successfully");
+          toast.success("News item deleted successfully");
         } else {
           console.error("Error deleting news item:", response);
           // Show an error toast if needed
@@ -122,6 +123,7 @@ function NewsComp({ newsItems, userData }) {
           </Link>
         );
       })}
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }
