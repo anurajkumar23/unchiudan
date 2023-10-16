@@ -115,8 +115,8 @@ function DownloadPage({ userData }) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div className="col-span-3 p-4 overflow-y-auto">
           <h1 className="text-center font-bold text-[2rem] md:text-[2.5rem] mb-6">
-            UPSC PDF download <br />
-            {pdfDetails.name}
+            {pdfDetails.category} PDF download <br />
+            
           </h1>
           <div className="mx-6 my-12">
             <img
@@ -150,18 +150,10 @@ function DownloadPage({ userData }) {
           <SocialMedia />
 
           <h1 className="mt-10 text-[1.3rem] font-[550] text-center">
-            Monthly Current Affairs of Jun 2020 PDF Download Set no- 205
+            Monthly Current Affairs of Jun 2020 PDF Download {pdfDetails.name}
           </h1>
           <p className="mt-4 text-justify text-lg">
-            Monthly Current Affairs of Jun 2020 PDF Download is now out by
-            UnchiUdaan.in. You can Download it here and Get Daily 10 Questions
-            of Latest Current Affairs of Jun 2020 on UnchiUdaan Facebook Page.
-            You can also Download other Previous Monthly Current Affairs of Jun
-            2020 along with Current affairs of Jun available in Free Download
-            page of this Website. <br /> <br /> This PDF is the Successive
-            Series of Unchiudaan Monthly Current affairs PDF of Jun that is
-            Being Issued by Unchi Udaan. You can also Download the Previous
-            Month PDF for Free Monthly PDF. You can also download other PDFs.
+            {pdfDetails.description}
           </p>
           <SocialMedia />
         </div>
