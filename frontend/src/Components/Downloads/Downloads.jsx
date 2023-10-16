@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdOutlineAccessTimeFilled, MdOutlineDelete } from "react-icons/md";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
-import Sidebar_pdf from "../Sidebar/Sidebar_pdf"
+import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
 
 function BlogComps({
   date,
@@ -39,10 +39,8 @@ function BlogComps({
       try {
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`,
-          // `http://localhost:3000/api/pdfs/${id}`,
           {
             headers: {
-              //   "Content-Type": "application/json",
               Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
             },
           }
@@ -61,9 +59,8 @@ function BlogComps({
     }
   };
   return (
-    
-      <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 relative">
-       {role ?
+    <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 relative">
+      {role ? (
         <button
           className="absolute top-0 right-0 text-red-600 cursor-pointer bg-red-500 rounded-full p-2"
           style={{ zIndex: 1 }}
@@ -71,8 +68,10 @@ function BlogComps({
         >
           <MdOutlineDelete size={32} color="#fff" />
         </button>
-      : "" }
-        <Link to={`/pdfs/${id}`} className="w-full h-full">
+      ) : (
+        ""
+      )}
+      <Link to={`/pdfs/${id}`} className="w-full h-full">
         <div className="card__header">
           <div className="card__picture">
             <div className="card__picture-overlay">&nbsp;</div>
@@ -107,13 +106,12 @@ function BlogComps({
         <button className="mt-4 text-md hover-bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
           Read More
         </button>
-        </Link>
-      </div>
-    
+      </Link>
+    </div>
   );
 }
 
-function Downloads({userData}) {
+function Downloads({ userData }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const postsPerPage = 10;
@@ -123,42 +121,22 @@ function Downloads({userData}) {
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [filter, setFilter] = useState(false);
   const isSmallScreen = window.innerWidth <= 680;
+
   const togglefilter = () => {
     setFilter(!filter);
   };
 
-  // useEffect(() => {
-  //   let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs`;
-
-  //   if (selectedCategory !== null) {
-  //     apiUrl += `/?category=${selectedCategory}`;
-  //   }
-
-  //   if (selectedStatus !== null) {
-  //     apiUrl += `${selectedCategory ? "&" : "/?"}status=${selectedStatus}`;
-  //   }
-
-  //   axios
-  //     .get(apiUrl)
-  //     .then((response) => {
-  //       setPdfs(response.data.data.pdf);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, [selectedCategory, selectedStatus]);
-
   const fetchData = (page, category) => {
     let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs?page=${page}`;
-  
+
     if (category) {
       apiUrl += `&category=${category}`;
     }
-  
+
     if (selectedStatus !== null) {
       apiUrl += `&status=${selectedStatus}`;
     }
-  
+
     axios
       .get(apiUrl)
       .then((response) => {
@@ -172,7 +150,8 @@ function Downloads({userData}) {
         console.error('Error fetching data:', error);
       });
   };
-   useEffect(() => {
+
+  useEffect(() => {
     let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs`;
 
     if (selectedCategory !== null) {
@@ -192,7 +171,6 @@ function Downloads({userData}) {
         console.error("Error fetching data:", error);
       });
   }, [selectedCategory, selectedStatus]);
-  
 
   useEffect(() => {
     fetchData(currentPage, selectedCategory);
@@ -208,6 +186,11 @@ function Downloads({userData}) {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    setCurrentPage(1); // Reset page number to 1 when category changes
   };
 
   return (
@@ -262,23 +245,38 @@ function Downloads({userData}) {
           className={`z-1 flex-1 ${filter ? "block" : "hidden"} lg:flex sm:block`}
         >
           <Sidebar_pdf
-            setSelectedCategory={setSelectedCategory}
+            setSelectedCategory={handleCategoryChange}
             setSelectedStatus={setSelectedStatus}
-            togglefilter ={togglefilter}
+            togglefilter={togglefilter}
           />
         </div>
       </div>
       <div className="flex justify-center my-4">
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          Previous Page
-        </button>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Next Page
-        </button>
-      </div>
-      <div className="text-center">
-        Page {currentPage} of {totalPages}
-      </div>
+  <button
+    onClick={handlePrevPage}
+    disabled={currentPage === 1}
+    className={`
+      px-4 py-2 mx-2 rounded-full
+      ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
+    `}
+  >
+    <i className="fas fa-chevron-left mr-2"></i> Previous
+  </button>
+  <button
+    onClick={handleNextPage}
+    disabled={currentPage === totalPages}
+    className={`
+      px-4 py-2 mx-2 rounded-full
+      ${currentPage === totalPages ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
+    `}
+  >
+    Next <i className="fas fa-chevron-right ml-2"></i>
+  </button>
+</div>
+<div className="text-center text-gray-500">
+  Page {currentPage} of {totalPages}
+</div>
+
     </div>
   );
 }

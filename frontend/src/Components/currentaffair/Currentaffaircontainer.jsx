@@ -56,6 +56,11 @@ function Currentaffairs({ userData }) {
     }
   };
 
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    setCurrentPage(1); // Reset page number to 1 when category changes
+  };
+
   return (
     <div className="mx-auto py-[7rem]">
       <div className="p-2">
@@ -93,21 +98,36 @@ function Currentaffairs({ userData }) {
         </div>
 
         <div className={`z-1 flex-1 ${filter ? 'block' : 'hidden'} lg:flex sm:block`}>
-          <Sidebar setSelectedCategory={setSelectedCategory} toggleFilter={toggleFilter} />
+          <Sidebar setSelectedCategory={handleCategoryChange} toggleFilter={toggleFilter} />
         </div>
       </div>
 
       <div className="flex justify-center my-4">
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          Previous Page
-        </button>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Next Page
-        </button>
-      </div>
-      <div className="text-center">
-        Page {currentPage} of {totalPages}
-      </div>
+  <button
+    onClick={handlePrevPage}
+    disabled={currentPage === 1}
+    className={`
+      px-4 py-2 mx-2 rounded-full
+      ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
+    `}
+  >
+    <i className="fas fa-chevron-left mr-2"></i> Previous
+  </button>
+  <button
+    onClick={handleNextPage}
+    disabled={currentPage === totalPages}
+    className={`
+      px-4 py-2 mx-2 rounded-full
+      ${currentPage === totalPages ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
+    `}
+  >
+    Next <i className="fas fa-chevron-right ml-2"></i>
+  </button>
+</div>
+<div className="text-center text-gray-500">
+  Page {currentPage} of {totalPages}
+</div>
+
     </div>
   );
 }
