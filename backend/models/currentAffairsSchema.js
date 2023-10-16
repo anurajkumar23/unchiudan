@@ -11,6 +11,7 @@ const currentAffairsSchema = new mongoose.Schema({
     enum: ['BiharDaroga', 'BPSC', 'Railway', 'UPSC', 'SSC'],
     required: true,
   },
+  description: String,
   photo: {
     type: String,
     default: 'uchiudan.png'

@@ -129,7 +129,7 @@ try{
             className="w-full px-3 py-2 border rounded"
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label
             htmlFor="highlight"
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -144,7 +144,7 @@ try{
               className="ml-2"
             />
           </label>
-        </div>
+        </div> */}
         <button
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

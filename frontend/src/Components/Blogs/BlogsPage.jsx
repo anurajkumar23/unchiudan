@@ -107,36 +107,7 @@ function BlogsPage({ userData }) {
             {affairDetails.topic}
           </h1>
           <p className="mt-4 text-justify text-lg">
-            Monthly Current Affairs PDFs are now available on UnchiUdaan.in.
-            Stay updated with the latest happenings in various fields such as
-            politics, economy, technology, and more. Download your copy today
-            and get access to a curated selection of 10 questions related to the
-            current affairs of the day, exclusively on the UnchiUdaan Facebook
-            Page. <br /> <br /> Stay ahead in your UPSC, SSC, Railway, BPSC
-            preparations with our Monthly Current Affairs PDFs, now available on
-            UnchiUdaan.in. Dive into a wealth of knowledge covering the latest
-            in politics, economy, technology, and more. Download your copy now
-            and gain access to a specially curated set of 10 questions, tailored
-            to UPSC, SSC, Railway, and BPSC exams, exclusively on the UnchiUdaan
-            Facebook Page. In addition to the freshest updates, explore an
-            extensive collection of previous monthly current affairs reports,
-            all conveniently accessible in the Free Download section of this
-            website. Stay informed about the events that hold significance for
-            your competitive exams.
-            <br />
-            <br />
-            These PDFs mark the continuation of the Unchiudaan Monthly Current
-            Affairs series, a testament to Unchi Udaan&apos;s commitment to
-            providing valuable insights tailored for UPSC, SSC, Railway, and
-            BPSC aspirants. To further enhance your understanding, download the
-            previous month&apos;s PDF for a more comprehensive view,
-            specifically designed to boost your exam preparation.
-            <br />
-            <br />
-            Expand your horizons by exploring a diverse range of PDFs, covering
-            a wide spectrum of topics relevant to UPSC, SSC, Railway, and BPSC
-            exams. From insightful articles to in-depth analyses, there&apos;s
-            something for every dedicated aspirant.{" "}
+          {affairDetails.description}
           </p>
           <h1 className="mt-10 text-lg font-bold text-center">
             Daily Quiz / डेली प्रश्न
