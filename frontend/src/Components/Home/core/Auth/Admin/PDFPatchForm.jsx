@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
 import { useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 
 const patchpdf = async (pdfData, id) => {
   console.log("🚀 ~ file: PDFPatchForm.jsx:7 ~ patchpdf ~ id:", id);
@@ -67,6 +68,7 @@ const PdfForm = ({ details }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+  try{
     await patchpdf(
       {
         name: formData.name,
@@ -77,8 +79,20 @@ const PdfForm = ({ details }) => {
         status: formData.status,
         price: formData.price,
       },
-      details._id
-    );
+      details._id);
+      if (!details._id) {
+        toast.success("PDF posted successfully!");
+      } else {
+        // It's a re-edit
+        toast.success("PDF updated successfully!");
+      }
+    } catch (error) {
+      console.error(error);
+  
+      // Show an error toast when an error occurs
+      toast.error("Error posting PDF. Please try again.");
+    }
+    
   };
 
   return (
@@ -175,6 +189,7 @@ const PdfForm = ({ details }) => {
           </button>
         </div>
       </form>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };

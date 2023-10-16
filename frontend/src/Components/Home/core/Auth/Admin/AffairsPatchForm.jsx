@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 
 const patchaffairs = async (affairsData,id) => {
   
@@ -85,12 +86,25 @@ const CurrentAffairsForm = ({details}) => {
     // } catch (error) {
     //   console.error("Error posting data:", error);
     // }
+  try{
     await patchaffairs({
       topic: formData.topic,
       category: formData.category,
       data: formData.data,
       photo: formData.photo,
     },details._id);
+    if (!details._id) {
+      toast.success("CurrentAffairs posted successfully!");
+    } else {
+      // It's a re-edit
+      toast.success("CurrentAffairs updated successfully!");
+    }
+  } catch (error) {
+    console.error(error);
+
+    // Show an error toast when an error occurs
+    toast.error("Error updating CurrentAffairs. Please try again.");
+  }
   };
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -101,6 +115,7 @@ const CurrentAffairsForm = ({details}) => {
   };
 
   return (
+    <div>
     <form className="max-w-2xl mx-auto mt-8" onSubmit={handleSubmit}>
       <div className="mb-4">
         <label
@@ -238,6 +253,8 @@ const CurrentAffairsForm = ({details}) => {
         Submit
       </button>
     </form>
+    <Toaster position="top-center" reverseOrder={false} />
+    </div>
   );
 };
 

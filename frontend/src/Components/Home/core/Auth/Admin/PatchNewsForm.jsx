@@ -70,7 +70,12 @@ try{
       highlight: formData.highlight,
       photo: formData.photo,
     },details._id);
-    toast.success("News posted successfully!");
+    if (!details._id) {
+      toast.success("News posted successfully!");
+    } else {
+      // It's a re-edit
+      toast.success("News updated successfully!");
+    }
   } catch (error) {
     console.error(error);
 
