@@ -1,12 +1,11 @@
-/* eslint-disable react/prop-types */
-
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdOutlineAccessTimeFilled, MdOutlineDelete } from "react-icons/md";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
 import { Toaster, toast } from "react-hot-toast";
+
 function BlogComps({
   date,
   title,
@@ -28,38 +27,34 @@ function BlogComps({
   } else {
     role = false;
   }
+
   const handleDeleteClick = async (event) => {
-    event.stopPropagation(); // Prevent the click event from propagating to the parent link element
+    event.stopPropagation();
     if (window.confirm("Are you sure you want to delete this item?")) {
-      // Perform the delete action here, e.g., call an API to delete the item
-      // You may want to pass the `id` or some identifier to delete the specific item
-      // Example: deleteItem(id);
       const token = localStorage.getItem("jwt_token");
-      console.log("🚀 ~ file: FormPDF.jsx:9 ~ postpdf ~ token:", token);
       try {
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`,
           {
             headers: {
-              Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+              Authorization: token,
             },
           }
         );
 
         if (response.status === 200) {
-          // The item was deleted successfully
-          // Perform any additional actions you need here
-          console.log("Item deleted successfully");
-          toast.success("Item deleted successfully")
+          toast.success("Item deleted successfully");
         } else {
           console.error("Error deleting item:", response);
+          toast.error("Error in deleting item");
         }
       } catch (error) {
         console.error("Error deleting item:", error);
-        toast.error("Error in deleting item")
+        toast.error("Error in deleting item");
       }
     }
   };
+
   return (
     <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 relative">
       {role ? (
@@ -102,7 +97,7 @@ function BlogComps({
           <h1 className="text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
             <MdOutlineAccessTimeFilled className="card__icon" />
           </h1>
-          <p className="text-lg ">updated at: {updatedDate}</p>
+          <p className="text-lg">updated at: {updatedDate}</p>
         </div>
         <div className="my-2 mx-6 flex justify-between"></div>
         <button className="mt-4 text-md hover-bg-indigo-600 w-full text-white bg-indigo-400 py-1 px-3 rounded-xl hover:shadow-xl">
@@ -117,8 +112,7 @@ function BlogComps({
 function Downloads({ userData }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(12); // Added state for posts per page
-
+  const [postsPerPage, setPostsPerPage] = useState(12);
   const [pdfs, setPdfs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState(null);
@@ -129,15 +123,15 @@ function Downloads({ userData }) {
     setFilter(!filter);
   };
 
-  const fetchData = (page, category) => {
-    let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs?page=${page}&limit=${postsPerPage}`; // Include limit in API request
+  const fetchData = (page, category, status) => {
+    let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs?page=${page}&limit=${postsPerPage}`;
 
     if (category) {
       apiUrl += `&category=${category}`;
     }
 
-    if (selectedStatus !== null) {
-      apiUrl += `&status=${selectedStatus}`;
+    if (status !== null) {
+      apiUrl += `&status=${status}`;
     }
 
     axios
@@ -145,12 +139,11 @@ function Downloads({ userData }) {
       .then((response) => {
         const { pdf } = response.data.data;
         const { totallength } = response.data;
-        console.log('Total Length:', totallength);
         setPdfs(pdf);
         setTotalPages(Math.ceil(parseInt(totallength) / postsPerPage));
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       });
   };
 
@@ -162,7 +155,7 @@ function Downloads({ userData }) {
     }
 
     if (selectedStatus !== null) {
-      apiUrl += `${selectedCategory ? "&" : "/?"}status=${selectedStatus}`;
+      apiUrl += `${selectedCategory ? "&" : "/"}status=${selectedStatus}`;
     }
 
     axios
@@ -176,8 +169,8 @@ function Downloads({ userData }) {
   }, [selectedCategory, selectedStatus]);
 
   useEffect(() => {
-    fetchData(currentPage, selectedCategory);
-  }, [selectedCategory, currentPage, postsPerPage]); // Include postsPerPage as a dependency
+    fetchData(currentPage, selectedCategory, selectedStatus);
+  }, [selectedCategory, selectedStatus, currentPage, postsPerPage]);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -187,18 +180,24 @@ function Downloads({ userData }) {
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+      setCurrentPage(1);
     }
   };
+
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-    setCurrentPage(1); // Reset page number to 1 when category changes
+    setCurrentPage(1);
+  };
+
+  const handleSelectedStatusChange = (status) => {
+    setSelectedStatus(status);
+    setCurrentPage(1);
   };
 
   const handleLimitChange = (event) => {
     const newLimit = parseInt(event.target.value, 10);
     setPostsPerPage(newLimit);
-    setCurrentPage(1); // Reset page number to 1 when limit changes
+    setCurrentPage(1);
   };
 
   return (
@@ -254,7 +253,7 @@ function Downloads({ userData }) {
         >
           <Sidebar_pdf
             setSelectedCategory={handleCategoryChange}
-            setSelectedStatus={setSelectedStatus}
+            setSelectedStatus={handleSelectedStatusChange}
             togglefilter={togglefilter}
           />
         </div>
@@ -293,7 +292,6 @@ function Downloads({ userData }) {
       <div className="text-center text-gray-500">
         Page {currentPage} of {totalPages}
       </div>
-      
     </div>
   );
 }
