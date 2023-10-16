@@ -17,7 +17,7 @@ exports.getAllAffairs = catchAsync(async (req, res, next) => {
   }
 
   let query = CurrentAffairs.find(queryObj).sort('-createdAt');
-  let query1 = CurrentAffairs.find(queryObj).sort('-createdAt');
+  let query1 = CurrentAffairs.find(queryObj);
 
   // Pagination
   const page = req.query.page * 1 || 1;

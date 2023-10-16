@@ -50,7 +50,7 @@ exports.getAllPdf = catchAsync(async (req, res, next) => {
   }
 
   let query = PDF.find(queryObj).sort('-createdAt');
-  let query1 = PDF.find(queryObj).sort('-createdAt');
+  let query1 = PDF.find(queryObj);
 
   // Pagination
   const page = req.query.page * 1 || 1;
