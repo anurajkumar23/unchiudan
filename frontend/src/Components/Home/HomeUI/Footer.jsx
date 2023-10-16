@@ -110,7 +110,7 @@ function Footer() {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/tearm&conditions"
                 >
-                 Terms & Conditions
+                  Terms & Conditions
                 </a>
               </li>
 
@@ -119,7 +119,7 @@ function Footer() {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/disclaimer"
                 >
-                 Disclaimer
+                  Disclaimer
                 </a>
               </li>
 
@@ -128,7 +128,7 @@ function Footer() {
                   className="text-gray-700 transition hover:text-gray-700/75"
                   href="/privacypolicy"
                 >
-                 Privacy Policy
+                  Privacy Policy
                 </a>
               </li>
             </ul>

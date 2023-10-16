@@ -124,7 +124,9 @@ function Downloads({ userData }) {
   };
 
   const fetchData = (page, category, status) => {
-    let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs?page=${page}&limit=${postsPerPage}`;
+    let apiUrl = `${
+      import.meta.env.VITE_BACKEND_URL
+    }/pdfs?page=${page}&limit=${postsPerPage}`;
 
     if (category) {
       apiUrl += `&category=${category}`;
@@ -218,7 +220,7 @@ function Downloads({ userData }) {
       </div>
       <div className="flex">
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full mx-10 md:mx-0 ${
+          className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full mx-10 md:mx-0 ${
             filter ? "hidden" : "block"
           }`}
         >
@@ -249,7 +251,9 @@ function Downloads({ userData }) {
           })}
         </div>
         <div
-          className={`z-1 flex-1 ${filter ? "block" : "hidden"} lg:flex sm:block`}
+          className={`z-1 flex-1 ${
+            filter ? "block" : "hidden"
+          } lg:flex sm:block`}
         >
           <Sidebar_pdf
             setSelectedCategory={handleCategoryChange}
@@ -273,7 +277,11 @@ function Downloads({ userData }) {
           disabled={currentPage === 1}
           className={`
             px-4 py-2 mx-2 rounded-full
-            ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
+            ${
+              currentPage === 1
+                ? "bg-gray-300 cursor-not-allowed text-gray-500"
+                : "bg-indigo-500 hover:bg-indigo-600 text-white"
+            }
           `}
         >
           <i className="fas fa-chevron-left mr-2"></i> Previous
@@ -283,7 +291,11 @@ function Downloads({ userData }) {
           disabled={currentPage === totalPages}
           className={`
             px-4 py-2 mx-2 rounded-full
-            ${currentPage === totalPages ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
+            ${
+              currentPage === totalPages
+                ? "bg-gray-300 cursor-not-allowed text-gray-500"
+                : "bg-indigo-500 hover:bg-indigo-600 text-white"
+            }
           `}
         >
           Next <i className="fas fa-chevron-right ml-2"></i>

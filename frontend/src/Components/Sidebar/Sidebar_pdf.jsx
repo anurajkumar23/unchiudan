@@ -38,9 +38,7 @@ const Sidebar_pdf = ({
 
   useEffect(() => {
     axios
-      .get(
-        `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/lastestAffairs`
-      )
+      .get(`${import.meta.env.VITE_BACKEND_URL}/currentaffairs/lastestAffairs`)
       .then((response) => {
         setAffairs(response.data.data.affairs);
       })
@@ -169,11 +167,13 @@ const Sidebar_pdf = ({
             return (
               <Link to={`/Currentaffairs/${affair._id}`} key={affair._id}>
                 <div className="w-18 flex justify-between p-4 border border-2 rounded-lg">
-                  <div className="w-1/3 p-4">
+                  <div className=" p-4">
                     <FaFileAlt className="w-12 h-12" />
                   </div>
-                  <div className="flex-col w-2/3 p-4">
-                    <h1 className=" text-center text-md overflow-hidden">{affair.topic}</h1>
+                  <div className="flex-col ">
+                    <p className=" text-fit text-md overflow-hidden">
+                      {affair.topic}
+                    </p>
                     <p>{formattedDate}</p>
                   </div>
                 </div>

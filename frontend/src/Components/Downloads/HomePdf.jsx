@@ -1,4 +1,4 @@
-import {useEffect,useState} from "react";
+import { useEffect, useState } from "react";
 import PdfComp from "./PdfComp";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -15,10 +15,10 @@ export default function HomePdf() {
         console.error("Error fetching data:", error);
       });
   }, []);
-  console.log(pdfs)
+  console.log(pdfs);
 
   return (
-    <div className="mx-10 h-[422px]">
+    <div className="mx-10  h-[422px]">
       <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-4 ">
         Download Monthly PDF
       </h1>
@@ -42,7 +42,6 @@ export default function HomePdf() {
               title={pdf.name}
               imageSrc={pdf.photo}
               id={pdf._id}
-
             />
           );
         })}
