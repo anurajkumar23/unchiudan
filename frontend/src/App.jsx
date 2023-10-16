@@ -68,7 +68,14 @@ function App() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="spinner border-t-4 border-blue-500 border-solid rounded-full w-12 h-12"></div>
+        <div
+          className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-info motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          role="status"
+        >
+          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+            Loading...
+          </span>
+        </div>
       </div>
     );
   }
@@ -82,35 +89,55 @@ function App() {
           <Route exact path="/user/signup" element={<Signup />} />
           <Route exact path="/" element={<Home />} />
           <Route exact path="/pdfs" element={<Downloads userData={user} />} />
-          <Route exact path="/pdfs/:id" element={<DownloadPage userData={user} />} />
           <Route
-            exact path="/Currentaffairs"
+            exact
+            path="/pdfs/:id"
+            element={<DownloadPage userData={user} />}
+          />
+          <Route
+            exact
+            path="/Currentaffairs"
             element={<Currentaffaircontainer userData={user} />}
           />
           <Route
-            exact path="/currentaffairs/:id"
+            exact
+            path="/currentaffairs/:id"
             element={<BlogsPage userData={user} />}
           />
           <Route exact path="/News" element={<News userData={user} />} />
-          <Route exact path="/News/:id" element={<NewsPage userData={user} />} />
+          <Route
+            exact
+            path="/News/:id"
+            element={<NewsPage userData={user} />}
+          />
           <Route exact path="/AboutUs" element={<AboutUs />} />
-          <Route exact path="/terms&conditions" element={<TermsAndConditions />} />
+          <Route
+            exact
+            path="/terms&conditions"
+            element={<TermsAndConditions />}
+          />
           <Route exact path="/disclaimer" element={<Disclaimer />} />
           <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route exact path="/faqs" element={<FAQ />} />
           <Route exact path="/forgotpassword" element={<ForgotPassword />} />
-          <Route exact path="/resetpassword/:token" element={<ResetPassword />} />
-          
+          <Route
+            exact
+            path="/resetpassword/:token"
+            element={<ResetPassword />}
+          />
+
           {user ? (
             <Route
-              exact path="/user"
+              exact
+              path="/user"
               element={<UserSettings userData={user.user} />}
             />
           ) : (
             <Route exact path="/user/login" element={<Login />} />
           )}
           <Route
-            exact path="/studymaterials"
+            exact
+            path="/studymaterials"
             element={
               user ? (
                 <StudyMaterials userData={user.user} />
@@ -129,7 +156,7 @@ function App() {
               )
             }
           />
-          <Route path = "/*" element={<ErrorPage />} />
+          <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </GlobalProvider>
     </BrowserRouter>
