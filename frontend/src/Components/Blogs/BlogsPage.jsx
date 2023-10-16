@@ -18,11 +18,10 @@ function BlogsPage({ userData }) {
   console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData);
   let role;
   if (userData) {
-    if(userData.user.role==="admin"){
-      role=true
-    }
-    else{
-      role=false
+    if (userData.user.role === "admin") {
+      role = true;
+    } else {
+      role = false;
     }
   } else {
     role = false;
@@ -55,7 +54,18 @@ function BlogsPage({ userData }) {
   }, [id]);
 
   if (!affairDetails) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div
+          className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-info motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          role="status"
+        >
+          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+            Loading...
+          </span>
+        </div>
+      </div>
+    );
   }
 
   const handleAnswerChange = (
