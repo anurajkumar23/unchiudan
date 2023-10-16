@@ -3,14 +3,14 @@ import NewsComp from "./NewsComp";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function News({userData}) {
+function News({ userData }) {
   const [news, setNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
 
   // useEffect(() => {
-    
+
   //   axios
   //     .get(`${import.meta.env.VITE_BACKEND_URL}/news?&page=${page}&limit=${postsPerPage}`)
   //     .then((response) => {
@@ -21,16 +21,15 @@ function News({userData}) {
   //     });
   // }, []);
 
-
   const fetchData = (page) => {
-    let apiUrl = `${import.meta.env.VITE_BACKEND_URL}/news?&page=${page}&limit=${postsPerPage}`;
+    let apiUrl = `${
+      import.meta.env.VITE_BACKEND_URL
+    }/news?&page=${page}&limit=${postsPerPage}`;
     // let apiUrl = `http://localhost:3000/api/news?&page=${page}&limit=${postsPerPage}`;
-    
 
     axios
       .get(apiUrl)
       .then((response) => {
-        
         const { totallength } = response.data;
         console.log("Total Length:", totallength);
         setNews(response.data.data.news);
@@ -41,10 +40,9 @@ function News({userData}) {
       });
   };
 
- 
   useEffect(() => {
     fetchData(currentPage);
-  }, [ currentPage, postsPerPage]);
+  }, [currentPage, postsPerPage]);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -66,9 +64,7 @@ function News({userData}) {
     <div className="mx-[10%] pt-[8rem] ">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mx-[5%]">
         {/* <div className="mx-0 col-span-3 xl:mx-0 p-4 md:mx-0 overflow-y-auto hid lg:my-0 w-[100%]"> */}
-          <NewsComp newsItems={news}
-            userData={userData}
-          />
+        <NewsComp newsItems={news} userData={userData} />
         {/* </div> */}
         {/* <Sidebar /> */}
       </div>
