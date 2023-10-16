@@ -5,10 +5,7 @@ const newsSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now()
-  },
+
   article: {
     type: String,
     required: true
@@ -21,7 +18,12 @@ const newsSchema = new mongoose.Schema({
     type: String,
     default: 'uchiudan.png',
   
-  }
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now()
+  },
+  updatedAt: Date,
 });
 
 const News = mongoose.model('News', newsSchema);
