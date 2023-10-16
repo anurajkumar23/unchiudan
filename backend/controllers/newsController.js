@@ -44,7 +44,7 @@ exports.getAllNews = catchAsync(async (req, res, next) => {
   const limit = req.query.limit * 1 || 10;
   const skip = (page - 1) * limit;
   // Create a query to retrieve news articles with pagination
-  const query = News.find().skip(skip).limit(limit);
+  const query = News.find().skip(skip).limit(limit).sort("-updatedAt");
   const news = await query;
   res.status(200).json({
     status: 'success',
@@ -62,7 +62,9 @@ exports.createOne = catchAsync(async (req, res, next) => {
     photo = req.file.filename;
   }
   // console.log("🚀 ~ file: newsController.js:60 ~ exports.createOne=catchAsync ~ photo:", photo)
-  req.body = { ...req.body, photo };
+  const currentDate = Date.now();
+  console.log("🚀 ~ file: newsController.js:66 ~ exports.createOne=catchAsync ~ currentDate:", currentDate)
+  req.body = { ...req.body, photo,updatedAt: currentDate };
   const news = await News.create(req.body);
 
   res.status(201).json({

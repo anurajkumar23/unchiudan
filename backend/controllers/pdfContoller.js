@@ -54,7 +54,7 @@ exports.getAllPdf = catchAsync(async (req, res, next) => {
 
   // Pagination
   const page = req.query.page * 1 || 1;
-  const limit = req.query.limit * 1 || 10;
+  const limit = req.query.limit * 1 || 12;
   const skip = (page - 1) * limit;
   query = query.skip(skip).limit(limit);
 
