@@ -7,11 +7,12 @@ import { SocialMedia } from "../../consstant/socialmedia";
 import PDFPatchForm from "../Home/core/Auth/Admin/PDFPatchForm"
 
 function DownloadPage({ userData }) {
+  console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData);
   const { id } = useParams();
   const [pdfDetails, setPdfDetails] = useState(null);
 
-  console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData.user._id);
   let role;
+  // console.log("🚀 ~ file: DownloadPage.jsx:16 ~ DownloadPage ~ userData:", userData)
   if (userData) {
     if(userData.user.role==="admin"){
       role=true
