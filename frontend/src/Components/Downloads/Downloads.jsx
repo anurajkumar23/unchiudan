@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdOutlineAccessTimeFilled, MdOutlineDelete } from "react-icons/md";
@@ -16,7 +16,7 @@ function BlogComps({
   status,
   category,
   userData,
-  price
+  price,
 }) {
   let role;
 
@@ -95,9 +95,14 @@ function BlogComps({
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
           status: {status}
         </h1>
-        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
-          price: {`₹ ${price}`}
-        </h1>
+        {status === "free" ? (
+          ""
+        ) : (
+          <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
+            price: {`₹ ${price}`}
+          </h1>
+        )}
+
         <div className="card__data">
           <h1 className="text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
             <MdOutlineAccessTimeFilled className="card__icon" />
