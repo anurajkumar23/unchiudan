@@ -45,10 +45,13 @@ exports.getAllNews = catchAsync(async (req, res, next) => {
   const skip = (page - 1) * limit;
   // Create a query to retrieve news articles with pagination
   const query = News.find().skip(skip).limit(limit).sort("-updatedAt");
+  const query1 = News.find();
   const news = await query;
+  const news2 = await query1;
   res.status(200).json({
     status: 'success',
     results: news.length,
+    totallength:news2.length,
     data: {
       news,
     },
