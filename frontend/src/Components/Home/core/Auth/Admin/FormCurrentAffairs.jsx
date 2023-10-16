@@ -15,6 +15,7 @@ const postaffairs = async (affairsData) => {
 
   formData.append("topic", affairsData.topic);
   formData.append("category", affairsData.category);
+  formData.append("description", affairsData.description);
   formData.append("data", JSON.stringify(affairsData.data));
   formData.append("photo", affairsData.photo);
 
@@ -44,6 +45,7 @@ const FormCurrentAffairs = () => {
   const [formData, setFormData] = useState({
     topic: "",
     category: "",
+    description: "",
     photo: null, // <-- Added photo field
     data: [{ ques: "", options: ["", "", "", ""], ans: "" }],
   });
@@ -85,6 +87,7 @@ const FormCurrentAffairs = () => {
         category: formData.category,
         data: formData.data,
         photo: formData.photo,
+        description: formData.description,
       });
       toast.success("CurrentAffairs posted successfully!");
     } catch (error) {
@@ -149,7 +152,15 @@ const FormCurrentAffairs = () => {
             <option value="SSC">SSC</option>
           </select>
         </div>
-
+        <div className="mb-4 text-black">
+          <label className="block mb-2 text-gray-800">Description</label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            className="border p-2 w-full h-32"
+          ></textarea>
+        </div>
         <div className="mb-4">
           <label
             htmlFor="photo"

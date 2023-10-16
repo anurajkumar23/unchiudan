@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { FiUser, FiMail, FiPhone, FiLock } from "react-icons/fi";
 import axios from "axios";
-import { toast , Toaster } from "react-hot-toast"; // Import toast
+import { toast, Toaster } from "react-hot-toast"; // Import toast
 import { Link } from "react-router-dom";
 
 function UserSettings({ userData }) {
@@ -98,7 +98,7 @@ function UserSettings({ userData }) {
 
   return (
     <div className="bg-gray-200 p-4 sm:p-8 md:p-16 lg:p-32 flex-1 relative bg-gray-100 py-[4rem]">
-    <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="bg-white max-w-screen-xl mx-auto min-h-screen rounded-3xl overflow-hidden shadow-md flex flex-col sm:flex-row">
         <div className="bg-[#55c57a] sm:w-1/4 p-4">
           <ul className="side-nav">
@@ -106,18 +106,16 @@ function UserSettings({ userData }) {
               Settings
             </li>
             <Link to="/studymaterials">
-            <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
-              Study Material
-            </li>
+              <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
+                Study Material
+              </li>
             </Link>
-            <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
-              Billing
-            </li>
+
             {settingsData.role === "admin" ? (
               <Link to="/adminpower">
-              <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
-                Admin power
-              </li>
+                <li className="mb-4 text-white font-bold pl-[1.3rem] cursor-pointer">
+                  Admin power
+                </li>
               </Link>
             ) : (
               ""
