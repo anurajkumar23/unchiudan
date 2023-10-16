@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Sidebar from '../Sidebar/Sidebar';
-import { BlogComps } from './AffairsContainer';
-import { RiMenu3Fill, RiCloseFill } from 'react-icons/ri';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Sidebar from "../Sidebar/Sidebar";
+import { BlogComps } from "./AffairsContainer";
+import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 
 function Currentaffairs({ userData }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,15 +32,19 @@ function Currentaffairs({ userData }) {
       .then((response) => {
         const { affairs } = response.data.data;
         const { totallength } = response.data;
-        console.log('Total Length:', totallength);
+        console.log("Total Length:", totallength);
         setAffairs(affairs);
         setTotalPages(Math.ceil(parseInt(totallength) / postsPerPage));
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       });
   };
 
+  console.log(
+    "🚀 ~ file: Currentaffaircontainer.jsx:37 ~ .then ~ affairs:",
+    affairs
+  );
   useEffect(() => {
     fetchData(currentPage, selectedCategory);
   }, [selectedCategory, currentPage, postsPerPage]);
@@ -86,25 +90,44 @@ function Currentaffairs({ userData }) {
       <div className="flex">
         <div
           className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full mx-10 md:mx-0 ${
-            filter ? 'hidden' : 'block'
+            filter ? "hidden" : "block"
           }`}
         >
-          {affairs.map((blog, index) => (
-            <BlogComps
-              key={index}
-              date={blog.formattedDate}
-              title={blog.topic}
-              imageSrc={blog.photo}
-              updatedDate={blog.updatedDate}
-              category={blog.category}
-              id={blog._id}
-              userData={userData}
-            />
-          ))}
+          {affairs.map((blog) => {
+            const createdAt = new Date(blog.createdAt);
+            const updatedAt = new Date(blog.updatedAt);
+            const formattedDate = createdAt.toLocaleString("default", {
+              day: "numeric",
+              month: "long",
+            });
+            const updatedDate = updatedAt.toLocaleString("default", {
+              day: "numeric",
+              month: "long",
+            });
+            return (
+              <BlogComps
+                key={blog._id}
+                date={formattedDate}
+                title={blog.topic}
+                imageSrc={blog.photo}
+                updatedDate={updatedDate}
+                category={blog.category}
+                id={blog._id}
+                userData={userData}
+              />
+            );
+          })}
         </div>
 
-        <div className={`z-1 flex-1 ${filter ? 'block' : 'hidden'} lg:flex sm:block`}>
-          <Sidebar setSelectedCategory={handleCategoryChange} toggleFilter={toggleFilter} />
+        <div
+          className={`z-1 flex-1 ${
+            filter ? "block" : "hidden"
+          } lg:flex sm:block`}
+        >
+          <Sidebar
+            setSelectedCategory={handleCategoryChange}
+            toggleFilter={toggleFilter}
+          />
         </div>
       </div>
 
@@ -114,7 +137,11 @@ function Currentaffairs({ userData }) {
           disabled={currentPage === 1}
           className={`
             px-4 py-2 mx-2 rounded-full
-            ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
+            ${
+              currentPage === 1
+                ? "bg-gray-300 cursor-not-allowed text-gray-500"
+                : "bg-indigo-500 hover:bg-indigo-600 text-white"
+            }
           `}
         >
           <i className="fas fa-chevron-left mr-2"></i> Previous
@@ -124,7 +151,11 @@ function Currentaffairs({ userData }) {
           disabled={currentPage === totalPages}
           className={`
             px-4 py-2 mx-2 rounded-full
-            ${currentPage === totalPages ? 'bg-gray-300 cursor-not-allowed text-gray-500' : 'bg-indigo-500 hover:bg-indigo-600 text-white'}
+            ${
+              currentPage === totalPages
+                ? "bg-gray-300 cursor-not-allowed text-gray-500"
+                : "bg-indigo-500 hover:bg-indigo-600 text-white"
+            }
           `}
         >
           Next <i className="fas fa-chevron-right ml-2"></i>
