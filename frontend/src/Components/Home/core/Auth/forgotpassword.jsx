@@ -58,43 +58,47 @@ const ForgotPassword = () => {
       });
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="w-1/3">
-        <h2 className="text-2xl mb-6">Forgot Your Password</h2>
-        <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div className="mb-4">
-            <label className="w-full">
-          <p className="mb-1 text-[0.875rem] leading-[1.375rem]">
-            Email Address <sup className="text-pink-200">*</sup>
-          </p>
-          <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            autoComplete="on"
-            name="email"
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className="w-full rounded-[0.5rem] p-[12px] bg-[#E6E6E6]"
-          />
-          {errors.email && touched.email && (
-            <p className="text-[#b40e0e] font-semibold">{errors.email}</p>
-          )}
+    <div className="flex items-center justify-center min-h-screen">
+  <div className="w-full max-w-md px-4">
+    <h2 className="text-2xl mb-6 text-center">Forgot Your Password</h2>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+    >
+      <div className="mb-4">
+        <label className="block mb-1 text-[0.875rem] font-bold">
+          Email Address <span className="text-pink-200">*</span>
         </label>
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-              disabled={!isValid}
-            >
-              {isValid ? "Submit" : "❌Submit"}
-            </button>
-          </div>
-        </form>
+        <input
+          type="email"
+          id="email"
+          placeholder="Email"
+          autoComplete="on"
+          name="email"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          className="w-full rounded p-3 bg-[#E6E6E6] text-gray-800"
+        />
+        {errors.email && touched.email && (
+          <p className="text-red-500 text-sm font-semibold mt-1">
+            {errors.email}
+          </p>
+        )}
       </div>
-    </div>
+      <div className="flex items-center justify-center">
+        <button
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full md:w-auto"
+          type="submit"
+          disabled={!isValid}
+        >
+          {isValid ? "Submit" : "❌ Submit"}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
   );
 };
 

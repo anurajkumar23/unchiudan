@@ -98,6 +98,7 @@ function App() {
           />
           <Route exact path="/" element={<Home />} />
           <Route exact path="/pdfs" element={<Downloads userData={user} />} />
+
           <Route exact path="/unauthorized" element={<ErrorPage401 />} />
           <Route
             exact
@@ -123,7 +124,7 @@ function App() {
           <Route exact path="/AboutUs" element={<AboutUs />} />
           <Route
             exact
-            path="/terms&conditions"
+            path="/terms_conditions"
             element={<TermsAndConditions />}
           />
           <Route exact path="/disclaimer" element={<Disclaimer />} />

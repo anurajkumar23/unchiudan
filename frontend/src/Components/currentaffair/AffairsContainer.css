@@ -160,5 +160,5 @@
   bottom: 1rem;
   right: 0.5rem;
   width: 70%;
-  z-index: 10;
+  /* z-index: 10; */
 }
