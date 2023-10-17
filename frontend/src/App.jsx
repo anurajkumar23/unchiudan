@@ -98,6 +98,7 @@ function App() {
           />
           <Route exact path="/" element={<Home />} />
           <Route exact path="/pdfs" element={<Downloads userData={user} />} />
+
           <Route exact path="/unauthorized" element={<ErrorPage401 />} />
           <Route
             exact
