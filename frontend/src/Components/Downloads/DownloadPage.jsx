@@ -104,7 +104,7 @@ function DownloadPage({ userData }) {
             paymentSessionId: res.data.paymentSessionId,
             returnUrl: `${import.meta.env.VITE_BACKEND_URL}/payment/NRRTWSD/unchiudan/pdf/${userData.user._id}/${id}`,
             // returnUrl: `https://www.youtube.com/`,
-            redirectTarget: "_blank",
+            // redirectTarget: "_blank",
           })
           .then(() => {
             console.log("on-going redirection");

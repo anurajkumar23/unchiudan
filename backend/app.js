@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const affairsRoute = require('./router/affairsRoutes');
-const ejs = require('ejs');
+// const ejs = require('ejs');
 
 const newsRoutes = require('./router/newsRoutes');
 const pdfRoutes = require('./router/pdfRoutes');
@@ -20,7 +20,7 @@ const fs = require('fs');
 
 
 const cors = require('cors');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+
 
 const app = express();
 
@@ -50,68 +50,18 @@ app.use(mongoSanitize());
 app.use(xss());
 
 // Rate Limiting
-// const limiter = rateLimit({
-//   max: 200,
-//   windowMS: 60 * 20 * 1000,
-//   message: 'Too many requests from this IP address, Please try again after 20 minutes!'
-// });
-// app.use('/api', limiter);
+const limiter = rateLimit({
+  max: 300,
+  windowMS: 60 * 20 * 1000,
+  message: 'Too many requests from this IP address, Please try again after 20 minutes!'
+});
+app.use('/api', limiter);
 
 // CORS Setup
 
 app.use(cors({ credentials: true, origin: true, withCredentials: true }));
 
-// Proxy Setup
-// app.use(
-//   '/api',
-//   createProxyMiddleware({
 
-//     // target: 'https://ucchi-urran-backend.vercel.app/api',
-//     target: 'http://localhost:3000/api',
-//     target: 'https://ucchi-urran-backend.vercel.app/api',
-//     // target: 'http://localhost:3000/api',
-
-//     changeOrigin: true,
-//   }),
-// );
-
-// Routes
-// app.use('/images', express.static(__dirname ,'/public/img/affairs'));
-
-// app.get('/api/currentaffairs/images/:imageName', async (req, res) => {
-//   console.log("🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:", "here it start 😀😀😀😀😀😀😀")
-//   console.log("🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:", req.params.imageName)
-//   const filename = req.params.imageName;
-//   const backendBaseUrl = 'https://ucchi-urran-backend.vercel.app/api';
-//   const filePath = path.join(__dirname, '/public/img/affairs/', filename);
-//   const backendUrl =`${backendBaseUrl}${filePath}`;
-//   console.log("🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:", backendUrl)
-
-//   const exists = await fs.promises.access(backendUrl)
-//     .then(() => true)
-//     .catch(() => false);
-
-//   if (!exists) {
-//     return res.status(404).send('Image not found');
-//   }
-
-//   res.sendFile(filePath);
-// });
-
-// app.get('/api/news/images/:imageName', async (req, res) => {
-//   const filename = req.params.imageName;
-//   const filePath = path.join(__dirname, '../public/img/news/', filename);
-
-//   const exists = await fs.promises.access(filePath)
-//     .then(() => true)
-//     .catch(() => false);
-
-//   if (!exists) {
-//     return res.status(404).send('Image not found');
-//   }
-
-//   res.sendFile(filePath);
-// });
 
 app.use('/api/currentaffairs', affairsRoute);
 app.use('/api/user', userRoutes);
