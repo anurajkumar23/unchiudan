@@ -73,7 +73,7 @@ function LoginForm() {
     <div>
       <div className="flex justify-end">
         <Link
-          to="/user/signup"
+          to="/signup"
           className="text-[#3856ea] font-semibold text-[18px]"
         >
           signup

@@ -28,7 +28,7 @@ function Home() {
                 Enhance your learning experience with our expert educator and
                 gain exclusive access to our comprehensive study resources.
               </div>
-              <CTAButton active={true} linkto={"user/signup"}>
+              <CTAButton active={true} linkto={"/signup"}>
                 <div className="">Learn More</div>
               </CTAButton>
             </div>

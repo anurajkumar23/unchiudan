@@ -15,6 +15,7 @@ import NewsPage from "./Components/News/NewsPage";
 import AboutUs from "./Components/About/AboutUs";
 import AdminPage from "./Components/Home/core/Auth/Admin/AdminPower";
 import ErrorPage from "./Errorpage";
+import ErrorPage401 from "./Errorpage401";
 import TermsAndConditions from "./Components/About/TermsAndConditions";
 import Disclaimer from "./Components/About/Disclaimer";
 import FAQ from "./Components/Support/FAQ";
@@ -85,10 +86,19 @@ function App() {
       <GlobalProvider>
         <Navbar userData={user} />
         <Routes>
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/user/signup" element={<Signup />} />
+          <Route
+            exact
+            path="/login"
+            element={user ? <Navigate to="/user" /> : <Login />}
+          />
+           <Route
+            exact
+            path="/signup"
+            element={user ? <Navigate to="/user" /> : <Signup />}
+          />
           <Route exact path="/" element={<Home />} />
           <Route exact path="/pdfs" element={<Downloads userData={user} />} />
+          <Route exact path="/unauthorized" element={<ErrorPage401 />} />
           <Route
             exact
             path="/pdfs/:id"
@@ -126,15 +136,18 @@ function App() {
             element={<ResetPassword />}
           />
 
-          {user ? (
-            <Route
-              exact
-              path="/user"
-              element={<UserSettings userData={user.user} />}
-            />
-          ) : (
-            <Route exact path="/user/login" element={<Login />} />
-          )}
+          <Route
+            exact
+            path="/user"
+            element={
+              user ? (
+                <UserSettings userData={user.user} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+
           <Route
             exact
             path="/studymaterials"
@@ -146,16 +159,18 @@ function App() {
               )
             }
           />
+
           <Route
             path="/adminpower"
             element={
               user && user.user.role === "admin" ? (
                 <AdminPage userData={user.user} />
               ) : (
-                <Navigate to="/login" />
+                <Navigate to="/unauthorized" />
               )
             }
           />
+
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </GlobalProvider>
