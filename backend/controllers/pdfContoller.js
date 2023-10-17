@@ -129,9 +129,7 @@ exports.deletePdf = catchAsync(async (req, res, next) => {
 
   const imagePath = pdf.photo;
   const pdfPath = pdf.pdf;
-  console.log(pdfPath);
-  console.log(imagePath);
-
+ 
   const imageFullPath = path.join(__dirname, '../public/img/pdf', imagePath);
   const pdfFullPath = path.join(__dirname, '../public/img/pdf', pdfPath);
   if (imagePath && imagePath !== 'uchiudan.png') {
@@ -194,22 +192,15 @@ exports.download = catchAsync(async (req, res, next) => {
     return next(new AppError('PDF data not found', 404));
   }
   const filename = pdf.pdf;
-  // console.log("🚀 ~ file: pdfContoller.js:184 ~ exports.download=catchAsync ~ filePath:", filePath)
-
+  
   const backendBaseUrl = 'https://ucchi-urran-backend.vercel.app/api';
   const filePath = path.join(__dirname, '../public/img/pdf/', filename);
   const backendUrl = `${backendBaseUrl}${filePath}`;
 
-  console.log(
-    '🚀 ~ file: pdfContoller.js:189 ~ exports.download=catchAsync ~ backendUrl:',
-    backendUrl,
-  );
+
   const exists = await fetch(backendUrl);
-  console.log(
-    '🚀 ~ file: pdfContoller.js:191 ~ exports.download=catchAsync ~ exists:',
-    exists,
-  );
-  // const exists = await checkFileExists(filePath);
+ 
+ 
 
   if (!exists) {
     return next(new AppError('PDF file not found', 404));

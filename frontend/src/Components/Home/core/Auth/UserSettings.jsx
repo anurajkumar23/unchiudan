@@ -39,14 +39,14 @@ function UserSettings({ userData }) {
       );
 
       if (response.status === 200) {
-        console.log("Settings updated successfully");
+
         toast.success("Settings updated successfully"); // Show success toast
       } else {
-        console.error("Error updating settings:", response.statusText);
+
         toast.error("Error updating settings. Please try again."); // Show error toast
       }
     } catch (error) {
-      console.error("Error updating settings:", error);
+
       toast.error("Error updating settings. Please try again."); // Show error toast
     }
   };
@@ -84,14 +84,14 @@ function UserSettings({ userData }) {
       );
 
       if (response.status === 200) {
-        console.log("Password updated successfully");
+
         toast.success("Password updated successfully"); // Show success toast
       } else {
-        console.error("Error updating password:", response.statusText);
+
         toast.error("Error updating password. Please try again."); // Show error toast
       }
     } catch (error) {
-      console.error("Error updating password:", error);
+
       toast.error("Error updating password. Please try again."); // Show error toast
     }
   };

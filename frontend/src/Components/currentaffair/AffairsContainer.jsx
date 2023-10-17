@@ -32,7 +32,7 @@ export function BlogComps({
     event.stopPropagation(); // Prevent the click event from propagating to the parent link element
     if (window.confirm("Are you sure you want to delete this item?")) {
       const token = localStorage.getItem("jwt_token");
-      console.log("🚀 ~ file: FormPDF.jsx:9 ~ postpdf ~ token:", token);
+   
       try {
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${id}`,
@@ -44,9 +44,7 @@ export function BlogComps({
         );
 
         if (response.status === 200) {
-          // The item was deleted successfully
-          // Perform any additional actions you need here
-          console.log("Item deleted successfully");
+
           toast.success("Item deleted successfully")
         } else {
           console.error("Error deleting item:", response);

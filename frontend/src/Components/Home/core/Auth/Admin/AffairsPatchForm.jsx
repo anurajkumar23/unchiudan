@@ -5,15 +5,9 @@ import { Toaster, toast } from "react-hot-toast";
 
 const patchaffairs = async (affairsData,id) => {
   
-  console.log(
-    "🚀 ~ file: FormCurrentAffairs.jsx:7 ~ affairsData:",
-    affairsData
-  );
+
   const token = localStorage.getItem("jwt_token");
-  console.log(
-    "🚀 ~ file: FormCurrentAffairs.jsx:10 ~ postaffairs ~ token:",
-    token
-  );
+
   const formData = new FormData();
   
   formData.append("topic", affairsData.topic);
@@ -22,29 +16,25 @@ const patchaffairs = async (affairsData,id) => {
   formData.append("photo", affairsData.photo);
 
   try {
-    const response = await axios.patch(
+     await axios.patch(
       `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${id}`,
-    //   `http://localhost:3000/api/currentaffairs/${id}`,
+
       formData,
       {
         headers: {
-          //   "Content-Type": "application/json",
+        
           Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
         },
       }
     );
-    const data = response;
-    console.log(
-      "🚀 ~ file: FormCurrentAffairs.jsx:31 ~ postaffairs ~ data:",
-      data
-    );
+   
   } catch (error) {
     console.log(error);
   }
 };
 
 const CurrentAffairsForm = ({details}) => {
-    console.log("🚀 ~ file: AffairsPatchForm.jsx:44 ~ CurrentAffairsForm ~ details:", details)
+    
     
     const [formData, setFormData] = useState({
         topic: details.topic || "",  // Set the initial value to details.topic
@@ -81,12 +71,7 @@ const CurrentAffairsForm = ({details}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // try {
-    //   await axios.post("http://localhost:3001/api/current-affairs", formData);
-    //   console.log("Data posted successfully");
-    // } catch (error) {
-    //   console.error("Error posting data:", error);
-    // }
+
   try{
     await patchaffairs({
       topic: formData.topic,
@@ -187,7 +172,7 @@ const CurrentAffairsForm = ({details}) => {
           // required 
         />
       </div>
-      {/* Add other fields like category, photo, etc., using similar code */}
+    
 
       {/* Questions Section */}
       {formData.data.map((question, index) => (

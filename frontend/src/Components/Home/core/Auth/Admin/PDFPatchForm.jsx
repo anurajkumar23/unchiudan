@@ -4,10 +4,9 @@ import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
 const patchpdf = async (pdfData, id) => {
-  console.log("🚀 ~ file: PDFPatchForm.jsx:7 ~ patchpdf ~ id:", id);
-  console.log("🚀 ~ file: FormPDF.jsx:7 ~ postpdf ~ pdfData:", pdfData);
+
   const token = localStorage.getItem("jwt_token");
-  console.log("🚀 ~ file: FormPDF.jsx:9 ~ postpdf ~ token:", token);
+
 
   const formData = new FormData();
   formData.append("name", pdfData.name);
@@ -19,19 +18,18 @@ const patchpdf = async (pdfData, id) => {
   formData.append("price", pdfData.price);
 
   try {
-    const response = await axios.patch(
+ await axios.patch(
         `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`,
-    //   `http://localhost:3000/api/pdfs/${id}`,
+
       formData,
       {
         headers: {
-          //   "Content-Type": "application/json",
+          
           Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
         },
       }
     );
-    const data = response;
-    console.log("🚀 ~ file: FormPDF.jsx:31 ~ postpdf ~ data:", data);
+
   } catch (error) {
     console.log(error);
   }
@@ -67,7 +65,7 @@ const PdfForm = ({ details }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
   try{
     await patchpdf(
       {

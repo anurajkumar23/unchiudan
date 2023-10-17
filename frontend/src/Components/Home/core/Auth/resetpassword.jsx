@@ -10,15 +10,14 @@ const initialValues = { password: "" };
 const resetPassword =async (userData,token) => {
    
 
-    console.log("🚀😀😀 ~ file: forgotpassword.jsx:9 ~ forgotpassword ~ userData:", userData ,token)
     try {
       const response = await axios.patch(
         `${import.meta.env.VITE_BACKEND_URL}/user/resetPassword/${token}`,
-        // `http://localhost:3000/api/user/resetPassword/${token}`,
+
         userData
       );
   
-      console.log("🚀 ~ file: forgotpassword.jsx:22 ~ forgotpassword ~ response.data.message:", response.data)
+    
       if (response.data.status === "success"){
         return window.location.href = "/";
       }
@@ -27,7 +26,7 @@ const resetPassword =async (userData,token) => {
       }
     } catch (error) {
       console.error("Error logging in:", error);
-    //   toast.error("Login failed. Please check your credentials.");
+   
       throw error;
     }
 }
@@ -55,7 +54,6 @@ function ResetPassword() {
         window.location.href = "/login"; // Redirect to /user on successful signup
       });
 
-    //   action.resetForm();
     },
   });
 
@@ -63,7 +61,8 @@ function ResetPassword() {
     <div className="flex items-center justify-center min-h-screen">
   <div className="w-full max-w-md px-4">
     <h2 className="text-2xl mb-6 text-center">Reset Password</h2>
-    <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+    onClick={handleSubmit}>
       <div className="mb-4">
         <label className="relative block mb-1 text-sm font-bold">
           New Password <span className="text-pink-200">*</span>

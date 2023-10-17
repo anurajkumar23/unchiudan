@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
 const postnews = async (newsData) => {
-  console.log("🚀 ~ file: FormNews.jsx:6 ~ signup ~ newsData:", newsData);
+
   const token = localStorage.getItem("jwt_token");
-  console.log("🚀 ~ file: FormNews.jsx:7 ~ postnews ~ token:", token);
+
 
   const formData = new FormData();
   formData.append("heading", newsData.heading);
@@ -13,21 +13,21 @@ const postnews = async (newsData) => {
   formData.append("highlight", newsData.highlight);
   formData.append("photo", newsData.photo);
   
-  console.log("🚀 ~ file: FormNews.jsx:11 ~ postnews ~ formData:", formData)
+
   try {
-    const response = await axios.post(
+ await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/news`,
-        // `http://localhost:3000/api/news`,
+
         formData,
       {
         headers: {
-          //   "Content-Type": "application/json",
+
           Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
         },
       }
     );
-    const data = response;
-    console.log("🚀 ~ file: FormNews.jsx:13 ~ postnews ~ data:", data);
+
+
   } catch (error) {
     console.log(error);
   }
@@ -59,8 +59,7 @@ const FormNews = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here, you can send the formData to your server for processing
-    console.log(formData);
+
 try{
     await postnews({
       heading: formData.heading,
@@ -129,22 +128,7 @@ try{
             className="w-full px-3 py-2 border rounded"
           />
         </div>
-        {/* <div className="mb-4">
-          <label
-            htmlFor="highlight"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Highlight:
-            <input
-              type="checkbox"
-              id="highlight"
-              name="highlight"
-              checked={formData.highlight}
-              onChange={handleChange}
-              className="ml-2"
-            />
-          </label>
-        </div> */}
+       
         <button
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

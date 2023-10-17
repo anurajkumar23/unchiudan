@@ -51,7 +51,7 @@ exports.getPdfs = catchAsync(async(req,res)=>{
 
 exports.deletePdf = catchAsync(async (req,res)=>{
   const { id } = req.params;
-  console.log(id);
+
   
   try {
     await PDF.findByIdAndDelete(id);
@@ -65,7 +65,7 @@ exports.deletePdf = catchAsync(async (req,res)=>{
 )
 exports.deleteUser = catchAsync(async (req,res)=>{
   const { id } = req.params;
-  console.log(id);
+
   
   try {
     await User.findByIdAndDelete(id);

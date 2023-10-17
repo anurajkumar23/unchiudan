@@ -53,9 +53,9 @@ exports.lastestAffairs = catchAsync(async (req, res, next) => {
 });
 
 exports.createAffairs = catchAsync(async (req, res, next) => {
-  // const { topic, category, data } = req.body;
+
   const parsedData = JSON.parse(req.body.data);
-  // console.log("🚀 ~ file: affairsController.js:55 ~ exports.createAffairs=catchAsync ~ parsedData:", parsedData)
+ 
   
   let data = parsedData
   let photo;
@@ -63,13 +63,13 @@ exports.createAffairs = catchAsync(async (req, res, next) => {
     photo = req.file.filename;
   }
   req.body = { ...req.body, photo ,data };
-  console.log("🚀 ~ file: affairsController.js:58 ~ exports.createAffairs=catchAsync ~ req.body:", req.body)
+ 
 
   const currentDate = Date.now();
   req.body.updatedAt = currentDate;
 
   const affairs = await CurrentAffairs.create(req.body);
-  console.log("🚀 ~ file: affairsController.js:63 ~ exports.createAffairs=catchAsync ~ affairs:", affairs)
+ 
   
   res.status(201).json({
     status: 'success',
@@ -94,7 +94,7 @@ exports.getAffair = catchAsync(async (req, res, next) => {
 
 exports.deleteAffair = catchAsync(async (req, res, next) => {
   const affairs = await CurrentAffairs.findByIdAndRemove(req.params.id);
-  console.log("🚀 ~ file: affairsController.js:94 ~ exports.deleteAffair ~ req.params.id:", req.params.id)
+ 
   if (!affairs) {
     return next(new AppError('No affairs found with that ID', 404));
   }
@@ -117,7 +117,7 @@ exports.deleteAffair = catchAsync(async (req, res, next) => {
 
 exports.updateOne = catchAsync(async (req, res, next) => {
   const parsedData = JSON.parse(req.body.data);
-  // console.log("🚀 ~ file: affairsController.js:55 ~ exports.createAffairs=catchAsync ~ parsedData:", parsedData)
+ 
   
   let data = parsedData
   let photo;
@@ -151,23 +151,16 @@ exports.updateOne = catchAsync(async (req, res, next) => {
 });
 
 exports.showimage = catchAsync(async (req, res, next) => {
-  console.log(
-    '🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:',
-    'here it start 😀😀😀😀😀😀😀',
-  );
-  console.log(
-    '🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:',
-    req.params.imageName,
-  );
+ 
 
   const filename = req.params.imageName;
   const backendBaseUrl = 'https://ucchi-urran-backend.vercel.app/api';
   const filePath = path.join(__dirname, '../public/img/affairs/', filename);
   const backendUrl = `${backendBaseUrl}${filePath}`;
 
-  console.log('🚀🚀 ~ file: app.js:72 ~ app.get ~ filePath:', filePath);
+ 
 
-  // const exists = await fetch(backendUrl);
+  
 
   const exists = await fs.promises.access(backendUrl)
   .then(() => true)

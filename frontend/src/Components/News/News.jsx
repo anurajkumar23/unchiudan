@@ -9,29 +9,18 @@ function News({ userData }) {
   const [totalPages, setTotalPages] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
 
-  // useEffect(() => {
-
-  //   axios
-  //     .get(`${import.meta.env.VITE_BACKEND_URL}/news?&page=${page}&limit=${postsPerPage}`)
-  //     .then((response) => {
-  //       setNews(response.data.data.news);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, []);
+  
 
   const fetchData = (page) => {
     let apiUrl = `${
       import.meta.env.VITE_BACKEND_URL
     }/news?&page=${page}&limit=${postsPerPage}`;
-    // let apiUrl = `http://localhost:3000/api/news?&page=${page}&limit=${postsPerPage}`;
-
+   
     axios
       .get(apiUrl)
       .then((response) => {
         const { totallength } = response.data;
-        console.log("Total Length:", totallength);
+  
         setNews(response.data.data.news);
         setTotalPages(Math.ceil(parseInt(totallength) / postsPerPage));
       })
@@ -63,10 +52,9 @@ function News({ userData }) {
   return (
     <div className="mx-[10%] pt-[8rem] ">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mx-[5%]">
-        {/* <div className="mx-0 col-span-3 xl:mx-0 p-4 md:mx-0 overflow-y-auto hid lg:my-0 w-[100%]"> */}
+  
         <NewsComp newsItems={news} userData={userData} />
-        {/* </div> */}
-        {/* <Sidebar /> */}
+   
       </div>
       <div className="flex justify-center my-4">
         <button
