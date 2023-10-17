@@ -241,9 +241,7 @@ function SignupForm() {
         >
           {isValid ? "SignUp" : "❌SignUp"}
         </button>
-        <button className="flex bg-yellow-50 rounded-[8px] items-center justify-center cursor-pointer mt-6 mt-6 font-medium text-richblack-900 py-[8px] px-[12px] duration-500 hover:scale-[1.1]">
-          Continue with Google <span className="ml-[11px]">{GoogleSvg}</span>
-        </button>
+        
       </form>
     </div>
   );
