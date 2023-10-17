@@ -161,7 +161,7 @@ function DownloadPage({ userData }) {
           <SocialMedia />
 
           <h1 className="mt-10 text-[1.3rem] font-[550] text-center">
-            Monthly Current Affairs of Jun 2020 PDF Download {pdfDetails.name}
+            Monthly Current Affairs PDF Download {pdfDetails.name}
           </h1>
           <p className="mt-4 text-justify text-lg">
             {pdfDetails.description}
