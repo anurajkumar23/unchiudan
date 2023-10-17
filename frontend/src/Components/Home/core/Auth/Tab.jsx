@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export default function Tab({ tabData, field, setField }) {
     return (
       <div

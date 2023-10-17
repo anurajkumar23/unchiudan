@@ -155,15 +155,6 @@ function Footer() {
                   Contact
                 </a>
               </li>
-
-              {/* <li>
-                <a
-                  className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
-                >
-                  meow
-                </a>
-              </li> */}
             </ul>
           </div>
         </div>
