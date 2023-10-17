@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-
+import {
+  FaTelegramPlane,
+} from "react-icons/fa";
 function Hero() {
   return (
     <div className="bg-pure-greys-5 md:mx-8 mx-6">
@@ -19,7 +21,7 @@ function Hero() {
             Examinations के लिए ऊँची उड़ान वेबसाइट और Telegram पेज को join करें।
           </p>
 
-          <div className="mt-12 flex justify-center items-center">
+          <div className="mt-12 flex justify-center items-center space-x-3">
           <Link to="/Currentaffairs">
             <button
               type="button"
@@ -28,6 +30,12 @@ function Hero() {
               Start Learning & Fly High
             </button>
             </Link>
+            <Link to="https://t.me/UnchiudaanTeam">
+          <div className=" hover:scale-110 duration-500  px-2 py-1 justify-between  text-lg  rounded-full bg-blue-400 text-white ">
+            <FaTelegramPlane className="w-7 h-7" />
+            
+          </div>
+        </Link>
           </div>
         </div>
         <div className="flex items-center gap-8 p-2 lg:p-24">

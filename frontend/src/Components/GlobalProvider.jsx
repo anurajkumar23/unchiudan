@@ -12,7 +12,8 @@ function GlobalProvider({ children }) {
         <Footer />
       </div>
 
-      <BottomToTopButton />
+      <BottomToTopButton className="z-10" />
+
     </div>
   );
 }

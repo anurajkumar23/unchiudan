@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // import React from 'react'
 import CTAButton from "./Button";
 // import HighlightText from './HighlightText'
@@ -12,9 +13,9 @@ const CodeBlocks = ({
   ctabtn1,
   ctabtn2,
   codeblock,
-  imgPos,
+
   backgroudGradient,
-  codeColor,
+
 }) => {
   return (
     <div
