@@ -49,6 +49,7 @@ const CurrentAffairsForm = ({details}) => {
     const [formData, setFormData] = useState({
         topic: details.topic || "",  // Set the initial value to details.topic
         category: details.category || "",
+        description: details.description ||"",
         photo: null, // <-- Added photo field
         data: details.data || [
           { ques: "", options: ["", "", "", ""], ans: "" }
@@ -92,6 +93,7 @@ const CurrentAffairsForm = ({details}) => {
       category: formData.category,
       data: formData.data,
       photo: formData.photo,
+      description: formData.description,
     },details._id);
     if (!details._id) {
       toast.success("CurrentAffairs posted successfully!");
@@ -159,7 +161,15 @@ const CurrentAffairsForm = ({details}) => {
           <option value="SSC">SSC</option>
         </select>
       </div>
-
+      <div className="mb-4 text-black">
+          <label className="block mb-2 text-gray-800">Description</label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={(e) => handleChange(e, 0)} 
+            className="border p-2 w-full h-32"
+          ></textarea>
+        </div>
       <div className="mb-4">
         <label
           htmlFor="photo"
