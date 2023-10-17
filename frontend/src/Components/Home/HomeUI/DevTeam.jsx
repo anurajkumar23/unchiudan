@@ -1,5 +1,5 @@
 import React from "react";
-
+import HighlightText from "../core/Homepage/HighlightText";
 function DevTeam() {
   return (
     <div className=" space-y-[10rem]">
