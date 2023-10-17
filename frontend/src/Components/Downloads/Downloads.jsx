@@ -37,6 +37,7 @@ function BlogComps({
       try {
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`,
+          //  `http://localhost:3000/api/pdfs/${id}`,
           {
             headers: {
               Authorization: token,

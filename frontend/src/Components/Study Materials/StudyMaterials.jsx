@@ -13,6 +13,7 @@ function StudyMaterial({
   id,
   status,
   category,
+  price
 }) {
   return (
     <Link to={`/pdfs/${id}`}>
@@ -43,6 +44,9 @@ function StudyMaterial({
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
           status: {status}
         </h1>
+        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
+            price: {`₹ ${price}`}
+          </h1>
         <div className="card__data">
           <h1 className="text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
             <MdOutlineAccessTimeFilled className="card__icon" />
@@ -132,6 +136,7 @@ function StudyMaterials({ userData }) {
                 id={pdf._id}
                 status={pdf.status}
                 category={pdf.category}
+                price={pdf.price}
               />
             );
           })}
