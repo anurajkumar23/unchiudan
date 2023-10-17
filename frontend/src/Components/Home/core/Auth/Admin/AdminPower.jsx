@@ -12,7 +12,7 @@ const AdminPage = ({ userData }) => {
       const token = localStorage.getItem("jwt_token");
       const response = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/user`,
-        // `http://localhost:3000/api/user`,
+
         {
           headers: {
             Authorization: token,

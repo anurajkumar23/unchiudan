@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import TabBar from "./TabBar";
 import FormNews from "./FormNews";
 import FormCurrentAffairs from "./FormCurrentAffairs";

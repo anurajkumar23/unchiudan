@@ -40,16 +40,9 @@ const CodeBlocks = ({
         </div>
       </div>
 
-      {/*HW -> BG gradient    */}
-      {/* <div >
-            <img src={backgroudGradient} width={"40%"} 
-                className = { `absolute ${imgPos}`}
-                alt='gradientImage'
-            />
-        </div> */}
 
-      {/*Section 2*/}
-      {/* <div className=' h-fit bg-richblack-800 bg-opacity-70 flex flex-row text-10[px] w-[100%] py-4 lg:w-[500px]'>  */}
+
+     
       <div className="h-fit code-border flex flex-row py-3 text-[10px] sm:text-sm leading-[18px] sm:leading-6 relative w-[100%] lg:w-[470px] border border-gray-500 z-10">
         {backgroudGradient}
         <div className="text-center flex flex-col w-[10%] text-richblack-400 font-inter font-bold">
