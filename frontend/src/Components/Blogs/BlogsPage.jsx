@@ -15,7 +15,7 @@ import "./quiz.css";
 import { SocialMedia } from "../../consstant/socialmedia";
 
 function BlogsPage({ userData }) {
-  console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData);
+
   let role;
   if (userData) {
     if (userData.user.role === "admin") {
@@ -32,10 +32,7 @@ function BlogsPage({ userData }) {
   const [affairDetails, setAffairDetails] = useState(null);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [feedback, setFeedback] = useState({});
-  // const dataLength = affairDetails.data.length;
-  // console.log(dataLength); // Output: 2
-
-  // const [showans, setShowAns] = useState(new Array(affairDetails.data.length).fill(0));
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +41,7 @@ function BlogsPage({ userData }) {
           `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${id}`
         );
         setAffairDetails(response.data.data.affairs);
-        // console.log("🚀 ~ file: BlogsPage.jsx:29 ~ fetchData ~ response.data.affairs:", response.data.data.affairs)
+        
       } catch (error) {
         console.error("Error fetching data:", error);
       }

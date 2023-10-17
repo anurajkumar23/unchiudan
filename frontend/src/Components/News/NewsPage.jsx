@@ -12,7 +12,7 @@ function NewsPage({ userData }) {
   const { id } = useParams();
   const [news, setNews] = useState(null);
 
-  console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData);
+
   let role;
   if (userData) {
     if (userData.user.role === "admin") {

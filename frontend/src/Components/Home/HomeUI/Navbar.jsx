@@ -38,9 +38,7 @@ export default function Navbar({ userData }) {
     try {
       await axios.get(`${import.meta.env.VITE_BACKEND_URL}/user/logout`);
       localStorage.clear();
-      console.log(
-        "🚀 ~ file: Navbar.jsx:26 ~ handleLogout ~ localStorage: cleared"
-      );
+
       window.location.href = "/";
     } catch (error) {
       console.error("Error logging out:", error);

@@ -7,12 +7,12 @@ import { SocialMedia } from "../../consstant/socialmedia";
 import PDFPatchForm from "../Home/core/Auth/Admin/PDFPatchForm"
 
 function DownloadPage({ userData }) {
-  console.log("🚀 ~ file: BlogsPage.jsx:17 ~ BlogsPage ~ userData:", userData);
+
   const { id } = useParams();
   const [pdfDetails, setPdfDetails] = useState(null);
 
   let role;
-  // console.log("🚀 ~ file: DownloadPage.jsx:16 ~ DownloadPage ~ userData:", userData)
+
   if (userData) {
     if(userData.user.role==="admin"){
       role=true
@@ -68,10 +68,7 @@ function DownloadPage({ userData }) {
       return;
     }
     const alreadybuy = userData.user.pdfs.includes(pdfDetails._id);
-    console.log(
-      "🚀 ~ file: DownloadPage.jsx:46 ~ handleDownload ~ alreadybuy:",
-      alreadybuy
-    );
+
     if (pdfDetails.status === "free" || alreadybuy) {
       const downloadLink = `${import.meta.env.VITE_BACKEND_URL}/pdfs/download-pdf/${id}`;
      
@@ -94,7 +91,7 @@ function DownloadPage({ userData }) {
           }
         );
         
-        console.log("Session Id - ", res.data.paymentSessionId);
+
 
         // eslint-disable-next-line no-undef
         const cashfree = Cashfree({ mode: "sandbox" });
@@ -113,12 +110,12 @@ function DownloadPage({ userData }) {
             console.error("Checkout error:", error);
           });
 
-        console.log("🚀 ~ file: DownloadPage.jsx:93 ~ handleDownload", "😎😎😎😎😎😎😎😎😎 first wala");
+       
 
       } catch (error) {
         console.error("Checkout error:", error);
       }
-      console.log("😎😎😎😎😎😎😎😎😎 second wala");
+     
     }
   };
 

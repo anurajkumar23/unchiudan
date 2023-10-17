@@ -25,11 +25,11 @@ exports.resizePhoto = (path) => {
   
   
   return catchAsync(async (req, res, next) => {
-    console.log(req.file);
+   
     if (!req.file) return next();
     const folderName = path.split('/').pop();
     req.file.filename = `${folderName}-${Date.now()}.jpeg`;
-    console.log(`${path}/${req.file.filename}`);
+
     await sharp(req.file.buffer)
       .resize(1200, 1600)
       .toFormat('jpeg')
@@ -59,14 +59,14 @@ exports.getAllNews = catchAsync(async (req, res, next) => {
 });
 
 exports.createOne = catchAsync(async (req, res, next) => {
-  // console.log("🚀 ~ file: newsController.js:58 ~ exports.createOne=catchAsync ~ req:", req.file)
+ 
   let photo;
   if (req.file) {
     photo = req.file.filename;
   }
-  // console.log("🚀 ~ file: newsController.js:60 ~ exports.createOne=catchAsync ~ photo:", photo)
+
   const currentDate = Date.now();
-  console.log("🚀 ~ file: newsController.js:66 ~ exports.createOne=catchAsync ~ currentDate:", currentDate)
+ 
   req.body = { ...req.body, photo,updatedAt: currentDate };
   const news = await News.create(req.body);
 
@@ -154,7 +154,7 @@ exports.autoDelete = catchAsync(async (req, res, next) => {
     const fullPath = path.join(__dirname, '../public/img/news', imagePath);
     if (imagePath && imagePath !== 'uchiudan.png') {
       if (fs.existsSync(fullPath)) {
-        // Delete the image file from the server's file system
+      
         fs.unlinkSync(fullPath);
       } else {
         return new AppError('Photo is not deleted from server', 500);

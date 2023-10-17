@@ -66,10 +66,7 @@ function StudyMaterials({ userData }) {
   const [pdfs, setPdfs] = useState([]);
 
   const pdfid = userData.pdfs; // Assuming this is a valid array of IDs
-  console.log(
-    "🚀 ~ file: StudyMaterials.jsx:67 ~ StudyMaterials ~ pdfid:",
-    pdfid
-  );
+
 
   const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/pdfs/`;
 
@@ -100,7 +97,7 @@ function StudyMaterials({ userData }) {
     fetchDataForAllIds();
   }, [pdfid, apiUrl]);
 
-  console.log(pdfs);
+
 
   return (
     <div className="mx-auto py-[7rem]">

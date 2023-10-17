@@ -6,17 +6,15 @@ import axios from "axios";
 
 
 const forgotpassword =async (userData) => {
-    console.log("🚀😀😀 ~ file: forgotpassword.jsx:9 ~ forgotpassword ~ userData:", userData)
-    console.log("🚀😀😀 ~ file: forgotpassword.jsx:9 ~ forgotpassword ~ userData:",  `${import.meta.env.VITE_BACKEND_URL}/user/forgotPassword`,)
+   
 
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/user/forgotPassword`,
-        // "http://localhost:3000/api/user/forgotPassword",
+     
         userData
       );
   
-      console.log("🚀 ~ file: forgotpassword.jsx:22 ~ forgotpassword ~ response.data.message:", response.data)
       if (response.data.status === "success"){
         return window.location.href = "/login";
       }
@@ -25,7 +23,7 @@ const forgotpassword =async (userData) => {
       }
     } catch (error) {
       console.error("Error logging in:", error);
-    //   toast.error("Login failed. Please check your credentials.");
+   
       throw error;
     }
   };

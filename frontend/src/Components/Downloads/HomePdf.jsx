@@ -15,7 +15,7 @@ export default function HomePdf() {
         console.error("Error fetching data:", error);
       });
   }, []);
-  console.log(pdfs);
+
 
   return (
     <div className="mx-10  h-[422px]">

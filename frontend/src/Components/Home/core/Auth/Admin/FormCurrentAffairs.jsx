@@ -3,9 +3,9 @@ import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 
 const postaffairs = async (affairsData) => {
-  console.log("🚀 ~ file: FormCurrentAffairs.jsx:7 ~ affairsData:", affairsData);
+
   const token = localStorage.getItem("jwt_token");
-  console.log("🚀 ~ file: FormCurrentAffairs.jsx:10 ~ postaffairs ~ token:", token);
+
   const formData = new FormData();
 
   formData.append("topic", affairsData.topic);
@@ -15,7 +15,7 @@ const postaffairs = async (affairsData) => {
   formData.append("photo", affairsData.photo);
 
   try {
-    const response = await axios.post(
+     await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/currentaffairs`,
       formData,
       {
@@ -24,8 +24,8 @@ const postaffairs = async (affairsData) => {
         },
       }
     );
-    const data = response;
-    console.log("🚀 ~ file: FormCurrentAffairs.jsx:31 ~ postaffairs ~ data:", data);
+
+
   } catch (error) {
     console.log(error);
   }
@@ -170,7 +170,7 @@ const FormCurrentAffairs = () => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
-        {/* Add other fields like category, photo, etc., using similar code */}
+
         {/* Questions Section */}
         {formData.data.map((question, index) => (
           <div key={index} className="mb-4">

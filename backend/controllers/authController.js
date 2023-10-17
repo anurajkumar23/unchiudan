@@ -14,7 +14,7 @@ const signToken = (id) => {
 
 const createSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
-  console.log(token);
+ 
   const cookieOption = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
@@ -27,10 +27,10 @@ const createSendToken = (user, statusCode, req, res) => {
   res.cookie('jwt', token, cookieOption);
 
   user.password = undefined;
-  console.log(user);
+ 
   res.setHeader('Authorization', `Bearer ${token}`);
   
-  console.log("🚀 ~ file: authController.js:33 ~ createSendToken ~ res:", res.headers)
+ 
 
 
   res.status(statusCode).json({
@@ -48,10 +48,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     password: req.body.password,
     phone: req.body.phone,
   });
-  console.log(newUser)
-
-  // const url = `${req.protocol}://${req.get('host')}/me`;
-  // await new Email(newUser, url).sendWelcome();
+ 
 
   createSendToken(newUser, 201, req, res);
 });
@@ -67,8 +64,7 @@ exports.logout = (req, res) => {
 exports.login = catchAsync(async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
-  console.log("done");
-
+ 
   if (!email && !password) {
     return next(new AppError('please prove email and password', 400));
   }
@@ -124,19 +120,15 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.isLoggedIn = async (req, res, next) => {
   
   
-  // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", req.headers.authorization)
-  // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", res)
 
 
 
   try {
-    // Check if token exists
+   
     const token = req.headers.authorization
-    // const token = req.headers.authorization;
-    // const authtoken = token.split(" ")
+   
     
    
-    // console.log("🚀 ~ file: authController.js:127 ~ exports.isLoggedIn= ~ exists:", token)
     if (!token) {
       return res.status(401).json({
         isAuthorized: false,
@@ -144,35 +136,23 @@ exports.isLoggedIn = async (req, res, next) => {
     }
 
 
-    // console.log('Received Token:', token);
-
     // Verify token
     const decoded = await promisify(jwt.verify)(
       token,
       process.env.JWT_SECRET, // This should match the secret used when signing the cookie
     );
-    // console.log(
-    //   '🚀 ~ file: authController.js:134 ~ exports.isLoggedIn= ~ decoded:',
-    //   decoded,
-    // );
-
+    
     // Check if user exists
     const currentUser = await User.findById(decoded.id);
     if (!currentUser) {
       return res.status(401).json({ message: 'User not found' });
     }
-    // console.log(
-    //   '🚀 ~ file: authController.js:138 ~ exports.isLoggedIn= ~ currentUser:',
-    //   currentUser,
-    // );
+   
 
     // Check if password was changed
     if (currentUser.changedPasswordAfter(decoded.iat)) {
       return res.status(401).json({ message: 'Password changed' });
     }
-
-    // Set user object in req.locals for future middleware
-    // req.locals.user = currentUser;
 
     // User is authenticated, continue with the request
     res.status(200).json({
@@ -180,7 +160,7 @@ exports.isLoggedIn = async (req, res, next) => {
       isAuthorized: true,
     });
   } catch (error) {
-    console.error('Error:', error);
+
     return res.status(500).json({ message: 'Internal Server Error' });
   }
 };
@@ -215,7 +195,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
-  // console.log("🚀 ~ file: authController.js:212 ~ exports.forgotPassword=catchAsync ~ user:", user)
+  
   if (!user) {
     return next(
       new AppError('User does not exist with this Email address.', 404),
@@ -227,9 +207,8 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   const resetURL = `${process.env.FRONTEND_URL}/resetPassword/${resetToken}`;
 
-  //  const resetURL = `${process.env.FRONTEND_URL}/resetPassword/${resetToken}`;   WORKING 
 
-   console.log("🚀 ~ file: authController.js:228 ~ exports.forgotPassword=catchAsync ~ resetURL:", resetURL)
+
   try {
     await new Email(user, resetURL).sendPasswordReset();
     res.status(200).json({
@@ -275,19 +254,15 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 exports.authenticateCors = async (req, res, next) => {
 
   
-  // console.log("🚀 ~ file: authController.js:275 ~ exports.isLoggedIn= ~ exists:", req.file)
   
-  // console.log("🚀 ~ file: authController.js:280 ~ exports.authenticateCors= ~ req.file:", req)
-  // console.log("🚀 ~ file: authController.js:131 ~ exports.isLoggedIn= ~ file:", file)
   try {
     // Check if token exists
     const token = req.headers.authorization
     // const token = req.headers.authorization;
     // const authtoken = token.split(" ")
     const tokenWithoutBearer = token.replace('Bearer ', '');
-    console.log("🚀 ~ file: authController.js:288 ~ exports.authenticateCors= ~ token2:", tokenWithoutBearer)
    
-    // console.log("🚀 ~ file: authController.js:284 ~ exports.isLoggedIn= ~ exists:", token)
+   
     if (!tokenWithoutBearer) {
       return res.status(401).json({
         isAuthorized: false,
@@ -295,46 +270,37 @@ exports.authenticateCors = async (req, res, next) => {
     }
 
 
-    console.log('Received Token:😀', token);
+
 
     // Verify token
     const decoded = await promisify(jwt.verify)(
       tokenWithoutBearer,
       process.env.JWT_SECRET, // This should match the secret used when signing the cookie
     );
-    console.log("🚀 ~ file: authController.js:304 ~ exports.authenticateCors= ~ decoded:", decoded)
-    // console.log(
-      // '🚀 ~ file: authController.js:134 ~ exports.isLoggedIn= ~ decoded:',
-    //   decoded,
-    // );
-
+   
     // Check if user exists
     const currentUser = await User.findById(decoded.id);
     if (!currentUser) {
       return res.status(401).json({ message: 'User not found' });
     }
-    // console.log(
-    //   '🚀 ~ file: authController.js:138 ~ exports.isLoggedIn= ~ currentUser:',
-    //   currentUser,
-    // );
+    
 
     // Check if password was changed
     if (currentUser.changedPasswordAfter(decoded.iat)) {
       return res.status(401).json({ message: 'Password changed' });
     }
 
-    // Set user object in req.locals for future middleware
-    // req.locals.user = currentUser;
+    
 
     // User is authenticated, continue with the request
     req.user = currentUser;
     
     res.locals.user = currentUser;
-    console.log("🚀 ~ file: authController.js:325 ~ exports.authenticateCors= ~ currentUser:", currentUser)
+   
     
     next();
   } catch (error) {
-    console.error('Error:', error);
+  
     return res.status(500).json({ message: 'Internal Server Error 😀' });
   }
 };

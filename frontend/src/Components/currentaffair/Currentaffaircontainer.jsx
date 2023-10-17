@@ -32,7 +32,7 @@ function Currentaffairs({ userData }) {
       .then((response) => {
         const { affairs } = response.data.data;
         const { totallength } = response.data;
-        console.log("Total Length:", totallength);
+
         setAffairs(affairs);
         setTotalPages(Math.ceil(parseInt(totallength) / postsPerPage));
       })
@@ -41,10 +41,7 @@ function Currentaffairs({ userData }) {
       });
   };
 
-  console.log(
-    "🚀 ~ file: Currentaffaircontainer.jsx:37 ~ .then ~ affairs:",
-    affairs
-  );
+
   useEffect(() => {
     fetchData(currentPage, selectedCategory);
   }, [selectedCategory, currentPage, postsPerPage]);

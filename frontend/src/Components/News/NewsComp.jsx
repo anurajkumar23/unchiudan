@@ -28,10 +28,7 @@ function NewsComp({ newsItems, userData }) {
   };
 
   const handleDeleteClick = async (event, newsId) => {
-    console.log(
-      "🚀 ~ file: NewsComp.jsx:33 ~ handleDeleteClick ~ newsId:",
-      newsId
-    );
+
     event.preventDefault(); // Prevent default behavior (e.g., navigation)
     event.stopPropagation(); // Prevent the click event from propagating to the parent link element
 
@@ -41,7 +38,7 @@ function NewsComp({ newsItems, userData }) {
       try {
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/news/${newsId}`,
-          // `http://localhost:3000/api/news/${newsId}`,
+         
           {
             headers: {
               Authorization: token,
@@ -49,9 +46,7 @@ function NewsComp({ newsItems, userData }) {
           }
         );
         if (response.status === 200) {
-          // The news item was deleted successfully
-          // Show a success toast
-
+         
           // Perform any additional actions you need here
           console.log("News item deleted successfully");
           toast.success("News item deleted successfully");
@@ -96,7 +91,7 @@ function NewsComp({ newsItems, userData }) {
               <div className="w-full md:w-1/3 bg-white grid place-items-center overflow-hidden">
                 <img
                   className="rounded-xl"
-                  src={`https://ucchi-urran-backend.onrender.com/img/news/${news.photo}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL_IMAGE}/img/news/${news.photo}`}
                   alt={`logo`}
                 />
               </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { GoogleSvg } from "../../../../consstant/svgfile";
+
 import { LogInSchema } from "./formvalidator";
 import { FaArrowRight } from "react-icons/fa";
 import axios from "axios";
@@ -55,7 +55,7 @@ function LoginForm() {
   } = useFormik({
     initialValues,
     validationSchema: LogInSchema,
-    onSubmit: async (values, action) => {
+    onSubmit: async (values) => {
       await login({
         email: values.email,
         password: values.password,
@@ -148,12 +148,7 @@ function LoginForm() {
           className="mt-6 rounded-[8px] bg-blue-300 hover:bg-blue-500 "
           to="/Signup"
         >
-          {/* <button
-        type="submit"
-        className="py-[8px] px-[200px] font-medium text-richblack-900 "
-      >
-        Signup
-      </button> */}
+         
         </Link>
       </form>
       <Toaster position="top-center" reverseOrder={false} />

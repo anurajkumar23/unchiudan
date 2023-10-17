@@ -29,12 +29,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   const checkAuthenticated = async () => {
-    console.log(
-      "🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:",
-      "start auth"
-    );
+
     const token = localStorage.getItem("jwt_token");
-    console.log("🚀 ~ file: App.jsx:25 ~ checkAuthenticated ~ token:", token);
+  
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/user/authenticated`,

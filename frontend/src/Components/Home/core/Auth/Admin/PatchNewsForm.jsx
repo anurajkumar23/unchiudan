@@ -4,10 +4,9 @@ import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
 const postnews = async (newsData,id) => {
-  
-  console.log("🚀 ~ file: FormNews.jsx:6 ~ signup ~ newsData:", newsData);
+
   const token = localStorage.getItem("jwt_token");
-  console.log("🚀 ~ file: FormNews.jsx:7 ~ postnews ~ token:", token);
+
 
   const formData = new FormData();
   formData.append("heading", newsData.heading);
@@ -15,21 +14,21 @@ const postnews = async (newsData,id) => {
   formData.append("highlight", newsData.highlight);
   formData.append("photo", newsData.photo);
   
-  console.log("🚀 ~ file: FormNews.jsx:11 ~ postnews ~ formData:", formData)
+
   try {
-    const response = await axios.patch(
+ await axios.patch(
       `${import.meta.env.VITE_BACKEND_URL}/news/${id}`,
-        // `http://localhost:3000/api/news/${id}`,
+
         formData,
       {
         headers: {
-          //   "Content-Type": "application/json",
+ 
           Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
         },
       }
     );
-    const data = response;
-    console.log("🚀 ~ file: FormNews.jsx:13 ~ postnews ~ data:", data);
+
+
   } catch (error) {
     console.log(error);
   }
@@ -62,7 +61,7 @@ const FormNews = ({details}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Here, you can send the formData to your server for processing
-    console.log(formData);
+
 try{
     await postnews({
       heading: formData.heading,

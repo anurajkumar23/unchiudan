@@ -19,9 +19,8 @@ function ServicesOverview() {
       if (response.status === 200) {
         const data = response.data;
         const id = data.id;
-        window.location.href = `https://unchiudaanteam.vercel.app/currentaffairs/${id}`;
-        // Process the data here
-        console.log(data);
+        window.location.href = `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${id}`;
+
 
       } else {
         throw new Error('Network response was not ok');
@@ -122,7 +121,7 @@ function ServicesOverview() {
       <div className="mx-6">
         <CodeBlocks
           position={"lg:flex-row"}
-          // imgPos = {"-top-[40%] right-[8%]"}
+      
           heading={
             <div className="text-4xl font-semibold text-white">
               Daily Quiz / डेली प्रश्न
@@ -150,14 +149,14 @@ function ServicesOverview() {
             ` और अन्य Competitive और Government Job Examinations के लिए ऊँची उड़ान वेबसाइट और Telegram पेज को join करें।`,
           ]}
           codeColor={"text-yellow-25"}
-          // backgroudGradient={elipseImage3}
+
           backgroudGradient={<div className="codeblock1 absolute"></div>}
         />
       </div>
       <div className="mx-6">
         <CodeBlocks
           position={"lg:flex-row-reverse"}
-          // imgPos = {"-top-[40%] right-[66%]"}
+
           heading={
             <div className="text-4xl font-semibold text-white">
               Free और
