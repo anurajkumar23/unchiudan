@@ -108,7 +108,7 @@ function Footer() {
               <li>
                 <a
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/tearm&conditions"
+                  href="/terms_conditions"
                 >
                   Terms & Conditions
                 </a>
@@ -144,15 +144,6 @@ function Footer() {
                   href="/faqs"
                 >
                   FAQs
-                </a>
-              </li>
-
-              <li>
-                <a
-                  className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/contantus"
-                >
-                  Contact
                 </a>
               </li>
             </ul>

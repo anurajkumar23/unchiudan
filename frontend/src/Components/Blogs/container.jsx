@@ -22,7 +22,7 @@ function BlogComp({ date, title, imageSrc ,id ,category, updatedDate}) {
           </p>
           </div>
           </div>
-          <h3 className="heading-tertirary">
+          <h3 className="heading-tertirary ">
           <span>{category}</span>
         </h3>
        

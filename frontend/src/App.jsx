@@ -123,7 +123,7 @@ function App() {
           <Route exact path="/AboutUs" element={<AboutUs />} />
           <Route
             exact
-            path="/terms&conditions"
+            path="/terms_conditions"
             element={<TermsAndConditions />}
           />
           <Route exact path="/disclaimer" element={<Disclaimer />} />
