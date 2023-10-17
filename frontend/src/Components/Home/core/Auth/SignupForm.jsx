@@ -87,7 +87,7 @@ function SignupForm() {
     <Toaster position="top-center" reverseOrder={false} />
       <div className="flex justify-end">
         <Link
-          to="/user/login"
+          to="/login"
           className="text-[#3856ea] font-semibold text-[18px]"
         >
           login

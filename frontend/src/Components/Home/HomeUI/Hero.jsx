@@ -31,10 +31,9 @@ function Hero() {
             </button>
             </Link>
             <Link to="https://t.me/UnchiudaanTeam">
-          <div className=" hover:scale-110 duration-500  px-2 py-1 justify-between  text-lg  rounded-full bg-blue-400 text-white ">
+         
             <FaTelegramPlane className="w-7 h-7" />
-            
-          </div>
+       
         </Link>
           </div>
         </div>
