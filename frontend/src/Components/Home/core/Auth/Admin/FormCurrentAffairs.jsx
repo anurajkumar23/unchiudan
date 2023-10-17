@@ -1,16 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
+
 const postaffairs = async (affairsData) => {
-  console.log(
-    "🚀 ~ file: FormCurrentAffairs.jsx:7 ~ affairsData:",
-    affairsData
-  );
+  console.log("🚀 ~ file: FormCurrentAffairs.jsx:7 ~ affairsData:", affairsData);
   const token = localStorage.getItem("jwt_token");
-  console.log(
-    "🚀 ~ file: FormCurrentAffairs.jsx:10 ~ postaffairs ~ token:",
-    token
-  );
+  console.log("🚀 ~ file: FormCurrentAffairs.jsx:10 ~ postaffairs ~ token:", token);
   const formData = new FormData();
 
   formData.append("topic", affairsData.topic);
@@ -22,20 +17,15 @@ const postaffairs = async (affairsData) => {
   try {
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/currentaffairs`,
-      // `http://localhost:3000/api/currentaffairs`,
       formData,
       {
         headers: {
-          //   "Content-Type": "application/json",
-          Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+          Authorization: token,
         },
       }
     );
     const data = response;
-    console.log(
-      "🚀 ~ file: FormCurrentAffairs.jsx:31 ~ postaffairs ~ data:",
-      data
-    );
+    console.log("🚀 ~ file: FormCurrentAffairs.jsx:31 ~ postaffairs ~ data:", data);
   } catch (error) {
     console.log(error);
   }
@@ -46,19 +36,29 @@ const FormCurrentAffairs = () => {
     topic: "",
     category: "",
     description: "",
-    photo: null, // <-- Added photo field
+    photo: null,
     data: [{ ques: "", options: ["", "", "", ""], ans: "" }],
   });
 
   const handleChange = (e, index) => {
     const { name, value } = e.target;
-    const newFormData = [...formData.data];
-    newFormData[index][name] = value;
 
-    setFormData({
-      ...formData,
-      data: newFormData,
-    });
+    if (name === "description") {
+      // Handle the description field separately
+      setFormData({
+        ...formData,
+        description: value,
+      });
+    } else {
+      // Handle other text input changes
+      const newFormData = [...formData.data];
+      newFormData[index][name] = value;
+
+      setFormData({
+        ...formData,
+        data: newFormData,
+      });
+    }
   };
 
   const handleOptionChange = (e, questionIndex, optionIndex) => {
@@ -75,12 +75,6 @@ const FormCurrentAffairs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // try {
-    //   await axios.post("http://localhost:3001/api/current-affairs", formData);
-    //   console.log("Data posted successfully");
-    // } catch (error) {
-    //   console.error("Error posting data:", error);
-    // }
     try {
       await postaffairs({
         topic: formData.topic,
@@ -92,11 +86,10 @@ const FormCurrentAffairs = () => {
       toast.success("CurrentAffairs posted successfully!");
     } catch (error) {
       console.error(error);
-
-      // Show an error toast when an error occurs
       toast.error("Error posting CurrentAffairs. Please try again.");
     }
   };
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setFormData({
@@ -107,7 +100,7 @@ const FormCurrentAffairs = () => {
 
   return (
     <div>
-      <form className=" mx-auto mt-8" onSubmit={handleSubmit}>
+      <form className="mx-auto mt-8" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
             htmlFor="topic"
@@ -157,7 +150,7 @@ const FormCurrentAffairs = () => {
           <textarea
             name="description"
             value={formData.description}
-            onChange={handleChange}
+            onChange={(e) => handleChange(e, 0)} 
             className="border p-2 w-full h-32"
           ></textarea>
         </div>
@@ -175,11 +168,9 @@ const FormCurrentAffairs = () => {
             accept="image/*"
             onChange={handleFileChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            // required
           />
         </div>
         {/* Add other fields like category, photo, etc., using similar code */}
-
         {/* Questions Section */}
         {formData.data.map((question, index) => (
           <div key={index} className="mb-4">
@@ -196,7 +187,6 @@ const FormCurrentAffairs = () => {
               value={question.ques}
               onChange={(e) => handleChange(e, index)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              // required
             />
             {question.options.map((option, optionIndex) => (
               <div key={optionIndex} className="mb-2">
@@ -208,7 +198,6 @@ const FormCurrentAffairs = () => {
                   value={option}
                   onChange={(e) => handleOptionChange(e, index, optionIndex)}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  // required
                 />
               </div>
             ))}
@@ -226,11 +215,10 @@ const FormCurrentAffairs = () => {
               value={question.ans}
               onChange={(e) => handleChange(e, index)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              // required
             />
           </div>
         ))}
-        <span className=" flex space-x-6">
+        <span className="flex space-x-6">
           <button
             type="button"
             onClick={() =>
@@ -242,16 +230,16 @@ const FormCurrentAffairs = () => {
                 ],
               })
             }
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+            className="bg-blue-500 hover-bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
           >
             Add Question
           </button>
           <button
             type="submit"
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
+            className="bg-green-500 hover-bg-green-700 text-white font-bold py-2 px-4 rounded-lg"
           >
             Submit
-          </button>{" "}
+          </button>
         </span>
       </form>
       <Toaster position="top-center" reverseOrder={false} />
