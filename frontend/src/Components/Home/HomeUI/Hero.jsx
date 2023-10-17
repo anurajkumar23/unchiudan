@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  FaTelegramPlane,
-} from "react-icons/fa";
+import { FaTelegramPlane } from "react-icons/fa";
 function Hero() {
   return (
     <div className="bg-pure-greys-5 md:mx-8 mx-6">
@@ -22,19 +20,19 @@ function Hero() {
           </p>
 
           <div className="mt-12 flex justify-center items-center space-x-3">
-          <Link to="/Currentaffairs">
-            <button
-              type="button"
-              className="bg-blue-500 mx-auto text-[18px] text-white rounded-lg px-4 py-1 hover:scale-110 duration-500 "
-            >
-              Start Learning & Fly High
-            </button>
+            <Link to="/Currentaffairs">
+              <button
+                type="button"
+                className="bg-blue-500 hover:bg-gradient-to-r from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] mx-auto text-[18px] text-white rounded-full px-4 py-1 hover:scale-105 duration-500  "
+              >
+                Start Learning & Fly High
+              </button>
             </Link>
             <Link to="https://t.me/UnchiudaanTeam">
-         
-            <FaTelegramPlane className="w-7 h-7" />
-       
-        </Link>
+              <div className=" flex w-fit hover:bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] px-2 py-1  text-lg mx-auto rounded-full bg-blue-300 text-white">
+                <FaTelegramPlane className="w-7 h-7" />
+              </div>
+            </Link>
           </div>
         </div>
         <div className="flex items-center gap-8 p-2 lg:p-24">
