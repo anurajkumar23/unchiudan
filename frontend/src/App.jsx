@@ -12,6 +12,7 @@ import Signup from "./Components/Pages/Signup";
 import UserSettings from "./Components/Home/core/Auth/UserSettings";
 import Navbar from "./Components/Home/HomeUI/Navbar";
 import NewsPage from "./Components/News/NewsPage";
+import DevTeam from "./Components/Home/HomeUI/DevTeam";
 import AboutUs from "./Components/About/AboutUs";
 import AdminPage from "./Components/Home/core/Auth/Admin/AdminPower";
 import ErrorPage from "./Errorpage";
@@ -29,9 +30,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   const checkAuthenticated = async () => {
-
     const token = localStorage.getItem("jwt_token");
-  
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/user/authenticated`,
@@ -88,7 +88,7 @@ function App() {
             path="/login"
             element={user ? <Navigate to="/user" /> : <Login />}
           />
-           <Route
+          <Route
             exact
             path="/signup"
             element={user ? <Navigate to="/user" /> : <Signup />}
@@ -124,6 +124,7 @@ function App() {
             path="/terms_conditions"
             element={<TermsAndConditions />}
           />
+          <Route exact path="/DevTeam" element={<DevTeam />} />
           <Route exact path="/disclaimer" element={<Disclaimer />} />
           <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
           <Route exact path="/faqs" element={<FAQ />} />
