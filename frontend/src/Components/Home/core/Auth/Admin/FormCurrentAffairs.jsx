@@ -146,7 +146,7 @@ const FormCurrentAffairs = () => {
           </select>
         </div>
         <div className="mb-4 text-black">
-          <label className="block mb-2 text-gray-800">Description</label>
+          <label className="block mb-2 text-gray-700">Description</label>
           <textarea
             name="description"
             value={formData.description}

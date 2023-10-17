@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const PDF = require('../models/pdfSchema');
+const User =  require('../models/userModal');
 const AppError = require('./../utils/appError');
 const catchAsync = require('./../utils/catchAsync');
 const multer = require('multer');
@@ -111,6 +112,16 @@ exports.getPdf = catchAsync(async (req, res, next) => {
 });
 
 exports.deletePdf = catchAsync(async (req, res, next) => {
+
+  const users = await User.find();
+  for (const user of users) {
+    const index = user.pdfs.indexOf(req.params.id);
+    if (index !== -1) {
+      user.pdfs.splice(index, 1); // Remove req.params.id from pdfs array
+      await user.save(); // Save the user
+    }
+  }
+
   const pdf = await PDF.findByIdAndDelete(req.params.id).select('+pdf');
   if (!pdf) {
     return next(new AppError('No pdf found with that ID', 404));

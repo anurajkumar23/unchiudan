@@ -93,6 +93,7 @@ function DownloadPage({ userData }) {
             pdfid: pdfDetails._id
           }
         );
+        
         console.log("Session Id - ", res.data.paymentSessionId);
 
         // eslint-disable-next-line no-undef
