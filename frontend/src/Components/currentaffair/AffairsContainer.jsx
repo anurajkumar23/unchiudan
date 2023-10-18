@@ -87,7 +87,7 @@ export function BlogComps({
             <span>{category}</span>
           </h3>
         </div>
-        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem]">
+        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem] truncate ">
           {title}
         </h1>
         <div className="card__data">

@@ -118,7 +118,7 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus, togglefilter }) => {
                     <FaFileAlt className="w-12 h-12" />
                   </div>
                   <div className="flex-col w-2/3 p-4 overflow-hidden">
-                    <h1 className="text-center text-md ">{pdf.name}</h1>
+                    <h1 className="text-center text-md truncate overflow-hidden w-[7rem]">{pdf.name}</h1>
                     <p>{formattedDate}</p>
                   </div>
                 </div>

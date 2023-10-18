@@ -170,8 +170,8 @@ const Sidebar_pdf = ({
                   <div className=" p-4">
                     <FaFileAlt className="w-12 h-12" />
                   </div>
-                  <div className="flex-col ">
-                    <p className=" text-fit text-md overflow-hidden">
+                  <div className="flex-col overflow-hidden">
+                    <p className=" text-fit text-md  truncate overflow-hidden w-[7rem]">
                       {affair.topic}
                     </p>
                     <p>{formattedDate}</p>
