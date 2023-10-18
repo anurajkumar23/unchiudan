@@ -1,4 +1,4 @@
-# Unchi-Udaan : UPSC, BPSC, SSC, FlyHigh, Meow Meow Meow
+# Unchi-Udaan : UPSC, BPSC, SSC, FlyHigh, 
 
 #### Installation
 
