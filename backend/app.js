@@ -17,6 +17,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
 const fs = require('fs');
+const compression = require("compression")
 
 
 const cors = require('cors');
@@ -48,6 +49,8 @@ app.use((req, res, next) => {
 
 app.use(mongoSanitize());
 app.use(xss());
+
+app.use(compression())
 
 // Rate Limiting
 const limiter = rateLimit({

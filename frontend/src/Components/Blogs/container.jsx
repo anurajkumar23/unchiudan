@@ -28,7 +28,7 @@ function BlogComp({ date, title, imageSrc ,id ,category, updatedDate}) {
        
         </div>
         
-        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem]">
+        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem] truncate ">
           {title}
         </h1>
 

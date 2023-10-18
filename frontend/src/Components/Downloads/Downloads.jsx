@@ -90,20 +90,21 @@ function BlogComps({
             <span>{category}</span>
           </h3>
         </div>
-        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem]">
+        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem] truncate">
           {title}
         </h1>
+        <div className="flex justify-between mb-[15px] ">
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
           status: {status}
         </h1>
         {status === "free" ? (
           ""
         ) : (
-          <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
+          <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer ">
             price: {`₹ ${price}`}
           </h1>
         )}
-
+        </div>
         <div className="card__data">
           <h1 className="text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
             <MdOutlineAccessTimeFilled className="card__icon" />
