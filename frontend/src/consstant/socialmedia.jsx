@@ -8,7 +8,7 @@ import {
 
 export const SocialMedia = ()=>{
     return (
-        <div className="flex justify-between mt-6 ">
+        <div className="flex justify-between mt-6ggg ">
         <span className="text-center text-md  ">Share with Friends :</span>
         <span className="flex text-gray-400 justify-center space-x-4">
           <a className=" " href="" target="_blank" rel="noreferrer">
