@@ -19,7 +19,7 @@ function ServicesOverview() {
       if (response.status === 200) {
         const data = response.data;
         const id = data.id;
-        window.location.href = `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${id}`;
+        window.location.href = `${import.meta.env.VITE_FRONTEND_URL}/currentaffairs/${id}`;
 
 
       } else {
@@ -55,9 +55,9 @@ function ServicesOverview() {
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
                       <FaUserTie className=" w-10 h-10" />
                     </div>
-                    <h6 className="text-xl mb-1 font-semibold text-white ">
+                    <h2 className="text-xl mb-1 font-semibold text-white ">
                       Daily Quiz / डेली प्रश्न
-                    </h6>
+                    </h2>
                     <p className="mb-4 text-blueGray-500 text-white">
                       ऊँची उड़ान Telegram पर डेली 10 Questions अपडेट किये जाते
                       हैं।
@@ -71,9 +71,9 @@ function ServicesOverview() {
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
                       <BiSolidNews className=" w-10 h-10" />
                     </div>
-                    <h6 className="text-xl mb-1 font-semibold text-white">
+                    <h2 className="text-xl mb-1 font-semibold text-white">
                       News / Blog
-                    </h6>
+                    </h2>
                     <p className="mb-4 text-blueGray-500 text-white">
                       पाएं सभी नवीनतम डेली समाचार और ब्लॉग: Get All Latest डेली
                       News
@@ -89,9 +89,9 @@ function ServicesOverview() {
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
                       <AiFillRead className=" w-10 h-10" />
                     </div>
-                    <h6 className="text-xl mb-1 font-semibold text-white">
+                    <h2 className="text-xl mb-1 font-semibold text-white">
                       कर्रेंट अफेयर्स
-                    </h6>
+                    </h2>
                     <p className="mb-4 text-blueGray-500 text-white">
                       कर्रेंट अफेयर्स के Updates से सम्बंधित सभी Questions भी।
                     </p>
@@ -104,9 +104,9 @@ function ServicesOverview() {
                     <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center  w-fit h-fit mb-5 rounded-full bg-white">
                       <FaFileAlt className=" w-10 h-10" />
                     </div>
-                    <h6 className="text-xl mb-1 font-semibold text-white">
+                    <h2 className="text-xl mb-1 font-semibold text-white">
                       Monthly PDFs / मासिक PDF
-                    </h6>
+                    </h2>
                     <p className="mb-4 text-blueGray-500 text-white">
                       पूरे महीने के प्रश्नों के मासिक अपडेट के PDF हर महीने
                       उपलब्ध होंगे।।

@@ -18,7 +18,7 @@ export default function HomePdf() {
 
 
   return (
-    <div className="mx-10  h-[422px]">
+    <div className="mx-10">
       <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-4 ">
         Download Monthly PDF
       </h1>
@@ -47,7 +47,7 @@ export default function HomePdf() {
         })}
       </div>
       <Link to="/pdfs">
-        <div className="text-center hover:bg-purple-500 mt-6 text-xl mx-auto  font-semibold w-fit  px-5 py-1 bg-purple-300 text-white rounded-xl hover:shadow-xl ">
+      <div className="text-center hover:bg-purple-500 mt-6 text-xl mx-auto  font-semibold w-fit  px-5 py-1 bg-purple-300 text-white rounded-xl hover:shadow-xl ">
           View More
         </div>
       </Link>

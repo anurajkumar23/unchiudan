@@ -1,8 +1,7 @@
+/* eslint-disable no-undef */
 import { useState } from "react";
-// import { toast } from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { SignUpSchema } from "./formvalidator";
-
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
@@ -10,34 +9,40 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 
 const signup = async (userData) => {
-
-
   try {
+    // Show a loading toast while signing up
+    const loadingToast = toast.loading("Creating account...");
+
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/user/signup`,
       userData,
-      { withCredentials: true } ,
+      { withCredentials: true }
     );
+
     const token = response.data.token;
-   document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`; 
+    document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`;
 
-   localStorage.setItem('jwt_token', token);
+    localStorage.setItem("jwt_token", token);
 
-   toast.success("Sign up successful!");
+    // Dismiss the loading toast and show a success toast
+    toast.dismiss(loadingToast);
+    toast.success("Sign up successful!");
 
+    const redirectUrl = localStorage.getItem("redirectUrl");
+    if (redirectUrl) {
+      // Redirect to the originally requested URL
+      window.location.href = redirectUrl;
+    } else {
+      // If there's no redirect URL, go to a default page
+      window.location.href = "/user";
+    }
 
-    const redirectUrl = localStorage.getItem('redirectUrl');
-   if (redirectUrl) {
-    // Redirect to the originally requested URL
-    window.location.href = redirectUrl;
-  } else {
-    // If there's no redirect URL, go to a default page
-    window.location.href = '/user';
-  }
     return response.data;
   } catch (error) {
     console.error("Error signing up:", error);
 
+    // Dismiss the loading toast and show an error toast
+    toast.dismiss(loadingToast);
     toast.error("Sign up failed. Please try again.");
     throw error;
   }
@@ -49,12 +54,12 @@ const initialValues = {
   firstname: "",
   lastname: "",
   confirmpassword: "",
+  phone: "", // Added phone field
 };
 
 function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showsetPassword, SetshowsetPassword] = useState(false);
-
 
   const {
     errors,
@@ -75,7 +80,7 @@ function SignupForm() {
         email: values.email,
         phone: values.phone,
       }).then(() => {
-        window.location.href = '/user'; // Redirect to /user on successful signup
+        window.location.href = "/user"; // Redirect to /user on successful signup
       });
 
       action.resetForm();
@@ -84,12 +89,9 @@ function SignupForm() {
 
   return (
     <div>
-    <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="flex justify-end">
-        <Link
-          to="/login"
-          className="text-[#3856ea] font-semibold text-[18px]"
-        >
+        <Link to="/login" className="text-[#3856ea] font-semibold text-[18px]">
           login
           <FaArrowLeft className="ml-2" />
         </Link>
@@ -207,7 +209,7 @@ function SignupForm() {
             </p>
             <input
               type={showsetPassword ? "text" : "password"}
-              id="confirmPassword"
+              id="confirmpassword"
               autoComplete="off"
               name="confirmpassword"
               value={values.confirmpassword}
@@ -241,7 +243,6 @@ function SignupForm() {
         >
           {isValid ? "SignUp" : "❌SignUp"}
         </button>
-        
       </form>
     </div>
   );

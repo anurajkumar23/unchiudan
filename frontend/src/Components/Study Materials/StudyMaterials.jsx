@@ -8,7 +8,6 @@ import { MdOutlineAccessTimeFilled } from "react-icons/md";
 function StudyMaterial({
   date,
   title,
-  imageSrc,
   updatedDate,
   id,
   status,
@@ -24,7 +23,7 @@ function StudyMaterial({
             <div className="relative">
               <img
                 className="w-full rounded-xl"
-                src={imageSrc}
+                src={`${import.meta.env.VITE_BACKEND_URL_IMAGE}/img/affairs/uchiudan.png`}
                 alt="Blog Cover"
               />
               <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
@@ -89,10 +88,11 @@ function StudyMaterials({ userData }) {
 
     // Use Promise.all to fetch data for all IDs
     const fetchDataForAllIds = async () => {
-      const promises = pdfid.map((id) => fetchPdfDataById(id));
+      const reversedPdfid = pdfid.slice().reverse(); 
+      const promises = reversedPdfid.map((id) => fetchPdfDataById(id));
       const pdfData = await Promise.all(promises);
-      setPdfs(pdfData);
-    };
+    setPdfs(pdfData);
+  };
 
     fetchDataForAllIds();
   }, [pdfid, apiUrl]);

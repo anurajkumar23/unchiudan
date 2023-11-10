@@ -28,36 +28,37 @@ function NewsComp({ newsItems, userData }) {
   };
 
   const handleDeleteClick = async (event, newsId) => {
-
-    event.preventDefault(); // Prevent default behavior (e.g., navigation)
-    event.stopPropagation(); // Prevent the click event from propagating to the parent link element
+    event.preventDefault();
+    event.stopPropagation();
 
     if (window.confirm("Are you sure you want to delete this item?")) {
       const token = localStorage.getItem("jwt_token");
 
       try {
+        const loadingToast = toast.loading("Deleting News..."); // Display loading toast
+
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/news/${newsId}`,
-         
           {
             headers: {
               Authorization: token,
             },
           }
         );
+
         if (response.status === 200) {
-         
+          toast.dismiss(loadingToast);
           // Perform any additional actions you need here
           console.log("News item deleted successfully");
           toast.success("News item deleted successfully");
         } else {
+          toast.dismiss(loadingToast);
           console.error("Error deleting news item:", response);
-          // Show an error toast if needed
           toast.error("Error deleting news item");
         }
       } catch (error) {
+        toast.dismiss(loadingToast);
         console.error("Error deleting news item:", error);
-        // Show an error toast if needed
         toast.error("Error deleting news item");
       }
     }

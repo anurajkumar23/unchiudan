@@ -2,6 +2,7 @@
 import NewsComp from "./NewsComp";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 function News({ userData }) {
   const [news, setNews] = useState([]);
@@ -51,6 +52,14 @@ function News({ userData }) {
   };
   return (
     <div className="mx-[10%] pt-[8rem] ">
+        <Helmet>
+    <title>News / Blog</title>
+      <meta 
+       name="description"
+       content="Get Latest update News / Blog of current Affairs.."
+      />
+      <link rel="canonical" href="https://unchiudan.in/News"></link>
+    </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mx-[5%]">
   
         <NewsComp newsItems={news} userData={userData} />

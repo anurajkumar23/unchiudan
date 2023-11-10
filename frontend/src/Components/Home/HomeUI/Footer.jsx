@@ -8,7 +8,7 @@ import {
 import { Link } from "react-router-dom";
 function Footer() {
   return (
-    <div className="bg-pure-greys-5 mx-auto pt-[6rem] md:pt-[8rem]">
+    <>
       <div className="mx-auto  ">
         <strong className="block text-center text-lg font-bold text-gray-900 sm:text-3xl ">
           सारे Updates पाने के लिए Subscribe करें
@@ -55,39 +55,36 @@ function Footer() {
 
             <ul className="mt-6 space-y-1">
               <li>
-                <a
+                <Link
+                  to="/"
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/"
                 >
                   Home
-                </a>
+                </Link>
               </li>
-
               <li>
-                <a
+                <Link
+                  to="/news"
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/pdfs"
                 >
-                  Pdfs
-                </a>
+                  News
+                </Link>
               </li>
-
               <li>
-                <a
+                <Link
+                  to="/currentaffairs"
                   className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/News"
-                >
-                  News/Blogs
-                </a>
-              </li>
-
-              <li>
-                <a
-                  className="text-gray-700 transition hover:text-gray-700/75"
-                  href="/Currentaffairs"
                 >
                   Current Affairs
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/pdfs"
+                  className="text-gray-700 transition hover:text-gray-700/75"
+                >
+                  PDFs
+                </Link>
               </li>
             </ul>
           </div>
@@ -146,6 +143,14 @@ function Footer() {
                   FAQs
                 </a>
               </li>
+              <li>
+                <Link
+                  to="/DevTeam"
+                  className="text-gray-700 transition hover:text-gray-700/75"
+                >
+                  Website Creating Team
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -158,13 +163,12 @@ function Footer() {
         </p>
         <p>
           Designed & Developed by {""}
-          <a href="/DevTeam" className="text-blue-500">
+          <Link to="/DevTeam" className="text-blue-500">
             Meow Coders
-          </a>
-          .
+          </Link>
         </p>
       </div>
-    </div>
+    </>
   );
 }
 

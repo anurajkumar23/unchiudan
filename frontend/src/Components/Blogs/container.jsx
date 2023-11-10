@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 import { MdOutlineAccessTimeFilled } from 'react-icons/md';
 
-function BlogComp({ date, title, imageSrc ,id ,category, updatedDate}) {
+function BlogComp({ date, title ,id ,category, updatedDate}) {
   return (
    <Link to={`/currentaffairs/${id}`}>
      <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 ">
@@ -14,7 +14,7 @@ function BlogComp({ date, title, imageSrc ,id ,category, updatedDate}) {
           <img
             className="w-full rounded-xl"
             
-            src={imageSrc}
+            src={`${import.meta.env.VITE_BACKEND_URL_IMAGE}/img/affairs/uchiudan.png`}
             alt="Blog Cover"
           />
           <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
