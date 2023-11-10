@@ -17,6 +17,7 @@ const postpdf = async (pdfData) => {
   formData.append("price", pdfData.price);
 
   try {
+    const loadingToast = toast.loading("Posting PDF...");
  await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/pdfs`,
 
@@ -28,10 +29,13 @@ const postpdf = async (pdfData) => {
         },
       }
     );
+    toast.dismiss(loadingToast); // Dismiss the loading toast when the request is successful
+    toast.success("PDF posted successfully!");
 
-   
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    toast.dismiss(loadingToast); // Dismiss the loading toast on error
+    toast.error("Error posting PDF. Please try again.");
   }
 };
 
@@ -77,7 +81,7 @@ const FormPDF = () => {
         status: formData.status,
         price: formData.price,
       });
-      toast.success("PDF posted successfully!");
+     
     } catch (error) {
       console.error(error);
 

@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { MdOutlineAccessTimeFilled, MdOutlineDelete } from "react-icons/md";
 import "./AffairsContainer.css";
 import axios from "axios";
@@ -9,13 +8,12 @@ import { Toaster, toast } from "react-hot-toast";
 export function BlogComps({
   date,
   id,
-  imageSrc,
   updatedDate,
   category,
   title,
   userData,
 }) {
-
+  
   let role;
 
   if (userData) {
@@ -32,8 +30,9 @@ export function BlogComps({
     event.stopPropagation(); // Prevent the click event from propagating to the parent link element
     if (window.confirm("Are you sure you want to delete this item?")) {
       const token = localStorage.getItem("jwt_token");
-   
+
       try {
+        const loadingToast = toast.loading("Deleting CurrentAffairs...");
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${id}`,
           {
@@ -44,21 +43,25 @@ export function BlogComps({
         );
 
         if (response.status === 200) {
-
-          toast.success("Item deleted successfully")
+          toast.dismiss(loadingToast);
+          toast.success("Item deleted successfully");
+          // Reload the page after successful deletion
         } else {
+          toast.dismiss(loadingToast);
           console.error("Error deleting item:", response);
+          toast.error("Error in deleting item");
         }
       } catch (error) {
+        toast.dismiss(loadingToast);
         console.error("Error deleting item:", error);
-        toast.error("Error in deleting item")
+        toast.error("Error in deleting item");
       }
     }
   };
 
   return (
     <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 relative">
-      {role ?
+      {role ? (
         <button
           className="absolute top-0 right-0 text-red-600 cursor-pointer bg-red-500 rounded-full p-2"
           style={{ zIndex: 1 }}
@@ -66,7 +69,9 @@ export function BlogComps({
         >
           <MdOutlineDelete size={32} color="#fff" />
         </button>
-      : "" }
+      ) : (
+        ""
+      )}
 
       <Link to={`/currentaffairs/${id}`} className="w-full h-full">
         <div className="card__header">
@@ -75,11 +80,11 @@ export function BlogComps({
             <div className="relative">
               <img
                 className="w-full rounded-xl"
-                src={imageSrc}
+                src={`${import.meta.env.VITE_BACKEND_URL_IMAGE}/img/affairs/uchiudan.png`}
                 alt="Blog Cover"
               />
               <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
-                {date} 
+                {date}
               </p>
             </div>
           </div>

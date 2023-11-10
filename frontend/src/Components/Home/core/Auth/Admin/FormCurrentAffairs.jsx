@@ -15,6 +15,7 @@ const postaffairs = async (affairsData) => {
   formData.append("photo", affairsData.photo);
 
   try {
+    const loadingToast = toast.loading("Posting CurrentAffairs...");
      await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/currentaffairs`,
       formData,
@@ -24,10 +25,13 @@ const postaffairs = async (affairsData) => {
         },
       }
     );
-
+    toast.dismiss(loadingToast); // Dismiss the loading toast when the request is successful
+    toast.success("CurrentAffairs posted successfully!");
 
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    toast.dismiss(loadingToast); // Dismiss the loading toast on error
+    toast.error("Error posting CurrentAffairs. Please try again.");
   }
 };
 
@@ -83,7 +87,7 @@ const FormCurrentAffairs = () => {
         photo: formData.photo,
         description: formData.description,
       });
-      toast.success("CurrentAffairs posted successfully!");
+      
     } catch (error) {
       console.error(error);
       toast.error("Error posting CurrentAffairs. Please try again.");

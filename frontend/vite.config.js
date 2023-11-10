@@ -8,7 +8,7 @@ const manifestForPlugin = {
   manifest: {
     name: "Unchi Udaan",
     short_name: "Unchi Udaan",
-    description: "Unchi-Udaan : UPSC, BPSC, SSC, FlyHigh, Meow Meow Meow",
+    description: "Unchi-Udaan : Daily Current Affairs,Unchiudaan Current Affairs, Current Affairs for UPSC, BPSC,बिहार दारोगा,SI,BSSC,Railway,JSSC, SSC, BANKING, Defence,",
     icons: [
       {
         src: "/android-chrome-192x192.png",
@@ -47,6 +47,17 @@ export default defineConfig({
     react(),
     VitePWA(manifestForPlugin), // Include VitePWA once with your manifest
   ],
+  build: {
+    rollupOptions: {
+        output:{
+            manualChunks(id) {
+                if (id.includes('node_modules')) {
+                    return id.toString().split('node_modules/')[1].split('/')[0].toString();
+                }
+            }
+        }
+    }
+},
   server: {
     proxy: {
       "/api": "https://ucchi-urran-backend.onrender.com",

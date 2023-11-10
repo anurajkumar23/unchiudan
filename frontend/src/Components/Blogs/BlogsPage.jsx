@@ -13,6 +13,7 @@ import {
 
 import "./quiz.css";
 import { SocialMedia } from "../../consstant/socialmedia";
+import { Helmet } from "react-helmet";
 
 function BlogsPage({ userData }) {
 
@@ -86,6 +87,14 @@ function BlogsPage({ userData }) {
   return (
     <>
       <div className=" py-[8rem] ">
+      <Helmet>
+    <title>Daily Quiz / डेली प्रश्न</title>
+      <meta 
+       name="description"
+       content="Get Daily Quiz / डेली प्रश्न of current Affairs.."
+      />
+       <link rel="canonical" href="https://unchiudan.in/Currentaffairs"></link>
+    </Helmet>
         <div className=" mx-6 ">
           <h1 className="text-center font-bold text-[2rem] md:text-[2.5rem] mb-6 ">
             Current Affairs {affairDetails.category}

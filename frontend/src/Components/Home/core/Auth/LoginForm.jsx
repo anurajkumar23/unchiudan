@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-
+import { Helmet } from "react-helmet";
 import { LogInSchema } from "./formvalidator";
 import { FaArrowRight } from "react-icons/fa";
 import axios from "axios";
@@ -12,6 +12,9 @@ const initialValues = { email: "", password: "" };
 
 const login = async (userData) => {
   try {
+    // Show a loading toast while logging in
+    const loadingToast = toast.loading("Logging in...");
+
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/user/login`,
       userData,
@@ -20,12 +23,15 @@ const login = async (userData) => {
 
     const token = response.data.token;
     document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`;
-    if (response.status === 200) {
-      toast.success("Login successful!");
-    }
-
+    
     localStorage.setItem("jwt_token", token);
     const redirectUrl = localStorage.getItem("redirectUrl");
+
+    if (response.status === 200) {
+      // Dismiss the loading toast and show a success toast
+      toast.dismiss(loadingToast);
+      toast.success("Login successful!");
+    }
 
     if (redirectUrl) {
       window.location.href = redirectUrl;
@@ -36,6 +42,7 @@ const login = async (userData) => {
     return response.data;
   } catch (error) {
     console.error("Error logging in:", error);
+    toast.dismiss(loadingToast);
     toast.error("Login failed. Please check your credentials.");
     throw error;
   }
@@ -60,7 +67,7 @@ function LoginForm() {
         email: values.email,
         password: values.password,
       }).then(() => {
-        navigate("/user"); // Redirect to /user on successful signup
+        navigate("/user"); // Redirect to /user on successful login
       });
     },
   });
@@ -71,6 +78,14 @@ function LoginForm() {
 
   return (
     <div>
+    <Helmet>
+    <title>Login Page</title>
+      <meta 
+       name="description"
+       content="Join us for Latest update Free/पैड PDFs of current Affairs"
+      />
+      <link rel="canonical" href="https://unchiudan.in/login"></link>
+    </Helmet>
       <div className="flex justify-end">
         <Link
           to="/signup"
@@ -143,13 +158,6 @@ function LoginForm() {
         >
           {isValid ? "LogIn" : "❌LogIn"}
         </button>
-        
-        <Link
-          className="mt-6 rounded-[8px] bg-blue-300 hover:bg-blue-500 "
-          to="/Signup"
-        >
-         
-        </Link>
       </form>
       <Toaster position="top-center" reverseOrder={false} />
     </div>

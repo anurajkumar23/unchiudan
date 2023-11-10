@@ -15,6 +15,7 @@ const postnews = async (newsData) => {
   
 
   try {
+    const loadingToast = toast.loading("Posting News...");
  await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/news`,
 
@@ -26,10 +27,13 @@ const postnews = async (newsData) => {
         },
       }
     );
-
+    toast.dismiss(loadingToast); // Dismiss the loading toast when the request is successful
+    toast.success("News posted successfully!");
 
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    toast.dismiss(loadingToast); // Dismiss the loading toast on error
+    toast.error("Error posting news. Please try again.");
   }
 };
 
@@ -67,7 +71,6 @@ try{
       highlight: formData.highlight,
       photo: formData.photo,
     });
-    toast.success("News posted successfully!");
   } catch (error) {
     console.error(error);
 

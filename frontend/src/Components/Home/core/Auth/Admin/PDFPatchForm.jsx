@@ -18,6 +18,7 @@ const patchpdf = async (pdfData, id) => {
   formData.append("price", pdfData.price);
 
   try {
+    const loadingToast = toast.loading("Updating PDF...");
  await axios.patch(
         `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`,
 
@@ -29,9 +30,12 @@ const patchpdf = async (pdfData, id) => {
         },
       }
     );
+    toast.dismiss(loadingToast);
 
   } catch (error) {
     console.log(error);
+    // Dismiss the loading toast if an error occurs
+    toast.dismiss(loadingToast);
   }
 };
 
@@ -44,7 +48,7 @@ const PdfForm = ({ details }) => {
     description: details.description || "",
     pdf: null,
     comments: [],
-    status: "free",
+    status: details.status || "free",
   });
 
   const handleChange = (e) => {

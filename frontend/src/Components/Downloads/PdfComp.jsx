@@ -10,7 +10,7 @@ function PdfComp({ title, date, id }) {
           <FaFileAlt className="w-12 h-12" />
         </div>
         <div className="flex flex-col justify-center">
-          <h1 className="text-justify text-md">{title}</h1>
+          <h1 className="text-center text-md truncate overflow-hidden w-[7rem]">{title}</h1>
           <p>{date}</p>
         </div>
       </div>

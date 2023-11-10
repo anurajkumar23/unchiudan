@@ -16,6 +16,7 @@ const postnews = async (newsData,id) => {
   
 
   try {
+    const loadingToast = toast.loading("Updating News...");
  await axios.patch(
       `${import.meta.env.VITE_BACKEND_URL}/news/${id}`,
 
@@ -27,10 +28,12 @@ const postnews = async (newsData,id) => {
         },
       }
     );
-
+    toast.dismiss(loadingToast);
 
   } catch (error) {
     console.log(error);
+    // Dismiss the loading toast if an error occurs
+    toast.dismiss(loadingToast);
   }
 };
 

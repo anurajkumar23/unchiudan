@@ -6,6 +6,7 @@ import { MdOutlineAccessTimeFilled, MdOutlineDelete } from "react-icons/md";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
 import Sidebar_pdf from "../Sidebar/Sidebar_pdf";
 import { Toaster, toast } from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 function BlogComps({
   date,
@@ -31,10 +32,13 @@ function BlogComps({
   }
 
   const handleDeleteClick = async (event) => {
+    event.preventDefault();
     event.stopPropagation();
+
     if (window.confirm("Are you sure you want to delete this item?")) {
       const token = localStorage.getItem("jwt_token");
       try {
+        const loadingToast = toast.loading("Deleting PDF...");
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`,
 
@@ -46,12 +50,15 @@ function BlogComps({
         );
 
         if (response.status === 200) {
+          toast.dismiss(loadingToast);
           toast.success("Item deleted successfully");
         } else {
+          toast.dismiss(loadingToast);
           console.error("Error deleting item:", response);
           toast.error("Error in deleting item");
         }
       } catch (error) {
+        toast.dismiss(loadingToast);
         console.error("Error deleting item:", error);
         toast.error("Error in deleting item");
       }
@@ -78,7 +85,7 @@ function BlogComps({
             <div className="relative">
               <img
                 className="w-full rounded-xl"
-                src={imageSrc}
+                src={`${import.meta.env.VITE_BACKEND_URL_IMAGE}/img/affairs/uchiudan.png`}
                 alt="Blog Cover"
               />
               <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
@@ -216,6 +223,14 @@ function Downloads({ userData }) {
 
   return (
     <div className="mx-auto py-[7rem]">
+    <Helmet>
+    <title>Monthly PDFs / मासिक PDF</title>
+      <meta 
+       name="description"
+       content="Get Latest update Free/पैड PDFs of current Affairs"
+      />
+      <link rel="canonical" href="https://unchiudan.in/pdfs"></link>
+    </Helmet>
       <div className="p-2">
         {isSmallScreen && (
           <button

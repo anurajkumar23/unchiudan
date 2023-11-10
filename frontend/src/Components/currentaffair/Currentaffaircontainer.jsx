@@ -4,6 +4,7 @@ import axios from "axios";
 import Sidebar from "../Sidebar/Sidebar";
 import { BlogComps } from "./AffairsContainer";
 import { RiMenu3Fill, RiCloseFill } from "react-icons/ri";
+import { Helmet } from "react-helmet";
 
 function Currentaffairs({ userData }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -70,6 +71,15 @@ function Currentaffairs({ userData }) {
 
   return (
     <div className="mx-auto py-[7rem]">
+    <Helmet>
+    <title>Daily Current Affairs/ कर्रेंट अफेयर्स</title>
+    <meta
+   name="description"
+    content="Current Affairs for UPSC, BPSC,बिहार दारोगा,SI,BSSC,Railway,JSSC, SSC, BANKING, Defence.."
+  />
+   <link rel="canonical" href="https://unchiudan.in/Currentaffairs"></link>
+    </Helmet>
+   
       <div className="p-2">
         {isSmallScreen && (
           <button

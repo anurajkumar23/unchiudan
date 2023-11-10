@@ -79,6 +79,7 @@ export default function Navbar({ userData }) {
               Current Affairs
             </Link>
           </div>
+          <a href="/sitemap.xml" className="block"></a>
           {userData ? (
             <div className="relative" onClick={() => setOpen(!open)}>
               <div className="flex items-center gap-x-1">
