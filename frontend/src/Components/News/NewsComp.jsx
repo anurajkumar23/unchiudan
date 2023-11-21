@@ -64,6 +64,12 @@ function NewsComp({ newsItems, userData }) {
     }
   };
 
+  const decodeHtmlEntities = (html) => {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = html;
+    return textarea.value;
+  };
+
   return (
     <div className="flex flex-col md:w-[429%]">
       {newsItems.map((news) => {
@@ -74,6 +80,9 @@ function NewsComp({ newsItems, userData }) {
         });
 
         const isRecent = isWithin48Hours(news.createdAt);
+
+        const decodedHeading = decodeHtmlEntities(news.heading);
+        const decodedArticle = decodeHtmlEntities(news.article);
 
         return (
           <Link to={`/News/${news._id}`} key={news._id}>
@@ -107,12 +116,8 @@ function NewsComp({ newsItems, userData }) {
                     )}
                   </div>
                 </div>
-                <h3 className="font-black text-gray-800 md:text-3xl text-xl">
-                  {news.heading}
-                </h3>
-                <p className="md:text-lg text-gray-500 text-base ">
-                  {news.article}
-                </p>
+                <h3 className="font-black text-gray-800 md:text-3xl text-xl" dangerouslySetInnerHTML={{ __html: decodedHeading }} />
+                <p className="md:text-lg text-gray-500 text-base" dangerouslySetInnerHTML={{ __html: decodedArticle }} />
               </div>
             </div>
           </Link>

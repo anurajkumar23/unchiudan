@@ -77,7 +77,7 @@ function Currentaffairs({ userData }) {
    name="description"
     content="Current Affairs for UPSC, BPSC,बिहार दारोगा,SI,BSSC,Railway,JSSC, SSC, BANKING, Defence.."
   />
-   <link rel="canonical" href="https://unchiudan.in/Currentaffairs"></link>
+   <link rel="canonical" href="https://unchiudaanclasses.com/Currentaffairs"></link>
     </Helmet>
    
       <div className="p-2">

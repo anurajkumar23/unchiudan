@@ -1,7 +1,7 @@
 {
-  "name": "Unchi Udaan",
-  "short_name": "Unchi Udaan",
-  "description": "Unchi-Udaan : UPSC, BPSC, SSC, ",
+  "name": "Unchi Udaan classes",
+  "short_name": "Unchi Udaan classes",
+  "description": "Unchi-Udaan classes : UPSC, BPSC, SSC, Railways ",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

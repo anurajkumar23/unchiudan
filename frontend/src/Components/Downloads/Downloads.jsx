@@ -11,7 +11,6 @@ import { Helmet } from "react-helmet";
 function BlogComps({
   date,
   title,
-  imageSrc,
   updatedDate,
   id,
   status,
@@ -41,7 +40,6 @@ function BlogComps({
         const loadingToast = toast.loading("Deleting PDF...");
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`,
-
           {
             headers: {
               Authorization: token,
@@ -63,6 +61,12 @@ function BlogComps({
         toast.error("Error in deleting item");
       }
     }
+  };
+
+  const decodeHtmlEntities = (html) => {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = html;
+    return textarea.value;
   };
 
   return (
@@ -98,19 +102,19 @@ function BlogComps({
           </h3>
         </div>
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem] truncate">
-          {title}
+         <span dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(title) }} />
         </h1>
         <div className="flex justify-between mb-[15px] ">
-        <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
-          status: {status}
-        </h1>
-        {status === "free" ? (
-          ""
-        ) : (
-          <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer ">
-            price: {`₹ ${price}`}
+          <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
+            status: {status}
           </h1>
-        )}
+          {status === "free" ? (
+            ""
+          ) : (
+            <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer ">
+              price: {`₹ ${price}`}
+            </h1>
+          )}
         </div>
         <div className="card__data">
           <h1 className="text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">
@@ -201,7 +205,7 @@ function Downloads({ userData }) {
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
-      setCurrentPage(1);
+      setCurrentPage(currentPage - 1);
     }
   };
 
@@ -223,14 +227,14 @@ function Downloads({ userData }) {
 
   return (
     <div className="mx-auto py-[7rem]">
-    <Helmet>
-    <title>Monthly PDFs / मासिक PDF</title>
-      <meta 
-       name="description"
-       content="Get Latest update Free/पैड PDFs of current Affairs"
-      />
-      <link rel="canonical" href="https://unchiudan.in/pdfs"></link>
-    </Helmet>
+      <Helmet>
+        <title>Monthly PDFs / मासिक PDF</title>
+        <meta
+          name="description"
+          content="Get Latest update Free/पैड PDFs of current Affairs"
+        />
+        <link rel="canonical" href="https://unchiudaanclasses.com/pdfs"></link>
+      </Helmet>
       <div className="p-2">
         {isSmallScreen && (
           <button
@@ -267,7 +271,6 @@ function Downloads({ userData }) {
                 key={pdf._id}
                 date={formattedDate}
                 title={pdf.name}
-                imageSrc={pdf.photo}
                 updatedDate={updatedDate}
                 id={pdf._id}
                 status={pdf.status}

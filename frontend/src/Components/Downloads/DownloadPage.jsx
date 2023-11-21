@@ -118,7 +118,11 @@ function DownloadPage({ userData }) {
      
     }
   };
-
+  const decodeHtmlEntities = (html) => {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = html;
+    return textarea.value;
+  };
   return (
     <div className="mx-auto py-[8rem]">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -139,8 +143,7 @@ function DownloadPage({ userData }) {
             <div className="flex justify-between space-x-3 h-[150px] md:h-[80px]">
               <FaFileAlt className="w-12 h-12" />
               <div className="text-center text-lg leading-[47px]">
-                {pdfDetails.name}
-                <br />
+              <span dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(pdfDetails.name) }} />
                 <span className="leading-[5px]">
                   Last Updated: {formatUpdatedAtDate()}
                 </span>
@@ -159,10 +162,10 @@ function DownloadPage({ userData }) {
           <SocialMedia />
 
           <h1 className="mt-10 text-[1.3rem] font-[550] text-center">
-            Monthly Current Affairs PDF Download {pdfDetails.name}
+            Monthly Current Affairs PDF Download <span dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(pdfDetails.name) }} />
           </h1>
           <p className="mt-4 text-justify text-lg">
-            {pdfDetails.description}
+          <span dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(pdfDetails.description) }} />
           </p>
           <SocialMedia />
         </div>

@@ -81,12 +81,12 @@ function App() {
   return (
     <BrowserRouter>
     <Helmet>
-        <title>ऊँची उड़ान |Unchi udan</title>
+        <title>ऊँची उड़ान Classes| Unchi Udaan Classes</title>
         <meta
-           name="description"
-           content="Get Current Affairs for UPSC, BPSC,बिहार दारोगा,SI,BSSC,Railway,JSSC, SSC, BANKING, Defence,और अन्य Government Job Examinations के लिए ऊँची उड़ान वेबसाइट को join करें।"
+          name="description"
+          content="Current Affairs for UPSC, BPSC,बिहार दारोगा,SI,BSSC,Railway,JSSC, SSC, BANKING, Defence,और अन्य Government Job Examinations के लिए ऊँची उड़ान वेबसाइट को join करें।"
         />
-        <link rel="canonical" href="https://unchiudan.in/"></link>
+        <link rel="canonical" href="https://unchiudaanclasses.com"></link>
         <meta name="keywords" content="Daily Quiz / डेली प्रश्न, Daily Current Affairs/ कर्रेंट अफेयर्स, Monthly PDFs / मासिक PDF , News / Blog"/>
       </Helmet>
       <GlobalProvider>

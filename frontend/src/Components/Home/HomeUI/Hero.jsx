@@ -5,13 +5,13 @@ function Hero() {
     <div className="bg-pure-greys-5 md:mx-8 mx-6">
       <div className=" overflow-hidden relative lg:flex lg:items-center">
         <div className="w-full py-12 ">
-          <h1 className="mt-14 text-[1.6rem] text-center md:text-[2.5rem] font-extrabold text-black">
+          <h2 className="mt-14 text-[1.6rem] text-center md:text-[2.5rem] font-extrabold text-black">
             <span className="text-[4rem] ">
               <span className="text-[#0089AB] ">ऊँची</span>{" "}
               <span className="text-[#FF1E33] "> उड़ान</span>{" "}
             </span>
             <br /> में आपका स्वागत है!
-          </h1>
+          </h2>
           <p className="text-md mt-4 text-gray-600 text-justify">
             Current Affairs for UPSC, BPSC, All State PCS, बिहार दारोगा,SI,
             BSSC, Railway, JSSC, SSC(CGL, CPO, GD) BANKING, Defence,
@@ -39,15 +39,15 @@ function Hero() {
           <img
             src="/Images/bpsc.jpeg"
             className="w-1/2 rounded-lg"
-            alt="BPSC image"
+            alt="Meow"
           />
           <div>
             <img
               src="/Images/upsc.jpeg"
               className="mb-8 rounded-lg"
-              alt="Upsc image"
+              alt="Meow"
             />
-            <img src="/Images/ssc.jpeg" className="rounded-lg" alt="SSC image" />
+            <img src="/Images/ssc.jpeg" className="rounded-lg" alt="Meow" />
           </div>
         </div>
       </div>
