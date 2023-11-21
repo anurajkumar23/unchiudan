@@ -12,6 +12,7 @@ export function BlogComps({
   category,
   title,
   userData,
+  onDeleteSuccess,
 }) {
   
   let role;
@@ -30,9 +31,9 @@ export function BlogComps({
     event.stopPropagation(); // Prevent the click event from propagating to the parent link element
     if (window.confirm("Are you sure you want to delete this item?")) {
       const token = localStorage.getItem("jwt_token");
-
+      let loadingToast
       try {
-        const loadingToast = toast.loading("Deleting CurrentAffairs...");
+        loadingToast = toast.loading("Deleting CurrentAffairs...");
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/currentaffairs/${id}`,
           {
@@ -46,6 +47,7 @@ export function BlogComps({
           toast.dismiss(loadingToast);
           toast.success("Item deleted successfully");
           // Reload the page after successful deletion
+          onDeleteSuccess();
         } else {
           toast.dismiss(loadingToast);
           console.error("Error deleting item:", response);

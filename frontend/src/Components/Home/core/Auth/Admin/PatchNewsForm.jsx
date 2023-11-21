@@ -7,8 +7,8 @@ import he from 'he';
 
 const postnews = async (newsData, id) => {
   const token = localStorage.getItem("jwt_token");
-  let loadingToast;
-
+ 
+  let loadingToast
   try {
     loadingToast = toast.loading("Updating News...");
     await axios.patch(

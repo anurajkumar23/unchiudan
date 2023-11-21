@@ -5,10 +5,10 @@ import JoditEditor from 'jodit-react';
 
 const postnews = async (newsData) => {
   const token = localStorage.getItem("jwt_token");
-  let loadingToast;
-
+  let loadingToast
+  
   try {
-    loadingToast = toast.loading("Posting News...");
+    const loadingToast = toast.loading("Posting News...");
     await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/news`,
       newsData,
@@ -30,8 +30,9 @@ const postnews = async (newsData) => {
 };
 
 const FormNews = () => {
-  const editor = useRef(null);
-  
+  const editorHeading = useRef(null);
+  const editorArticle = useRef(null);
+
   const [formData, setFormData] = useState({
     heading: "",
     article: "",
@@ -45,14 +46,6 @@ const FormNews = () => {
       [field]: newContent,
     }));
   };
-
-  // const handleChange = (e) => {
-  //   const { name, value, type, checked } = e.target;
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [name]: type === "checkbox" ? checked : value,
-  //   }));
-  // };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -72,6 +65,23 @@ const FormNews = () => {
         highlight: formData.highlight,
         photo: formData.photo,
       });
+
+      // Reset form fields to their initial values after submitting
+      setFormData({
+        heading: "",
+        article: "",
+        highlight: false,
+        photo: "uchiudan.png",
+      });
+
+      // Optionally, you can clear the JoditEditor content
+      if (editorHeading.current) {
+        editorHeading.current.value = "";
+      }
+      if (editorArticle.current) {
+        editorArticle.current.value = "";
+      }
+
     } catch (error) {
       console.error(error);
       toast.error("Error posting news. Please try again.");
@@ -89,8 +99,7 @@ const FormNews = () => {
             Heading:
           </label>
           <JoditEditor
-            ref={editor}
-       
+            ref={editorHeading}
             id="heading"
             name="heading"
             value={formData.heading}
@@ -107,7 +116,7 @@ const FormNews = () => {
             Article:
           </label>
           <JoditEditor
-            ref={editor}
+            ref={editorArticle}
             id="article"
             name="article"
             value={formData.article}

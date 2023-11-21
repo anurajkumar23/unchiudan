@@ -112,7 +112,12 @@ function StudyMaterials({ userData }) {
         <div
           className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full mx-10 md:mx-0  `}
         >
-          {pdfs.map((pdf) => {
+        {pdfs.length === 0 ? (
+    <div className="flex items-center justify-center text-center">
+      <p className="text-center text-gray-500">No news items available.</p>
+    </div>
+  ) : (
+          pdfs.map((pdf) => {
             const createdAt = new Date(pdf.createdAt);
             const updatedAt = new Date(pdf.updatedAt);
             const formattedDate = createdAt.toLocaleString("default", {
@@ -135,8 +140,9 @@ function StudyMaterials({ userData }) {
                 category={pdf.category}
                 price={pdf.price}
               />
-            );
-          })}
+                );
+  }) 
+)}
         </div>
       </div>
     </div>

@@ -9,9 +9,10 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 
 const signup = async (userData) => {
+  let loadingToast
   try {
     // Show a loading toast while signing up
-    const loadingToast = toast.loading("Creating account...");
+    loadingToast = toast.loading("Creating account...");
 
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/user/signup`,

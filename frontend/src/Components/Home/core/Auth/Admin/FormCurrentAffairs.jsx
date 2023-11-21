@@ -1,10 +1,9 @@
-import { useState,useRef } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import JoditEditor from 'jodit-react';
 
 const postaffairs = async (affairsData) => {
-
   const token = localStorage.getItem("jwt_token");
 
   const formData = new FormData();
@@ -14,10 +13,10 @@ const postaffairs = async (affairsData) => {
   formData.append("description", affairsData.description);
   formData.append("data", JSON.stringify(affairsData.data));
   formData.append("photo", affairsData.photo);
-
+  let loadingToast
   try {
-    const loadingToast = toast.loading("Posting CurrentAffairs...");
-     await axios.post(
+    loadingToast = toast.loading("Posting CurrentAffairs...");
+    await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/currentaffairs`,
       formData,
       {
@@ -26,12 +25,11 @@ const postaffairs = async (affairsData) => {
         },
       }
     );
-    toast.dismiss(loadingToast); // Dismiss the loading toast when the request is successful
+    toast.dismiss(loadingToast);
     toast.success("CurrentAffairs posted successfully!");
-
   } catch (error) {
     console.error(error);
-    toast.dismiss(loadingToast); // Dismiss the loading toast on error
+    toast.dismiss(loadingToast);
     toast.error("Error posting CurrentAffairs. Please try again.");
   }
 };
@@ -40,13 +38,16 @@ const FormCurrentAffairs = () => {
   const topicEditor = useRef(null);
   const descriptionEditor = useRef(null);
 
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     topic: "",
     category: "",
     description: "",
     photo: null,
     data: [{ ques: "", options: ["", "", "", ""], ans: "" }],
-  });
+  };
+
+  const [formData, setFormData] = useState({ ...initialFormData });
+
   const handleEditorChange = (field, newContent) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -58,13 +59,11 @@ const FormCurrentAffairs = () => {
     const { name, value } = e.target;
 
     if (name === "description") {
-      // Handle the description field separately
       setFormData({
         ...formData,
         description: value,
       });
     } else {
-      // Handle other text input changes
       const newFormData = [...formData.data];
       newFormData[index][name] = value;
 
@@ -97,7 +96,17 @@ const FormCurrentAffairs = () => {
         photo: formData.photo,
         description: formData.description,
       });
-      
+
+      // Reset the form data to its initial values after successful submission
+      setFormData({ ...initialFormData });
+
+      // Optionally, you can clear the JoditEditor content
+      if (topicEditor.current) {
+        topicEditor.current.value = "";
+      }
+      if (descriptionEditor.current) {
+        descriptionEditor.current.value = "";
+      }
     } catch (error) {
       console.error(error);
       toast.error("Error posting CurrentAffairs. Please try again.");
@@ -111,7 +120,6 @@ const FormCurrentAffairs = () => {
       photo: file,
     });
   };
-
   return (
     <div>
       <form className="mx-auto mt-8" onSubmit={handleSubmit}>

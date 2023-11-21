@@ -19,9 +19,9 @@ const patchpdf = async (pdfData, id) => {
   formData.append("pdf", pdfData.pdf);
   formData.append("status", pdfData.status);
   formData.append("price", pdfData.price);
-  let loadingToast;
+  let loadingToast
   try {
-    const loadingToast = toast.loading("Updating PDF...");
+    loadingToast = toast.loading("Updating PDF...");
  await axios.patch(
         `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`,
 

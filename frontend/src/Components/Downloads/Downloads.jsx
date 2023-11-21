@@ -17,6 +17,7 @@ function BlogComps({
   category,
   userData,
   price,
+  onDeleteSuccess,
 }) {
   let role;
 
@@ -36,8 +37,9 @@ function BlogComps({
 
     if (window.confirm("Are you sure you want to delete this item?")) {
       const token = localStorage.getItem("jwt_token");
+      let loadingToast;
       try {
-        const loadingToast = toast.loading("Deleting PDF...");
+        loadingToast = toast.loading("Deleting PDF...");
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/pdfs/${id}`,
           {
@@ -50,6 +52,7 @@ function BlogComps({
         if (response.status === 200) {
           toast.dismiss(loadingToast);
           toast.success("Item deleted successfully");
+          onDeleteSuccess();
         } else {
           toast.dismiss(loadingToast);
           console.error("Error deleting item:", response);
@@ -64,7 +67,7 @@ function BlogComps({
   };
 
   const decodeHtmlEntities = (html) => {
-    const textarea = document.createElement('textarea');
+    const textarea = document.createElement("textarea");
     textarea.innerHTML = html;
     return textarea.value;
   };
@@ -89,7 +92,9 @@ function BlogComps({
             <div className="relative">
               <img
                 className="w-full rounded-xl"
-                src={`${import.meta.env.VITE_BACKEND_URL_IMAGE}/img/affairs/uchiudan.png`}
+                src={`${
+                  import.meta.env.VITE_BACKEND_URL_IMAGE
+                }/img/affairs/uchiudan.png`}
                 alt="Blog Cover"
               />
               <p className="absolute top-0 bg-[#ffef39] text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
@@ -102,7 +107,9 @@ function BlogComps({
           </h3>
         </div>
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem] truncate">
-         <span dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(title) }} />
+          <span
+            dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(title) }}
+          />
         </h1>
         <div className="flex justify-between mb-[15px] ">
           <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">
@@ -224,6 +231,9 @@ function Downloads({ userData }) {
     setPostsPerPage(newLimit);
     setCurrentPage(1);
   };
+  const handleDeleteSuccess = () => {
+    fetchData(currentPage, selectedCategory, selectedStatus); // Fetch data again after successful deletion
+  };
 
   return (
     <div className="mx-auto py-[7rem]">
@@ -255,31 +265,38 @@ function Downloads({ userData }) {
             filter ? "hidden" : "block"
           }`}
         >
-          {pdfs.map((pdf) => {
-            const createdAt = new Date(pdf.createdAt);
-            const updatedAt = new Date(pdf.updatedAt);
-            const formattedDate = createdAt.toLocaleString("default", {
-              day: "numeric",
-              month: "long",
-            });
-            const updatedDate = updatedAt.toLocaleString("default", {
-              day: "numeric",
-              month: "long",
-            });
-            return (
-              <BlogComps
-                key={pdf._id}
-                date={formattedDate}
-                title={pdf.name}
-                updatedDate={updatedDate}
-                id={pdf._id}
-                status={pdf.status}
-                category={pdf.category}
-                price={pdf.price}
-                userData={userData}
-              />
-            );
-          })}
+          {pdfs.length === 0 ? (
+            <div className="items-center justify-center ">
+              <p className="text-center  text-gray-500">No PDFs available.</p>
+            </div>
+          ) : (
+            pdfs.map((pdf) => {
+              const createdAt = new Date(pdf.createdAt);
+              const updatedAt = new Date(pdf.updatedAt);
+              const formattedDate = createdAt.toLocaleString("default", {
+                day: "numeric",
+                month: "long",
+              });
+              const updatedDate = updatedAt.toLocaleString("default", {
+                day: "numeric",
+                month: "long",
+              });
+              return (
+                <BlogComps
+                  key={pdf._id}
+                  date={formattedDate}
+                  title={pdf.name}
+                  updatedDate={updatedDate}
+                  id={pdf._id}
+                  status={pdf.status}
+                  category={pdf.category}
+                  price={pdf.price}
+                  userData={userData}
+                  onDeleteSuccess={handleDeleteSuccess}
+                />
+              );
+            })
+          )}
         </div>
         <div
           className={`z-1 flex-1 ${

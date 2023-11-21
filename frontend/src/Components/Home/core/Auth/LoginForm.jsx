@@ -9,11 +9,11 @@ import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 
 const initialValues = { email: "", password: "" };
-
+let loadingToast
 const login = async (userData) => {
   try {
     // Show a loading toast while logging in
-    const loadingToast = toast.loading("Logging in...");
+     loadingToast = toast.loading("Logging in...");
 
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/user/login`,
@@ -23,7 +23,7 @@ const login = async (userData) => {
 
     const token = response.data.token;
     document.cookie = `jwt=${token}; max-age=${60 * 60 * 24 * 7}; path=/`;
-    
+
     localStorage.setItem("jwt_token", token);
     const redirectUrl = localStorage.getItem("redirectUrl");
 
@@ -31,15 +31,15 @@ const login = async (userData) => {
       // Dismiss the loading toast and show a success toast
       toast.dismiss(loadingToast);
       toast.success("Login successful!");
-    }
 
-    if (redirectUrl) {
-      window.location.href = redirectUrl;
-    } else {
-      window.location.href = "/user";
-    }
+      if (redirectUrl) {
+        window.location.href = redirectUrl;
+      } else {
+        window.location.href = "/user";
+      }
 
-    return response.data;
+      return response.data;
+    }
   } catch (error) {
     console.error("Error logging in:", error);
     toast.dismiss(loadingToast);
@@ -63,18 +63,23 @@ function LoginForm() {
     initialValues,
     validationSchema: LogInSchema,
     onSubmit: async (values) => {
-      await login({
-        email: values.email,
-        password: values.password,
-      }).then(() => {
+      try {
+        await login({
+          email: values.email,
+          password: values.password,
+        });
         navigate("/user"); // Redirect to /user on successful login
-      });
+      } catch (error) {
+        // Handle error if needed (navigation can stay here or be moved to the login function)
+        console.error("Login error:", error);
+      }
     },
   });
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
+
 
   return (
     <div>
