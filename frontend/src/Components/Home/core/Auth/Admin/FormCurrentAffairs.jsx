@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
+import JoditEditor from 'jodit-react';
 
 const postaffairs = async (affairsData) => {
 
@@ -36,6 +37,9 @@ const postaffairs = async (affairsData) => {
 };
 
 const FormCurrentAffairs = () => {
+  const topicEditor = useRef(null);
+  const descriptionEditor = useRef(null);
+
   const [formData, setFormData] = useState({
     topic: "",
     category: "",
@@ -43,6 +47,12 @@ const FormCurrentAffairs = () => {
     photo: null,
     data: [{ ques: "", options: ["", "", "", ""], ans: "" }],
   });
+  const handleEditorChange = (field, newContent) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [field]: newContent,
+    }));
+  };
 
   const handleChange = (e, index) => {
     const { name, value } = e.target;
@@ -112,14 +122,17 @@ const FormCurrentAffairs = () => {
           >
             Topic
           </label>
-          <input
+          <JoditEditor
+          ref={topicEditor}
             type="text"
             id="topic"
             name="topic"
+            onBlur={(content) => handleEditorChange('topic', content)}
+            onChange={(content) => {}}
             value={formData.topic}
-            onChange={(e) =>
-              setFormData({ ...formData, topic: e.target.value })
-            }
+            // onChange={(e) =>
+            //   setFormData({ ...formData, topic: e.target.value })
+            // }
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             required
           />
@@ -151,12 +164,13 @@ const FormCurrentAffairs = () => {
         </div>
         <div className="mb-4 text-black">
           <label className="block mb-2 text-gray-700">Description</label>
-          <textarea
+          <JoditEditor
             name="description"
             value={formData.description}
-            onChange={(e) => handleChange(e, 0)} 
+            onBlur={(content) => handleEditorChange('description', content)}
+            onChange={(content) => {}}
             className="border p-2 w-full h-32"
-          ></textarea>
+          ></JoditEditor>
         </div>
         <div className="mb-4">
           <label

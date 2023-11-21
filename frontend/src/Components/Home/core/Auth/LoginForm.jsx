@@ -11,10 +11,9 @@ import { Toaster, toast } from "react-hot-toast";
 const initialValues = { email: "", password: "" };
 
 const login = async (userData) => {
-  let loadingToast;
   try {
     // Show a loading toast while logging in
-    loadingToast = toast.loading("Logging in...");
+    const loadingToast = toast.loading("Logging in...");
 
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/user/login`,
@@ -43,9 +42,7 @@ const login = async (userData) => {
     return response.data;
   } catch (error) {
     console.error("Error logging in:", error);
-    if (loadingToast) {
-      toast.dismiss(loadingToast);
-    }
+    toast.dismiss(loadingToast);
     toast.error("Login failed. Please check your credentials.");
     throw error;
   }
@@ -81,14 +78,14 @@ function LoginForm() {
 
   return (
     <div>
-      <Helmet>
-        <title>Login Page</title>
-        <meta 
-          name="description"
-          content="Join us for Latest update Free/पैड PDFs of current Affairs"
-        />
-        <link rel="canonical" href="https://unchiudan.in/login"></link>
-      </Helmet>
+    <Helmet>
+    <title>Login Page</title>
+      <meta 
+       name="description"
+       content="Join us for Latest update Free/पैड PDFs of current Affairs"
+      />
+      <link rel="canonical" href="https://unchiudaanclasses.com/login"></link>
+    </Helmet>
       <div className="flex justify-end">
         <Link
           to="/signup"

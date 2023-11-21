@@ -58,6 +58,11 @@ export function BlogComps({
       }
     }
   };
+  const decodeHtmlEntities = (html) => {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = html;
+    return textarea.value;
+  };
 
   return (
     <div className="border border-2 bg-white p-4 rounded-xl shadow-lg transition duration-500 relative">
@@ -93,7 +98,7 @@ export function BlogComps({
           </h3>
         </div>
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem] truncate ">
-          {title}
+        <span dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(title) }} />
         </h1>
         <div className="card__data">
           <h1 className="text-gray-800 text-lg font-bold cursor-pointer overflow-hidden">

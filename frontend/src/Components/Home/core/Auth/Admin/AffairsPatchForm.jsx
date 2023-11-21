@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
+import he from "he";
+import JoditEditor from "jodit-react";
 
 const patchAffairs = async (affairsData, id) => {
   const token = localStorage.getItem("jwt_token");
@@ -40,14 +42,13 @@ const patchAffairs = async (affairsData, id) => {
 };
 
 const CurrentAffairsForm = ({ details }) => {
+  const editor = useRef(null);
   const [formData, setFormData] = useState({
-    topic: details.topic || "",
+    topic: details.topic ? he.decode(details.topic) : "",
     category: details.category || "",
-    description: details.description || "",
+    description: details.description ? he.decode(details.description) : "",
     photo: null,
-    data: details.data || [
-      { ques: "", options: ["", "", "", ""], ans: "" },
-    ],
+    data: details.data || [{ ques: "", options: ["", "", "", ""], ans: "" }],
   });
 
   const handleChange = (e, index) => {
@@ -99,26 +100,40 @@ const CurrentAffairsForm = ({ details }) => {
       photo: file,
     });
   };
+  const handleEditorChange = (field, newContent) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [field]: newContent,
+    }));
+  };
 
   return (
     <div>
       <form className="max-w-2xl mx-auto mt-8" onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="topic" className="block text-gray-700 text-sm font-bold mb-2">
+          <label
+            htmlFor="topic"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
             Topic
           </label>
-          <input
+          <JoditEditor
+            ref={editor}
             type="text"
             id="topic"
             name="topic"
             value={formData.topic}
-            onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
+            onChange={(newContent) => handleEditorChange("topic", newContent)}
+            // onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             required
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="category" className="block text-gray-700 text-sm font-bold mb-2">
+          <label
+            htmlFor="category"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
             Category
           </label>
           <select
@@ -141,17 +156,24 @@ const CurrentAffairsForm = ({ details }) => {
         </div>
         <div className="mb-4">
           <label className="block mb-2 text-gray-800">Description</label>
-          <textarea
+          <JoditEditor
+            ref={editor}
             name="description"
             value={formData.description}
-            onChange={(e) =>
-              setFormData({ ...formData, description: e.target.value })
+            // onChange={(e) =>
+            //   setFormData({ ...formData, description: e.target.value })
+            // }
+            onChange={(newContent) =>
+              handleEditorChange("description", newContent)
             }
             className="border p-2 w-full h-32"
-          ></textarea>
+          ></JoditEditor>
         </div>
         <div className="mb-4">
-          <label htmlFor="photo" className="block text-gray-700 text-sm font-bold mb-2">
+          <label
+            htmlFor="photo"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
             Photo
           </label>
           <input

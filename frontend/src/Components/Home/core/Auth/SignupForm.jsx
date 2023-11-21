@@ -9,10 +9,9 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 
 const signup = async (userData) => {
-  let loadingToast;
   try {
     // Show a loading toast while signing up
-    loadingToast = toast.loading("Creating account...");
+    const loadingToast = toast.loading("Creating account...");
 
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/user/signup`,
@@ -43,9 +42,7 @@ const signup = async (userData) => {
     console.error("Error signing up:", error);
 
     // Dismiss the loading toast and show an error toast
-    if (loadingToast) {
-      toast.dismiss(loadingToast);
-    }
+    toast.dismiss(loadingToast);
     toast.error("Sign up failed. Please try again.");
     throw error;
   }

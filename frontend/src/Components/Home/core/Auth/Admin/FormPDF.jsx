@@ -1,11 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import JoditEditor from 'jodit-react';
 
 const postpdf = async (pdfData) => {
-
   const token = localStorage.getItem("jwt_token");
-
 
   const formData = new FormData();
   formData.append("name", pdfData.name);
@@ -18,28 +17,29 @@ const postpdf = async (pdfData) => {
 
   try {
     const loadingToast = toast.loading("Posting PDF...");
- await axios.post(
+    await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/pdfs`,
-
       formData,
       {
         headers: {
-         
-          Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+          Authorization: token,
         },
       }
     );
-    toast.dismiss(loadingToast); // Dismiss the loading toast when the request is successful
+    toast.dismiss(loadingToast);
     toast.success("PDF posted successfully!");
 
   } catch (error) {
     console.error(error);
-    toast.dismiss(loadingToast); // Dismiss the loading toast on error
+    toast.dismiss(loadingToast);
     toast.error("Error posting PDF. Please try again.");
   }
 };
 
 const FormPDF = () => {
+  const nameEditor = useRef(null);
+  const descriptionEditor = useRef(null);
+
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -50,6 +50,13 @@ const FormPDF = () => {
     comments: [],
     status: "free",
   });
+
+  const handleEditorChange = (field, newContent) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [field]: newContent,
+    }));
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,7 +77,6 @@ const FormPDF = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     try {
       await postpdf({
         name: formData.name,
@@ -81,27 +87,24 @@ const FormPDF = () => {
         status: formData.status,
         price: formData.price,
       });
-     
+
     } catch (error) {
       console.error(error);
-
-      // Show an error toast when an error occurs
       toast.error("Error posting PDF. Please try again.");
     }
   };
 
   return (
-    <div className=" mx-auto mt-8">
-      <form onSubmit={handleSubmit} className=" mx-auto">
+    <div className="mx-auto mt-8">
+      <form onSubmit={handleSubmit} className="mx-auto">
         <div className="mb-4">
           <label className="block mb-2 text-gray-800">Name</label>
-          <input
-            type="text"
-            name="name"
+          <JoditEditor
+            ref={nameEditor}
             value={formData.name}
-            onChange={handleChange}
-            className="border p-2 w-full text-black"
-            required
+            tabIndex={1}
+            onBlur={(content) => handleEditorChange('name', content)}
+            onChange={(content) => {}}
           />
         </div>
         <div className="mb-4">
@@ -113,9 +116,7 @@ const FormPDF = () => {
             className="border p-2 w-full text-black"
             required
           >
-            <option value="" disabled>
-              Select Category
-            </option>
+            <option value="" disabled>Select Category</option>
             <option value="BiharDaroga">Bihar Daroga</option>
             <option value="BPSC">BPSC</option>
             <option value="Railway">Railway</option>
@@ -161,12 +162,13 @@ const FormPDF = () => {
         </div>
         <div className="mb-4 text-black">
           <label className="block mb-2 text-gray-800">Description</label>
-          <textarea
-            name="description"
+          <JoditEditor
+            ref={descriptionEditor}
             value={formData.description}
-            onChange={handleChange}
-            className="border p-2 w-full h-32"
-          ></textarea>
+            tabIndex={2}
+            onBlur={(content) => handleEditorChange('description', content)}
+            onChange={(content) => {}}
+          />
         </div>
         <div className="mb-4 text-black">
           <label className="block mb-2 text-gray-800">PDF</label>

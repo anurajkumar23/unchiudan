@@ -1,43 +1,37 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import JoditEditor from 'jodit-react';
 
 const postnews = async (newsData) => {
-
   const token = localStorage.getItem("jwt_token");
-
-
-  const formData = new FormData();
-  formData.append("heading", newsData.heading);
-  formData.append("article", newsData.article);
-  formData.append("highlight", newsData.highlight);
-  formData.append("photo", newsData.photo);
-  
+  let loadingToast;
 
   try {
-    const loadingToast = toast.loading("Posting News...");
- await axios.post(
+    loadingToast = toast.loading("Posting News...");
+    await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/news`,
-
-        formData,
+      newsData,
       {
         headers: {
-
-          Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+          Authorization: token,
         },
       }
     );
-    toast.dismiss(loadingToast); // Dismiss the loading toast when the request is successful
+    toast.dismiss(loadingToast);
     toast.success("News posted successfully!");
-
   } catch (error) {
     console.error(error);
-    toast.dismiss(loadingToast); // Dismiss the loading toast on error
+    if (loadingToast) {
+      toast.dismiss(loadingToast);
+    }
     toast.error("Error posting news. Please try again.");
   }
 };
 
 const FormNews = () => {
+  const editor = useRef(null);
+  
   const [formData, setFormData] = useState({
     heading: "",
     article: "",
@@ -45,13 +39,20 @@ const FormNews = () => {
     photo: "uchiudan.png",
   });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleEditorChange = (field, newContent) => {
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === "checkbox" ? checked : value,
+      [field]: newContent,
     }));
   };
+
+  // const handleChange = (e) => {
+  //   const { name, value, type, checked } = e.target;
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: type === "checkbox" ? checked : value,
+  //   }));
+  // };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -64,19 +65,17 @@ const FormNews = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-try{
-    await postnews({
-      heading: formData.heading,
-      article: formData.article,
-      highlight: formData.highlight,
-      photo: formData.photo,
-    });
-  } catch (error) {
-    console.error(error);
-
-    // Show an error toast when an error occurs
-    toast.error("Error posting news. Please try again.");
-  }
+    try {
+      await postnews({
+        heading: formData.heading,
+        article: formData.article,
+        highlight: formData.highlight,
+        photo: formData.photo,
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("Error posting news. Please try again.");
+    }
   };
 
   return (
@@ -89,12 +88,13 @@ try{
           >
             Heading:
           </label>
-          <input
-            type="text"
+          <JoditEditor
+            ref={editor}
+       
             id="heading"
             name="heading"
             value={formData.heading}
-            onChange={handleChange}
+            onChange={(newContent) => handleEditorChange("heading", newContent)}
             className="w-full px-3 py-2 border rounded"
             required
           />
@@ -106,11 +106,12 @@ try{
           >
             Article:
           </label>
-          <textarea
+          <JoditEditor
+            ref={editor}
             id="article"
             name="article"
             value={formData.article}
-            onChange={handleChange}
+            onChange={(newContent) => handleEditorChange("article", newContent)}
             className="w-full px-3 py-2 border rounded"
             required
           />
@@ -131,7 +132,7 @@ try{
             className="w-full px-3 py-2 border rounded"
           />
         </div>
-       
+
         <button
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

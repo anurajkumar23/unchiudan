@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { useState } from "react";
+import { useState ,useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import he from 'he';
+import JoditEditor from "jodit-react";
 
 const patchpdf = async (pdfData, id) => {
+  
 
   const token = localStorage.getItem("jwt_token");
 
@@ -16,7 +19,7 @@ const patchpdf = async (pdfData, id) => {
   formData.append("pdf", pdfData.pdf);
   formData.append("status", pdfData.status);
   formData.append("price", pdfData.price);
-
+  let loadingToast;
   try {
     const loadingToast = toast.loading("Updating PDF...");
  await axios.patch(
@@ -40,12 +43,13 @@ const patchpdf = async (pdfData, id) => {
 };
 
 const PdfForm = ({ details }) => {
+  const editor = useRef(null);
   const [formData, setFormData] = useState({
-    name: details.name || "",
+    name: details.name ? he.decode(details.name) : "",
     category: details.category || "",
     photo: null,
     price: details.price || "",
-    description: details.description || "",
+    description: details.description ? he.decode(details.description)  : "",
     pdf: null,
     comments: [],
     status: details.status || "free",
@@ -96,17 +100,25 @@ const PdfForm = ({ details }) => {
     }
     
   };
+  const handleEditorChange = (field, newContent) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [field]: newContent,
+    }));
+  };
 
   return (
     <div className="container mx-auto mt-8">
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
         <div className="mb-4">
           <label className="block mb-2 text-gray-800">Name</label>
-          <input
+          <JoditEditor
+          ref={editor}
             type="text"
             name="name"
             value={formData.name}
-            onChange={handleChange}
+            onChange={(newContent) => handleEditorChange("name", newContent)}
+            // onChange={handleChange}
             className="border p-2 w-full"
             required
           />
@@ -168,12 +180,14 @@ const PdfForm = ({ details }) => {
         </div>
         <div className="mb-4">
           <label className="block mb-2 text-gray-800">Description</label>
-          <textarea
+          <JoditEditor
+           ref={editor}
             name="description"
             value={formData.description}
-            onChange={handleChange}
+            // onChange={handleChange}
+            onChange={(newContent) => handleEditorChange("description", newContent)}
             className="border p-2 w-full h-32"
-          ></textarea>
+          ></JoditEditor>
         </div>
         <div className="mb-4">
           <label className="block mb-2 text-gray-800">PDF</label>

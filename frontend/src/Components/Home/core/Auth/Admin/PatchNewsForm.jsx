@@ -1,50 +1,41 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import JoditEditor from 'jodit-react';
+import he from 'he';
 
-const postnews = async (newsData,id) => {
-
+const postnews = async (newsData, id) => {
   const token = localStorage.getItem("jwt_token");
-
-
-  const formData = new FormData();
-  formData.append("heading", newsData.heading);
-  formData.append("article", newsData.article);
-  formData.append("highlight", newsData.highlight);
-  formData.append("photo", newsData.photo);
-  
+  let loadingToast;
 
   try {
-    const loadingToast = toast.loading("Updating News...");
- await axios.patch(
+    loadingToast = toast.loading("Updating News...");
+    await axios.patch(
       `${import.meta.env.VITE_BACKEND_URL}/news/${id}`,
-
-        formData,
+      newsData,
       {
         headers: {
- 
-          Authorization: token, // Replace YOUR_AUTH_TOKEN_HERE with the actual token
+          Authorization: token,
         },
       }
     );
     toast.dismiss(loadingToast);
-
   } catch (error) {
     console.log(error);
-    // Dismiss the loading toast if an error occurs
     toast.dismiss(loadingToast);
+    toast.error("Error updating news. Please try again.");
   }
 };
 
-const FormNews = ({details}) => {
+const FormNews = ({ details }) => {
+  const editor = useRef(null);
   const [formData, setFormData] = useState({
-    heading: details.heading || "",
-    article: details.article || "",
-    highlight: false,
+    heading: details.heading ? he.decode(details.heading) : "",
+    article: details.article ? he.decode(details.article) : "",
+    highlight: details.highlight || false,
     photo: "uchiudan.png",
   });
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -61,29 +52,35 @@ const FormNews = ({details}) => {
     }));
   };
 
+  const handleEditorChange = (field, newContent) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [field]: newContent,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here, you can send the formData to your server for processing
 
-try{
-    await postnews({
-      heading: formData.heading,
-      article: formData.article,
-      highlight: formData.highlight,
-      photo: formData.photo,
-    },details._id);
-    if (!details._id) {
-      toast.success("News posted successfully!");
-    } else {
-      // It's a re-edit
-      toast.success("News updated successfully!");
+    try {
+      await postnews(
+        {
+          heading: formData.heading,
+          article: formData.article,
+          highlight: formData.highlight,
+          photo: formData.photo,
+        },
+        details._id
+      );
+      if (!details._id) {
+        toast.success("News posted successfully!");
+      } else {
+        toast.success("News updated successfully!");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error posting/updating news. Please try again.");
     }
-  } catch (error) {
-    console.error(error);
-
-    // Show an error toast when an error occurs
-    toast.error("Error posting news. Please try again.");
-  }
   };
 
   return (
@@ -96,12 +93,13 @@ try{
           >
             Heading:
           </label>
-          <input
-            type="text"
+          <JoditEditor
+            ref={editor}
             id="heading"
             name="heading"
             value={formData.heading}
-            onChange={handleChange}
+            
+            onChange={(newContent) => handleEditorChange("heading", newContent)}
             className="w-full px-3 py-2 border rounded"
             required
           />
@@ -113,11 +111,13 @@ try{
           >
             Article:
           </label>
-          <textarea
+          
+          <JoditEditor
+            ref={editor}
             id="article"
             name="article"
             value={formData.article}
-            onChange={handleChange}
+            onChange={(newContent) => handleEditorChange("article", newContent)}
             className="w-full px-3 py-2 border rounded"
             required
           />

@@ -58,7 +58,7 @@ function News({ userData }) {
        name="description"
        content="Get Latest update News / Blog of current Affairs.."
       />
-      <link rel="canonical" href="https://unchiudan.in/News"></link>
+      <link rel="canonical" href="https://unchiudaanclasses.com/News"></link>
     </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mx-[5%]">
   
