@@ -11,7 +11,9 @@ function News({ userData }) {
   const [postsPerPage, setPostsPerPage] = useState(10);
 
   
-
+  const handleNewsDelete = () => {
+    fetchData(currentPage); // Trigger a re-fetch of data after deletion
+  };
   const fetchData = (page) => {
     let apiUrl = `${
       import.meta.env.VITE_BACKEND_URL
@@ -62,7 +64,7 @@ function News({ userData }) {
     </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mx-[5%]">
   
-        <NewsComp newsItems={news} userData={userData} />
+        <NewsComp newsItems={news} userData={userData} onNewsDelete={handleNewsDelete}/>
    
       </div>
       <div className="flex justify-center my-4">

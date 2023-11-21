@@ -68,6 +68,9 @@ function Currentaffairs({ userData }) {
     setPostsPerPage(value);
     setCurrentPage(1); // Reset page number to 1 when limit changes
   };
+  const handleDeleteSuccess = () => {
+    fetchData(currentPage, selectedCategory); // Fetch data again after successful deletion
+  };
 
   return (
     <div className="mx-auto py-[7rem]">
@@ -100,7 +103,12 @@ function Currentaffairs({ userData }) {
             filter ? "hidden" : "block"
           }`}
         >
-          {affairs.map((blog) => {
+        {affairs.length === 0 ? (
+          <div className="items-center justify-center ">
+            <p className="text-center  text-gray-500">No CurrentAffairs available.</p>
+            </div>
+          ) : (
+          affairs.map((blog) => {
             const createdAt = new Date(blog.createdAt);
             const updatedAt = new Date(blog.updatedAt);
             const formattedDate = createdAt.toLocaleString("default", {
@@ -121,9 +129,11 @@ function Currentaffairs({ userData }) {
                 category={blog.category}
                 id={blog._id}
                 userData={userData}
+                onDeleteSuccess={handleDeleteSuccess}
               />
             );
-          })}
+  }) 
+)}
         </div>
 
         <div

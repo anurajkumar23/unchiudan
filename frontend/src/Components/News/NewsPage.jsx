@@ -85,6 +85,7 @@ function NewsPage({ userData }) {
   return (
     <>
       <Link to="">
+      
         <NewsContent
           heading={decodeHtml(news.heading)}
           article={decodeHtml(news.article)}

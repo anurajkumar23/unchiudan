@@ -14,9 +14,9 @@ const postpdf = async (pdfData) => {
   formData.append("pdf", pdfData.pdf);
   formData.append("status", pdfData.status);
   formData.append("price", pdfData.price);
-
+ let loadingToast;
   try {
-    const loadingToast = toast.loading("Posting PDF...");
+     loadingToast = toast.loading("Posting PDF...");
     await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/pdfs`,
       formData,
@@ -87,6 +87,26 @@ const FormPDF = () => {
         status: formData.status,
         price: formData.price,
       });
+
+      // Reset form fields to their initial values after submitting
+      setFormData({
+        name: "",
+        category: "",
+        photo: null,
+        price: "",
+        description: "",
+        pdf: null,
+        comments: [],
+        status: "free",
+      });
+
+      // Optionally, you can clear the JoditEditor content
+      if (nameEditor.current) {
+        nameEditor.current.value = "";
+      }
+      if (descriptionEditor.current) {
+        descriptionEditor.current.value = "";
+      }
 
     } catch (error) {
       console.error(error);
