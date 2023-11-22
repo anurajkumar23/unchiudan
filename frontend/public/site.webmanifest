@@ -1,25 +1,22 @@
 {
-  "name": "UnchiUdaan classes",
-  "short_name": "UnchiUdaan classes",
-  "description": "Unchi-Udaan classes : UPSC, BPSC, SSC, Railways ",
+  "name": "UnchiUdaan Classes",
+  "short_name": "UnchiUdaan",
+  "description": "Prepare for UPSC, BPSC, SSC, Railways exams with Unchi-Udaan Classes",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "monochrome"
+      "type": "image/png"
     },
     {
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
       "src": "/apple-touch-icon.png",
       "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
       "src": "/maskable_icon.png",
@@ -33,5 +30,17 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "prefer_related_applications": false,
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.example.app",
+      "id": "com.example.app"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://itunes.apple.com/app/example-app/id123456789"
+    }
+  ]
 }
