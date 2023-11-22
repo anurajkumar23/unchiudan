@@ -81,7 +81,7 @@ function App() {
   return (
     <BrowserRouter>
     <Helmet>
-        <title>ऊँची उड़ान Classes| Unchi Udaan Classes</title>
+        <title>ऊँची उड़ान Classes| UnchiUdaan Classes</title>
         <meta
           name="description"
           content="Current Affairs for UPSC, BPSC,बिहार दारोगा,SI,BSSC,Railway,JSSC, SSC, BANKING, Defence,और अन्य Government Job Examinations के लिए ऊँची उड़ान वेबसाइट को join करें।"
