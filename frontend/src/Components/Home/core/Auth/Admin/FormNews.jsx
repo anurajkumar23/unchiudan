@@ -5,19 +5,28 @@ import JoditEditor from 'jodit-react';
 
 const postnews = async (newsData) => {
   const token = localStorage.getItem("jwt_token");
-  let loadingToast
-  
+  let loadingToast;
+
   try {
-    const loadingToast = toast.loading("Posting News...");
+    loadingToast = toast.loading("Posting News...");
+
+    const formData = new FormData();
+    formData.append("heading", newsData.heading);
+    formData.append("article", newsData.article);
+    formData.append("highlight", newsData.highlight);
+    formData.append("photo", newsData.photo);
+
     await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/news`,
-      newsData,
+      formData,
       {
         headers: {
           Authorization: token,
+          "Content-Type": "multipart/form-data", // Important for file uploads
         },
       }
     );
+
     toast.dismiss(loadingToast);
     toast.success("News posted successfully!");
   } catch (error) {
@@ -37,7 +46,7 @@ const FormNews = () => {
     heading: "",
     article: "",
     highlight: false,
-    photo: "uchiudan.png",
+    photo: null, // Initialize as null
   });
 
   const handleEditorChange = (field, newContent) => {
@@ -71,7 +80,7 @@ const FormNews = () => {
         heading: "",
         article: "",
         highlight: false,
-        photo: "uchiudan.png",
+        photo: null,
       });
 
       // Optionally, you can clear the JoditEditor content
@@ -81,7 +90,6 @@ const FormNews = () => {
       if (editorArticle.current) {
         editorArticle.current.value = "";
       }
-
     } catch (error) {
       console.error(error);
       toast.error("Error posting news. Please try again.");

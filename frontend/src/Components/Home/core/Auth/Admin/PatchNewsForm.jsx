@@ -7,28 +7,48 @@ import he from 'he';
 
 const postnews = async (newsData, id) => {
   const token = localStorage.getItem("jwt_token");
- 
-  let loadingToast
+
+  let loadingToast;
   try {
-    loadingToast = toast.loading("Updating News...");
-    await axios.patch(
-      `${import.meta.env.VITE_BACKEND_URL}/news/${id}`,
-      newsData,
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
+    loadingToast = toast.loading(id ? "Updating News..." : "Posting News...");
+    
+    const formData = new FormData();
+    formData.append("heading", he.encode(newsData.heading));
+    formData.append("article", he.encode(newsData.article));
+    formData.append("highlight", newsData.highlight);
+    formData.append("photo", newsData.photo);
+
+    const config = {
+      headers: {
+        Authorization: token,
+        "Content-Type": "multipart/form-data",
+      },
+    };
+
+    if (id) {
+      await axios.patch(
+        `${import.meta.env.VITE_BACKEND_URL}/news/${id}`,
+        formData,
+        config
+      );
+    } else {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/news`, formData, config);
+    }
+
     toast.dismiss(loadingToast);
+    if (id) {
+      toast.success("News updated successfully!");
+    } else {
+      toast.success("News posted successfully!");
+    }
   } catch (error) {
     console.log(error);
     toast.dismiss(loadingToast);
-    toast.error("Error updating news. Please try again.");
+    toast.error("Error posting/updating news. Please try again.");
   }
 };
 
-const FormNews = ({ details }) => {
+const FormNews = ({ details, }) => {
   const editor = useRef(null);
   const [formData, setFormData] = useState({
     heading: details.heading ? he.decode(details.heading) : "",
@@ -36,6 +56,7 @@ const FormNews = ({ details }) => {
     highlight: details.highlight || false,
     photo: "uchiudan.png",
   });
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -72,11 +93,6 @@ const FormNews = ({ details }) => {
         },
         details._id
       );
-      if (!details._id) {
-        toast.success("News posted successfully!");
-      } else {
-        toast.success("News updated successfully!");
-      }
     } catch (error) {
       console.error(error);
       toast.error("Error posting/updating news. Please try again.");
@@ -98,7 +114,6 @@ const FormNews = ({ details }) => {
             id="heading"
             name="heading"
             value={formData.heading}
-            
             onChange={(newContent) => handleEditorChange("heading", newContent)}
             className="w-full px-3 py-2 border rounded"
             required
@@ -111,7 +126,6 @@ const FormNews = ({ details }) => {
           >
             Article:
           </label>
-          
           <JoditEditor
             ref={editor}
             id="article"
