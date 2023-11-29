@@ -195,6 +195,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
+  console.log(req.body.email)
   
   if (!user) {
     return next(
@@ -203,9 +204,11 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   }
 
   const resetToken = user.createPasswordResetToken();
+ 
   await user.save({ validateBeforeSave: false });
 
   const resetURL = `${process.env.FRONTEND_URL}/resetPassword/${resetToken}`;
+  console.log(resetURL)
 
 
 

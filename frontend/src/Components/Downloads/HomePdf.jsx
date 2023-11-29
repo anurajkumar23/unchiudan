@@ -17,6 +17,7 @@ export default function HomePdf() {
   }, []);
 
 
+
   return (
     <div className="mx-10">
       <h1 className="text-center text-[1.5rem] md:text-[2rem] mb-4 ">
