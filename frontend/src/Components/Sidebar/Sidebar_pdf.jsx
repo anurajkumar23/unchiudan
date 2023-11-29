@@ -46,7 +46,11 @@ const Sidebar_pdf = ({
         console.error("Error fetching data:", error);
       });
   }, []);
-
+  const decodeHtmlEntities = (html) => {
+    const textarea = document.createElement("textarea");
+    textarea.innerHTML = html;
+    return textarea.value;
+  };
   return (
     <div className="p-4 space-y-10 xl:w-[100%]">
       <div className="flex items-center mx-2">
@@ -172,7 +176,11 @@ const Sidebar_pdf = ({
                   </div>
                   <div className="flex-col overflow-hidden">
                     <p className=" text-fit text-md  truncate overflow-hidden w-[7rem]">
-                      {affair.topic}
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: decodeHtmlEntities(affair.topic),
+                        }}
+                      />
                     </p>
                     <p>{formattedDate}</p>
                   </div>

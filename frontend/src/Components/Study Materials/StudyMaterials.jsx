@@ -5,6 +5,12 @@ import { Link } from "react-router-dom";
 
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 
+function decodeHtmlEntities (html) {
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = html;
+  return textarea.value;
+}
+
 function StudyMaterial({
   date,
   title,
@@ -37,7 +43,12 @@ function StudyMaterial({
         </div>
 
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer overflow-hidden mb-[1rem]">
-          {title}
+        <span
+                        dangerouslySetInnerHTML={{
+                          __html: decodeHtmlEntities(title),
+                        }}
+                      />
+          
         </h1>
 
         <h1 className="mt-4 text-gray-800 text-lg font-bold cursor-pointer">

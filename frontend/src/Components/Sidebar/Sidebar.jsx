@@ -42,7 +42,11 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus, togglefilter }) => {
         console.error("Error fetching data:", error);
       });
   }, []);
-
+  const decodeHtmlEntities = (html) => {
+    const textarea = document.createElement("textarea");
+    textarea.innerHTML = html;
+    return textarea.value;
+  };
   return (
     <div className="p-4 space-y-10 xl:w-[100%]">
       <div className="flex items-center mx-2">
@@ -118,7 +122,13 @@ const Sidebar = ({ setSelectedCategory, setSelectedStatus, togglefilter }) => {
                     <FaFileAlt className="w-12 h-12" />
                   </div>
                   <div className="flex-col w-2/3 p-4 overflow-hidden">
-                    <h1 className="text-center text-md truncate overflow-hidden w-[7rem]">{pdf.name}</h1>
+                    <h1 className="text-center text-md truncate overflow-hidden w-[7rem]">
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: decodeHtmlEntities(pdf.name),
+                        }}
+                      />
+                    </h1>
                     <p>{formattedDate}</p>
                   </div>
                 </div>
