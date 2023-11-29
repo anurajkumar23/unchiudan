@@ -186,7 +186,6 @@ export default function Navbar({ userData }) {
             </div>
           )}
         </div>
-        
       )}
     </nav>
   );
