@@ -1,3 +1,3 @@
 User-agent: *
 Disallow: /private/
-Disallow: /restricted/
+Sitemap: https://unchiudaanclasses.com/sitemap.xml

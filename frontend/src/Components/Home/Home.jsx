@@ -3,6 +3,7 @@ import ServicesOverview from "./HomeUI/ServicesOverview";
 import HomeBlogs from "../Blogs/HomeBlogs";
 import HomePdf from "../Downloads/HomePdf";
 import CTAButton from "../Home/core/Homepage/Button";
+import Contact from "../contact/contact"
 
 import HighlightText from "../Home/core/Homepage/HighlightText";
 import TimelineSection from "../Home/core/Homepage/TimelineSection";
@@ -43,6 +44,7 @@ function Home() {
       </div>
       <HomeBlogs />
       <HomePdf />
+      <Contact/>
 
     
     </div>
