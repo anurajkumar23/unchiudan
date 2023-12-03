@@ -31,7 +31,7 @@ function NewsContent({ heading, article, photo }) {
           />
         </div>
         <SocialMedia />
-        <p className="mt-4 text-justify text-lg" dangerouslySetInnerHTML={{ __html: article }} />
+        <p className="mt-4 text-justify text-lg " dangerouslySetInnerHTML={{ __html: article }} />
       </div>
     </div>
   );
