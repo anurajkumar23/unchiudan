@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import SidebarAdmin from "./SidebarAdmin";
 
 import axios from "axios";
@@ -45,7 +47,7 @@ const AdminPage = ({ userData }) => {
       try {
         const response = await axios.delete(
           `${import.meta.env.VITE_BACKEND_URL}/news/autodelete`,
-          
+
           {
             headers: {
               Authorization: token,
@@ -74,9 +76,9 @@ const AdminPage = ({ userData }) => {
   const [activeTab, setActiveTab] = useState("tab1");
 
   return (
-    <div className=" pt-[8rem] ">
-      <div className=" flex justify-center mb-10">
-        <span className="mx-[5%] text-center">
+    <div className="pt-[8rem]">
+      <div className="flex flex-col md:flex-row items-center mb-20 md:w-1/3 md:mx-auto">
+        <span className="text-center mb-8 md:mb-0 md:mr-4">
           ❗❗ Delete News that are older than 90 Days ❗❗
           <br />
           <button
@@ -86,12 +88,15 @@ const AdminPage = ({ userData }) => {
             Delete News
           </button>
         </span>
-        <span className="text-center">
+        <span className="text-center mb-8 md:mb-0 md:order-2 md:mr-8">
           <strong>Total Users 🧑</strong>
           <br />
-          <p className="bg-[#06ca06] text-white rounded px-2 py-2 item-center">{totalUsers}</p>
+          <p className="bg-[#06ca06] text-white rounded px-2 py-2 inline-block">
+            {totalUsers}
+          </p>
         </span>
       </div>
+
       <SidebarAdmin />
     </div>
   );

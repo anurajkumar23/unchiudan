@@ -108,7 +108,7 @@ const PdfForm = ({ details }) => {
   };
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="p-4  ">
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
         <div className="mb-4">
           <label className="block mb-2 text-gray-800">Name</label>

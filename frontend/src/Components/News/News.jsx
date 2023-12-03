@@ -10,7 +10,6 @@ function News({ userData }) {
   const [totalPages, setTotalPages] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
 
-  
   const handleNewsDelete = () => {
     fetchData(currentPage); // Trigger a re-fetch of data after deletion
   };
@@ -18,12 +17,12 @@ function News({ userData }) {
     let apiUrl = `${
       import.meta.env.VITE_BACKEND_URL
     }/news?&page=${page}&limit=${postsPerPage}`;
-   
+
     axios
       .get(apiUrl)
       .then((response) => {
         const { totallength } = response.data;
-  
+
         setNews(response.data.data.news);
         setTotalPages(Math.ceil(parseInt(totallength) / postsPerPage));
       })
@@ -54,19 +53,22 @@ function News({ userData }) {
   };
   return (
     <div className="mx-[10%] pt-[8rem] ">
-        <Helmet>
-    <title>News / Blog</title>
-      <meta 
-       name="description"
-       content="Get Latest update News / Blog of current Affairs.."
-      />
-      <link rel="canonical" href="https://unchiudaanclasses.com/News"></link>
-    </Helmet>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mx-[5%]">
-  
-        <NewsComp newsItems={news} userData={userData} onNewsDelete={handleNewsDelete}/>
-   
+      <Helmet>
+        <title>News / Blog</title>
+        <meta
+          name="description"
+          content="Get Latest update News / Blog of current Affairs.."
+        />
+        <link rel="canonical" href="https://unchiudaanclasses.com/News"></link>
+      </Helmet>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-5">
+        <NewsComp
+          newsItems={news}
+          userData={userData}
+          onNewsDelete={handleNewsDelete}
+        />
       </div>
+
       <div className="flex justify-center my-4">
         <button
           onClick={handlePrevPage}

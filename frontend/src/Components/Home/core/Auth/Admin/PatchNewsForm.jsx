@@ -100,7 +100,7 @@ const FormNews = ({ details, }) => {
   };
 
   return (
-    <div className="p-4 mx-[20%]">
+    <div className="p-4  ">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
