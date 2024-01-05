@@ -31,7 +31,7 @@ function Footer() {
           </p>
 
           <div className="mt-6 flex justify-center gap-6 lg:justify-start">
-            <a className=" " href="" target="_blank" rel="noreferrer">
+            <a className=" " href="https://www.facebook.com/groups/936910043329539/?ref=share" target="_blank" rel="noreferrer">
               <FaFacebook className="text-blue-500 w-7 h-7" />
             </a>
 
