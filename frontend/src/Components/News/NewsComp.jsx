@@ -81,6 +81,7 @@ function NewsComp({ newsItems, userData, onNewsDelete }) {
       ) : (
         newsItems.map((news) => {
           const createdAt = new Date(news.createdAt);
+          createdAt.setDate(createdAt.getDate() + 1);
           const formattedDate = createdAt.toLocaleString("default", {
             day: "numeric",
             month: "long",

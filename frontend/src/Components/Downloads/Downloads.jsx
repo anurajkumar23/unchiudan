@@ -273,6 +273,7 @@ function Downloads({ userData }) {
             pdfs.map((pdf) => {
               const createdAt = new Date(pdf.createdAt);
               const updatedAt = new Date(pdf.updatedAt);
+              createdAt.setDate(createdAt.getDate() + 1);
               const formattedDate = createdAt.toLocaleString("default", {
                 day: "numeric",
                 month: "long",

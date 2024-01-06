@@ -111,6 +111,7 @@ function Currentaffairs({ userData }) {
           affairs.map((blog) => {
             const createdAt = new Date(blog.createdAt);
             const updatedAt = new Date(blog.updatedAt);
+            createdAt.setDate(createdAt.getDate() + 1);
             const formattedDate = createdAt.toLocaleString("default", {
               day: "numeric",
               month: "long",
